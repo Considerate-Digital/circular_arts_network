@@ -1,0 +1,338 @@
+.uclwp-top-bar {
+	display: block;
+	background: #fff;
+	padding: 25px 25px;
+	box-shadow: 0px 20px 60px 0px rgb(0 0 0 / 10%);
+	margin-bottom: 30px;
+}
+
+.uclwp-top-bar h2 {
+	line-height: 40px;
+	margin: 0;
+	font-size: 24px;
+}
+
+.uclwp-menu-box .active {
+	color: #fff;
+	background-color: #f85c70;
+	border-color: #f85c70;
+}
+
+.uclwp-menu-box a {
+	position: relative;
+	display: inline-block;
+	width: 40px;
+	height: 40px;
+	line-height: 40px;
+	text-align: center;
+	border: 1px solid #e6e7ec;
+	border-radius: 50%;
+	font-size: 14px;
+	color: #93959e;
+	font-weight: 700;
+	cursor: pointer;
+	background: transparent;
+	transition: all 500ms ease;
+}
+
+.uclwp-select-box {
+	margin-right: 25px;
+}
+
+.uclwp-select-box .nice-select {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 50px;
+    border: none !important;
+    background: transparent;
+    font-size: 15px;
+    color: #848484;
+    font-weight: 500;
+    padding: 4px 55px;
+	height: 40px;
+	padding: 0px 42px 0px 0px;
+}
+
+.uclwp-select-box .list {
+	margin: 0;
+	padding: 0;
+	min-width: 200px;
+	left: auto !important;
+	right: 0;
+}
+
+.uclwp-select-box .list li {
+	margin: 0;
+}
+
+.uclwp-list-box-wrap .uclwp-box-inner,
+.uclwp-grid-box-wrap .uclwp-box-inner {
+	background: #fff;
+	border-radius: 10px;
+	box-shadow: 0px 10px 50px 0px rgb(0 0 0 / 10%);
+	margin-bottom: 30px;
+	position: relative;
+}
+
+.uclwp-list-box-wrap .uclwp-box-inner {
+	display: flex;
+}
+
+.uclwp-grid-box-wrap .uclwp-content-wrap {
+	padding: 15px 20px; 
+	overflow: hidden;
+}
+
+.uclwp-grid-box-wrap .uclwp-footer-area {
+	padding-top: 10px;
+}
+
+.uclwp-list-box-wrap .uclwp-box-inner .uclwp-image-wrap {
+	flex: 2;
+	overflow: hidden;
+	border-radius: 10px 0 0 10px;
+}
+
+.uclwp-ribbon {
+    position: absolute;
+    left: -7px;
+    top: 20px;
+    font-size: 12px;
+    line-height: 20px;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: 500;
+    border-radius: 0px 3px 3px 0px;
+    padding: 3px 17px;
+    background-color: #2dbe6c;
+    z-index: 2;
+}
+
+.uclwp-ribbon:before {
+	position: absolute;
+	content: '';
+	width: 7px;
+	height: 7px;
+	left: 0px;
+	bottom: -7px;
+	clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 100% 100%, 0% 0%);
+    background-color: #2dbe6c;
+}
+
+.uclwp-list-box-wrap .uclwp-box-inner .uclwp-content-wrap {
+	flex: 3;
+	padding: 10px 20px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	border-right: 1px solid #e5e7ec;
+}
+
+.uclwp-list-box-wrap .uclwp-box-inner .uclwp-content-wrap h2 {
+	font-size: 22px;
+    line-height: 28px;
+    margin: 0 0 5px 0;
+}
+
+.uclwp-grid-box-wrap .uclwp-box-inner .cats,
+.uclwp-list-box-wrap .uclwp-box-inner .cats {
+	font-size: 14px;
+	margin: 0;
+}
+
+.uclwp-grid-box-wrap .uclwp-image {
+	display: block;
+	position: relative;
+	overflow: hidden;
+	border-radius: 10px 10px 0px 0px;
+}
+
+.uclwp-grid-box-wrap .uclwp-box-inner .uclwp-excerpt {
+	margin: 0;
+	font-size: 14px;
+	color: #5c727d;
+	overflow: hidden;
+	margin-bottom: 10px;
+}
+
+.uclwp-grid-box-wrap .uclwp-footer-area:before {
+	position: absolute;
+	content: '';
+	background: #edeff2;
+	width: calc(100% + 60px);
+	height: 1px;
+	left: -30px;
+	top: 0px;
+}
+
+.uclwp-footer-area {
+	position: relative;
+}
+
+.uclwp-grid-box-wrap .uclwp-box-inner .cats i,
+.uclwp-list-box-wrap .uclwp-box-inner .cats i {
+	color: #f85c70;
+}
+
+.uclwp-grid-box-wrap .uclwp-box-inner .cats a,
+.uclwp-list-box-wrap .uclwp-box-inner .cats a {
+	text-decoration: none;
+	margin: 0 0 0 5px;
+	color: #848484;
+}
+
+.uclwp-list-box-wrap .uclwp-box-inner .uclwp-btn-wrap {
+	flex: 1;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	text-decoration: none;
+}
+
+.uclwp-box-inner .uclwp-meta {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.uclwp-list-box-wrap .uclwp-box-inner .uclwp-excerpt {
+	margin: 0;
+	font-size: 14px;
+	color: #5c727d;
+}
+
+.uclwp-list-box-wrap .uclwp-box-inner .uclwp-excerpt p {
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+	margin-bottom: 5px;
+	width: 100%;
+}
+
+.uclwp-actions a {
+	border: 1px solid #989aa3;
+	color: #989aa3;
+	width: 30px;
+	height: 30px;
+	display: inline-block;
+	margin: 5px;
+	text-align: center;
+	padding: 6px;
+	border-radius: 50%;
+	font-size: 14px;
+	text-decoration: none;
+	line-height: 18px;
+}
+
+.uclwp-bs-wrapper .uclwp-price-wrap {
+	line-height: 40px;
+	margin: 0;
+}
+
+.uclwp-price-wrap .ucl-before-text, .uclwp-price-wrap .ucl-after-text {
+	font-size: 14px;
+	color: #808080;
+}
+
+.uclwp-price-wrap .uclwp-price-amount {
+	font-size: 24px;
+	color: #f85c70;
+	margin: 0 5px;
+	font-weight: bold;
+}
+
+.uclwp-box-inner .uclwp-image-wrap img {
+	width: 100%;
+	transition: all 500ms ease;
+}
+.uclwp-box-inner:hover .uclwp-image-wrap img {
+    transform: scale(1.05);
+}
+
+.ucl-pagination {
+	position: relative;
+	display: block;
+	background: #fff;
+	padding: 25px 30px;
+	border-radius: 10px;
+	box-shadow: 0px 20px 60px 0px rgb(0 0 0 / 10%);
+}
+
+.ucl-pagination ul {
+	position: relative;
+	display: block;
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	text-align: center;
+}
+
+.ucl-pagination ul li {
+	display: inline-block;
+	padding: 0;
+	margin: 0 3px;
+}
+
+.ucl-pagination ul li a, .ucl-pagination ul li span {
+	position: relative;
+	display: inline-block;
+	font-size: 15px;
+	font-weight: 500;
+	height: 40px;
+	width: 40px;
+	line-height: 40px;
+	background: transparent;
+	text-align: center;
+	color: #061a3a;
+	border-radius: 50%;
+	z-index: 1;
+	border: 1px solid #e6e7ec;
+	transition: all 500ms ease;
+	text-decoration: none !important;
+}
+
+.ucl-pagination ul li .next {
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+
+
+.ucl-pagination ul li .prev {
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+.ucl-pagination li a:hover, .ucl-pagination li .current {
+    background-color: #f85c70;
+    border-color: #f85c70;
+    color: #FFF;
+}
+
+.ucl-pagination:empty {
+	display: none;
+}
+
+@media only screen and (max-width: 992px){
+	.uclwp-list-box-wrap .uclwp-box-inner {
+		flex-direction: column;
+	}
+	.uclwp-list-box-wrap .uclwp-box-inner .uclwp-image-wrap {
+		border-radius: 10px;
+		max-width: 200px;
+		margin: 15px auto 0 auto;
+	}
+	.uclwp-list-box-wrap .uclwp-box-inner .uclwp-content-wrap {
+		border-right: none;
+		border-bottom: 1px solid #e5e7ec;
+	}
+	.uclwp-btn-wrap {
+		padding: 20px 0 20px 0;
+	}
+	.uclwp-title-area {
+		text-align: center;
+	}
+}
