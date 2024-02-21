@@ -1,0 +1,35 @@
+.ucl-preview-image {
+    box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
+    background-color: #FFF;
+    cursor: move;
+    margin-bottom: 30px;
+}
+.ucl-preview-image img {
+  border-radius: 4px;
+  padding: 5px;
+  max-width: 100% !important;
+  width: auto;
+}
+.ucl-image-wrap {
+  height: 120px;
+  overflow: hidden;
+  text-align: center;
+}
+.ucl-preview-image .ucl-actions-wrap {
+  padding: 0.25rem;
+  text-align: center;
+}
+.ucl-preview-image .ucl-actions-wrap .remove-image {
+  background: #d30505;
+  color: #FFF;
+}
+.thumbs-prev .drag-placeholder {
+    background-color: #ededed;
+    height: 169px;
+    width: 178.88px; 
+    padding: 0 !important;
+    border: 5px dashed #555454;
+}
+.ucl-preview-image .ucl-actions-wrap a {
+    margin: 5px;
+}

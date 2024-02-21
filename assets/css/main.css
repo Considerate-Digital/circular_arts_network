@@ -1,0 +1,108 @@
+.ucl-input-wrapper .ucl-text-input {
+	position: relative;
+	display: block;
+	width: 100%;
+	height: 50px;
+	border: 1px solid #e6e8e8;
+	border-radius: 30px;
+	font-size: 15px;
+	color: #808288;
+	padding: 10px 30px;
+	transition: all 500ms ease;
+}
+
+.ucl-input-wrapper {
+	margin-bottom: 20px;
+}
+
+.ucl-input-wrapper label {
+	position: relative;
+	display: block;
+	font-size: 16px;
+	color: #808288;
+	margin-bottom: 7px;
+}
+
+.ucl-input-wrapper textarea.ucl-text-input {
+	height: 100px;
+	resize: none;
+}
+
+.ucl-input-wrapper button:focus,
+.ucl-input-wrapper input:focus,
+.ucl-input-wrapper textarea:focus{
+  outline: none !important;
+  box-shadow: none;
+  transition: all 500ms ease;
+}
+
+.ucl-input-wrapper .ucl-text-input:focus {
+	border-color: #f85c70 !important;
+}
+.uclwp-bs-wrapper .ucl-btn {
+	position: relative;
+	display: inline-block;
+	overflow: hidden;
+	font-size: 16px;
+	line-height: 26px;
+	font-weight: 500;
+	color: #fff !important;
+	text-align: center;
+	background-color: #f85c70;
+	padding: 12px 29px;
+	border-radius: 30px;
+	box-shadow: 0px 10px 30px 0px rgb(248 92 112 / 40%);
+	z-index: 1;
+	transition: all 500ms ease;
+	text-decoration: none !important;
+}
+
+.uclwp-bs-wrapper .ucl-btn:hover {
+  background: #0d1927;
+  box-shadow: 0px 10px 30px 0px rgba(13,25,39,0.3);
+  text-decoration: none;
+}
+
+.uclwp-meta .ucl-single-field {
+    margin-top: 0;
+    margin-bottom: 15px;
+    padding: 2px 5px;
+    font-size: 13px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.uclwp-meta-area {
+	margin: 0 -7px;
+}
+
+.ucl-single-field {
+	font-size: 14px;
+	line-height: 26px;
+	border: 1px solid #e5e7ec;
+	border-radius: 6px;
+	padding: 8.5px 15px;
+	margin-top: 20px;
+}
+
+.ucl-single-field .ucl-field-title {
+	border-right: 1px solid #e5e7ec;
+    padding-right: 13px;
+    font-weight: bold;
+}
+
+.ucl-single-field .ucl-field-value {
+    padding-left: 13px;
+}
+
+.uclwp-bs-wrapper .ucl-link {
+	text-decoration: none;
+}
+
+.search-results .ucl-no-results {
+	font-size: 15px;
+	line-height: 26px;
+	border-radius: 25px;
+	padding: 8.5px 20px;
+	margin-bottom: 20px;
+}
