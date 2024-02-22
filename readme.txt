@@ -33,6 +33,10 @@ It is also a WordPress-based Listing Management System that allows you to own an
 3. Fields Builder
 4. Frontend Management
 
+== Docs ==
+https://www.wpclassifiedlistings.com/documentation/
+
+
 == Changelog ==
 
 = 1.2 =
