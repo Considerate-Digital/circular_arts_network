@@ -131,7 +131,7 @@ class UCLWP_Register_CPT
 	}
 
 	function register_cpt(){
-		$menu_name = __( 'Ultimate Classified Listings', 'ultimate-classified-listings' );
+		$menu_name = __( 'Circular Arts Network', 'ultimate-classified-listings' );
 
 	    if (current_user_can('edit_uclwp_listing') && !current_user_can('edit_others_uclwp_listings')) {
 	        $menu_name = __( 'Listings', 'ultimate-classified-listings' );

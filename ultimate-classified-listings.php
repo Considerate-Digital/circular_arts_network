@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name: Ultimate Classified Listings
+ * Plugin Name: Circular Arts Network 
  * Plugin URI: https://www.wpclassifiedlistings.com/
  * Description: A simple yet complete classifieds and listings system for WordPress.
  * Version: 1.2
@@ -25,3 +25,15 @@ require_once( UCLWP_PATH.'/classes/class-register-cpt.php' );
 require_once( UCLWP_PATH.'/classes/class-shortcodes.php' );
 require_once( UCLWP_PATH.'/classes/class-email.php' );
 require_once( UCLWP_PATH.'/classes/class-front-templates.php' );
+
+function add_categories() {
+  wp_insert_term(
+    'Wood',
+    'uclwp_listing_category', 
+    array(
+      'description' => 'Wood comes from trees',
+    )
+  );
+}
+add_action( 'after_setup_theme', 'add_categories');
+  
