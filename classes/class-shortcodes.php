@@ -87,6 +87,7 @@ class UCLWP_Shortcodes
 		    'columns' => 'auto',
 		    'style' => '1',
 		    'image_size' => 'thumbnail',
+				'hide_empty' => false,
 		), $attrs);
 
 		$args = array(

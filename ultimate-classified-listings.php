@@ -36,12 +36,43 @@ function add_categories() {
       'description' => 'Wood comes from trees'
     )
   );
-  // add term meta
-  // $wood->term_id
-  // add_term_meta( $wood->term_id, 'ucl_category_image', image-location?);
-  // add image
-  // $dir = plugin_dir_path();
-  // wp_insert_attachment($args(), $dir . "/images/etc");
+  if ( !is_wp_error($wood) ) {
+    // add image
+    $dir = plugin_dir_path( __FILE__ );
+    $filename = $dir . "assets/images/categories/wood.jpg";
+
+   //Customize this post data as you wish
+    $my_post_data = array(
+        'post_title' => basename( $filename ),
+        'post_type' => 'post',
+        'post_category' => array('1'),
+        'post_author'   => 1,
+        'post_status' => 'publish'
+    );
+
+    // We need the ID for the attachment
+    $post_id = wp_insert_post($my_post_data);
+
+    $filetype = wp_check_filetype( basename( $filename ), null );
+    $upload_dir = wp_upload_dir();
+    var_dump($upload_dir);
+    $args = array(
+      'guid'           => $upload_dir['url'] . '/' . basename( $filename ), 
+      'post_mime_type' => $filetype['type'],
+      'post_title'     => preg_replace( '/\.[^.]+$/', '', basename( $filename ) ),
+      'post_content'   => '',
+      'post_status'    => 'inherit'
+    );
+    $image_id = wp_insert_attachment( $args, $filename, $post_id);
+    $attach_data = wp_generate_attachment_metadata( $image_id, $filename );
+    wp_update_attachment_metadata( $image_id, $attach_data);
+    //$image_src_id = wp_get_attachment_image_src( $image_id );
+
+
+    // add term meta
+    var_dump( $wood );
+    add_term_meta( $wood['term_id'], 'ucl_category_image', $upload_dir['url']);
+  }
 
   wp_insert_term(
     'Metal',

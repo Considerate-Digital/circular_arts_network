@@ -35,6 +35,10 @@ if($primaryColor != ''){
         .uclwp-bs-wrapper .ucl-btn:hover {
             background-color: $secondaryColor !important;
         }
+        
+        .ucl-single-cat:hover {
+            border-color: $primaryColor;
+        }
     ";
 }
 ?>

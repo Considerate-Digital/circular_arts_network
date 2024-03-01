@@ -3,15 +3,26 @@
 			<?php 
             if (!empty($categories)) {
 
-                foreach ($categories as $cat) { ?>
+                foreach ($categories as $cat) { 
+                    $cat_names = array(
+                        "Wood",
+                        "Metal"
+                    );
+
+?>
     				<div class="<?php echo esc_attr( $col_classes ); ?>">
                             <div class="ucl-single-cat text-center">
                                 <div class="ucl-cat-icon">
-                                    <?php $this->render_category_image($cat->term_id, $attrs['image_size']); ?>
+                                    <?php if ( in_array($cat->name, $cat_names ) ) { ?>
+                                        <img src="<?php echo plugins_url() ?>/circular_arts_network/assets/images/categories/<?php echo $cat->name ?>.jpg" />
+                                    <?php } else { 
+                                        $this->render_category_image($cat->term_id, $attrs['image_size']); 
+                                    } ?>
                                 </div>
                                 <div class="ucl-cat-title">
                                     <h3>
                                         <?php echo esc_attr( $cat->name ); ?>
+                                        <?php //var_dump( $cat ) ?>
                                     </h3>
                                 </div>
                                 <div class="ucl-cat-count">

@@ -510,7 +510,6 @@ class UCLWP_Front_Templates
     	$terms = wp_get_post_terms( $listing_id ,'uclwp_listing_category' );
     		if (!empty($terms)) { ?>
     			<p class="cats d-none d-lg-block">
-    				<i class="bi bi-tags-fill"></i>
     				<?php
     				    foreach ( $terms as $term ) {
     				        $term_link = get_term_link( $term );
