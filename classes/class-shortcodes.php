@@ -102,7 +102,6 @@ class UCLWP_Shortcodes
 	    }
 
 	    $categories = get_terms( $args );
-
 	    $col_classes = uclwp_get_column_classes($attrs['columns']);
 
 	    uclwp_load_basic_styles();

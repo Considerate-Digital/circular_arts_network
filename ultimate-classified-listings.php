@@ -27,13 +27,30 @@ require_once( UCLWP_PATH.'/classes/class-email.php' );
 require_once( UCLWP_PATH.'/classes/class-front-templates.php' );
 
 function add_categories() {
-  wp_insert_term(
+  //sleep();
+  //print_r("plugin activated");
+  $wood = wp_insert_term(
     'Wood',
     'uclwp_listing_category', 
     array(
-      'description' => 'Wood comes from trees',
+      'description' => 'Wood comes from trees'
+    )
+  );
+  // add term meta
+  // $wood->term_id
+  // add_term_meta( $wood->term_id, 'ucl_category_image', image-location?);
+  // add image
+  // $dir = plugin_dir_path();
+  // wp_insert_attachment($args(), $dir . "/images/etc");
+
+  wp_insert_term(
+    'Metal',
+    'uclwp_listing_category', 
+    array(
+      'description' => 'Metal comes from the earth.'
     )
   );
 }
-add_action( 'after_setup_theme', 'add_categories');
+//add_action( 'activate_circular_arts_network/ultimate-classified-listings.php', 'add_categories');
+add_action( 'admin_init', 'add_categories');
   
