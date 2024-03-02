@@ -4,12 +4,18 @@
             if (!empty($categories)) {
 
                 foreach ($categories as $cat) { 
-                    $cat_names = array(
-                        "Wood",
-                        "Metal"
-                    );
-
-?>
+                 $cat_names = array(
+                  'Materials',
+                  'Equipment',
+                  'Transport',
+                  'Furniture',
+                  'Packing',
+                  'Time',
+                  'Skills',
+                  'Everything Else',
+                  'Wanted'
+                );
+          ?>
     				<div class="<?php echo esc_attr( $col_classes ); ?>">
                             <div class="ucl-single-cat text-center">
                                 <div class="ucl-cat-icon">
