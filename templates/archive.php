@@ -9,7 +9,7 @@
 if( ! defined('ABSPATH' ) ){ exit; }
 
 get_header();
-$columns = (isset($_GET['layout']) && $_GET['layout'] == 'list') ? 'col-sm-12' : uclwp_get_option('archive_page_cols', 'col-sm-4') ;
+$columns = (isset($_GET['layout']) && $_GET['layout'] == 'list') ? 'col-sm-12' : uclwp_get_option('archive_page_cols', 'col-sm-3') ;
 ?>
 
 <div class="uclwp-bs-wrapper">

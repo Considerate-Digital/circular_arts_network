@@ -3,6 +3,8 @@
 	background-color: #eae4e4;
 	border-radius: 35px;
 	padding: 10px;
+	width: max-content;
+	margin: 0rem auto;
 }
 
 .ucl-search-1 .ucl-input-field {
@@ -25,6 +27,7 @@
 
 .ucl-search-1 .ucl-input-wrap {
 	position: relative;
+	padding: 0rem 1rem;
 }
 
 .ucl-search-1 .ucl-btn {
@@ -61,7 +64,11 @@
 	font-weight: 500;
 	padding: 4px 25px;
 }
-
+.ucl-search-form .row {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
 .ucl-search-form .nice-select .list {
 	margin: 0;
 	left: -20px;

@@ -7,4 +7,7 @@
 			<?php $this->render_dashboard_page(); ?>
 		</div>
 	</div>
+	<div class="row">
+		Created by CAN alongside ... lots more info to go here about the project and who made it. Logos etc.
+	</div>
 </div>

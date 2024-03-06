@@ -245,10 +245,11 @@
 
 .uclwp-box-inner .uclwp-image-wrap img {
 	width: 100%;
-	transition: all 500ms ease;
+	transition: all 300ms ease;
 }
 .uclwp-box-inner:hover .uclwp-image-wrap img {
-    transform: scale(1.05);
+    /*transform: scale(1.05);*/
+	filter: grayscale(1);
 }
 
 .ucl-pagination {

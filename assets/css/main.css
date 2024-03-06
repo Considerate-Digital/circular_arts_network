@@ -94,6 +94,7 @@
 }
 
 .ucl-single-field .ucl-field-value {
+    padding-left: 0.8rem;
 }
 
 .uclwp-bs-wrapper .ucl-link {
@@ -106,4 +107,7 @@
 	border-radius: 25px;
 	padding: 8.5px 20px;
 	margin-bottom: 20px;
+}
+.uclwp-image {
+	height: 20rem;
 }

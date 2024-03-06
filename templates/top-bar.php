@@ -11,6 +11,7 @@
 	<div class="<?php echo (is_archive()) ? 'float-end' : ''; ?> clearfix">
 		<form method="GET" action="#">
 	        <div class="uclwp-select-box float-start">
+		<?php /*
 				<select class="uclwp-select-menu" name="sort_by" onchange="this.form.submit()">
 					<?php
 						$sorting_options = $this->lists_sorting_options();
@@ -20,6 +21,8 @@
 						<?php }
 					?>
 				</select>
+
+		 */?>
 				<input type="hidden" name="layout" value="<?php echo (isset($_GET['layout'])) ? $_GET['layout'] : 'grid' ;  ?>">
 	        </div>
 			<div class="uclwp-menu-box <?php echo (is_archive()) ? 'float-start' : 'float-end'; ?>">
