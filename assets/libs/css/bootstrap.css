@@ -621,16 +621,16 @@
 }
 .uclwp-bs-wrapper .row > * {
   flex-shrink: 0;
-  /*
-  width: 100%;
   max-width: 100%;
-  */
   padding-right: calc(var(--bs-gutter-x) * 0.5);
   padding-left: calc(var(--bs-gutter-x) * 0.5);
   margin-top: var(--bs-gutter-y);
 }
 .uclwp-bs-wrapper .col {
   /*flex: 1 0 0%;*/
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 .uclwp-bs-wrapper .row-cols-auto > * {
   flex: 0 0 auto;

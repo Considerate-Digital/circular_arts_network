@@ -4,7 +4,11 @@
 	border-radius: 35px;
 	padding: 10px;
 	width: max-content;
+	max-width: 100%;
 	margin: 0rem auto;
+}
+.ucl-search-1 .col {
+	width: 100%;
 }
 
 .ucl-search-1 .ucl-input-field {
@@ -123,4 +127,9 @@
 
 .uclwp-bs-wrapper .ucl-search-1 .ucl-btn {
 	box-shadow: none !important;
+}
+@media only screen and (min-width: 32rem) {
+	.ucl-search-1 .col {
+		width: auto;
+	}
 }

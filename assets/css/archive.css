@@ -69,10 +69,10 @@
 .uclwp-list-box-wrap .uclwp-box-inner,
 .uclwp-grid-box-wrap .uclwp-box-inner {
 	background: #fff;
-	border-radius: 10px;
 	box-shadow: 0px 10px 50px 0px rgb(0 0 0 / 10%);
 	margin-bottom: 30px;
 	position: relative;
+	border: 4px dashed #cacaca;
 }
 
 .uclwp-list-box-wrap .uclwp-box-inner {
