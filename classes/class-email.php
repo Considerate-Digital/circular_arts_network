@@ -47,7 +47,7 @@ class UCLWP_Email
         $message = str_replace("%last_name%", $new_agent['last_name'], $message);
         $message = str_replace("%username%", $new_agent['username'], $message);
         $message = str_replace("%seller_email%", $new_agent['useremail'], $message);
-
+	
         $this->send_email($admin_email, $subject, $message);
 
         do_action('wpml_switch_language_for_email', $new_agent['useremail']);

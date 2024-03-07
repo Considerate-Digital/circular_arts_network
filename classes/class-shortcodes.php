@@ -476,10 +476,12 @@ class UCLWP_Shortcodes
 	}
 
 	function register(){
+
         if (isset($_REQUEST['username'])) {
         	$username 	= 	sanitize_text_field( $_REQUEST['username'] );
         	$useremail 	= 	sanitize_email( $_REQUEST['seller_email'] );
         	$password 	= 	$_REQUEST['seller_password'];
+	
 
             $resp = array();
 
@@ -500,11 +502,21 @@ class UCLWP_Shortcodes
 					}
             	}
             }
+		
 
             // Lets Check if username already exists
             if (username_exists( $_REQUEST['username'] ) || email_exists( $_REQUEST['seller_email'] )) {
                 $resp = array('status' => 'info', 'message' => __( 'Username or Email already exists', 'ultimate-classified-listings' ));
             } else {
+		$sellerData = array(
+			'first_name'	=> 		sanitize_text_field( $_REQUEST['first_name'] ),
+			'last_name'		=> 		sanitize_text_field( $_REQUEST['last_name'] ),
+			'username'		=> 		sanitize_text_field( $_REQUEST['username'] ),
+			'useremail'	=> 		sanitize_email( $_REQUEST['seller_email'] ),
+			'seller_phone'	=> 		sanitize_text_field( $_REQUEST['seller_phone'] ),
+			'seller_password'=> 	$_REQUEST['seller_password'],
+			'time'			=> 		current_time( 'mysql' ),
+		);
 
             	if (uclwp_get_option('seller_approval', 'manual') == 'auto') {
 		            $seller_id = wp_create_user( $username, $password, $useremail );
@@ -541,8 +553,8 @@ class UCLWP_Shortcodes
 			                update_user_meta( $seller_id, 'icl_admin_language', sanitize_text_field( $_REQUEST['wpml_user_email_language'] ));
 			            }
 
-	                    do_action( 'uclwp_new_seller_registered', $_REQUEST );
-	                    do_action( 'uclwp_new_seller_approved', $_REQUEST );
+	                    do_action( 'uclwp_new_seller_registered', $sellerData );
+	                    do_action( 'uclwp_new_seller_approved', $sellerData );
 
 	                    $resp = array('status' => 'success', 'message' => __( 'Registered Successfully, now please login', 'ultimate-classified-listings' ));
 	                } else {
@@ -551,16 +563,7 @@ class UCLWP_Shortcodes
             		
             	} else {
 
-            		$sellerData = array(
-            			'first_name'	=> 		sanitize_text_field( $_REQUEST['first_name'] ),
-            			'last_name'		=> 		sanitize_text_field( $_REQUEST['last_name'] ),
-            			'username'		=> 		sanitize_text_field( $_REQUEST['username'] ),
-            			'seller_email'	=> 		sanitize_email( $_REQUEST['seller_email'] ),
-            			'seller_phone'	=> 		sanitize_text_field( $_REQUEST['seller_phone'] ),
-            			'seller_password'=> 	$_REQUEST['seller_password'],
-            			'time'			=> 		current_time( 'mysql' ),
-            		);
-
+            		
 	                $previous_users = get_option( 'uclwp_pending_users' );
 	                
 	                // if image uploaded
@@ -586,7 +589,7 @@ class UCLWP_Shortcodes
 	                }
 
 	                if (update_option( 'uclwp_pending_users', $previous_users )) {
-	                    do_action( 'uclwp_new_seller_registered', $_REQUEST );
+	                    do_action( 'uclwp_new_seller_registered', $sellerData );
 	                    $resp = array('status' => 'success', 'message' => __( 'Registered Successfully, please wait until admin approves.', 'ultimate-classified-listings' ));
 	                } else {
 	                    $resp = array('status' => 'error', 'message' => __( 'Error, please try later', 'ultimate-classified-listings' ));
@@ -594,7 +597,7 @@ class UCLWP_Shortcodes
             	}
             }
 
-            echo json_encode($resp);
+	    echo json_encode($resp);
         }
 
         die(0);
