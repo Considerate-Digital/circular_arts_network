@@ -111,3 +111,18 @@
 .uclwp-image {
 	height: 20rem;
 }
+.uclwp-bs-wrapper .uclwp-credits {
+	display: block;
+	margin-top: 2rem;
+}
+
+.uclwp-bs-wrapper .uclwp-credits p {
+	font-size: 0.85rem;
+	padding: 0rem 0.2rem;
+	margin: 0.2rem 0rem;
+}
+.uclwp-credits img {
+	width: 100px;
+	height: auto;
+	margin-bottom: 0.6rem;
+}

@@ -613,7 +613,7 @@ function uclwp_count_user_listings($user_id, $status = 'all'){
 function uclwp_get_listing_price( $price, $args = array() ) {
     $price_digits = $price;
     extract( apply_filters( 'uclwp_price_args', wp_parse_args( $args, array(
-        'currency'           => uclwp_get_option('currency', 'USD'),
+        'currency'           => uclwp_get_option('currency', 'GBP'),
         'decimal_separator'  => uclwp_get_price_decimal_separator(),
         'thousand_separator' => uclwp_get_price_thousand_separator(),
         'decimals'           => uclwp_get_price_decimals(),
