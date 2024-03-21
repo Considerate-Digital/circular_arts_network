@@ -46,7 +46,8 @@ function add_categories() {
       'Time',
       'Skills',
       'Everything Else',
-      'Wanted'
+      'Wanted',
+      'Stories'
     );
 
     for ($i = 0; $i < count( $standard_categories ); $i++) {

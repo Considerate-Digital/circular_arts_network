@@ -8,7 +8,7 @@
 				</div>
 			</a>
 		</div>
-		<div class="uclwp-content-wrap">
+		<div class="uclwp-content-wrap uclwp-content-wrap-<?php echo $this->get_category_name($listing_id); ?>">
 			<div class="uclwp-title-area">
 				<h2><?php echo get_the_title($listing_id); ?></h2>
 				<?php $this->render_categories($listing_id); ?>
@@ -16,6 +16,7 @@
 					<p><?php echo wp_trim_words(get_the_excerpt($listing_id), 10, '...'); ?></p>
 				</div>
 			</div>
+			<?php if  ($this->get_category_name($listing_id) != "stories"):  ?>
 			<div class="uclwp-meta-area">
 				<?php $this->render_listing_meta($listing_id); ?>
 			</div>
@@ -27,9 +28,18 @@
 					<?php $this->render_action_buttons($listing_id); ?>
 				</div>
 			</div>
+			<?php endif; ?>
 		</div>
-		<div class="uclwp-btn-wrap">
-			<a target="<?php echo esc_attr( $target ); ?>" href="<?php echo get_the_permalink( $listing_id ); ?>" class="ucl-btn"><?php _e( 'Details', 'ultimate-classified-listings' ) ?></a>
+		<div class="uclwp-btn-wrap uclwp-btn-wrap-<?php echo $this->get_category_name($listing_id); ?>">
+			<a target="<?php echo esc_attr( $target ); ?>" href="<?php echo get_the_permalink( $listing_id ); ?>" class="ucl-btn">
+				<?php if  ($this->get_category_name($listing_id) != "stories"): 
+					_e( 'Details', 'ultimate-classified-listings' );
+					else: 
+
+					 _e( 'Read', 'ultimate-classified-listings' );
+				endif; ?>
+
+</a>
 		</div>
 	</div>
 </div>

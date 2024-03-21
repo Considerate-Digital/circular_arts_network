@@ -1,8 +1,8 @@
 <?php
-$primaryColor = uclwp_get_option('ucl_primary_color', '#f85c70');
-$secondaryColor = uclwp_get_option('ucl_secondary_color', '#0d1927');
+$primaryColor = uclwp_get_option('ucl_primary_color', '#3AAF4A');
+$secondaryColor = uclwp_get_option('ucl_secondary_color', '#fffff');
 
-if($primaryColor != ''){
+if($primaryColor != '' && $secondaryColor != ''){
     echo "
         .uclwp-bs-wrapper .ucl-single-cat:before,
         .uclwp-bs-wrapper .uclwp-menu-box .active,
@@ -39,6 +39,26 @@ if($primaryColor != ''){
         .ucl-single-cat:hover {
             border-color: $primaryColor;
         }
+	
+	.uclwp-content-wrap-stories  {
+		background-color: $primaryColor;
+		color: $secondaryColor;
+	} 
+	.uclwp-content-wrap-stories *  {
+		background-color: $primaryColor !important;
+		color: $secondaryColor !important;
+	}
+	.uclwp-content-wrap-stories {
+		min-height: 12.3rem;
+	}
+	.uclwp-btn-wrap-stories {
+		background-color: $primaryColor !important;
+	}
+	.uclwp-btn-wrap-stories .ucl-btn {
+		color: $primaryColor !important;
+		background-color: $secondaryColor !important;
+	    box-shadow: 0px 10px 30px 0px {$secondaryColor}66 !important;
+	}
     ";
 }
 ?>

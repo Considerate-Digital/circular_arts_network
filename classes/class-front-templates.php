@@ -522,7 +522,15 @@ class UCLWP_Front_Templates
     			</p>
     	<?php }
     }
-}
+	function get_category_name($listing_id){
+    	$terms = wp_get_post_terms( $listing_id ,'uclwp_listing_category' );
+    		if (!empty($terms)) { 
+		    foreach ( $terms as $term ) {
+			return strtolower($term->name);
+		    }
+		 }
+	    }
+	}
 
 new UCLWP_Front_Templates();
 ?>

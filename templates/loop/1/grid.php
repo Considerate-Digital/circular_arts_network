@@ -8,11 +8,12 @@
 				</div>
 			</a>
 		</div>
-		<div class="uclwp-content-wrap">
+		<div class="uclwp-content-wrap uclwp-content-wrap-<?php echo $this->get_category_name($listing_id); ?>">
 			<div class="uclwp-title-area">
 				<h2><?php echo get_the_title($listing_id); ?></h2>
 				<?php $this->render_categories($listing_id); ?>
 			</div>
+		<?php if  ($this->get_category_name($listing_id) != "stories"):  ?>
 			<div class="uclwp-meta-area">
 				<?php $this->render_listing_meta($listing_id); ?>
 			</div>
@@ -24,6 +25,7 @@
 					<?php $this->render_action_buttons($listing_id); ?>
 				</div>
 			</div>
+		<?php endif; ?>
 		</div>
 	</div>
 </div>
