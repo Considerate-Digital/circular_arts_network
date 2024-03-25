@@ -815,7 +815,7 @@ function uclwp_get_all_currencies() {
  */
 function uclwp_get_currency_symbol( $currency = '' ) {
     if ( ! $currency ) {
-        $currency = uclwp_get_option('currency', 'USD');
+        $currency = uclwp_get_option('currency', 'GBP');
     }
 
     $symbols = apply_filters( 'uclwp_all_currency_symbols', array(

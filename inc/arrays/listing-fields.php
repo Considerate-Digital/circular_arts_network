@@ -15,7 +15,10 @@
             'tab' => 'details',
             'options' => array(
                 __( 'Sell', 'ultimate-classified-listings' ),
+                __( 'Give', 'ultimate-classified-listings' ),
+                __( 'Lend', 'ultimate-classified-listings' ),
                 __( 'Rent', 'ultimate-classified-listings' ),
+                __( 'Wanted', 'ultimate-classified-listings' ),
             ),
             'default' => '',
             'icon' => 'bi bi-building',
@@ -29,7 +32,6 @@
             'options' => array(
                 __( 'New', 'ultimate-classified-listings' ),
                 __( 'Used', 'ultimate-classified-listings' ),
-                __( 'Normal', 'ultimate-classified-listings' ),
             ),
             'default' => '',
             'icon' => 'bi bi-moon-stars',
@@ -43,7 +45,7 @@
             'default' => '',
             'icon' => 'bi bi-calendar-day',
             'title' => __( 'Build Date', 'ultimate-classified-listings' ),
-            'help' => __( 'Build date of the element', 'ultimate-classified-listings' ),
+            'help' => __( 'Build date of the element if applicable', 'ultimate-classified-listings' ),
         ),
 
         array(
@@ -53,7 +55,7 @@
             'default' => '',
             'icon' => 'bi bi-app-indicator',
             'title' => __( 'Model', 'ultimate-classified-listings' ),
-            'help' => __( 'Model of the element', 'ultimate-classified-listings' ),
+            'help' => __( 'Model of the element if applicable', 'ultimate-classified-listings' ),
         ),
 
         array(
@@ -92,8 +94,8 @@
             'tab' => 'details',
             'default' => '',
             'icon' => 'bi bi-bounding-box',
-            'title' => __( 'Zip Code', 'ultimate-classified-listings' ),
-            'help' => __( 'Zipcode', 'ultimate-classified-listings' ),
+            'title' => __( 'Postcode/Zipcode', 'ultimate-classified-listings' ),
+            'help' => __( 'Postcode or Zipcode', 'ultimate-classified-listings' ),
         ),
         array(
             'key' => 'listing_features',
@@ -101,13 +103,8 @@
             'tab' => 'features',
             'default' => '',
             'options' => array(
-                __( '1 Year international warranty', 'ultimate-classified-listings' ),
-                __( 'Air Conditioning', 'ultimate-classified-listings' ),
-                __( 'Power Locks', 'ultimate-classified-listings' ),
-                __( 'Power Windows', 'ultimate-classified-listings' ),
-                __( 'Mobile Controlled Gates', 'ultimate-classified-listings' ),
-                __( 'Keyless entry', 'ultimate-classified-listings' ),
-                __( 'Best Market Price', 'ultimate-classified-listings' ),
+                __( 'Free delivery available', 'ultimate-classified-listings' ),
+                __( 'Paid delivery available', 'ultimate-classified-listings' ),
             ),
             'icon' => 'bi bi-boxes',
             'title' => __( 'Features', 'ultimate-classified-listings' ),
