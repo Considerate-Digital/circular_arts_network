@@ -39,6 +39,10 @@ if($primaryColor != '' && $secondaryColor != ''){
         .ucl-single-cat:hover {
             border-color: $primaryColor;
         }
+
+	.uclwp-box-inner-stories {
+		border-color: $primaryColor !important;
+	}
 	
 	.uclwp-content-wrap-stories  {
 		background-color: $primaryColor;

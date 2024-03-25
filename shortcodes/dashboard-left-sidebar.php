@@ -8,10 +8,15 @@
 		</div>
 	</div>
 	<div class="row uclwp-credits">
-                <img src="<?php echo plugins_url() ?>/circular_arts_network/assets/images/can-logo.webp"  />
-		<p>Created by <a href="https://canarts.org.uk" target="_blank">CAN</a> alongside ... lots more info to go here about the project and who made it. Logos etc.</p>
-		<p>Concept by Ralf Mackenzie (creator of the original CAN website etc.) and ...</p>
-		<p>Illustrations by ...</p>
-		<p>Wordpress plugin forked from <a href="https://www.wpclassifiedlistings.com/" target="_blank">Ultimate Classified Listings</a> by "webcodingplace" and adapted for CAN by <a href="https://considerate.digital" target="_blank">Considerate Digital</a>.
+		<a href="https://canarts.org.uk" target="_blank">
+			<img src="<?php echo plugins_url() ?>/circular_arts_network/assets/images/can-logo.webp"  />
+		</a>
+		<p>CAN - Circular Arts Network</p>
+		<p>Original site developed by Sculpture Placement Group (SPG), in collaboration with developer Ralph Mackenzie.</p>
+		<p>CAN branding, logo, site layout all designed by Ralph Mackenzie.</p>
+		<p>Category Icons were commissioned for CAN, and illustrated by Esme Macintyre.</p>
+		<p>
+			This WordPress plugin was adapted for CAN by <a href="https://considerate.digital" target="_blank">Considerate Digital</a>. It is based on the open source plugin <a href="https://www.wpclassifiedlistings.com/" target="_blank">Ultimate Classified Listings</a> by "webcodingplace".
+		</p>
 	</div>
 </div>

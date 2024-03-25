@@ -1,11 +1,11 @@
 <div class="uclwp-grid-box-wrap clearfix">
-	<div class="uclwp-box-inner">
+	<div class="uclwp-box-inner uclwp-box-inner-<?php echo $this->get_category_name($listing_id); ?>">
 		<div class="uclwp-image-wrap">
 			<?php $this->render_ribbon($listing_id); ?>
 			<a href="<?php echo get_the_permalink( $listing_id ); ?>" target="<?php echo esc_attr( $target ); ?>" class="ucl-link">
-				<div class="uclwp-image">
+				<picture class="uclwp-image">
 					<?php do_action( 'uclwp_featured_image', $listing_id ) ?>
-				</div>
+				</picture>
 			</a>
 		</div>
 		<div class="uclwp-content-wrap uclwp-content-wrap-<?php echo $this->get_category_name($listing_id); ?>">
