@@ -100,6 +100,7 @@ class UCLWP_Admin_Settings
         if ( !isset( $_POST['uclwp_listing_info_nonce'] ) )
             return;
 
+
         if ( !wp_verify_nonce( $_POST['uclwp_listing_info_nonce'], plugin_basename( __FILE__ ) ) )
             return;
         
@@ -130,6 +131,7 @@ class UCLWP_Admin_Settings
         if (isset($_POST['ucl_listing_longitude']) && $_POST['ucl_listing_longitude'] != '') {
             update_post_meta( $post_id, 'ucl_listing_longitude', sanitize_text_field($_POST['ucl_listing_longitude']) );
         }
+
 
     }
 
@@ -296,6 +298,12 @@ class UCLWP_Admin_Settings
                 array(
                     'title'     => __( 'Title and Description', 'ultimate-classified-listings' ),
                     'key'       => 'description',
+                    'icon'      => '',
+                    'accessibility' => 'public',
+                ),
+		array(
+                    'title'     => __( 'Category', 'ultimate-classified-listings' ),
+                    'key'       => 'category',
                     'icon'      => '',
                     'accessibility' => 'public',
                 ),

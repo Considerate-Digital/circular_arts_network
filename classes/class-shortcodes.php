@@ -133,8 +133,9 @@ class UCLWP_Shortcodes
 	}
 
 	function render_listings($attrs){
+		//TODO default column setting
 		$attributes = shortcode_atts( array(
-		    'columns' => '3',
+		    'columns' => '4',
 		    'style' => '1',
 		    'image_size' => 'large',
 		    'pagination'  	=> 'enable',
@@ -651,6 +652,7 @@ class UCLWP_Shortcodes
 
 	function create_listing_frontend(){
 
+
 		if (isset($_REQUEST) && $_REQUEST != '') {
 			$resp = array(
 			    'status'    => 'error',
@@ -693,6 +695,7 @@ class UCLWP_Shortcodes
 
 		    	echo json_encode($resp);
 		    }
+
 		}
 
 		die();
@@ -773,6 +776,10 @@ class UCLWP_Shortcodes
 	}
 
 	function insert_listing_in_db($listing_id = '', $data, $current_user_data, $status = 'draft'){
+		/*
+		 * TODO 
+		 * Can't error_log here or it breaks the process
+		 */
 		$listing_data = array(
 		  'post_title'    	=> wp_strip_all_tags( $data['listing_title'] ),
 		  'post_content'  	=> $data['content'],
@@ -812,6 +819,12 @@ class UCLWP_Shortcodes
 		}
 		if (isset($data['ucl_listing_longitude']) && $data['ucl_listing_longitude'] != '') {
 		    update_post_meta( $listing_id, 'ucl_listing_longitude', $data['ucl_listing_longitude'] );
+		}
+
+		//TODO save the category -- something is going wroing here
+		if (isset($data['uclwp_listing_category']) && $data['uclwp_listing_category'] != '') {
+			$category_value = $data['uclwp_listing_category'];
+			wp_set_object_terms($listing_id, $category_value, 'uclwp_listing_category', true);
 		}
 	    
 		return $listing_id;

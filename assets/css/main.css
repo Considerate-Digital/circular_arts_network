@@ -118,7 +118,7 @@
 	height: 20rem;
 	max-height; 100%;
 	max-width: 100%;
-	object-fit: fill;
+	object-fit: contain;
 	object-position: center;
 }
 .uclwp-bs-wrapper .uclwp-credits {

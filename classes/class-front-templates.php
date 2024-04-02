@@ -288,6 +288,7 @@ class UCLWP_Front_Templates
 		global $uclwp_admin_settings;
 		$field_sections = $uclwp_admin_settings->get_fields_sections();
 		$listing_id = get_the_id();
+
 		foreach ($field_sections as $section) {
 			if (uclwp_can_user_access($section)) {
 				$this->render_section_front($section, $listing_id);
@@ -296,8 +297,10 @@ class UCLWP_Front_Templates
 	}
 
 	function render_section_front($section, $listing_id){
+		
+				
 		$template = '';
-
+		
 		// Title and Content
 		if (isset($section['key']) && $section['key'] == 'description') {
 			$template = UCLWP_PATH . '/templates/content-single/description.php';

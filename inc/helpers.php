@@ -168,7 +168,8 @@ function uclwp_render_listing_section($section, $listing_id = 0){
                             <?php wp_editor( ($listing_id) ? $listing_data->post_content : '', 'ucl-description', array(
                                 'quicktags' => array( 'buttons' => 'strong,em,del,ul,ol,li,close' ),
                                 'textarea_name' => 'description',
-                                'editor_height' => 350
+                                'editor_height' => 350,
+				'media_buttons' => false
                             ) ); ?>
 
                         <?php do_action( 'uclwp_after_section_edit_'.$section['key'] );
@@ -177,7 +178,37 @@ function uclwp_render_listing_section($section, $listing_id = 0){
                 </div>
             <?php }
             break;
+	//TODO use render_listing_field as an example, but essentially render the categories here
+	case 'category':
+		$required = true;
+		$categories = get_terms("uclwp_listing_category", array( 'hide_empty'=> false));
+?>
+		
+                <div class="card mb-2">
+                    <h5 class="card-header"><?php echo esc_attr( $section['title'] ); ?></h5>
+                    <div class="card-body">
+		<div class="row mb-3">
+                <label class="col-sm-4 col-form-label" for="uclwp_listing_category">
+                    <?php echo esc_attr(($section['title'])); ?>
+                    <?php echo ($required) ? '<span title="'.__( 'Required', 'ultimate-classified-listings' ).'" class="glyphicon glyphicon-asterisk"></span>' : '' ; ?>
+                </label>
+                <div class="col-sm-8">
+                    <select name="uclwp_listing_category" class="form-control form-control-sm">
+                        <?php
+                            foreach ($categories as $term) {
+                                echo '<option value="'.$term->name.'">'.$term->name.'</option>';
+                            }
+                        ?>
+                    </select>
+                    <span class="help-block">Select a category</span>
+                </div>
+            </div>
+            </div>
+            </div>
 
+
+		<?php
+		break;
         case 'tags':
             if (!is_admin()) { ?>
                 
@@ -467,38 +498,27 @@ function uclwp_render_listing_field($field, $listing_id = 0){
         case 'price':
             $before_value   =   get_post_meta( $listing_id, 'ucl_'.$field_id.'_before', true );
             $after_value    =   get_post_meta( $listing_id, 'ucl_'.$field_id.'_after', true );
+	    if (!$field_value) {
+		    $field_value = 0;
+	   }
             ?>
             <div class="row mb-3">
                 <label class="col-sm-4 col-form-label" for="<?php echo esc_attr( $field_id ); ?>">
                     <?php echo uclwp_wpml_translate($field_title, 'ultimate-classified-listings-fields'); ?>
                     <?php echo ($required) ? '<span title="'.__( 'Required', 'ultimate-classified-listings' ).'" class="glyphicon glyphicon-asterisk"></span>' : '' ; ?>
                 </label>
-                <div class="col-sm-3">
-                    <input type="text"
-                        name="uclwp_data[<?php echo esc_attr( $field_id ); ?>_before]"
-                        class="form-control form-control-sm"
-                        value="<?php echo esc_attr( $before_value ); ?>"
-                    >
-                    <span class="help-block"><?php _e( 'Before Text', 'ultimate-classified-listings' ) ?></span>
-                </div>
-                <div class="col-sm-2">
+                
+                <div class="col-sm-8">
                    <input
                         type="number"
                         name="<?php echo esc_attr( $field_name ); ?>"
+			min=0
                         class="form-control form-control-sm"
                         id="<?php echo esc_attr( $field_id ); ?>"
                         value="<?php echo esc_attr( $field_value ); ?>"> 
                     <span class="help-block"><?php echo esc_attr( $field_help ); ?></span>
                 </div>
-                <div class="col-sm-3">
-                    <input type="text"
-                        name="uclwp_data[<?php echo esc_attr( $field_id ); ?>_after]"
-                        class="form-control form-control-sm"
-                        value="<?php echo esc_attr( $after_value ); ?>"
-                    >
-                    <span class="help-block"><?php _e( 'After Text', 'ultimate-classified-listings' ) ?></span>
-                </div>
-            </div>
+                           </div>
   
             <?php break;
 
