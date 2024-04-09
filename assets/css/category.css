@@ -33,6 +33,7 @@
 	margin: 0 auto;
 	overflow: hidden;
 	object-fit: fill;
+	padding: 0.6rem;
 }
 .ucl-cat-icon img {
 	width:100%;

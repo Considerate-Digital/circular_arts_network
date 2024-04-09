@@ -13,14 +13,15 @@
                   'Time',
                   'Skills',
                   'Everything Else',
-                  'Wanted'
+		  'Wanted',
+		  'Stories'
                 );
           ?>
     				<div class="<?php echo esc_attr( $col_classes ); ?>">
                             <div class="ucl-single-cat text-center">
                                 <div class="ucl-cat-icon">
                                     <?php if ( in_array($cat->name, $cat_names ) ) { ?>
-                                        <img src="<?php echo plugins_url() ?>/circular_arts_network/assets/images/categories/<?php echo $cat->name ?>.webp" />
+                                        <img src="<?php echo plugins_url() ?>/circular_arts_network/assets/images/categories/<?php echo $cat->name ?>.svg" />
                                     <?php } else { 
                                         $this->render_category_image($cat->term_id, $attrs['image_size']); 
                                     } ?>
