@@ -37,8 +37,7 @@ class UCLWP_Init
             );
             flush_rewrite_rules();
         }
-
-        $roles = array('ucl_listing_seller', 'editor', 'administrator');
+	$roles = array('ucl_listing_seller', 'editor', 'administrator');
 
         // Loop through each role and assign capabilities
         foreach($roles as $the_role) {

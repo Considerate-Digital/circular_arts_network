@@ -315,6 +315,27 @@ function uclwp_render_listing_section($section, $listing_id = 0){
                     </div>
                 </div>
             </div>
+		<script>
+			setTimeout(() => {
+				let postcode = document.getElementById("listing_zipcode");
+				let location_search = document.querySelector(".leaflet-control-geocoder-form input");
+				console.log(location_search);
+				    postcode.addEventListener("blur", () => {
+					console.log("setting location search");
+					console.log(postcode.value);
+					location_search.value = postcode.value;	
+					location_search.dispatchEvent(new KeyboardEvent("keydown", {
+						code: 'Enter',
+					    key: 'Enter',
+					    charCode: 13,
+					    keyCode: 13,
+					    view: window,
+					    bubbles: true
+					}));
+					});
+			    }, 3000);
+		
+		</script>
 
                 
             <?php break;
@@ -510,9 +531,8 @@ function uclwp_render_listing_field($field, $listing_id = 0){
                 
                 <div class="col-sm-8">
                    <input
-                        type="number"
+			pattern="^\d*(\.\d{0,2})?$"
                         name="<?php echo esc_attr( $field_name ); ?>"
-			min=0
                         class="form-control form-control-sm"
                         id="<?php echo esc_attr( $field_id ); ?>"
                         value="<?php echo esc_attr( $field_value ); ?>"> 

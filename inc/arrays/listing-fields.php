@@ -1,15 +1,6 @@
 <?php
     $inputFields = array(
-        array(
-            'key' => 'regular_price',
-            'type' => 'price',
-            'tab' => 'details',
-            'default' => '0',
-            'icon' => 'bi bi-currency-dollar',
-            'title' => __( 'Price', 'ultimate-classified-listings' ),
-            'help' => __( 'Price for the listing', 'ultimate-classified-listings' ),
-        ),
-        array(
+	array(
             'key' => 'purpose',
             'type' => 'select',
             'tab' => 'details',
@@ -25,7 +16,17 @@
             'title' => __( 'Purpose', 'ultimate-classified-listings' ),
             'help' => __( 'Why you are listing the item', 'ultimate-classified-listings' ),
         ),
+
         array(
+            'key' => 'regular_price',
+            'type' => 'price',
+            'tab' => 'details',
+            'default' => '0',
+            'icon' => 'bi bi-currency-dollar',
+            'title' => __( 'Price', 'ultimate-classified-listings' ),
+            'help' => __( 'Price for the listing', 'ultimate-classified-listings' ),
+        ),
+	array(
             'key' => 'condition',
             'type' => 'select',
             'tab' => 'details',
@@ -36,8 +37,9 @@
             'default' => 'Used',
             'icon' => 'bi bi-moon-stars',
             'title' => __( 'Condition', 'ultimate-classified-listings' ),
-            'help' => __( 'Visual condition of the element', 'ultimate-classified-listings' ),
+            'help' => __( 'Visual condition of the item', 'ultimate-classified-listings' ),
         ),
+	/*
         array(
             'key' => 'build_date',
             'type' => 'date',
@@ -45,8 +47,9 @@
             'default' => '',
             'icon' => 'bi bi-calendar-day',
             'title' => __( 'Build Date', 'ultimate-classified-listings' ),
-            'help' => __( 'Build date of the element if applicable', 'ultimate-classified-listings' ),
+            'help' => __( 'Build date of the item if applicable', 'ultimate-classified-listings' ),
         ),
+	 */
 
         array(
             'key' => 'model',
@@ -55,9 +58,9 @@
             'default' => '',
             'icon' => 'bi bi-app-indicator',
             'title' => __( 'Model', 'ultimate-classified-listings' ),
-            'help' => __( 'Model of the element if applicable', 'ultimate-classified-listings' ),
+            'help' => __( 'Model of the item if applicable', 'ultimate-classified-listings' ),
         ),
-
+	/*
         array(
             'key' => 'listing_country',
             'type' => 'text',
@@ -67,17 +70,8 @@
             'title' => __( 'Country', 'ultimate-classified-listings' ),
             'help' => __( 'Country', 'ultimate-classified-listings' ),
         ),
-
-        array(
-            'key' => 'listing_city',
-            'type' => 'text',
-            'tab' => 'details',
-            'default' => '',
-            'icon' => 'bi bi-geo',
-            'title' => __( 'City', 'ultimate-classified-listings' ),
-            'help' => __( 'City', 'ultimate-classified-listings' ),
-        ),
-
+	*/
+        
         array(
             'key' => 'listing_address',
             'type' => 'text',
@@ -86,6 +80,16 @@
             'icon' => 'bi bi-geo-alt',
             'title' => __( 'Address', 'ultimate-classified-listings' ),
             'help' => __( 'Do not provide your address here if you do not want it publicly visible.', 'ultimate-classified-listings' ),
+        ),
+
+	array(
+            'key' => 'listing_city',
+            'type' => 'text',
+            'tab' => 'details',
+            'default' => '',
+            'icon' => 'bi bi-geo',
+            'title' => __( 'City', 'ultimate-classified-listings' ),
+            'help' => __( 'City', 'ultimate-classified-listings' ),
         ),
 
         array(
@@ -97,6 +101,7 @@
             'title' => __( 'Postcode/Zipcode', 'ultimate-classified-listings' ),
             'help' => __( 'Postcode or Zipcode', 'ultimate-classified-listings' ),
         ),
+
         array(
             'key' => 'listing_features',
             'type' => 'checkboxes',
@@ -107,8 +112,8 @@
                 __( 'Paid delivery available', 'ultimate-classified-listings' ),
             ),
             'icon' => 'bi bi-boxes',
-            'title' => __( 'Features', 'ultimate-classified-listings' ),
-            'help' => __( 'Choose appropriate features', 'ultimate-classified-listings' ),
+            'title' => __( 'Collection/Delivery', 'ultimate-classified-listings' ),
+            'help' => __( 'Choose your collection and delivery options', 'ultimate-classified-listings' ),
         ),
         array(
             'key' => 'listing_video',

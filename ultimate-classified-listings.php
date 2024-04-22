@@ -67,3 +67,11 @@ function add_categories() {
 //add_action( 'activate_circular_arts_network/ultimate-classified-listings.php', 'add_categories');
 add_action( 'admin_init', 'add_categories');
   
+function hide_admin_bar_for_specific_roles() {
+	    $user = wp_get_current_user();
+	    if (in_array('ucl_listing_seller', (array) $user->roles)) {
+		show_admin_bar(false);
+	    }
+}
+add_action('after_setup_theme', 'hide_admin_bar_for_specific_roles');
+
