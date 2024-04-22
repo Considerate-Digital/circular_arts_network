@@ -33,6 +33,7 @@ if($primaryColor != '' && $secondaryColor != ''){
         }
 
         .uclwp-bs-wrapper .ucl-btn:hover {
+		color: $primaryColor !important; 
             background-color: $secondaryColor !important;
         }
         

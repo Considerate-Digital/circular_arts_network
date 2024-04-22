@@ -157,6 +157,7 @@
 	position: relative;
 	margin-bottom: 15px;
 	font-size: 14px;
+	overflow: scroll;
 }
 
 .seller-info .seller-contact i {
