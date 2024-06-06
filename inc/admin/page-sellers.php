@@ -78,7 +78,14 @@
 					<tbody>
 						<?php foreach ($registered_sellers as $seller) {
 							$seller_info = get_userdata($seller->ID);
-							$image_id = esc_attr( get_user_meta( $seller->ID, 'seller_image', true ) ); ?>
+							$image_id = get_user_meta( $seller->ID, 'seller_image', true );
+							if (!is_wp_error($image_id)) {
+								$image_id = esc_attr($image_id);
+
+							}
+
+
+?>
 							<tr>
 								<td><?php echo ($image_id) ? wp_get_attachment_image($image_id) : '' ?></td>
 								<td><?php echo esc_attr( $seller_info->first_name ); ?></td>
