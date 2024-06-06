@@ -517,7 +517,7 @@ class UCLWP_Admin_Settings
 
             $new_seller = $pending_sellers[$_REQUEST['userindex']];
 
-            $seller_id = wp_create_user( $new_seller['username'], $new_seller['seller_password'], $new_seller['seller_email'] );
+            $seller_id = wp_create_user( $new_seller['username'], $new_seller['seller_password'], $new_seller['useremail'] );
 
             do_action( 'uclwp_new_seller_approved', $new_seller );
 

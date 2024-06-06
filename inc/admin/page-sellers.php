@@ -37,7 +37,7 @@
 								<td><?php echo esc_attr( $seller['first_name'] ) ?></td>
 								<td><?php echo esc_attr( $seller['last_name'] ) ?></td>
 								<td><?php echo esc_attr( $seller['username'] ) ?></td>
-								<td><?php echo esc_attr( $seller['seller_email'] ) ?></td>
+								<td><?php echo esc_attr( $seller['useremail'] ) ?></td>
 								<td><?php echo esc_attr( $seller['seller_phone'] ) ?></td>
 								<td><?php echo isset($seller['time']) ? human_time_diff(strtotime($seller['time'])).' ago' : ''; ?></td>
 								<td>
