@@ -247,6 +247,7 @@
 .uclwp-box-inner .uclwp-image-wrap img {
 	width: 100%;
 	transition: all 300ms ease;
+	object-fit:cover;
 }
 .uclwp-box-inner:hover .uclwp-image-wrap img {
     /*transform: scale(1.05);*/

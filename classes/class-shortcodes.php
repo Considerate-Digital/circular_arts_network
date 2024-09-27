@@ -180,7 +180,7 @@ class UCLWP_Shortcodes
 		$attrs = shortcode_atts( array(
 			'columns' => '',
 			'style' => '1',
-			'fields' => 'search_field,regular_price,purpose,condition',
+			'fields' => 'search_field', //,regular_price,purpose,condition',
 			'results_selector' => '',
 			'results_url' => '',
 			'bg_color' => '#f5f5f5',
