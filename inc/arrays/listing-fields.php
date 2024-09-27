@@ -98,7 +98,7 @@
             'tab' => 'details',
             'default' => '',
             'icon' => 'bi bi-bounding-box',
-            'title' => __( 'Postcode/Zipcode', 'ultimate-classified-listings' ),
+            'title' => __( 'Postcode', 'ultimate-classified-listings' ),
             'help' => __( 'Postcode or Zipcode', 'ultimate-classified-listings' ),
         ),
 

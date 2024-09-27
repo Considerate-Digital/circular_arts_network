@@ -57,6 +57,7 @@
   --bs-body-line-height: 1.5;
   --bs-body-color: #212529;
   --bs-body-bg: #fff;
+  --bs-bold-sans-letter-spacing: 0.03rem;
 }
 .uclwp-bs-wrapper .card {
   all: unset;

@@ -80,8 +80,8 @@
 	float: left;
 	width: 50%;
 	margin: 0 0 8px 0;
-	font-size: 15px;
 	padding-left: 35px;
+	padding-bottom: 0.1rem;
 }
 
 .uclwp-section .ucl-features li:before{
@@ -97,7 +97,7 @@
   text-align: center;
   border-radius: 50%;
   left: 5px;
-  top: 5px;
+  top: 6px;
   box-shadow: 0px 0px 0px 3px rgba(248,92,112,0.3);
 }
 
@@ -107,6 +107,22 @@
 
 .section-details h2 {
 	margin-bottom: 0;
+}
+.section-details .ucl-single-field {
+	margin: 0rem;
+	padding: 0rem; 0.2rem;
+}
+.section-details .ucl-field-title, .section-details .ucl-field-value {
+	font-size: 1rem;
+}
+.section-details .ucl-field-title {
+	letter-spacing: var(--bs-bold-sans-letter-spacing);
+}
+.section-details .row {
+	flex-direction: column;
+}
+.section-details .row .col-sm-4 {
+	width: 100%;
 }
 
 .ucl-sending-email {

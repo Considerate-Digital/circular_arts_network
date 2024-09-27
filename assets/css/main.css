@@ -65,11 +65,18 @@
 
 .uclwp-meta .ucl-single-field {
     margin-top: 0;
-    margin-bottom: 15px;
-    padding: 2px 5px;
+	padding: 0rem 0.4rem;
+    margin-bottom: 0.2rem;
     font-size: 13px;
     display: flex;
     justify-content: space-around;
+} 
+.uclwp-title-area .cats {
+	margin: 0.3rem 0rem;
+}
+
+.uclwp-meta .col {
+	padding: 0rem 0.2rem;
 }
 
 .uclwp-meta-area {
@@ -79,22 +86,17 @@
 .ucl-single-field {
 	font-size: 14px;
 	line-height: 26px;
-	/* 
-	 border: 1px solid #e5e7ec;
-	*/
-	border-radius: 6px;
 	padding: 8.5px 15px;
 	margin-top: 20px;
 }
 
 .ucl-single-field .ucl-field-title {
-	border-right: 1px solid #e5e7ec;
-    padding-right: 0.8rem;
+    padding-right: 0.2rem;
     font-weight: bold;
+	letter-spacing: var(--bs-bold-sans-letter-spacing);
 }
 
 .ucl-single-field .ucl-field-value {
-    padding-left: 0.8rem;
 }
 
 .uclwp-bs-wrapper .ucl-link {

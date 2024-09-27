@@ -13,7 +13,8 @@
 				<h2><?php echo get_the_title($listing_id); ?></h2>
 				<?php $this->render_categories($listing_id); ?>
 				<div class="uclwp-excerpt d-none d-lg-block">
-					<p><?php echo wp_trim_words(get_the_excerpt($listing_id), 10, '...'); ?></p>
+					<h3 class="uclwp-excerpt-title">Description</h3>
+					<p><?php echo wp_trim_words(get_the_excerpt($listing_id), 50, '...'); ?></p>
 				</div>
 			</div>
 			<?php if  ($this->get_category_name($listing_id) != "stories"):  ?>
