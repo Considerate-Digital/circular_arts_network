@@ -1,15 +1,15 @@
 <?php
-	$pending_sellers = get_option( 'uclwp_pending_users' );
+	$pending_sellers = get_option( 'can_pending_users' );
 	$args = array(
-		'role'         => 'ucl_listing_seller',
+		'role'         => 'can_listing_seller',
 	); 
 	$registered_sellers = get_users( $args );
 ?>
-<div class="wrap uclwp-bs-wrapper">
+<div class="wrap can-bs-wrapper">
 	<div class="card mb-3">
 		<div class="card-header">
 			<b>
-				<?php _e( 'Pending Sellers', 'ultimate-classified-listings' ); ?>
+				<?php _e( 'Pending Sellers', 'circular-arts-network' ); ?>
 				-
 				<?php echo (!empty($pending_sellers)) ? count($pending_sellers) : '0' ; ?>
 				
@@ -20,14 +20,14 @@
 				<table class="table table-bordered table-hover">
 					<thead>
 						<tr>
-							<th><?php _e( 'Profile Picture', 'ultimate-classified-listings' ); ?></th>
-							<th><?php _e( 'First Name', 'ultimate-classified-listings' ) ?></th>
-							<th><?php _e( 'Last Name', 'ultimate-classified-listings' ); ?></th>
-							<th><?php _e( 'Username', 'ultimate-classified-listings' ); ?></th>
-							<th><?php _e( 'Email', 'ultimate-classified-listings' ); ?></th>
-							<th><?php _e( 'Phone', 'ultimate-classified-listings' ); ?></th>
-							<th><?php _e( 'Registered', 'ultimate-classified-listings' ); ?></th>
-							<th><?php _e( 'Action', 'ultimate-classified-listings' ); ?></th>
+							<th><?php _e( 'Profile Picture', 'circular-arts-network' ); ?></th>
+							<th><?php _e( 'First Name', 'circular-arts-network' ) ?></th>
+							<th><?php _e( 'Last Name', 'circular-arts-network' ); ?></th>
+							<th><?php _e( 'Username', 'circular-arts-network' ); ?></th>
+							<th><?php _e( 'Email', 'circular-arts-network' ); ?></th>
+							<th><?php _e( 'Phone', 'circular-arts-network' ); ?></th>
+							<th><?php _e( 'Registered', 'circular-arts-network' ); ?></th>
+							<th><?php _e( 'Action', 'circular-arts-network' ); ?></th>
 						</tr>
 					</thead>
 					<tbody>
@@ -41,8 +41,8 @@
 								<td><?php echo esc_attr( $seller['seller_phone'] ) ?></td>
 								<td><?php echo isset($seller['time']) ? human_time_diff(strtotime($seller['time'])).' ago' : ''; ?></td>
 								<td>
-									<button class="btn btn-sm btn-danger deny-user" data-userindex="<?php echo esc_attr( $index ); ?>"><?php _e( 'Deny', 'ultimate-classified-listings' ); ?></button>
-									<button class="btn btn-sm btn-success approve-user" data-userindex="<?php echo esc_attr( $index ); ?>"><?php _e( 'Approve', 'ultimate-classified-listings' ); ?></button>
+									<button class="btn btn-sm btn-danger deny-user" data-userindex="<?php echo esc_attr( $index ); ?>"><?php _e( 'Deny', 'circular-arts-network' ); ?></button>
+									<button class="btn btn-sm btn-success approve-user" data-userindex="<?php echo esc_attr( $index ); ?>"><?php _e( 'Approve', 'circular-arts-network' ); ?></button>
 								</td>
 							</tr>
 						<?php } ?>
@@ -50,7 +50,7 @@
 				</table>
 			<?php } else { ?>
 				<div class="alert alert-info">
-					<?php _e( 'You dont have any pending sellers.', 'ultimate-classified-listings' ); ?> 
+					<?php _e( 'You dont have any pending sellers.', 'circular-arts-network' ); ?> 
 				</div>
 			<?php } ?>
 		</div>
@@ -58,21 +58,21 @@
 
 	<div class="card mb-2">
 		<div class="card-header">
-			<b><?php _e( 'Registered Sellers', 'ultimate-classified-listings' ); ?> - <?php echo count($registered_sellers); ?></b>
+			<b><?php _e( 'Registered Sellers', 'circular-arts-network' ); ?> - <?php echo count($registered_sellers); ?></b>
 		</div>
 		<div class="card-body">
 			<?php if (is_array($registered_sellers) && !empty($registered_sellers)) { ?>
 				<table class="table table-bordered">
 					<thead>
 						<tr>
-							<th><?php _e( 'Profile Picture', 'ultimate-classified-listings' ); ?></th>
-							<th><?php _e( 'First Name', 'ultimate-classified-listings' ) ?></th>
-							<th><?php _e( 'Last Name', 'ultimate-classified-listings' ); ?></th>
-							<th><?php _e( 'Username', 'ultimate-classified-listings' ); ?></th>
-							<th><?php _e( 'Email', 'ultimate-classified-listings' ); ?></th>
-							<th><?php _e( 'Phone', 'ultimate-classified-listings' ); ?></th>
-							<th><?php _e( 'Listings', 'ultimate-classified-listings' ); ?></th>
-							<th><?php _e( 'Profile', 'ultimate-classified-listings' ); ?></th>
+							<th><?php _e( 'Profile Picture', 'circular-arts-network' ); ?></th>
+							<th><?php _e( 'First Name', 'circular-arts-network' ) ?></th>
+							<th><?php _e( 'Last Name', 'circular-arts-network' ); ?></th>
+							<th><?php _e( 'Username', 'circular-arts-network' ); ?></th>
+							<th><?php _e( 'Email', 'circular-arts-network' ); ?></th>
+							<th><?php _e( 'Phone', 'circular-arts-network' ); ?></th>
+							<th><?php _e( 'Listings', 'circular-arts-network' ); ?></th>
+							<th><?php _e( 'Profile', 'circular-arts-network' ); ?></th>
 						</tr>
 					</thead>
 					<tbody>
@@ -93,9 +93,9 @@
 								<td><?php echo esc_attr( $seller_info->user_login ); ?></td>
 								<td><?php echo esc_attr( $seller_info->user_email ); ?></td>
 								<td><?php echo esc_attr( get_user_meta( $seller->ID, 'seller_phone', true ) ); ?></td>
-								<td><?php echo count_user_posts( $seller->ID, 'uclwp_listing' ); ?></td>
+								<td><?php echo count_user_posts( $seller->ID, 'can_listing' ); ?></td>
 								<td>
-									<a class="btn btn-sm btn-primary" target="_blank" href="<?php echo get_author_posts_url( $seller->ID ); ?>"><?php _e( 'View Profile', 'ultimate-classified-listings' ); ?></a>
+									<a class="btn btn-sm btn-primary" target="_blank" href="<?php echo get_author_posts_url( $seller->ID ); ?>"><?php _e( 'View Profile', 'circular-arts-network' ); ?></a>
 								</td>
 							</tr>
 						<?php } ?>
@@ -103,12 +103,12 @@
 				</table>
 			<?php } else { ?>
 				<div class="alert alert-info">
-					<?php _e( 'You dont have any registered sellers.', 'ultimate-classified-listings' ); ?> 
+					<?php _e( 'You dont have any registered sellers.', 'circular-arts-network' ); ?> 
 				</div>
 			<?php } ?>
 		</div>
 	</div>
 	<div class="text-right">
-		<a href="<?php echo admin_url( 'user-new.php' ); ?>" class="btn btn-primary"><?php _e( 'Register New Seller', 'ultimate-classified-listings' ); ?></a>
+		<a href="<?php echo admin_url( 'user-new.php' ); ?>" class="btn btn-primary"><?php _e( 'Register New Seller', 'circular-arts-network' ); ?></a>
 	</div>
 </div>

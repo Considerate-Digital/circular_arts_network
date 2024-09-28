@@ -1,4 +1,4 @@
-<div class="uclwp-bs-wrapper">
+<div class="can-bs-wrapper">
 		<div class="row">
 			<?php 
             if (!empty($categories)) {
@@ -18,30 +18,30 @@
                 );
           ?>
     				<div class="<?php echo esc_attr( $col_classes ); ?>">
-                            <div class="ucl-single-cat text-center">
-                                <div class="ucl-cat-icon">
+                            <div class="can-single-cat text-center">
+                                <div class="can-cat-icon">
                                     <?php if ( in_array($cat->name, $cat_names ) ) { ?>
                                         <img src="<?php echo plugins_url() ?>/circular_arts_network/assets/images/categories/<?php echo $cat->name ?>.svg" />
                                     <?php } else { 
                                         $this->render_category_image($cat->term_id, $attrs['image_size']); 
                                     } ?>
                                 </div>
-                                <div class="ucl-cat-title">
+                                <div class="can-cat-title">
                                     <h3>
                                         <?php echo esc_attr( $cat->name ); ?>
                                         <?php //var_dump( $cat ) ?>
                                     </h3>
                                 </div>
-                                <div class="ucl-cat-count">
+                                <div class="can-cat-count">
                                     <span><?php echo esc_attr( $cat->count ); ?></span>
                                 </div>
-                                <a href="<?php echo get_term_link($cat->term_id); ?>" class="ucl-absolute-link"></a>
+                                <a href="<?php echo get_term_link($cat->term_id); ?>" class="can-absolute-link"></a>
                             </div>
     				</div>
     				<?php 
     			} 
             } else { ?>
-                <div class="col"><?php _e( 'Categories Not found', 'ultimate-classified-listings' ); ?></div>
+                <div class="col"><?php _e( 'Categories Not found', 'circular-arts-network' ); ?></div>
             <?php } ?>
 	</div>
 </div>

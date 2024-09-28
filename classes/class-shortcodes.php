@@ -2,25 +2,25 @@
 /**
  * Renders the shortcodes
  */
-class UCLWP_Shortcodes
+class CAN_Shortcodes
 {
 
 	function __construct(){
-		add_shortcode( 'uclwp_dashboard', array($this, 'render_dashboard') );
-		add_shortcode( 'uclwp_categories', array($this, 'render_categories') );
-		add_shortcode( 'uclwp_listings', array($this, 'render_listings') );
-		add_shortcode( 'uclwp_search_form', array($this, 'render_search_form') );
-		add_shortcode( 'uclwp_search_results', array($this, 'render_search_results') );
+		add_shortcode( 'can_dashboard', array($this, 'render_dashboard') );
+		add_shortcode( 'can_categories', array($this, 'render_categories') );
+		add_shortcode( 'can_listings', array($this, 'render_listings') );
+		add_shortcode( 'can_search_form', array($this, 'render_search_form') );
+		add_shortcode( 'can_search_results', array($this, 'render_search_results') );
 
-		add_action( 'wp_ajax_uclwp_search_listing', array($this, 'search_results' ) );
-		add_action( 'wp_ajax_nopriv_uclwp_search_listing', array($this, 'search_results' ) );
+		add_action( 'wp_ajax_can_search_listing', array($this, 'search_results' ) );
+		add_action( 'wp_ajax_nopriv_can_search_listing', array($this, 'search_results' ) );
 
-		add_action( 'wp_ajax_nopriv_uclwp_seller_login', array($this, 'login' ) );
-		add_action( 'wp_ajax_nopriv_uclwp_seller_register', array($this, 'register' ) );
+		add_action( 'wp_ajax_nopriv_can_seller_login', array($this, 'login' ) );
+		add_action( 'wp_ajax_nopriv_can_seller_register', array($this, 'register' ) );
 
-		add_action( 'wp_ajax_uclwp_create_listing_frontend', array($this, 'create_listing_frontend' ) );
-		add_action( 'wp_ajax_uclwp_update_profile', array($this, 'update_profile' ) );
-		add_action( 'wp_ajax_uclwp_delete_listing', array($this, 'delete_listing' ) );
+		add_action( 'wp_ajax_can_create_listing_frontend', array($this, 'create_listing_frontend' ) );
+		add_action( 'wp_ajax_can_update_profile', array($this, 'update_profile' ) );
+		add_action( 'wp_ajax_can_delete_listing', array($this, 'delete_listing' ) );
 	}
 
 	function render_dashboard($attrs, $content = ''){
@@ -28,52 +28,52 @@ class UCLWP_Shortcodes
 			'layout' => 'left-sidebar',
 		), $attrs ) );
 
-		uclwp_load_basic_styles();
-		wp_enqueue_style('uclwp-dashboard', UCLWP_URL."/assets/css/dashboard.css");
-		wp_enqueue_style('uclwp-archive', UCLWP_URL."/assets/css/archive.css");
-		wp_enqueue_script( 'uclwp-sweetalert', UCLWP_URL . '/assets/libs/sweetalert/sweetalert2.all.min.js', array( 'jquery' ));
+		can_load_basic_styles();
+		wp_enqueue_style('can-dashboard', CAN_URL."/assets/css/dashboard.css");
+		wp_enqueue_style('can-archive', CAN_URL."/assets/css/archive.css");
+		wp_enqueue_script( 'can-sweetalert', CAN_URL . '/assets/libs/sweetalert/sweetalert2.all.min.js', array( 'jquery' ));
 
 		ob_start();
 
 		if (is_user_logged_in()) {
 
 			wp_enqueue_media();
-			wp_enqueue_script( 'uclwp-dashboard', UCLWP_URL . '/assets/js/dashboard.js' , array('jquery' ));
-			wp_localize_script( 'uclwp-dashboard', 'ucl_dash_vars', array(
+			wp_enqueue_script( 'can-dashboard', CAN_URL . '/assets/js/dashboard.js' , array('jquery' ));
+			wp_localize_script( 'can-dashboard', 'can_dash_vars', array(
 				'ajaxurl' => admin_url( 'admin-ajax.php' ),
-				'wait_text' => __( 'Please wait...', 'ultimate-classified-listings' ),
+				'wait_text' => __( 'Please wait...', 'circular-arts-network' ),
 			) );
 
-			$in_theme = get_stylesheet_directory().'/ucl/shortcodes/dashboard-'.$layout.'.php';
+			$in_theme = get_stylesheet_directory().'/can/shortcodes/dashboard-'.$layout.'.php';
 			if (file_exists($in_theme)) {
 				include $in_theme;
 			} else {
-				include UCLWP_PATH. '/shortcodes/dashboard-'.$layout.'.php';
+				include CAN_PATH. '/shortcodes/dashboard-'.$layout.'.php';
 			}
 		} else {
 
-			wp_enqueue_script( 'uclwp-auth', UCLWP_URL . '/assets/js/auth.js' , array('jquery' ));
-			wp_localize_script( 'uclwp-auth', 'ucl_auth_vars', array(
+			wp_enqueue_script( 'can-auth', CAN_URL . '/assets/js/auth.js' , array('jquery' ));
+			wp_localize_script( 'can-auth', 'can_auth_vars', array(
 				'ajaxurl' => admin_url( 'admin-ajax.php' ),
-				'wait_text' => __( 'Please wait...', 'ultimate-classified-listings' ),
-				'mismatch_text' => __( 'Passwords did not match!', 'ultimate-classified-listings' ),
-				'file_size_error' => __( 'Maximum file size allowed is:', 'ultimate-classified-listings' ),
-				'file_format_error' => __( 'Allowed formats are:', 'ultimate-classified-listings' ),
+				'wait_text' => __( 'Please wait...', 'circular-arts-network' ),
+				'mismatch_text' => __( 'Passwords did not match!', 'circular-arts-network' ),
+				'file_size_error' => __( 'Maximum file size allowed is:', 'circular-arts-network' ),
+				'file_format_error' => __( 'Allowed formats are:', 'circular-arts-network' ),
 			) );
 
-			if (isset($_GET['ucl_page']) && $_GET['ucl_page'] == 'register') {
-				$in_theme = get_stylesheet_directory().'/ucl/shortcodes/register.php';
+			if (isset($_GET['can_page']) && $_GET['can_page'] == 'register') {
+				$in_theme = get_stylesheet_directory().'/can/shortcodes/register.php';
 				if (file_exists($in_theme)) {
 					include $in_theme;
 				} else {
-					include UCLWP_PATH. '/shortcodes/register.php';
+					include CAN_PATH. '/shortcodes/register.php';
 				}
 			} else {
-				$in_theme = get_stylesheet_directory().'/ucl/shortcodes/login.php';
+				$in_theme = get_stylesheet_directory().'/can/shortcodes/login.php';
 				if (file_exists($in_theme)) {
 					include $in_theme;
 				} else {
-					include UCLWP_PATH. '/shortcodes/login.php';
+					include CAN_PATH. '/shortcodes/login.php';
 				}
 			}
 		}
@@ -91,7 +91,7 @@ class UCLWP_Shortcodes
 		), $attrs);
 
 		$args = array(
-			'taxonomy' => 'uclwp_listing_category',
+			'taxonomy' => 'can_listing_category',
 		);
 
 		if (is_array($attrs)) {
@@ -103,25 +103,25 @@ class UCLWP_Shortcodes
 		}
 
 		$categories = get_terms( $args );
-		$col_classes = uclwp_get_column_classes($attrs['columns']);
+		$col_classes = can_get_column_classes($attrs['columns']);
 
-		uclwp_load_basic_styles();
+		can_load_basic_styles();
 
-		wp_enqueue_style('uclwp-category', UCLWP_URL."/assets/css/category.css");
+		wp_enqueue_style('can-category', CAN_URL."/assets/css/category.css");
 
 		ob_start();
-		$in_theme = get_stylesheet_directory().'/ucl/shortcodes/categories/style-1.php';
+		$in_theme = get_stylesheet_directory().'/can/shortcodes/categories/style-1.php';
 		if (file_exists($in_theme)) {
 			include $in_theme;
 		} else {
-			include UCLWP_PATH. '/shortcodes/categories/style-1.php';
+			include CAN_PATH. '/shortcodes/categories/style-1.php';
 		}
 		return ob_get_clean();
 	}
 
 	function render_category_image($term_id, $image_size){
-		$image_id = get_term_meta( $term_id, 'ucl_category_image', true );
-		$icon_class = get_term_meta( $term_id, 'ucl_category_icon', true );
+		$image_id = get_term_meta( $term_id, 'can_category_image', true );
+		$icon_class = get_term_meta( $term_id, 'can_category_icon', true );
 
 		if ($image_id != '') {
 			echo wp_get_attachment_image( $image_id, $image_size );
@@ -144,7 +144,7 @@ class UCLWP_Shortcodes
 		), $attrs);
 
 		$args = $this->get_listings_query_args($attrs);
-		$columns = uclwp_get_column_classes($attributes['columns']);
+		$columns = can_get_column_classes($attributes['columns']);
 
 		if ($attributes['pagination'] == 'enable') {
 			if (is_front_page()) {
@@ -156,22 +156,22 @@ class UCLWP_Shortcodes
 			$args['paged'] = $paged;
 		}
 
-		$args = apply_filters( 'uclwp_shortcode_listings_args', $args );
+		$args = apply_filters( 'can_shortcode_listings_args', $args );
 
-		uclwp_load_basic_styles();
-		wp_enqueue_style('uclwp-archive', UCLWP_URL."/assets/css/archive.css");
+		can_load_basic_styles();
+		wp_enqueue_style('can-archive', CAN_URL."/assets/css/archive.css");
 
 		if ($attributes['masonry'] == 'enable') {
-			wp_enqueue_script('uclwp-masonry', UCLWP_URL."/assets/js/trigger-masonry.js", array('jquery','jquery-masonry'));
+			wp_enqueue_script('can-masonry', CAN_URL."/assets/js/trigger-masonry.js", array('jquery','jquery-masonry'));
 		}
 
 		$the_query = new WP_Query( $args );
 		ob_start();
-		$in_theme = get_stylesheet_directory().'/ucl/shortcodes/listings.php';
+		$in_theme = get_stylesheet_directory().'/can/shortcodes/listings.php';
 		if (file_exists($in_theme)) {
 			include $in_theme;
 		} else {
-			include UCLWP_PATH. '/shortcodes/listings.php';
+			include CAN_PATH. '/shortcodes/listings.php';
 		}
 		return ob_get_clean();
 	}
@@ -187,14 +187,14 @@ class UCLWP_Shortcodes
 		), $attrs);
 
 		$searchFields = explode(",", $attrs['fields']);
-		$columns = uclwp_get_column_classes($attrs['columns']);
+		$columns = can_get_column_classes($attrs['columns']);
 
-		uclwp_load_basic_styles();
-		wp_enqueue_style('uclwp-search', UCLWP_URL."/assets/css/search-form.css");
-		wp_enqueue_style('uclwp-archive', UCLWP_URL."/assets/css/archive.css");
-		wp_enqueue_style('nice-select', UCLWP_URL."/assets/libs/css/nice-select.css");
-		wp_enqueue_script('nice-select', UCLWP_URL."/assets/libs/js/jquery.nice-select.min.js", array('jquery'));
-		wp_enqueue_script( 'uclwp-search', UCLWP_URL . '/assets/js/search.js' , array('jquery' ));
+		can_load_basic_styles();
+		wp_enqueue_style('can-search', CAN_URL."/assets/css/search-form.css");
+		wp_enqueue_style('can-archive', CAN_URL."/assets/css/archive.css");
+		wp_enqueue_style('nice-select', CAN_URL."/assets/libs/css/nice-select.css");
+		wp_enqueue_script('nice-select', CAN_URL."/assets/libs/js/jquery.nice-select.min.js", array('jquery'));
+		wp_enqueue_script( 'can-search', CAN_URL . '/assets/js/search.js' , array('jquery' ));
 
 		$searchvars = array(
 			'ajaxurl' => admin_url( 'admin-ajax.php' ),
@@ -202,15 +202,15 @@ class UCLWP_Shortcodes
 			'results_url' => $attrs['results_url'],
 		);
 
-		wp_localize_script( 'uclwp-search', 'uclwp_search_vars', $searchvars );
+		wp_localize_script( 'can-search', 'can_search_vars', $searchvars );
 
 		ob_start();
 
-		$in_theme = get_stylesheet_directory().'/ucl/shortcodes/search/style-1.php';
+		$in_theme = get_stylesheet_directory().'/can/shortcodes/search/style-1.php';
 		if (file_exists($in_theme)) {
 			include $in_theme;
 		} else {
-			include UCLWP_PATH. '/shortcodes/search/style-1.php';
+			include CAN_PATH. '/shortcodes/search/style-1.php';
 		}
 
 		return ob_get_clean();
@@ -223,19 +223,19 @@ class UCLWP_Shortcodes
 			'masonry' 	=> 'enable',
 		), $attrs ) );
 
-		uclwp_load_basic_styles();
-		wp_enqueue_style('uclwp-archive', UCLWP_URL."/assets/css/archive.css");
+		can_load_basic_styles();
+		wp_enqueue_style('can-archive', CAN_URL."/assets/css/archive.css");
 
 		if ($masonry == 'enable') {
-			wp_enqueue_script('uclwp-masonry', UCLWP_URL."/assets/js/trigger-masonry.js", array('jquery','jquery-masonry'));
+			wp_enqueue_script('can-masonry', CAN_URL."/assets/js/trigger-masonry.js", array('jquery','jquery-masonry'));
 		}
 
 		ob_start();
-		$in_theme = get_stylesheet_directory().'/ucl/shortcodes/search/results.php';
+		$in_theme = get_stylesheet_directory().'/can/shortcodes/search/results.php';
 		if (file_exists($in_theme)) {
 			include $in_theme;
 		} else {
-			include UCLWP_PATH. '/shortcodes/search/results.php';
+			include CAN_PATH. '/shortcodes/search/results.php';
 		}
 		return ob_get_clean();
 	}
@@ -260,7 +260,7 @@ class UCLWP_Shortcodes
 		$args = array(
 			'order'       => $attrs['order'],
 			'orderby'     => $attrs['orderby'],			
-			'post_type'   => 'uclwp_listing',
+			'post_type'   => 'can_listing',
 			'posts_per_page'  => $attrs['total'],
 		);
 
@@ -282,12 +282,12 @@ class UCLWP_Shortcodes
 
 		if ($attrs['orderby'] == 'price') {
 			$args['orderby'] = 'meta_value_num';
-			$args['meta_key'] = 'ucl_regular_price';
+			$args['meta_key'] = 'can_regular_price';
 		}
 
 		if ($attrs['orderby_custom'] != '') {
 			$args['orderby'] = 'meta_value';
-			$args['meta_key'] = 'ucl_'.$attrs['orderby_custom'];
+			$args['meta_key'] = 'can_'.$attrs['orderby_custom'];
 		}
 
 		if (isset($_GET['sort_by']) && $_GET['sort_by'] != '') {
@@ -296,7 +296,7 @@ class UCLWP_Shortcodes
 			$args['orderby'] = $sort_op[0];
 			if ($sort_op[0] == 'price') {
 				$args['orderby'] = 'meta_value_num';
-				$args['meta_key'] = 'ucl_regular_price';
+				$args['meta_key'] = 'can_regular_price';
 			}
 			if (isset($sort_op[2]) && $sort_op[2] == 'custom') {
 				$args['orderby'] = 'meta_value';
@@ -317,7 +317,7 @@ class UCLWP_Shortcodes
 			$p_tags = array_map('trim', explode(',', $attrs['tags']));
 			$args['tax_query'] = array(
 				array(
-					'taxonomy' => 'uclwp_listing_tag',
+					'taxonomy' => 'can_listing_tag',
 					'field'    => 'name',
 					'terms'    => $p_tags,
 				),
@@ -328,7 +328,7 @@ class UCLWP_Shortcodes
 			$p_cats = array_map('trim', explode(',', $attrs['categories']));
 			$args['tax_query'] = array(
 				array(
-					'taxonomy' => 'uclwp_listing_category',
+					'taxonomy' => 'can_listing_category',
 					'field'    => 'name',
 					'terms'    => $p_cats,
 				),
@@ -343,7 +343,7 @@ class UCLWP_Shortcodes
 					if (strpos($m_k_v[1], '!') !== false) {
 						$args['meta_query'][] = array(
 							array(
-								'key'     => 'ucl_'.trim($m_k_v[0]),
+								'key'     => 'can_'.trim($m_k_v[0]),
 								'value'   => ltrim($m_k_v[1],"!"),
 								'compare' => 'NOT LIKE',
 							),
@@ -351,7 +351,7 @@ class UCLWP_Shortcodes
 					} elseif (strpos($m_k_v[1], '#') !== false) {
 						$args['meta_query'][] = array(
 							array(
-								'key'     => 'ucl_'.trim($m_k_v[0]),
+								'key'     => 'can_'.trim($m_k_v[0]),
 								'value'   => ltrim($m_k_v[1],"#"),
 								'compare' => '=',
 							),
@@ -359,7 +359,7 @@ class UCLWP_Shortcodes
 					} else {
 						$args['meta_query'][] = array(
 							array(
-								'key'     => 'ucl_'.trim($m_k_v[0]),
+								'key'     => 'can_'.trim($m_k_v[0]),
 								'value'   => trim($m_k_v[1]),
 								'compare' => 'LIKE',
 							),
@@ -373,7 +373,7 @@ class UCLWP_Shortcodes
 
 					foreach ($m_k_v_and as $meta_value) {
 						$meta_query_arr[] = array(
-							'key'     => 'ucl_'.trim($m_k_v[0]),
+							'key'     => 'can_'.trim($m_k_v[0]),
 							'value'   => trim($meta_value),
 							'compare' => 'LIKE',
 						);
@@ -390,10 +390,10 @@ class UCLWP_Shortcodes
 
 	function search_results(){
 		if(isset($_REQUEST) && !empty($_REQUEST)){
-			$args = uclwp_get_search_query($_REQUEST);
+			$args = can_get_search_query($_REQUEST);
 
 			$the_query = new WP_Query( $args );
-			$target = uclwp_get_option('searched_listings_target', '_blank');
+			$target = can_get_option('searched_listings_target', '_blank');
 
 			if ( $the_query->have_posts() ) :
 
@@ -401,8 +401,8 @@ class UCLWP_Shortcodes
 			<div class="filter-title">
 			    <h2>
 <?php
-					$heading = uclwp_get_option('search_results_title', 'Search Results (%count%)');
-			$heading = str_replace('%count%', '<span class="ucl-results-count">'.$the_query->post_count.'</span>', $heading);
+					$heading = can_get_option('search_results_title', 'Search Results (%count%)');
+			$heading = str_replace('%count%', '<span class="can-results-count">'.$the_query->post_count.'</span>', $heading);
 			echo wp_kses( $heading, array('span' => array('class' => array())));
 ?>
 			    </h2>
@@ -410,16 +410,16 @@ class UCLWP_Shortcodes
 		<?php } ?>
 		<div class="row">
 		    <?php while ( $the_query->have_posts() ) : $the_query->the_post(); ?>
-			<div id="listing-<?php echo get_the_id(); ?>" class="col-sm-12 ucl-results-box">
-			    <?php do_action('uclwp_listing_box', get_the_id(), '1', 'list', $target); ?>
+			<div id="listing-<?php echo get_the_id(); ?>" class="col-sm-12 can-results-box">
+			    <?php do_action('can_listing_box', get_the_id(), '1', 'list', $target); ?>
 			</div>
 		    <?php endwhile; ?>
 		</div>
 		<?php wp_reset_postdata(); ?>
 	    <?php else : ?>
-		<div class="ucl-no-results alert alert-info mt-2" role="alert">
+		<div class="can-no-results alert alert-info mt-2" role="alert">
 		    <i class="bi bi-info"></i>
-		    <span><?php $msg = uclwp_get_option('no_results_message', __( 'Sorry! No Listings Found. Try Searching Again.', 'ultimate-classified-listings' )); echo apply_filters( 'no_results_message',  stripcslashes($msg)); ?></span>
+		    <span><?php $msg = can_get_option('no_results_message', __( 'Sorry! No Listings Found. Try Searching Again.', 'circular-arts-network' )); echo apply_filters( 'no_results_message',  stripcslashes($msg)); ?></span>
 		</div>
 <?php endif;
 		}
@@ -431,16 +431,16 @@ class UCLWP_Shortcodes
 		if (isset($_REQUEST)) {
 			if (isset($_REQUEST['g-recaptcha-response'])) {
 				if (!$_REQUEST['g-recaptcha-response']) {
-					$resp = array('status' => 'error', 'message' => __( 'Please check the captcha form.', 'ultimate-classified-listings' ));
+					$resp = array('status' => 'error', 'message' => __( 'Please check the captcha form.', 'circular-arts-network' ));
 					echo json_encode($resp); exit;
 				} else {
 					$captcha = sanitize_text_field( $_REQUEST['g-recaptcha-response'] );
-					$secretKey = uclwp_get_option('captcha_secret_key');
+					$secretKey = can_get_option('captcha_secret_key');
 					$ip = sanitize_text_field( $_SERVER['REMOTE_ADDR'] );
 					$response = wp_remote_post("https://www.google.com/recaptcha/api/siteverify?secret=".$secretKey."&response=".$captcha."&remoteip=".$ip);
 					$responseKeys = json_decode($response['body'], true);
 					if(intval($responseKeys["success"]) !== 1) {
-						$resp = array('status' => 'error', 'message' => __( 'There was an error. Please try again after reloading page', 'ultimate-classified-listings' ));
+						$resp = array('status' => 'error', 'message' => __( 'There was an error. Please try again after reloading page', 'circular-arts-network' ));
 						echo json_encode($resp); exit;
 					}
 				}
@@ -464,7 +464,7 @@ class UCLWP_Shortcodes
 			if ( !is_wp_error($user) ) {
 				$resp = array(
 					'status'    => 'success',
-					'message'   => __( 'Successful!', 'ultimate-classified-listings' ),
+					'message'   => __( 'Successful!', 'circular-arts-network' ),
 				);
 
 				wp_set_auth_cookie( $user->ID, true, false );
@@ -489,16 +489,16 @@ class UCLWP_Shortcodes
 			// Checking for Spams
 			if (isset($_REQUEST['g-recaptcha-response'])) {
 				if (!$_REQUEST['g-recaptcha-response']) {
-					$resp = array('status' => 'info', 'message' => __( 'Please check the captcha form.', 'ultimate-classified-listings' ));
+					$resp = array('status' => 'info', 'message' => __( 'Please check the captcha form.', 'circular-arts-network' ));
 					echo json_encode($resp); exit;
 				} else {
 					$captcha = sanitize_text_field( $_REQUEST['g-recaptcha-response'] );
-					$secretKey = uclwp_get_option('captcha_secret_key');
+					$secretKey = can_get_option('captcha_secret_key');
 					$ip = sanitize_text_field( $_SERVER['REMOTE_ADDR'] );
 					$response = wp_remote_post("https://www.google.com/recaptcha/api/siteverify?secret=".$secretKey."&response=".$captcha."&remoteip=".$ip);
 					$responseKeys = json_decode($response['body'], true);
 					if(intval($responseKeys["success"]) !== 1) {
-						$resp = array('status' => 'error', 'message' => __( 'There was an error. Please try again after reloading page.', 'ultimate-classified-listings' ));
+						$resp = array('status' => 'error', 'message' => __( 'There was an error. Please try again after reloading page.', 'circular-arts-network' ));
 						echo json_encode($resp); exit;
 					}
 				}
@@ -507,7 +507,7 @@ class UCLWP_Shortcodes
 
 			// Lets Check if username already exists
 			if (username_exists( $_REQUEST['username'] ) || email_exists( $_REQUEST['seller_email'] )) {
-				$resp = array('status' => 'info', 'message' => __( 'Username or Email already exists', 'ultimate-classified-listings' ));
+				$resp = array('status' => 'info', 'message' => __( 'Username or Email already exists', 'circular-arts-network' ));
 			} else {
 				$sellerData = array(
 					'first_name'	=> 		sanitize_text_field( $_REQUEST['first_name'] ),
@@ -519,14 +519,14 @@ class UCLWP_Shortcodes
 					'time'			=> 		current_time( 'mysql' ),
 				);
 
-				if (uclwp_get_option('seller_approval', 'manual') == 'auto') {
+				if (can_get_option('seller_approval', 'manual') == 'auto') {
 					$seller_id = wp_create_user( $username, $password, $useremail );
 
 					if ($seller_id) {
 
 						wp_update_user( array( 
 							'ID' => $seller_id,
-							'role' => 'ucl_listing_seller',
+							'role' => 'can_listing_seller',
 							'first_name' => sanitize_text_field( $_REQUEST['first_name'] ),
 							'last_name' => sanitize_text_field( $_REQUEST['last_name'] ),
 						) );
@@ -536,17 +536,17 @@ class UCLWP_Shortcodes
 						}
 
 						// if image uploaded
-						if ( isset($_FILES["uclwp_seller_image"]) ) { 
+						if ( isset($_FILES["can_seller_image"]) ) { 
 							require_once( ABSPATH . 'wp-admin/includes/image.php' );
 							require_once( ABSPATH . 'wp-admin/includes/file.php' );
 							require_once( ABSPATH . 'wp-admin/includes/media.php' );
-							$attachment_id = media_handle_upload( 'uclwp_seller_image', 0 );
+							$attachment_id = media_handle_upload( 'can_seller_image', 0 );
 							if (!is_wp_error($attachment_id)) {
 								update_user_meta( $seller_id, 'seller_image', $attachment_id);
 							}
 						}
 
-						if (uclwp_get_option('auto_login') == 'enable') {
+						if (can_get_option('auto_login') == 'enable') {
 							wp_set_current_user($seller_id);
 							wp_set_auth_cookie($seller_id);
 						}
@@ -556,25 +556,25 @@ class UCLWP_Shortcodes
 							update_user_meta( $seller_id, 'icl_admin_language', sanitize_text_field( $_REQUEST['wpml_user_email_language'] ));
 						}
 
-						do_action( 'uclwp_new_seller_registered', $sellerData );
-						do_action( 'uclwp_new_seller_approved', $sellerData );
+						do_action( 'can_new_seller_registered', $sellerData );
+						do_action( 'can_new_seller_approved', $sellerData );
 
-						$resp = array('status' => 'success', 'message' => __( 'Registered Successfully, now please login', 'ultimate-classified-listings' ));
+						$resp = array('status' => 'success', 'message' => __( 'Registered Successfully, now please login', 'circular-arts-network' ));
 					} else {
-						$resp = array('status' => 'error', 'message' => __( 'Error, please try later', 'ultimate-classified-listings' ));
+						$resp = array('status' => 'error', 'message' => __( 'Error, please try later', 'circular-arts-network' ));
 					}
 
 				} else {
 
 
-					$previous_users = get_option( 'uclwp_pending_users' );
+					$previous_users = get_option( 'can_pending_users' );
 
 					// if image uploaded
-					if ( isset($_FILES["uclwp_seller_image"]) ) { 
+					if ( isset($_FILES["can_seller_image"]) ) { 
 						require_once( ABSPATH . 'wp-admin/includes/image.php' );
 						require_once( ABSPATH . 'wp-admin/includes/file.php' );
 						require_once( ABSPATH . 'wp-admin/includes/media.php' );
-						$attachment_id = media_handle_upload( 'uclwp_seller_image', 0 );
+						$attachment_id = media_handle_upload( 'can_seller_image', 0 );
 						if (!is_wp_error($attachment_id)) {
 							update_user_meta( $seller_id, 'seller_image', $attachment_id);
 							$sellerData['seller_image'] = esc_attr( $attachment_id );
@@ -584,7 +584,7 @@ class UCLWP_Shortcodes
 					if ( $previous_users != '' && is_array($previous_users)) {
 						foreach ($previous_users as $single_user) {
 							if ($single_user['username'] == $sellerData['username'] || $single_user['seller_email'] == $sellerData['seller_email']) {
-								$resp = array('status' => 'info', 'message' => __( 'User is already in pending state.', 'ultimate-classified-listings' ));
+								$resp = array('status' => 'info', 'message' => __( 'User is already in pending state.', 'circular-arts-network' ));
 								echo json_encode($resp);
 								exit;
 							}
@@ -594,11 +594,11 @@ class UCLWP_Shortcodes
 						$previous_users = array($sellerData);
 					}
 
-					if (update_option( 'uclwp_pending_users', $previous_users )) {
-						do_action( 'uclwp_new_seller_registered', $sellerData );
-						$resp = array('status' => 'success', 'message' => __( 'Registered Successfully, please wait until admin approves.', 'ultimate-classified-listings' ));
+					if (update_option( 'can_pending_users', $previous_users )) {
+						do_action( 'can_new_seller_registered', $sellerData );
+						$resp = array('status' => 'success', 'message' => __( 'Registered Successfully, please wait until admin approves.', 'circular-arts-network' ));
 					} else {
-						$resp = array('status' => 'error', 'message' => __( 'Error, please try later', 'ultimate-classified-listings' ));
+						$resp = array('status' => 'error', 'message' => __( 'Error, please try later', 'circular-arts-network' ));
 					}
 				}
 			}
@@ -612,46 +612,46 @@ class UCLWP_Shortcodes
 	function render_dashboard_menu(){
 		$menu_items = array(
 			'dashboard' => array(
-				'title' => __( 'Dashboard', 'ultimate-classified-listings' ),
+				'title' => __( 'Dashboard', 'circular-arts-network' ),
 				'icon' => 'bi bi-pc-display-horizontal',
 				'url' => 'dashboard',
 			),
 			'listings' => array(
-				'title' => __( 'My Listings', 'ultimate-classified-listings' ),
+				'title' => __( 'My Listings', 'circular-arts-network' ),
 				'icon' => 'bi bi-list-task',
 				'url' => 'listings',
 			),
 			'add' => array(
-				'title' => __( 'Create Listing', 'ultimate-classified-listings' ),
+				'title' => __( 'Create Listing', 'circular-arts-network' ),
 				'icon' => 'bi bi-plus-circle',
 				'url' => 'add',
 			),
 			'profile' => array(
-				'title' => __( 'My Profile', 'ultimate-classified-listings' ),
+				'title' => __( 'My Profile', 'circular-arts-network' ),
 				'icon' => 'bi bi-person-circle',
 				'url' => 'profile',
 			),
 		);
 
-		$menu_items = apply_filters( 'uclwp_dashboard_menu_items', $menu_items );
+		$menu_items = apply_filters( 'can_dashboard_menu_items', $menu_items );
 
 		echo '<div class="list-group">';
 		foreach ($menu_items as $key => $item) {
-			$active = (isset($_GET['ucl_page']) && $_GET['ucl_page'] == $item['url']) ? 'active' : '' ;
-			$active = (!isset($_GET['ucl_page']) && $key == 'dashboard') ? 'active' : $active ;
+			$active = (isset($_GET['can_page']) && $_GET['can_page'] == $item['url']) ? 'active' : '' ;
+			$active = (!isset($_GET['can_page']) && $key == 'dashboard') ? 'active' : $active ;
 			$url = explode( '?', esc_url_raw( add_query_arg( array() ) ) );
 			$no_query_args = $url[0];
 
-			echo "<a href='".esc_url( add_query_arg( 'ucl_page', $item['url'], $no_query_args) )."' class='list-group-item list-group-item-action {$active} ucl-menu-".esc_attr( $key )."'><i class='".esc_attr( $item['icon'] )."'></i> ".esc_attr( $item['title'] )."</a>";
+			echo "<a href='".esc_url( add_query_arg( 'can_page', $item['url'], $no_query_args) )."' class='list-group-item list-group-item-action {$active} can-menu-".esc_attr( $key )."'><i class='".esc_attr( $item['icon'] )."'></i> ".esc_attr( $item['title'] )."</a>";
 		}
 		echo '</div>';
 	}
 
 	function render_dashboard_page(){
-		if (isset($_GET['ucl_page']) && file_exists(UCLWP_PATH. '/shortcodes/dashboard/'.$_GET['ucl_page'].'.php')) {
-			include UCLWP_PATH. '/shortcodes/dashboard/'.$_GET['ucl_page'].'.php';
+		if (isset($_GET['can_page']) && file_exists(CAN_PATH. '/shortcodes/dashboard/'.$_GET['can_page'].'.php')) {
+			include CAN_PATH. '/shortcodes/dashboard/'.$_GET['can_page'].'.php';
 		} else {
-			include UCLWP_PATH. '/shortcodes/dashboard/dashboard.php';
+			include CAN_PATH. '/shortcodes/dashboard/dashboard.php';
 		}
 	}
 
@@ -661,7 +661,7 @@ class UCLWP_Shortcodes
 		if (isset($_REQUEST) && $_REQUEST != '') {
 			$resp = array(
 				'status'    => 'error',
-				'message'   => __( 'There is some error', 'ultimate-classified-listings' ),
+				'message'   => __( 'There is some error', 'circular-arts-network' ),
 			);
 
 			$current_user_data = wp_get_current_user();
@@ -681,21 +681,21 @@ class UCLWP_Shortcodes
 
 				$resp = array(
 					'status'    => 'success',
-					'message'   => __( 'Listing Updated!', 'ultimate-classified-listings' ),
+					'message'   => __( 'Listing Updated!', 'circular-arts-network' ),
 				);
 
 				echo json_encode($resp);
 
 				// Create a new    
 			} else {
-				if(uclwp_get_option('listing_submission_mode') == 'approve'){
+				if(can_get_option('listing_submission_mode') == 'approve'){
 					$listing_id = $this->insert_listing_in_db('', $_REQUEST, $current_user_data, 'pending');
 					$resp['status'] = 'success';
-					$resp['message'] = __( 'Listing Submitted!', 'ultimate-classified-listings' );
+					$resp['message'] = __( 'Listing Submitted!', 'circular-arts-network' );
 				} else {
 					$listing_id = $this->insert_listing_in_db($_REQUEST['listing_id'], $_REQUEST, $current_user_data, 'publish');
 					$resp['status'] = 'success';
-					$resp['message'] = __( 'Listing Published!', 'ultimate-classified-listings' );
+					$resp['message'] = __( 'Listing Published!', 'circular-arts-network' );
 				}
 
 				echo json_encode($resp);
@@ -727,14 +727,14 @@ class UCLWP_Shortcodes
 
 				$resp = array(
 					'status'    => 'success',
-					'message'   => __( 'Profile Updated!', 'ultimate-classified-listings' ),
+					'message'   => __( 'Profile Updated!', 'circular-arts-network' ),
 				);
 				echo json_encode($resp);
 
 			} else {
 				$resp = array(
 					'status'    => 'error',
-					'message'   => __( 'You are not allowed to update', 'ultimate-classified-listings' ),
+					'message'   => __( 'You are not allowed to update', 'circular-arts-network' ),
 				);
 				echo json_encode($resp);
 			}
@@ -743,7 +743,7 @@ class UCLWP_Shortcodes
 	}
 
 	function listing_can_be_published($listing_id){
-		if (uclwp_get_option('listing_submission_mode') == 'approve' && get_post_status($listing_id) !== 'publish') {
+		if (can_get_option('listing_submission_mode') == 'approve' && get_post_status($listing_id) !== 'publish') {
 			return false;
 		}
 		return true;
@@ -753,26 +753,26 @@ class UCLWP_Shortcodes
 		if (isset($_REQUEST['listing_id'])) {
 			$current_user_data = wp_get_current_user();
 			if (get_post_field( 'post_author', $_REQUEST['listing_id'] ) == $current_user_data->ID || current_user_can( 'manage_options' )) {
-				if (uclwp_get_option('attachment_deletion', 'remain') == 'delete') {
-					$gallery_images = get_post_meta( $_REQUEST['listing_id'], 'ucl_gallery_images', true );
+				if (can_get_option('attachment_deletion', 'remain') == 'delete') {
+					$gallery_images = get_post_meta( $_REQUEST['listing_id'], 'can_gallery_images', true );
 					foreach ($gallery_images as $key => $id) {
 						wp_delete_attachment( $id, false );
 					}
 				}
-				if (uclwp_get_option('property_deletion', 'delete') == 'trash') {
+				if (can_get_option('property_deletion', 'delete') == 'trash') {
 					wp_trash_post( $_REQUEST['listing_id'] );
 				} else {
 					wp_delete_post( $_REQUEST['listing_id'], true );
 				}
 				$resp = array(
 					'status'    => 'success',
-					'message'   => __( 'Deleted!', 'ultimate-classified-listings' ),
+					'message'   => __( 'Deleted!', 'circular-arts-network' ),
 				);
 				echo json_encode($resp);
 			} else {
 				$resp = array(
 					'status'    => 'error',
-					'message'   => __( 'There is some error, please try again later', 'ultimate-classified-listings' ),
+					'message'   => __( 'There is some error, please try again later', 'circular-arts-network' ),
 				);
 				echo json_encode($resp);
 			}
@@ -789,7 +789,7 @@ class UCLWP_Shortcodes
 			'post_title'    	=> wp_strip_all_tags( $data['listing_title'] ),
 			'post_content'  	=> $data['content'],
 			'post_author'   	=> $current_user_data->ID,
-			'post_type'   	=> 'uclwp_listing',
+			'post_type'   	=> 'can_listing',
 			'post_status'   	=> $status,
 		);
 
@@ -800,41 +800,41 @@ class UCLWP_Shortcodes
 
 		$listing_id = wp_insert_post( $listing_data );
 
-		if (isset($data['uclwp_data']) && !empty($data['uclwp_data'])) {
-			foreach ($data['uclwp_data'] as $key => $value) {
+		if (isset($data['can_data']) && !empty($data['can_data'])) {
+			foreach ($data['can_data'] as $key => $value) {
 				if (is_array($value)) {
 					$value = array_map( 'sanitize_text_field', $value );
-					update_post_meta($listing_id, 'ucl_'.$key, $value);
+					update_post_meta($listing_id, 'can_'.$key, $value);
 				} else {
-					update_post_meta($listing_id, 'ucl_'.$key, wp_kses_post( $value ));
+					update_post_meta($listing_id, 'can_'.$key, wp_kses_post( $value ));
 				}
 			}
 		}
 
 		// Saving Gallery Images
 		if (isset($data['gallery_images']) && $data['gallery_images'] != '') {
-			update_post_meta( $listing_id, 'ucl_gallery_images', $data['gallery_images'] );
+			update_post_meta( $listing_id, 'can_gallery_images', $data['gallery_images'] );
 		} else {
-			update_post_meta( $listing_id, 'ucl_gallery_images', '' );
+			update_post_meta( $listing_id, 'can_gallery_images', '' );
 		}
 
 		// Saving Location
-		if (isset($data['ucl_listing_latitude']) && $data['ucl_listing_latitude'] != '') {
-			update_post_meta( $listing_id, 'ucl_listing_latitude', $data['ucl_listing_latitude'] );
+		if (isset($data['can_listing_latitude']) && $data['can_listing_latitude'] != '') {
+			update_post_meta( $listing_id, 'can_listing_latitude', $data['can_listing_latitude'] );
 		}
-		if (isset($data['ucl_listing_longitude']) && $data['ucl_listing_longitude'] != '') {
-			update_post_meta( $listing_id, 'ucl_listing_longitude', $data['ucl_listing_longitude'] );
+		if (isset($data['can_listing_longitude']) && $data['can_listing_longitude'] != '') {
+			update_post_meta( $listing_id, 'can_listing_longitude', $data['can_listing_longitude'] );
 		}
 
 		//TODO save the category -- something is going wroing here
-		if (isset($data['uclwp_listing_category']) && $data['uclwp_listing_category'] != '') {
-			$category_value = $data['uclwp_listing_category'];
-			wp_set_object_terms($listing_id, $category_value, 'uclwp_listing_category', true);
+		if (isset($data['can_listing_category']) && $data['can_listing_category'] != '') {
+			$category_value = $data['can_listing_category'];
+			wp_set_object_terms($listing_id, $category_value, 'can_listing_category', true);
 		}
 
 		return $listing_id;
 	}
 }
 
-new UCLWP_Shortcodes();
+new CAN_Shortcodes();
 ?>

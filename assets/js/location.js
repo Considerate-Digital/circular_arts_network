@@ -1,8 +1,13 @@
-jQuery(document).ready(function($) {
 
+//	initializeSingleListingMap();
+
+console.log("location js loaded");
+
+jQuery(document).ready(function($) {
+	
     function uclInsertMarker(map, position){
         
-        var image = ucl_location_settings.maps_icon_url;
+        var image = can_location_settings.maps_icon_url;
         var marker = new google.maps.Marker({
             position: position,
             map: map,
@@ -11,10 +16,11 @@ jQuery(document).ready(function($) {
     }
 
     function initializeSingleListingMap() {
-        var lat = ucl_location_settings.latitude;
-        var lon = ucl_location_settings.longitude;
-        var zoom = parseInt(ucl_location_settings.zoom);
-        var map_type = ucl_location_settings.map_type;
+	    console.log(can_location_settings);
+        var lat = can_location_settings.latitude;
+        var lon = can_location_settings.longitude;
+        var zoom = parseInt(can_location_settings.zoom);
+        var map_type = can_location_settings.map_type;
         var myLatLng = new google.maps.LatLng(lat, lon);
         var mapProp = {
             center:myLatLng,
@@ -22,7 +28,7 @@ jQuery(document).ready(function($) {
             mapTypeId: map_type,
             minZoom: zoom - 5,
             maxZoom: zoom + 5,
-            styles: (ucl_location_settings.maps_styles != '') ? JSON.parse(ucl_location_settings.maps_styles) : '',
+            styles: (can_location_settings.maps_styles != '') ? JSON.parse(can_location_settings.maps_styles) : '',
         };
 
         var map=new google.maps.Map(document.getElementById("map-canvas"),mapProp);
@@ -30,32 +36,33 @@ jQuery(document).ready(function($) {
 
         uclInsertMarker(map, myLatLng);
     }
-    if (ucl_location_settings.latitude != 'disable' && ucl_location_settings.use_map_from == 'google_maps') {
+    if (can_location_settings.latitude != 'disable' && can_location_settings.use_map_from == 'google_maps') {
         google.maps.event.addDomListener(window, 'load', initializeSingleListingMap);
     }
-    if (ucl_location_settings.use_map_from == 'leaflet') {
+
+    if (can_location_settings.use_map_from == 'leaflet') {
         if ("ontouchstart" in document.documentElement) {
             var dragging = false;
         } else {
             var dragging = true;
         }        
-    	var property_map = L.map('map-canvas', {scrollWheelZoom: false, dragging: dragging}).setView([ucl_location_settings.latitude, ucl_location_settings.longitude], parseInt(ucl_location_settings.zoom));
+    	var property_map = L.map('map-canvas', {scrollWheelZoom: false, dragging: dragging}).setView([can_location_settings.latitude, can_location_settings.longitude], parseInt(can_location_settings.zoom));
         
-        L.tileLayer(ucl_location_settings.leaflet_styles.provider, {
+        L.tileLayer(can_location_settings.leaflet_styles.provider, {
                 maxZoom: 21,
             }).addTo(property_map);
         var propertyIcon = L.icon({
-            iconUrl: ucl_location_settings.maps_icon_url,
-            iconSize: ucl_location_settings.icons_size,
-            iconAnchor: ucl_location_settings.icons_anchor,
+            iconUrl: can_location_settings.maps_icon_url,
+            iconSize: can_location_settings.icons_size,
+            iconAnchor: can_location_settings.icons_anchor,
         });
 
-        var marker = L.marker([ucl_location_settings.latitude, ucl_location_settings.longitude], {icon: propertyIcon}).addTo(property_map);
+        var marker = L.marker([can_location_settings.latitude, can_location_settings.longitude], {icon: propertyIcon}).addTo(property_map);
 
 
-        if (ucl_location_settings.maps_styles != '') {
-            // console.log(ucl_location_settings.maps_styles);
-            // L.geoJSON(JSON.parse(ucl_location_settings.maps_styles)).addTo(property_map);
+        if (can_location_settings.maps_styles != '') {
+            // console.log(can_location_settings.maps_styles);
+            // L.geoJSON(JSON.parse(can_location_settings.maps_styles)).addTo(property_map);
         }
     }
 });

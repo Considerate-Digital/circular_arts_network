@@ -1,6 +1,6 @@
 jQuery(document).ready(function($) {
 
-	$(document).on('click', '.ucl-create-field-section', function(event) {
+	$(document).on('click', '.can-create-field-section', function(event) {
 		event.preventDefault();
 		/* Act on the event */
 		var panel = $('#field-sections-wrap .card').last().clone(true);
@@ -20,7 +20,7 @@ jQuery(document).ready(function($) {
         parent.find('.card-header b').text(input_val+' - ');
     });
    
-    $(document).on('click', '.ucl-save-field-section', function(event) {
+    $(document).on('click', '.can-save-field-section', function(event) {
     	event.preventDefault();
     	/* Act on the event */
     	Swal.fire('Please Wait', 'Sections Saving...', 'info');
@@ -39,7 +39,7 @@ jQuery(document).ready(function($) {
 			sections_data.push(section);
     	});
     	var data = {
-    		'action': 'uclwp_save_field_sections',
+    		'action': 'can_save_field_sections',
     		'sections' : sections_data
     	}
     	$.post(ajaxurl, data, function(resp) {
@@ -102,7 +102,7 @@ jQuery(document).ready(function($) {
         }
     });
 
-    $(document).on('click', '.ucl-reset-field-section', function(event) {
+    $(document).on('click', '.can-reset-field-section', function(event) {
         event.preventDefault();
         Swal.fire({
           title: "Are you sure?",
@@ -115,7 +115,7 @@ jQuery(document).ready(function($) {
         }).then((result) => {
           if (result.isConfirmed) {
             var data = {
-                action: 'uclwp_save_field_sections',
+                action: 'can_save_field_sections',
                 reset: 'yes'
             }
             $.post(ajaxurl, data, function(resp) {

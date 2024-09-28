@@ -3,35 +3,35 @@
 * Real Estate Management Main Class - Since 1.0.0
 */
 
-class UCLWP_Email
+class CAN_Email
 {
     
     function __construct(){
-        add_action( 'uclwp_new_seller_registered', array($this, 'seller_registered' ), 10, 1 );
-        add_action( 'uclwp_new_seller_approved', array($this, 'seller_approved' ), 10, 1 );
-        add_action( 'uclwp_new_seller_rejected', array($this, 'seller_rejected' ), 10, 1 );
-        add_action( 'uclwp_new_listing_submitted', array($this, 'new_listing_submitted' ), 10, 1 );
-        add_action( 'uclwp_new_listing_approved', array($this, 'new_listing_approved' ), 10, 1 );
+        add_action( 'can_new_seller_registered', array($this, 'seller_registered' ), 10, 1 );
+        add_action( 'can_new_seller_approved', array($this, 'seller_approved' ), 10, 1 );
+        add_action( 'can_new_seller_rejected', array($this, 'seller_rejected' ), 10, 1 );
+        add_action( 'can_new_listing_submitted', array($this, 'new_listing_submitted' ), 10, 1 );
+        add_action( 'can_new_listing_approved', array($this, 'new_listing_approved' ), 10, 1 );
 
         // Contact Seller
-        add_action( 'wp_ajax_uclwp_contact_seller', array($this, 'contact_seller' ) );
-        add_action( 'wp_ajax_nopriv_uclwp_contact_seller', array($this, 'contact_seller' ) );
+        add_action( 'wp_ajax_can_contact_seller', array($this, 'contact_seller' ) );
+        add_action( 'wp_ajax_nopriv_can_contact_seller', array($this, 'contact_seller' ) );
     }
 
     function send_email($to, $subject, $message){       
         $site_title = get_bloginfo();
-        $admin_email = apply_filters( "uclwp_admin_email", get_bloginfo('admin_email') );
+        $admin_email = apply_filters( "can_admin_email", get_bloginfo('admin_email') );
 
-        $from_title = apply_filters( 'uclwp_email_sender_title', $site_title );
-        $from_email = apply_filters( 'uclwp_email_sender_email', $admin_email );
+        $from_title = apply_filters( 'can_email_sender_title', $site_title );
+        $from_email = apply_filters( 'can_email_sender_email', $admin_email );
 
         $headers = array();
         $headers[] = "From: {$from_title} <{$from_email}>";
         $headers[] = "Content-Type: text/html";
         $headers[] = "MIME-Version: 1.0\r\n";
 
-        $headers = apply_filters( 'uclwp_email_headers', $headers );
-        if (uclwp_get_option('email_br', 'enable') == 'enable') {
+        $headers = apply_filters( 'can_email_headers', $headers );
+        if (can_get_option('email_br', 'enable') == 'enable') {
     	   $message = nl2br(stripcslashes($message)); 
         }
     	wp_mail( $to, $subject, $message, $headers );
@@ -39,9 +39,9 @@ class UCLWP_Email
 
     function seller_registered($new_agent){
         // Sending Email to Admin
-        $admin_email = apply_filters( "uclwp_admin_email", get_bloginfo('admin_email') );
-        $subject = __( 'New Seller Registered', 'ultimate-classified-listings' );
-        $message = (uclwp_get_option('to_admin_on_seller_register') != '') ? uclwp_get_option('to_admin_on_seller_register') : 'New seller is registered...' ;
+        $admin_email = apply_filters( "can_admin_email", get_bloginfo('admin_email') );
+        $subject = __( 'New Seller Registered', 'circular-arts-network' );
+        $message = (can_get_option('to_admin_on_seller_register') != '') ? can_get_option('to_admin_on_seller_register') : 'New seller is registered...' ;
 
         $message = str_replace("%first_name%", $new_agent['first_name'], $message);
         $message = str_replace("%last_name%", $new_agent['last_name'], $message);
@@ -53,9 +53,9 @@ class UCLWP_Email
         do_action('wpml_switch_language_for_email', $new_agent['useremail']);
 
         // Sending Email to Seller
-        $subject_agent = __( 'Registration Successful', 'ultimate-classified-listings' );
+        $subject_agent = __( 'Registration Successful', 'circular-arts-network' );
 
-        $message_for_agent = (uclwp_get_option('to_seller_registered') != '') ? uclwp_get_option('to_seller_registered') : 'Please wait for approval' ;
+        $message_for_agent = (can_get_option('to_seller_registered') != '') ? can_get_option('to_seller_registered') : 'Please wait for approval' ;
         
         $message_for_agent = str_replace("%first_name%", $new_agent['first_name'], $message_for_agent);
         $message_for_agent = str_replace("%last_name%", $new_agent['last_name'], $message_for_agent);
@@ -73,9 +73,9 @@ class UCLWP_Email
         
         $site_title = get_bloginfo();
         
-        $subject = __( 'Approved ', 'ultimate-classified-listings' ). $site_title;
+        $subject = __( 'Approved ', 'circular-arts-network' ). $site_title;
 
-        $message_for_agent = (uclwp_get_option('to_seller_approved') != '') ? uclwp_get_option('to_seller_approved') : 'You are Approved' ;
+        $message_for_agent = (can_get_option('to_seller_approved') != '') ? can_get_option('to_seller_approved') : 'You are Approved' ;
         
         $message_for_agent = str_replace("%username%", $new_agent['username'], $message_for_agent);
         $message_for_agent = str_replace("%first_name%", $new_agent['first_name'], $message_for_agent);
@@ -91,9 +91,9 @@ class UCLWP_Email
 
         $site_title = get_bloginfo();
 
-        $subject = __( 'Rejected ', 'ultimate-classified-listings' ). $site_title;
+        $subject = __( 'Rejected ', 'circular-arts-network' ). $site_title;
 
-        $message_for_agent = (uclwp_get_option('to_seller_rejected') != '') ? uclwp_get_option('to_seller_rejected') : 'You are Approved' ;
+        $message_for_agent = (can_get_option('to_seller_rejected') != '') ? can_get_option('to_seller_rejected') : 'You are Approved' ;
         
         $message_for_agent = str_replace("%username%", $new_agent['username'], $message_for_agent);
         $message_for_agent = str_replace("%first_name%", $new_agent['first_name'], $message_for_agent);
@@ -109,26 +109,26 @@ class UCLWP_Email
 
         $current_user_data = wp_get_current_user();
 
-        $approve_url = admin_url( 'edit.php?post_status=pending&post_type=uclwp_property' );
+        $approve_url = admin_url( 'edit.php?post_status=pending&post_type=can_property' );
 
-        $admin_email = apply_filters( "uclwp_admin_email", get_bloginfo('admin_email') );
+        $admin_email = apply_filters( "can_admin_email", get_bloginfo('admin_email') );
 
         do_action('wpml_switch_language_for_email', $admin_email);
         
-        $subject = __( 'New Listing Submitted ', 'ultimate-classified-listings' ). $site_title;
-        $message = (uclwp_get_option('to_admin_submission') != '') ? uclwp_get_option('to_admin_submission') : 'New Listing is created. Approve here '.$approve_url ;
+        $subject = __( 'New Listing Submitted ', 'circular-arts-network' ). $site_title;
+        $message = (can_get_option('to_admin_submission') != '') ? can_get_option('to_admin_submission') : 'New Listing is created. Approve here '.$approve_url ;
         $message = str_replace("%username%", $current_user_data->user_login, $message);
         $message = str_replace("%seller_email%", $current_user_data->user_email, $message);
         $message = str_replace("%approve_url%", $approve_url, $message);
 
-        $subject_agent = __( 'Listing Submitted ', 'ultimate-classified-listings' ). $site_title;
+        $subject_agent = __( 'Listing Submitted ', 'circular-arts-network' ). $site_title;
         $this->send_email($admin_email, $subject, $message);
 
         do_action('wpml_restore_language_from_email');
 
         do_action('wpml_switch_language_for_email', $current_user_data->user_email);
 
-        $message_agent = (uclwp_get_option('to_seller_submission') != '') ? uclwp_get_option('to_seller_submission') : 'New Listing is submitted. Please wait until admin approves.' ;
+        $message_agent = (can_get_option('to_seller_submission') != '') ? can_get_option('to_seller_submission') : 'New Listing is submitted. Please wait until admin approves.' ;
         $message_agent = str_replace("%listing_id%", $listing_id, $message_agent);
         $message_agent = str_replace("%listing_url%", get_permalink($listing_id), $message_agent);
         $message_agent = str_replace("%listing_title%", get_the_title($listing_id), $message_agent);        
@@ -145,9 +145,9 @@ class UCLWP_Email
         do_action('wpml_switch_language_for_email', $seller_email);
         
         $site_title = get_bloginfo();
-        $subject_agent = __( 'Listing Approved ', 'ultimate-classified-listings' ). $site_title;
+        $subject_agent = __( 'Listing Approved ', 'circular-arts-network' ). $site_title;
 
-        $message_agent = (uclwp_get_option('to_seller_submission_approved') != '') ? uclwp_get_option('to_seller_submission_approved') : 'Your Listing is approved.' ;
+        $message_agent = (can_get_option('to_seller_submission_approved') != '') ? can_get_option('to_seller_submission_approved') : 'Your Listing is approved.' ;
         $message_agent = str_replace("%listing_id%", $listing_id, $message_agent);
         $message_agent = str_replace("%listing_url%", get_permalink($listing_id), $message_agent);
         $message_agent = str_replace("%listing_title%", get_the_title($listing_id), $message_agent);
@@ -161,16 +161,16 @@ class UCLWP_Email
 
             if (isset($_REQUEST['g-recaptcha-response'])) {
                 if (!$_REQUEST['g-recaptcha-response']) {
-                    $resp = array('fail' => 'already', 'msg' => __( 'Please check the captcha form.', 'ultimate-classified-listings' ));
+                    $resp = array('fail' => 'already', 'msg' => __( 'Please check the captcha form.', 'circular-arts-network' ));
                     echo json_encode($resp); exit;
                 } else {
                     $captcha = $_REQUEST['g-recaptcha-response'];
-                    $secretKey = uclwp_get_option('captcha_secret_key', '6LcDhUQUAAAAAGKQ7gd1GsGAkEGooVISGEl3s7ZH');
+                    $secretKey = can_get_option('captcha_secret_key', '6LcDhUQUAAAAAGKQ7gd1GsGAkEGooVISGEl3s7ZH');
                     $ip = $_SERVER['REMOTE_ADDR'];
                     $response = wp_remote_post("https://www.google.com/recaptcha/api/siteverify?secret=".$secretKey."&response=".$captcha."&remoteip=".$ip);
                     $responseKeys = json_decode($response['body'], true);
                     if(intval($responseKeys["success"]) !== 1) {
-                        $resp = array('fail' => 'error', 'msg' => __( 'There was an error. Please try again after reloading page', 'ultimate-classified-listings' ));
+                        $resp = array('fail' => 'error', 'msg' => __( 'There was an error. Please try again after reloading page', 'circular-arts-network' ));
                         echo json_encode($resp); exit;
                     }
                 }
@@ -185,8 +185,8 @@ class UCLWP_Email
             
             if($client_name && $client_email && $client_msg && $seller_id){
                 
-                $subject = uclwp_get_option('email_subject', 'Listing Contact');
-                $message = uclwp_get_option('email_message', $client_msg);
+                $subject = can_get_option('email_subject', 'Listing Contact');
+                $message = can_get_option('email_message', $client_msg);
                 
                 // if property id is available
                 if (isset($_REQUEST['listing_id']) && $_REQUEST['listing_id'] != '') {
@@ -205,7 +205,7 @@ class UCLWP_Email
                 $message = str_replace("%client_name%", $client_name, $message);
                 $message = str_replace("%client_phone%", $client_phone, $message);
                 
-                if (uclwp_get_option('email_br', 'enable') == 'enable') {
+                if (can_get_option('email_br', 'enable') == 'enable') {
                    $message = nl2br(stripcslashes($message));
                 }
 
@@ -219,10 +219,10 @@ class UCLWP_Email
                 $headers[] = "Content-Type: text/html";
                 $headers[] = "MIME-Version: 1.0\r\n";
 
-                $headers = apply_filters( 'uclwp_email_headers', $headers );
+                $headers = apply_filters( 'can_email_headers', $headers );
                 
                 // Additional Emails
-                $emails_meta = uclwp_get_option('email_addresses', '');            
+                $emails_meta = can_get_option('email_addresses', '');            
                 if ($emails_meta != '') {
                     $emails = explode("\n", $emails_meta);
                     if (is_array($emails)) {
@@ -234,15 +234,15 @@ class UCLWP_Email
 
                 // Finally send the emails
                 if (wp_mail( $seller_email, $subject, $message, $headers )) {
-                    $resp = array('status' => 'sent', 'msg' => __( 'Email Sent Successfully', 'ultimate-classified-listings' ) );
+                    $resp = array('status' => 'sent', 'msg' => __( 'Email Sent Successfully', 'circular-arts-network' ) );
                 } else {
-                    $resp = array('status' => 'fail', 'msg' => __( 'There is some problem, please try later', 'ultimate-classified-listings' ) );
+                    $resp = array('status' => 'fail', 'msg' => __( 'There is some problem, please try later', 'circular-arts-network' ) );
                 }
 
                 echo json_encode($resp); die(0);
 
             } else {
-                $resp = array('fail' => 'error', 'msg' => __( 'Please fill the required fields.', 'ultimate-classified-listings' ));
+                $resp = array('fail' => 'error', 'msg' => __( 'Please fill the required fields.', 'circular-arts-network' ));
                 echo json_encode($resp); exit;
             }
         }
@@ -250,5 +250,5 @@ class UCLWP_Email
 
 }
 
-new UCLWP_Email;
+new CAN_Email;
 ?>

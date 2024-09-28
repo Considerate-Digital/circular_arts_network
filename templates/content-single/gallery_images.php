@@ -1,4 +1,4 @@
-<div class="uclwp-section">
+<div class="can-section">
     <div class="wrap-slider">
         <div class="<?php echo esc_attr( $gallery_type ); ?>-custom" <?php echo call_user_func(array($this, $gallery_type.'_data_attrs')); ?>>
             <?php if($featured_image){

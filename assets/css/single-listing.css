@@ -1,4 +1,4 @@
-.uclwp-section {
+.can-section {
 	display: block;
 	background: #fff;
 	padding: 24px 30px 28px 30px;
@@ -6,18 +6,18 @@
 	margin-bottom: 30px;
 	border: 4px dashed grey;
 }
-.uclwp-section h2 {
+.can-section h2 {
 	font-size: 22px;
 	line-height: 30px;
 	font-weight: 800;
 	margin: 0 0 14px 0;
 }
 
-.uclwp-section h2:before {
+.can-section h2:before {
 	display: none;
 }
 
-.uclwp-section .listing-content p {
+.can-section .listing-content p {
 	line-height: 28px;
 	margin: 0;
 	margin-bottom: 28px;
@@ -25,23 +25,23 @@
 	transition: all 500ms ease;
 }
 
-.uclwp-section p:last-child {
+.can-section p:last-child {
 	margin-bottom: 0;
 }
 
-.uclwp-section .uclwp-tags {
+.can-section .can-tags {
 	list-style: none;
 	padding: 0;
 	margin: 0;
 }
 
-.uclwp-section .uclwp-tags li {
+.can-section .can-tags li {
 	position: relative;
 	display: inline-block;
 	margin: 0 10px 0 0;
 }
 
-.uclwp-section .uclwp-tags li a {
+.can-section .can-tags li a {
 	display: inline-block;
 	font-size: 15px;
 	line-height: 26px;
@@ -58,23 +58,23 @@
 	text-transform: uppercase;
 }
 
-.uclwp-section .uclwp-tags li a:hover {
+.can-section .can-tags li a:hover {
   color: #fff;
   box-shadow: 0px 10px 30px 0px rgba(248,92,112,0.4);
   background-color: #F97C8C;
 }
 
-.uclwp-section iframe {
+.can-section iframe {
 	width: 100%;
 }
 
-.uclwp-section .ucl-features {
+.can-section .can-features {
 	list-style: none;
 	margin: 0;
 	padding: 0;
 }
 
-.uclwp-section .ucl-features li {
+.can-section .can-features li {
 	position: relative;
 	display: inline-block;
 	float: left;
@@ -84,7 +84,7 @@
 	padding-bottom: 0.1rem;
 }
 
-.uclwp-section .ucl-features li:before{
+.can-section .can-features li:before{
   position: absolute;
   content: "\f633";
   font-family: bootstrap-icons !important;
@@ -101,21 +101,21 @@
   box-shadow: 0px 0px 0px 3px rgba(248,92,112,0.3);
 }
 
-.uclwp-section #map-canvas {
+.can-section #map-canvas {
 	height: 300px;
 }
 
 .section-details h2 {
 	margin-bottom: 0;
 }
-.section-details .ucl-single-field {
+.section-details .can-single-field {
 	margin: 0rem;
 	padding: 0rem; 0.2rem;
 }
-.section-details .ucl-field-title, .section-details .ucl-field-value {
+.section-details .can-field-title, .section-details .can-field-value {
 	font-size: 1rem;
 }
-.section-details .ucl-field-title {
+.section-details .can-field-title {
 	letter-spacing: var(--bs-bold-sans-letter-spacing);
 }
 .section-details .row {
@@ -125,11 +125,11 @@
 	width: 100%;
 }
 
-.ucl-sending-email {
+.can-sending-email {
 	display: none;
 }
 
-.ucl-sending-email div {
+.can-sending-email div {
 	font-size: 15px;
 	line-height: 26px;
 	border: 1px solid #e5e7ec;
@@ -138,18 +138,18 @@
 	margin-bottom: 20px;
 }
 
-.ucl-sending-email div i {
+.can-sending-email div i {
 	color: #0ba3ca;
 }
 
-.uclwp-section .seller-info .seller-image img {
+.can-section .seller-info .seller-image img {
 	width: 80px;
 	height: 80px;
 	margin: 0 auto;
 	display: block;
 }
 
-.uclwp-section .seller-info .seller-name {
+.can-section .seller-info .seller-name {
 	position: relative;
 	font-size: 20px;
 	line-height: 50px;
@@ -190,7 +190,7 @@
 	font-size: 20px;
 }
 
-.ucl-single-field .ucl-before-text, .ucl-single-field .ucl-after-text {
+.can-single-field .can-before-text, .can-single-field .can-after-text {
 	color: #808288;
 	font-size: 13px;
 }

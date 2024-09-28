@@ -1,7 +1,7 @@
-<div class="uclwp-section">
-	<h2><?php _e( 'Tags', 'ultimate-classified-listings' ); ?></h2>
+<div class="can-section">
+	<h2><?php _e( 'Tags', 'circular-arts-network' ); ?></h2>
 	<?php
-            echo '<ul class="uclwp-tags">';
+            echo '<ul class="can-tags">';
                  
                 foreach ( $terms as $term ) {
                  

@@ -2,7 +2,7 @@ jQuery(document).ready(function($) {
 
     $('.hard-coded-list .trigger-sort').removeClass('btn btn-default');
 
-    var uclIconPicker = $('.form-meta-setting .ucl-iconpicker').fontIconPicker();
+    var uclIconPicker = $('.form-meta-setting .can-iconpicker').fontIconPicker();
 
     var fields_panel_width = $('.hard-coded-list .card:first-child').width();
     var settings_panel_width = $('.form-meta-setting .card:first-child').width();
@@ -24,7 +24,7 @@ jQuery(document).ready(function($) {
             ui.helper.find('.bi-arrows-expand').addClass('bi-arrows-collapse').removeClass('bi-arrows-expand');
             setTimeout(function() {
                 ui.helper.find('.inside-contents').show();
-                ui.helper.find('.ucl-iconpicker').fontIconPicker();
+                ui.helper.find('.can-iconpicker').fontIconPicker();
             }, 500);
         }
     });
@@ -75,7 +75,7 @@ jQuery(document).ready(function($) {
         });
     });
     
-    $('body').on('click', '.ucl-save-settings',function(e) {
+    $('body').on('click', '.can-save-settings',function(e) {
         e.preventDefault();
         Swal.fire('Please Wait', 'Saving settings...', 'info');
         var ListData = [];
@@ -95,7 +95,7 @@ jQuery(document).ready(function($) {
                     help: wrap_panel.find('.field_help').val(),
                     accessibility: wrap_panel.find('.field_accessibility').val(),
                     required: wrap_panel.find('.field_required').is(':checked') ? true : false,
-                    icon: wrap_panel.find('.ucl-iconpicker').val(),
+                    icon: wrap_panel.find('.can-iconpicker').val(),
                 };
 
                 ListData.push(singleField);
@@ -113,7 +113,7 @@ jQuery(document).ready(function($) {
                     help: wrap_panel.find('.field_help').val(),
                     accessibility: wrap_panel.find('.field_accessibility').val(),
                     required: wrap_panel.find('.field_required').is(':checked') ? true : false,
-                    icon: wrap_panel.find('.ucl-iconpicker').val(),
+                    icon: wrap_panel.find('.can-iconpicker').val(),
                 };
 
                 ListData.push(singleField);
@@ -130,7 +130,7 @@ jQuery(document).ready(function($) {
                     min_value: wrap_panel.find('.field_min_value').val(),
                     accessibility: wrap_panel.find('.field_accessibility').val(),
                     required: wrap_panel.find('.field_required').is(':checked') ? true : false,
-                    icon: wrap_panel.find('.ucl-iconpicker').val(),
+                    icon: wrap_panel.find('.can-iconpicker').val(),
                 };
 
                 ListData.push(singleField);
@@ -138,7 +138,7 @@ jQuery(document).ready(function($) {
 
         });
         var data = {
-            action: 'uclwp_save_custom_fields',
+            action: 'can_save_custom_fields',
             fields: ListData
         }
         $.post(ajaxurl, data, function(resp) {
@@ -146,7 +146,7 @@ jQuery(document).ready(function($) {
         }, 'json');
     });
 
-    $('body').on('click', '.ucl-reset-settings',function(e) {
+    $('body').on('click', '.can-reset-settings',function(e) {
         event.preventDefault();
 
         Swal.fire({
@@ -160,7 +160,7 @@ jQuery(document).ready(function($) {
         }).then((result) => {
           if (result.isConfirmed) {
             var data = {
-                action: 'uclwp_reset_custom_fields',
+                action: 'can_reset_custom_fields',
                 reset: 'yes'
             }
             $.post(ajaxurl, data, function(resp) {

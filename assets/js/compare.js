@@ -3,7 +3,7 @@ jQuery(document).ready(function($) {
 	// 1st check if already in compare box then exit
 	// 2nd creating and adding hmtl to compare box
 	// 3rd animate the compare box if 2 proerpties selected
-	$( 'body' ).on('click', '.ucl-compare-btn', function(e) {
+	$( 'body' ).on('click', '.can-compare-btn', function(e) {
 		event.preventDefault();
 		if (!$(this).hasClass('active')) {
 			$(this).addClass('active');
@@ -12,7 +12,7 @@ jQuery(document).ready(function($) {
 			return;
 		}
 		var p_id = $(this).data('listing-id');
-		var the_box = $(this).closest('.uclwp-box-inner');
+		var the_box = $(this).closest('.can-box-inner');
 		var html = get_compare_box_html(p_id, the_box);
 		$(".property-box").append(html);
 		// open side area
@@ -50,9 +50,9 @@ jQuery(document).ready(function($) {
 	
 	// building html for adding listing information in compare box
 	function get_compare_box_html(p_id, the_box){
-		var imgurl = the_box.find('.uclwp-featured-image').attr('src');
+		var imgurl = the_box.find('.can-featured-image').attr('src');
 		var title = the_box.find('h2').text();
-		var price = the_box.find('.uclwp-price-amount').html();
+		var price = the_box.find('.can-price-amount').html();
 		var html = '<tr class="items_compare" id="compare-'+p_id+'" data-listing-id="'+p_id+'">';
 					html += '<td><img src="'+imgurl+'"></td>';
 					html += '<td><span class="compare-title">'+title+'</span><span class="compare-price">'+price+'</span></td>';
@@ -83,7 +83,7 @@ jQuery(document).ready(function($) {
 	// init comapre model
 	// geting all selected property ids and send ajax request 
 	// geting required data and put on modal body
-	$("#ucl-compare-modal").iziModal({
+	$("#can-compare-modal").iziModal({
  		zindex : 999,
  		padding: 10,
  		// theme : "light",
@@ -100,13 +100,13 @@ jQuery(document).ready(function($) {
 	 		
 	 		});
 	 		var data = {
-	 			'action' : 'uclwp_compare_listings',
+	 			'action' : 'can_compare_listings',
 	 			'listing_ids' : listing_ids
 	 		}
 	        modal.startLoading();
-	        $.post(uclwp_compare.ajaxurl, data , function(resp) {
+	        $.post(can_compare.ajaxurl, data , function(resp) {
 	        	
-	            $("#ucl-compare-modal .iziModal-content tbody").html(resp);
+	            $("#can-compare-modal .iziModal-content tbody").html(resp);
 	 			// stop loading
 	            modal.stopLoading();
 	        });

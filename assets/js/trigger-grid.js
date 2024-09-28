@@ -6,7 +6,7 @@ jQuery(document).ready(function($) {
         var grid_options = $('.grid-custom').data('grid');
         grid_options.images = images;
         grid_options.getViewAllText = function(imagesCount) {
-            var txt = ucl_grid_vars.grid_view_txt;
+            var txt = can_grid_vars.grid_view_txt;
             txt = txt.replace("%count%", imagesCount);
             return txt;
         }

@@ -1,4 +1,4 @@
-.ucl-input-wrapper .ucl-text-input {
+.can-input-wrapper .can-text-input {
 	position: relative;
 	display: block;
 	width: 100%;
@@ -11,11 +11,11 @@
 	transition: all 500ms ease;
 }
 
-.ucl-input-wrapper {
+.can-input-wrapper {
 	margin-bottom: 20px;
 }
 
-.ucl-input-wrapper label {
+.can-input-wrapper label {
 	position: relative;
 	display: block;
 	font-size: 16px;
@@ -23,23 +23,23 @@
 	margin-bottom: 7px;
 }
 
-.ucl-input-wrapper textarea.ucl-text-input {
+.can-input-wrapper textarea.can-text-input {
 	height: 100px;
 	resize: none;
 }
 
-.ucl-input-wrapper button:focus,
-.ucl-input-wrapper input:focus,
-.ucl-input-wrapper textarea:focus{
+.can-input-wrapper button:focus,
+.can-input-wrapper input:focus,
+.can-input-wrapper textarea:focus{
   outline: none !important;
   box-shadow: none;
   transition: all 500ms ease;
 }
 
-.ucl-input-wrapper .ucl-text-input:focus {
+.can-input-wrapper .can-text-input:focus {
 	border-color: #f85c70 !important;
 }
-.uclwp-bs-wrapper .ucl-btn {
+.can-bs-wrapper .can-btn {
 	position: relative;
 	display: inline-block;
 	overflow: hidden;
@@ -57,13 +57,13 @@
 	text-decoration: none !important;
 }
 
-.uclwp-bs-wrapper .ucl-btn:hover {
+.can-bs-wrapper .can-btn:hover {
   background: #0d1927;
   box-shadow: 0px 10px 30px 0px rgba(13,25,39,0.3);
   text-decoration: none;
 }
 
-.uclwp-meta .ucl-single-field {
+.can-meta .can-single-field {
     margin-top: 0;
 	padding: 0rem 0.4rem;
     margin-bottom: 0.2rem;
@@ -71,51 +71,51 @@
     display: flex;
     justify-content: space-around;
 } 
-.uclwp-title-area .cats {
+.can-title-area .cats {
 	margin: 0.3rem 0rem;
 }
 
-.uclwp-meta .col {
+.can-meta .col {
 	padding: 0rem 0.2rem;
 }
 
-.uclwp-meta-area {
+.can-meta-area {
 	margin: 0 -7px;
 }
 
-.ucl-single-field {
+.can-single-field {
 	font-size: 14px;
 	line-height: 26px;
 	padding: 8.5px 15px;
 	margin-top: 20px;
 }
 
-.ucl-single-field .ucl-field-title {
+.can-single-field .can-field-title {
     padding-right: 0.2rem;
     font-weight: bold;
 	letter-spacing: var(--bs-bold-sans-letter-spacing);
 }
 
-.ucl-single-field .ucl-field-value {
+.can-single-field .can-field-value {
 }
 
-.uclwp-bs-wrapper .ucl-link {
+.can-bs-wrapper .can-link {
 	text-decoration: none;
 }
 
-.search-results .ucl-no-results {
+.search-results .can-no-results {
 	font-size: 15px;
 	line-height: 26px;
 	border-radius: 25px;
 	padding: 8.5px 20px;
 	margin-bottom: 20px;
 }
-.uclwp-image {
+.can-image {
 	height: 20rem;
 	max-height; 100%;
 	max-width: 100%;
 }
-.uclwp-featured-image {
+.can-featured-image {
 	max-height; 100%;
 	height: 20rem;
 	max-height; 100%;
@@ -123,17 +123,17 @@
 	object-fit: contain;
 	object-position: center;
 }
-.uclwp-bs-wrapper .uclwp-credits {
+.can-bs-wrapper .can-credits {
 	display: block;
 	margin-top: 2rem;
 }
 
-.uclwp-bs-wrapper .uclwp-credits p {
+.can-bs-wrapper .can-credits p {
 	font-size: 0.85rem;
 	padding: 0rem 0.2rem;
 	margin: 0.2rem 0rem;
 }
-.uclwp-credits img {
+.can-credits img {
 	width: 100px;
 	height: auto;
 	margin-bottom: 0.6rem;

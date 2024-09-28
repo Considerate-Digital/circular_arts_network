@@ -13,7 +13,7 @@ msgstr ""
 "X-Generator: Poedit 2.4.3\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-Flags-xgettext: --add-comments=translators:\n"
-"X-Poedit-WPHeader: ultimate-classified-listings.php\n"
+"X-Poedit-WPHeader: circular-arts-network.php\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
 "esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
@@ -82,7 +82,7 @@ msgstr ""
 msgid "Public"
 msgstr ""
 
-#: classes/class-admin-settings.php:250 classes/class-ucl-init.php:29
+#: classes/class-admin-settings.php:250 classes/class-can-init.php:29
 #: inc/arrays/builder-settings-fields.php:45
 msgid "Seller"
 msgstr ""
@@ -348,7 +348,7 @@ msgid "Listing"
 msgstr ""
 
 #: classes/class-register-cpt.php:143
-msgctxt "ultimate-classified-listings"
+msgctxt "circular-arts-network"
 msgid "Add New Listing"
 msgstr ""
 
@@ -601,7 +601,7 @@ msgid "Icon or Image"
 msgstr ""
 
 #: inc/admin/fields-builder.php:2
-msgid "UCL - Fields Builder"
+msgid "CAN - Fields Builder"
 msgstr ""
 
 #: inc/admin/fields-builder.php:8
@@ -625,7 +625,7 @@ msgid "Reset Fields"
 msgstr ""
 
 #: inc/admin/fields-sections.php:2
-msgid "UCL - Field Sections"
+msgid "CAN - Field Sections"
 msgstr ""
 
 #: inc/admin/fields-sections.php:8
@@ -2561,7 +2561,7 @@ msgid "SEND MESSAGE"
 msgstr ""
 
 #. Plugin URI of the plugin/theme
-msgid "https://webcodingplace.com/ultimate-classified-listings/"
+msgid "https://webcodingplace.com/circular-arts-network/"
 msgstr ""
 
 #. Description of the plugin/theme

@@ -1,21 +1,21 @@
 jQuery(document).ready(function($) {
 	
-	jQuery('.ucl-listing-form').submit(function(event){
+	jQuery('.can-listing-form').submit(function(event){
 	    event.preventDefault();
-	    Swal.fire('', ucl_dash_vars.wait_text, 'info');
+	    Swal.fire('', can_dash_vars.wait_text, 'info');
 	    
-	    if (jQuery("#wp-ucl-description-wrap").hasClass("tmce-active")){
-	        content = tinyMCE.get('ucl-description').getContent();
+	    if (jQuery("#wp-can-description-wrap").hasClass("tmce-active")){
+	        content = tinyMCE.get('can-description').getContent();
 	    } else{
-	        content = $('#ucl-description').val();
+	        content = $('#can-description').val();
 	    }        
 
 	    var data = $(this).serialize()+"&content="+encodeURIComponent(content);
 
-	    $.post(ucl_dash_vars.ajaxurl, data , function(resp) {
+	    $.post(can_dash_vars.ajaxurl, data , function(resp) {
 	        Swal.fire('', resp.message, resp.status);
 	        setTimeout(function() {
-	        	window.location = jQuery('.ucl-menu-listings').attr('href');
+	        	window.location = jQuery('.can-menu-listings').attr('href');
 	        }, 1000);
 	    }, "json");
 	});
@@ -35,10 +35,10 @@ jQuery(document).ready(function($) {
 		}).then((result) => {
 		  if (result.isConfirmed) {
 		  	var data = {
-		  		action: 'uclwp_delete_listing',
+		  		action: 'can_delete_listing',
 		  		listing_id: listing_id,
 		  	}
-		  	$.post(ucl_dash_vars.ajaxurl, data, function(resp) {
+		  	$.post(can_dash_vars.ajaxurl, data, function(resp) {
 		  		Swal.fire('', resp.message, resp.status);
 		  		window.location.reload();
 		  	}, "json");
@@ -47,13 +47,13 @@ jQuery(document).ready(function($) {
 	});
 
 
-	jQuery('.ucl-update-profile').submit(function(event){
+	jQuery('.can-update-profile').submit(function(event){
 	    event.preventDefault();
-	    Swal.fire('', ucl_dash_vars.wait_text, 'info');
+	    Swal.fire('', can_dash_vars.wait_text, 'info');
 
 	    var data = $(this).serialize();
 
-	    $.post(ucl_dash_vars.ajaxurl, data , function(resp) {
+	    $.post(can_dash_vars.ajaxurl, data , function(resp) {
 	        Swal.fire('', resp.message, resp.status);
 	        setTimeout(function() {
 	        	window.location.reload();
@@ -61,14 +61,14 @@ jQuery(document).ready(function($) {
 	    }, "json");
 	});
 
-	var ucl_profile_picture;
+	var can_profile_picture;
 	 
-	jQuery('.ucl-pic-wrap').on('click', '.ucl-upload-btn', function( event ){
+	jQuery('.can-pic-wrap').on('click', '.can-upload-btn', function( event ){
 	 
 	    event.preventDefault();
 	 
 	    // Create the media frame.
-	    ucl_profile_picture = wp.media.frames.ucl_profile_picture = wp.media({
+	    can_profile_picture = wp.media.frames.can_profile_picture = wp.media({
 	      title: jQuery( this ).data( 'title' ),
 	      button: {
 	        text: jQuery( this ).data( 'btntext' ),
@@ -80,17 +80,17 @@ jQuery(document).ready(function($) {
 	    });
 	 
 	    // When an image is selected, run a callback.
-	    ucl_profile_picture.on( 'select', function() {
+	    can_profile_picture.on( 'select', function() {
 	        // We set multiple to false so only get one image from the uploader
-	        var selection = ucl_profile_picture.state().get('selection');
+	        var selection = can_profile_picture.state().get('selection');
 	        selection.map( function( attachment ) {
 	            attachment = attachment.toJSON();
-	            jQuery('.ucl-pic-wrap').find('.seller_image').val(attachment.id);
-	            jQuery('.ucl-pic-wrap').find('.ucl-pp').html("<img src='"+attachment.url+"' >");
+	            jQuery('.can-pic-wrap').find('.seller_image').val(attachment.id);
+	            jQuery('.can-pic-wrap').find('.can-pp').html("<img src='"+attachment.url+"' >");
 	        });  
 	    });
 	 
 	    // Finally, open the modal
-	    ucl_profile_picture.open();
+	    can_profile_picture.open();
 	});
 });

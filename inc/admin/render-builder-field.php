@@ -48,7 +48,7 @@ switch ($field['type']) {
 				<div class="checkbox">
 					<label>
 						<input type="checkbox" class="field_<?php echo esc_attr( $field['name'] ); ?>" <?php echo (isset($data[$field['name']]) && $data[$field['name']] == 'true') ? 'checked' : '' ; ?>>
-						<?php _e( 'Enable', 'ultimate-classified-listings' ); ?>	
+						<?php _e( 'Enable', 'circular-arts-network' ); ?>	
 					</label>
 				</div>
 		    </div>
@@ -92,10 +92,10 @@ switch ($field['type']) {
 		        <?php echo esc_attr( $field['title'] ); ?>
 		    </label>
 		    <div class="col-sm-8">
-		    	<select class="ucl-iconpicker">
-		    		<option value=""><?php _e( 'No icon', 'ultimate-classified-listings' ) ?></option>
+		    	<select class="can-iconpicker">
+		    		<option value=""><?php _e( 'No icon', 'circular-arts-network' ) ?></option>
 		    		<?php
-		    			$icons = uclwp_get_icons_list();
+		    			$icons = can_get_icons_list();
 		    			foreach ($icons as $iconClass) {
 		    				$selected = (isset($data[$field['name']]) && $data[$field['name']] == $iconClass) ? 'selected' : '' ;
 		    				echo "<option $selected>{$iconClass}</option>";

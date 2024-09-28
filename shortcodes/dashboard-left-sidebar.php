@@ -1,4 +1,4 @@
-<div class="uclwp-bs-wrapper ucl-dashboard">
+<div class="can-bs-wrapper can-dashboard">
 	<div class="row">
 		<div class="col-sm-3">
 			<?php $this->render_dashboard_menu(); ?>
@@ -7,7 +7,7 @@
 			<?php $this->render_dashboard_page(); ?>
 		</div>
 	</div>
-	<div class="row uclwp-credits">
+	<div class="row can-credits">
 		<a href="https://canarts.org.uk" target="_blank">
 			<img src="<?php echo plugins_url() ?>/circular_arts_network/assets/images/can-logo.webp"  />
 		</a>

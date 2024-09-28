@@ -1,4 +1,4 @@
-.ucl-single-cat {
+.can-single-cat {
 	position: relative;
 	width: 16rem;
 	height: 16rem;
@@ -9,7 +9,7 @@
 	transition: all 500ms ease;
 }
 
-.ucl-single-cat:before {
+.can-single-cat:before {
 	position: absolute;
 	content: '';
 	width: 100%;
@@ -21,7 +21,7 @@
 	background-color: #f85c70;
 }
 
-.ucl-cat-icon {
+.can-cat-icon {
 	position: relative;
 	display: block;
 	font-size: 50px;
@@ -35,12 +35,12 @@
 	object-fit: fill;
 	padding: 0.6rem;
 }
-.ucl-cat-icon img {
+.can-cat-icon img {
 	width:100%;
 	height: 100%;
 }
 
-.ucl-absolute-link {
+.can-absolute-link {
 	position: absolute;
 	display: block;
 	top: 0;
@@ -49,7 +49,7 @@
 	height: 100%;
 }
 
-.ucl-cat-title {
+.can-cat-title {
 	display: block;
 	font-size: 18px;
 	line-height: 26px;
@@ -60,16 +60,16 @@
 	transition: all 500ms ease;
 	font-family: "Oxygen Mono", monospace;
 }
-.ucl-cat-title h3 {
+.can-cat-title h3 {
 	margin: 0rem;
 	padding: 0rem 0.4rem;
 }
-.ucl-cat-count {
+.can-cat-count {
 	position: absolute;
 	top: 0.8rem;
 	left: 1rem;
 }
-.ucl-cat-count span {
+.can-cat-count span {
 	display: inline-block;
 	font-size: 15px;
 	font-weight: 600;
@@ -83,23 +83,23 @@
 	transition: all 500ms ease;
 }
 
-.ucl-cat-icon i {
+.can-cat-icon i {
 	display: inline-flex;
 }
 
 
-.ucl-single-cat:hover:before {
+.can-single-cat:hover:before {
 	height: 100%;
 }
 
-.ucl-single-cat:hover .ucl-cat-icon i  {
+.can-single-cat:hover .can-cat-icon i  {
 	color: #FFF;
 }
 
-.ucl-single-cat:hover .ucl-cat-title h3  {
+.can-single-cat:hover .can-cat-title h3  {
 }
 
-.ucl-single-cat:hover .ucl-cat-count span  {
+.can-single-cat:hover .can-cat-count span  {
 	color: #fff;
 	background-color: rgba(255,255,255,0.2);
 	position: relative;

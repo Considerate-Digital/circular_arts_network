@@ -1,3 +1,3 @@
 jQuery(document).ready(function($) {
-	$('.uclwp-select-menu').niceSelect();
+	$('.can-select-menu').niceSelect();
 });

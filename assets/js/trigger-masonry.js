@@ -1,3 +1,3 @@
 jQuery(document).ready(function($) {
-	$('.ucl-display-listings').masonry();
+	$('.can-display-listings').masonry();
 });

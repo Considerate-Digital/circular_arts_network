@@ -1,8 +1,8 @@
 <?php 
 /**
-* UCLWP_Register_CPT: registers cpt uclwp_listing & taxonomy uclwp_listing_category
+* CAN_Register_CPT: registers cpt can_listing & taxonomy can_listing_category
 */
-class UCLWP_Register_CPT
+class CAN_Register_CPT
 {
 	
 	function __construct(){
@@ -16,7 +16,7 @@ class UCLWP_Register_CPT
 
     function author_override($output){
         global $post, $user_ID;
-        if (isset($post->post_type) && 'uclwp_listing' === $post->post_type) {
+        if (isset($post->post_type) && 'can_listing' === $post->post_type) {
 
             // return if this isn't the theme author override dropdown
             if (!preg_match('/post_author_override/', $output)) return $output;
@@ -42,42 +42,42 @@ class UCLWP_Register_CPT
     }
 
     function permalink_settings(){
-        if( isset( $_POST['uclwp_listing_permalink'] ) ){
-            update_option( 'uclwp_listing_permalink', sanitize_title_with_dashes( $_POST['uclwp_listing_permalink'] ) );
+        if( isset( $_POST['can_listing_permalink'] ) ){
+            update_option( 'can_listing_permalink', sanitize_title_with_dashes( $_POST['can_listing_permalink'] ) );
         }
-        if( isset( $_POST['uclwp_category_permalink'] ) ){
-            update_option( 'uclwp_category_permalink', sanitize_title_with_dashes( $_POST['uclwp_category_permalink'] ) );
+        if( isset( $_POST['can_category_permalink'] ) ){
+            update_option( 'can_category_permalink', sanitize_title_with_dashes( $_POST['can_category_permalink'] ) );
         }
-        if( isset( $_POST['uclwp_tag_permalink'] ) ){
-            update_option( 'uclwp_tag_permalink', sanitize_title_with_dashes( $_POST['uclwp_tag_permalink'] ) );
+        if( isset( $_POST['can_tag_permalink'] ) ){
+            update_option( 'can_tag_permalink', sanitize_title_with_dashes( $_POST['can_tag_permalink'] ) );
         }
         
         // Add setting fields to the permalink page
-        add_settings_section( 'uclwp_permalink_settings', 'UCL - Permalinks', array($this, 'render_permalink_settings'), 'permalink' );
+        add_settings_section( 'can_permalink_settings', 'CAN - Permalinks', array($this, 'render_permalink_settings'), 'permalink' );
     }
 
     function render_permalink_settings(){
-        $listing_base = get_option( 'uclwp_listing_permalink' );
+        $listing_base = get_option( 'can_listing_permalink' );
         $listing_slug = ($listing_base != '') ? $listing_base : 'listing' ;
 
-        $category_base = get_option( 'uclwp_category_permalink' );
+        $category_base = get_option( 'can_category_permalink' );
         $category_slug = ($category_base != '') ? $category_base : 'listing_category' ;
 
-        $tag_base = get_option( 'uclwp_tag_permalink' );
+        $tag_base = get_option( 'can_tag_permalink' );
         $tag_slug = ($tag_base != '') ? $tag_base : 'listing_tag' ;
         ?>
         <table class="form-table">
             <tr>
-                <th><label for="uclwp_listing_permalink"><?php _e( 'Listing Page Base' , 'ultimate-classified-listings' ); ?></label></th>
-                <td><input type="text" value="<?php echo esc_attr( $listing_slug ); ?>" name="uclwp_listing_permalink" id="uclwp_listing_permalink" class="regular-text" /></td>
+                <th><label for="can_listing_permalink"><?php _e( 'Listing Page Base' , 'circular-arts-network' ); ?></label></th>
+                <td><input type="text" value="<?php echo esc_attr( $listing_slug ); ?>" name="can_listing_permalink" id="can_listing_permalink" class="regular-text" /></td>
             </tr>
             <tr>
-                <th><label for="uclwp_category_permalink"><?php _e( 'Listing Category Base' , 'ultimate-classified-listings' ); ?></label></th>
-                <td><input type="text" value="<?php echo esc_attr( $category_slug ); ?>" name="uclwp_category_permalink" id="uclwp_category_permalink" class="regular-text" /></td>
+                <th><label for="can_category_permalink"><?php _e( 'Listing Category Base' , 'circular-arts-network' ); ?></label></th>
+                <td><input type="text" value="<?php echo esc_attr( $category_slug ); ?>" name="can_category_permalink" id="can_category_permalink" class="regular-text" /></td>
             </tr>
             <tr>
-                <th><label for="uclwp_tag_permalink"><?php _e( 'Listing Tag Base' , 'ultimate-classified-listings' ); ?></label></th>
-                <td><input type="text" value="<?php echo esc_attr( $tag_slug ); ?>" name="uclwp_tag_permalink" id="uclwp_tag_permalink" class="regular-text" /></td>
+                <th><label for="can_tag_permalink"><?php _e( 'Listing Tag Base' , 'circular-arts-network' ); ?></label></th>
+                <td><input type="text" value="<?php echo esc_attr( $tag_slug ); ?>" name="can_tag_permalink" id="can_tag_permalink" class="regular-text" /></td>
             </tr>
         </table>
         <?php
@@ -88,35 +88,35 @@ class UCLWP_Register_CPT
         $post_type        = get_post_type( $post );
         $post_type_object = get_post_type_object( $post_type );
 
-        $messages['uclwp_listing'] = array(
+        $messages['can_listing'] = array(
             0  => '', // Unused. Messages start at index 1.
-            1  => __( 'Listing updated.', 'ultimate-classified-listings' ),
-            2  => __( 'Custom field updated.', 'ultimate-classified-listings' ),
-            3  => __( 'Custom field deleted.', 'ultimate-classified-listings' ),
-            4  => __( 'Listing updated.', 'ultimate-classified-listings' ),
+            1  => __( 'Listing updated.', 'circular-arts-network' ),
+            2  => __( 'Custom field updated.', 'circular-arts-network' ),
+            3  => __( 'Custom field deleted.', 'circular-arts-network' ),
+            4  => __( 'Listing updated.', 'circular-arts-network' ),
             /* translators: %s: date and time of the revision */
-            5  => isset( $_GET['revision'] ) ? sprintf( __( 'Listing restored to revision', 'ultimate-classified-listings' ), wp_post_revision_title( (int) $_GET['revision'], false ) ) : false,
-            6  => __( 'Listing published.', 'ultimate-classified-listings' ),
-            7  => __( 'Listing saved.', 'ultimate-classified-listings' ),
-            8  => __( 'Listing submitted.', 'ultimate-classified-listings' ),
+            5  => isset( $_GET['revision'] ) ? sprintf( __( 'Listing restored to revision', 'circular-arts-network' ), wp_post_revision_title( (int) $_GET['revision'], false ) ) : false,
+            6  => __( 'Listing published.', 'circular-arts-network' ),
+            7  => __( 'Listing saved.', 'circular-arts-network' ),
+            8  => __( 'Listing submitted.', 'circular-arts-network' ),
             9  => sprintf(
-                __( 'Listing scheduled.', 'ultimate-classified-listings' ),
+                __( 'Listing scheduled.', 'circular-arts-network' ),
                 // translators: Publish box date format, see http://php.net/date
-                date_i18n( __( 'M j, Y @ G:i', 'ultimate-classified-listings' ), strtotime( $post->post_date ) )
+                date_i18n( __( 'M j, Y @ G:i', 'circular-arts-network' ), strtotime( $post->post_date ) )
             ),
-            10 => __( 'Listing draft updated.', 'ultimate-classified-listings' )
+            10 => __( 'Listing draft updated.', 'circular-arts-network' )
         );
 
-        if ( $post_type_object->publicly_queryable && 'uclwp_listing' === $post_type ) {
+        if ( $post_type_object->publicly_queryable && 'can_listing' === $post_type ) {
             $permalink = get_permalink( $post->ID );
 
-            $view_link = sprintf( ' <a href="%s">%s</a>', esc_url( $permalink ), __( 'View Listing', 'ultimate-classified-listings' ) );
+            $view_link = sprintf( ' <a href="%s">%s</a>', esc_url( $permalink ), __( 'View Listing', 'circular-arts-network' ) );
             $messages[ $post_type ][1] .= $view_link;
             $messages[ $post_type ][6] .= $view_link;
             $messages[ $post_type ][9] .= $view_link;
 
             $preview_permalink = add_query_arg( 'preview', 'true', $permalink );
-            $preview_link = sprintf( ' <a target="_blank" href="%s">%s</a>', esc_url( $preview_permalink ), __( 'Preview Listing', 'ultimate-classified-listings' ) );
+            $preview_link = sprintf( ' <a target="_blank" href="%s">%s</a>', esc_url( $preview_permalink ), __( 'Preview Listing', 'circular-arts-network' ) );
             $messages[ $post_type ][8]  .= $preview_link;
             $messages[ $post_type ][10] .= $preview_link;
         }
@@ -131,26 +131,26 @@ class UCLWP_Register_CPT
 	}
 
 	function register_cpt(){
-		$menu_name = __( 'Circular Arts Network', 'ultimate-classified-listings' );
+		$menu_name = __( 'Circular Arts Network', 'circular-arts-network' );
 
-	    if (current_user_can('edit_uclwp_listing') && !current_user_can('edit_others_uclwp_listings')) {
-	        $menu_name = __( 'Listings', 'ultimate-classified-listings' );
+	    if (current_user_can('edit_can_listing') && !current_user_can('edit_others_can_listings')) {
+	        $menu_name = __( 'Listings', 'circular-arts-network' );
 	    }
 
 	    $custom_labels = array(
-	        'name'                => __( 'Listings', 'ultimate-classified-listings' ),
-	        'singular_name'       => __( 'Listing', 'ultimate-classified-listings' ),
-	        'add_new'             => _x( 'Add New Listing', 'ultimate-classified-listings', 'ultimate-classified-listings' ),
-	        'add_new_item'        => __( 'Add New Listing', 'ultimate-classified-listings' ),
-	        'edit_item'           => __( 'Edit Listing', 'ultimate-classified-listings' ),
-	        'new_item'            => __( 'New Listing', 'ultimate-classified-listings' ),
-	        'view_item'           => __( 'View Listing', 'ultimate-classified-listings' ),
-	        'search_items'        => __( 'Search Listing', 'ultimate-classified-listings' ),
-	        'not_found'           => __( 'No Listing found', 'ultimate-classified-listings' ),
-	        'not_found_in_trash'  => __( 'No Listing found in Trash', 'ultimate-classified-listings' ),
-	        'parent_item_colon'   => __( 'Parent Listing:', 'ultimate-classified-listings' ),
+	        'name'                => __( 'Listings', 'circular-arts-network' ),
+	        'singular_name'       => __( 'Listing', 'circular-arts-network' ),
+	        'add_new'             => _x( 'Add New Listing', 'circular-arts-network', 'circular-arts-network' ),
+	        'add_new_item'        => __( 'Add New Listing', 'circular-arts-network' ),
+	        'edit_item'           => __( 'Edit Listing', 'circular-arts-network' ),
+	        'new_item'            => __( 'New Listing', 'circular-arts-network' ),
+	        'view_item'           => __( 'View Listing', 'circular-arts-network' ),
+	        'search_items'        => __( 'Search Listing', 'circular-arts-network' ),
+	        'not_found'           => __( 'No Listing found', 'circular-arts-network' ),
+	        'not_found_in_trash'  => __( 'No Listing found in Trash', 'circular-arts-network' ),
+	        'parent_item_colon'   => __( 'Parent Listing:', 'circular-arts-network' ),
 	        'menu_name'           => $menu_name,
-	        'all_items'           => __( 'Listings', 'ultimate-classified-listings' ),
+	        'all_items'           => __( 'Listings', 'circular-arts-network' ),
 	    );
 
 	    $prop_args = array(
@@ -175,35 +175,35 @@ class UCLWP_Register_CPT
 	            'slug'          => (0) ? 'customlisting' : 'listing',
 	            'with_front'    => false
 	        ),
-	        'capability_type'     => array('uclwp_listing', 'uclwp_listings'),
+	        'capability_type'     => array('can_listing', 'can_listings'),
 	        'map_meta_cap'        => true,
 	        'supports'            => array(
             	'title', 'editor', 'author', 'thumbnail', 'excerpt'
             )
 	    );
 
-	    register_post_type( 'uclwp_listing', $prop_args );
+	    register_post_type( 'can_listing', $prop_args );
 	}
 
 	function register_category(){
 	    $cat_labels = array(
-	        'name'                    => _x( 'Categories', 'Categories', 'ultimate-classified-listings' ),
-	        'singular_name'            => _x( 'Category', 'Categories', 'ultimate-classified-listings' ),
-	        'search_items'            => __( 'Search Categories', 'ultimate-classified-listings' ),
-	        'popular_items'            => __( 'Popular Categories', 'ultimate-classified-listings' ),
-	        'all_items'                => __( 'All Categories', 'ultimate-classified-listings' ),
-	        'parent_item'            => __( 'Parent Category', 'ultimate-classified-listings' ),
-	        'parent_item_colon'        => __( 'Parent Category', 'ultimate-classified-listings' ),
-	        'edit_item'                => __( 'Edit Category', 'ultimate-classified-listings' ),
-	        'update_item'            => __( 'Update Category', 'ultimate-classified-listings' ),
-	        'add_new_item'            => __( 'Add New Category', 'ultimate-classified-listings' ),
-	        'new_item_name'            => __( 'New Category Name', 'ultimate-classified-listings' ),
-	        'add_or_remove_items'    => __( 'Add or remove Categories', 'ultimate-classified-listings' ),
-	        'choose_from_most_used'    => __( 'Choose from most used categories', 'ultimate-classified-listings' ),
-	        'menu_name'                => __( 'Categories', 'ultimate-classified-listings' ),
+	        'name'                    => _x( 'Categories', 'Categories', 'circular-arts-network' ),
+	        'singular_name'            => _x( 'Category', 'Categories', 'circular-arts-network' ),
+	        'search_items'            => __( 'Search Categories', 'circular-arts-network' ),
+	        'popular_items'            => __( 'Popular Categories', 'circular-arts-network' ),
+	        'all_items'                => __( 'All Categories', 'circular-arts-network' ),
+	        'parent_item'            => __( 'Parent Category', 'circular-arts-network' ),
+	        'parent_item_colon'        => __( 'Parent Category', 'circular-arts-network' ),
+	        'edit_item'                => __( 'Edit Category', 'circular-arts-network' ),
+	        'update_item'            => __( 'Update Category', 'circular-arts-network' ),
+	        'add_new_item'            => __( 'Add New Category', 'circular-arts-network' ),
+	        'new_item_name'            => __( 'New Category Name', 'circular-arts-network' ),
+	        'add_or_remove_items'    => __( 'Add or remove Categories', 'circular-arts-network' ),
+	        'choose_from_most_used'    => __( 'Choose from most used categories', 'circular-arts-network' ),
+	        'menu_name'                => __( 'Categories', 'circular-arts-network' ),
 	    );
 
-	    $category_permalink = get_option( 'uclwp_category_permalink' );
+	    $category_permalink = get_option( 'can_category_permalink' );
 	    $category_slug = ($category_permalink != '') ? $category_permalink : 'listing_category' ;
 
 	    $cat_args = array(
@@ -222,28 +222,28 @@ class UCLWP_Register_CPT
 	        ),            
 	        'query_var'         => true,
 	    );
-	    register_taxonomy( 'uclwp_listing_category', array( 'uclwp_listing' ), $cat_args );
+	    register_taxonomy( 'can_listing_category', array( 'can_listing' ), $cat_args );
 	}
 
 	function register_tag(){
 	    $tag_labels = array(
-	        'name'                    => _x( 'Tags', 'Tags', 'ultimate-classified-listings' ),
-	        'singular_name'            => _x( 'Tag', 'Tags', 'ultimate-classified-listings' ),
-	        'search_items'            => __( 'Search Tags', 'ultimate-classified-listings' ),
-	        'popular_items'            => __( 'Popular Tags', 'ultimate-classified-listings' ),
-	        'all_items'                => __( 'All Tags', 'ultimate-classified-listings' ),
-	        'parent_item'            => __( 'Parent Tag', 'ultimate-classified-listings' ),
-	        'parent_item_colon'        => __( 'Parent Tag', 'ultimate-classified-listings' ),
-	        'edit_item'                => __( 'Edit Tag', 'ultimate-classified-listings' ),
-	        'update_item'            => __( 'Update Tag', 'ultimate-classified-listings' ),
-	        'add_new_item'            => __( 'Add New Tag', 'ultimate-classified-listings' ),
-	        'new_item_name'            => __( 'New Tag Name', 'ultimate-classified-listings' ),
-	        'add_or_remove_items'    => __( 'Add or remove Tags', 'ultimate-classified-listings' ),
-	        'choose_from_most_used'    => __( 'Choose from most used tags', 'ultimate-classified-listings' ),
-	        'menu_name'                => __( 'Tags', 'ultimate-classified-listings' ),
+	        'name'                    => _x( 'Tags', 'Tags', 'circular-arts-network' ),
+	        'singular_name'            => _x( 'Tag', 'Tags', 'circular-arts-network' ),
+	        'search_items'            => __( 'Search Tags', 'circular-arts-network' ),
+	        'popular_items'            => __( 'Popular Tags', 'circular-arts-network' ),
+	        'all_items'                => __( 'All Tags', 'circular-arts-network' ),
+	        'parent_item'            => __( 'Parent Tag', 'circular-arts-network' ),
+	        'parent_item_colon'        => __( 'Parent Tag', 'circular-arts-network' ),
+	        'edit_item'                => __( 'Edit Tag', 'circular-arts-network' ),
+	        'update_item'            => __( 'Update Tag', 'circular-arts-network' ),
+	        'add_new_item'            => __( 'Add New Tag', 'circular-arts-network' ),
+	        'new_item_name'            => __( 'New Tag Name', 'circular-arts-network' ),
+	        'add_or_remove_items'    => __( 'Add or remove Tags', 'circular-arts-network' ),
+	        'choose_from_most_used'    => __( 'Choose from most used tags', 'circular-arts-network' ),
+	        'menu_name'                => __( 'Tags', 'circular-arts-network' ),
 	    );
 
-	    $tag_permalink = get_option( 'uclwp_tag_permalink' );
+	    $tag_permalink = get_option( 'can_tag_permalink' );
 	    $tag_slug = ($tag_permalink != '') ? $tag_permalink : 'listing_tag' ;
 
 	    $tag_args = array(
@@ -262,11 +262,11 @@ class UCLWP_Register_CPT
 	        'query_var'         => true,
 	    );
 
-	    register_taxonomy( 'uclwp_listing_tag', array( 'uclwp_listing' ), $tag_args );
+	    register_taxonomy( 'can_listing_tag', array( 'can_listing' ), $tag_args );
 	}
 
 
 }
 
-new UCLWP_Register_CPT();
+new CAN_Register_CPT();
 ?>

@@ -1,4 +1,4 @@
-.uclwp-bs-wrapper .ucl-image-upload {
+.can-bs-wrapper .can-image-upload {
 	border: 2px dashed #aaa;
 	width: 100px;
 	height: 100px;
@@ -8,12 +8,12 @@
 	justify-content: center;
 	cursor: pointer;
 }
-.uclwp-bs-wrapper .ucl-image-upload i {
+.can-bs-wrapper .can-image-upload i {
 	font-size: 30px;
 	color: #aaa;
 }
 
-.uclwp-bs-wrapper .ucl-category-thumb {
+.can-bs-wrapper .can-category-thumb {
 	margin: 0 auto;
 	padding: 0;
 	height: 100px;
@@ -21,11 +21,11 @@
 	display: block;
 }
 
-.uclwp-bs-wrapper #category-image-wrapper {
+.can-bs-wrapper #category-image-wrapper {
 	position: relative;
 }
 
-.uclwp-bs-wrapper #category-image-wrapper .bi {
+.can-bs-wrapper #category-image-wrapper .bi {
 	position: absolute;
 	bottom: -9px;
 	right: 46%;

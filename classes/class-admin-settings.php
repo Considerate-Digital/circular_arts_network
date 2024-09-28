@@ -1,8 +1,8 @@
 <?php
 /**
-* UCL - Admin Settings Page and Fields Builder
+* CAN - Admin Settings Page and Fields Builder
 */
-class UCLWP_Admin_Settings
+class CAN_Admin_Settings
 {
 	
 	function __construct(){
@@ -14,20 +14,20 @@ class UCLWP_Admin_Settings
         /**
          * AJAX Callbacks
          */
-        add_action( 'wp_ajax_uclwp_save_field_sections', array($this, 'save_field_sections' ) );
-        add_action( 'wp_ajax_uclwp_save_custom_fields', array($this, 'save_custom_fields' ) );
-        add_action( 'wp_ajax_uclwp_reset_custom_fields', array($this, 'reset_custom_fields' ) );
+        add_action( 'wp_ajax_can_save_field_sections', array($this, 'save_field_sections' ) );
+        add_action( 'wp_ajax_can_save_custom_fields', array($this, 'save_custom_fields' ) );
+        add_action( 'wp_ajax_can_reset_custom_fields', array($this, 'reset_custom_fields' ) );
         add_action( 'wp_ajax_wcp_rem_save_settings', array($this, 'save_admin_settings' ) );
 
         // Seller Approve/ Deny
-        add_action( 'wp_ajax_ucl_deny_seller', array($this, 'deny_seller' ) );
-        add_action( 'wp_ajax_ucl_approve_seller', array($this, 'approve_seller' ) );
+        add_action( 'wp_ajax_can_deny_seller', array($this, 'deny_seller' ) );
+        add_action( 'wp_ajax_can_approve_seller', array($this, 'approve_seller' ) );
 
         // Image in Category    
-        add_action( 'uclwp_listing_category_add_form_fields', array( $this, 'add_category_image' ), 10, 1 );
-        add_action( 'created_uclwp_listing_category', array( $this, 'save_category_image' ), 10, 2 );
-        add_action( 'uclwp_listing_category_edit_form_fields', array( $this, 'edit_category_image' ), 10, 2 );
-        add_action( 'edited_uclwp_listing_category', array( $this, 'updated_category_image' ), 10, 2 );
+        add_action( 'can_listing_category_add_form_fields', array( $this, 'add_category_image' ), 10, 1 );
+        add_action( 'created_can_listing_category', array( $this, 'save_category_image' ), 10, 2 );
+        add_action( 'can_listing_category_edit_form_fields', array( $this, 'edit_category_image' ), 10, 2 );
+        add_action( 'edited_can_listing_category', array( $this, 'updated_category_image' ), 10, 2 );
         add_action( 'pre_get_posts', array($this, 'archive_page_listings_count'), 99 );
 
         add_action( 'transition_post_status', array($this, 'listing_submission_email'), 10, 3 );
@@ -40,53 +40,53 @@ class UCLWP_Admin_Settings
          * Listing Fields Sections
          */
         add_submenu_page(
-            'edit.php?post_type=uclwp_listing',
-            __( 'Fields Sections', 'ultimate-classified-listings' ),
-            __( 'Fields Sections', 'ultimate-classified-listings' ),
+            'edit.php?post_type=can_listing',
+            __( 'Fields Sections', 'circular-arts-network' ),
+            __( 'Fields Sections', 'circular-arts-network' ),
             'manage_options',
-            'uclwp_listing_fields_sections',
-            array($this, 'uclwp_fields_sections_callback')
+            'can_listing_fields_sections',
+            array($this, 'can_fields_sections_callback')
         );
     	
         /**
          * Listing Fields Builder
          */
         add_submenu_page(
-            'edit.php?post_type=uclwp_listing',
-            __( 'Fields Builder', 'ultimate-classified-listings' ),
-            __( 'Fields Builder', 'ultimate-classified-listings' ),
+            'edit.php?post_type=can_listing',
+            __( 'Fields Builder', 'circular-arts-network' ),
+            __( 'Fields Builder', 'circular-arts-network' ),
             'manage_options',
-            'uclwp_listing_fields_builder',
-            array($this, 'uclwp_fields_builder_callback')
+            'can_listing_fields_builder',
+            array($this, 'can_fields_builder_callback')
         );
         
         /**
          * Listing Fields Builder
          */
         add_submenu_page(
-            'edit.php?post_type=uclwp_listing',
-            __( 'Sellers', 'ultimate-classified-listings' ),
-            __( 'Sellers', 'ultimate-classified-listings' ),
+            'edit.php?post_type=can_listing',
+            __( 'Sellers', 'circular-arts-network' ),
+            __( 'Sellers', 'circular-arts-network' ),
             'manage_options',
-            'uclwp_listing_sellers',
-            array($this, 'uclwp_lising_sellers')
+            'can_listing_sellers',
+            array($this, 'can_lising_sellers')
         );
         
     	/**
     	 * Settings Page
     	 */
         add_submenu_page(
-            'edit.php?post_type=uclwp_listing',
-            __( 'Settings', 'ultimate-classified-listings' ),
-            __( 'Settings', 'ultimate-classified-listings' ),
+            'edit.php?post_type=can_listing',
+            __( 'Settings', 'circular-arts-network' ),
+            __( 'Settings', 'circular-arts-network' ),
             'manage_options',
-            'uclwp_settings',
-            array($this, 'uclwp_settings_page_callback')
+            'can_settings',
+            array($this, 'can_settings_page_callback')
         );
     }
 
     function listing_metaboxes(){
-        add_meta_box( 'listing_info_meta_box', __( 'Listing Information', 'ultimate-classified-listings' ), array($this, 'render_listing_settings' ), array('uclwp_listing'));
+        add_meta_box( 'listing_info_meta_box', __( 'Listing Information', 'circular-arts-network' ), array($this, 'render_listing_settings' ), array('can_listing'));
     }
 
     function save_listing($post_id){
@@ -97,21 +97,21 @@ class UCLWP_Admin_Settings
 
         // verify this came from the our screen and with proper authorization,
         // because save_post can be triggered at other times
-        if ( !isset( $_POST['uclwp_listing_info_nonce'] ) )
+        if ( !isset( $_POST['can_listing_info_nonce'] ) )
             return;
 
 
-        if ( !wp_verify_nonce( $_POST['uclwp_listing_info_nonce'], plugin_basename( __FILE__ ) ) )
+        if ( !wp_verify_nonce( $_POST['can_listing_info_nonce'], plugin_basename( __FILE__ ) ) )
             return;
         
         // OK, we're authenticated: we need to find and save the data
-        if (isset($_POST['uclwp_data']) && !empty($_POST['uclwp_data'])) {
-            foreach ($_POST['uclwp_data'] as $key => $value) {
+        if (isset($_POST['can_data']) && !empty($_POST['can_data'])) {
+            foreach ($_POST['can_data'] as $key => $value) {
                 if (is_array($value)) {
                     $value = array_map( 'sanitize_text_field', $value );
-                    update_post_meta($post_id, 'ucl_'.$key, $value);
+                    update_post_meta($post_id, 'can_'.$key, $value);
                 } else {
-                    update_post_meta($post_id, 'ucl_'.$key, wp_kses_post( $value ));
+                    update_post_meta($post_id, 'can_'.$key, wp_kses_post( $value ));
                 }
             }
         }
@@ -119,17 +119,17 @@ class UCLWP_Admin_Settings
         // Saving Gallery Images
         if (isset($_POST['gallery_images']) && $_POST['gallery_images'] != '') {
             $images = array_map( 'sanitize_text_field', $_POST['gallery_images'] );
-            update_post_meta( $post_id, 'ucl_gallery_images', $images );
+            update_post_meta( $post_id, 'can_gallery_images', $images );
         } else {
-            update_post_meta( $post_id, 'ucl_gallery_images', '' );
+            update_post_meta( $post_id, 'can_gallery_images', '' );
         }
 
         // Saving Location
-        if (isset($_POST['ucl_listing_latitude']) && $_POST['ucl_listing_latitude'] != '') {
-            update_post_meta( $post_id, 'ucl_listing_latitude', sanitize_text_field($_POST['ucl_listing_latitude']) );
+        if (isset($_POST['can_listing_latitude']) && $_POST['can_listing_latitude'] != '') {
+            update_post_meta( $post_id, 'can_listing_latitude', sanitize_text_field($_POST['can_listing_latitude']) );
         }
-        if (isset($_POST['ucl_listing_longitude']) && $_POST['ucl_listing_longitude'] != '') {
-            update_post_meta( $post_id, 'ucl_listing_longitude', sanitize_text_field($_POST['ucl_listing_longitude']) );
+        if (isset($_POST['can_listing_longitude']) && $_POST['can_listing_longitude'] != '') {
+            update_post_meta( $post_id, 'can_listing_longitude', sanitize_text_field($_POST['can_listing_longitude']) );
         }
 
 
@@ -137,91 +137,91 @@ class UCLWP_Admin_Settings
 
     function render_listing_settings(){
         $field_sections = $this->get_fields_sections();
-        $inputFields = uclwp_get_listing_fields();
-        wp_nonce_field( plugin_basename( __FILE__ ), 'uclwp_listing_info_nonce' );
-        include_once UCLWP_PATH.'/inc/admin/metabox-info.php';
+        $inputFields = can_get_listing_fields();
+        wp_nonce_field( plugin_basename( __FILE__ ), 'can_listing_info_nonce' );
+        include_once CAN_PATH.'/inc/admin/metabox-info.php';
     }
 
-    function uclwp_fields_builder_callback(){
+    function can_fields_builder_callback(){
         $fields_data = $this->get_builder_settings_fields();
         $field_types = $this->get_listing_field_types();
-        $saved_fields = get_option( 'uclwp_listing_fields' );
-        include_once UCLWP_PATH. '/inc/admin/fields-builder.php';
+        $saved_fields = get_option( 'can_listing_fields' );
+        include_once CAN_PATH. '/inc/admin/fields-builder.php';
     }
 
-    function uclwp_fields_sections_callback(){
+    function can_fields_sections_callback(){
         $field_sections = $this->get_fields_sections();
         $accessibilities = $this->get_section_accessibilities();
-    	include_once UCLWP_PATH. '/inc/admin/fields-sections.php';
+    	include_once CAN_PATH. '/inc/admin/fields-sections.php';
     }
 
-    function uclwp_settings_page_callback(){
-        include_once UCLWP_PATH. '/inc/admin/page-settings.php';
+    function can_settings_page_callback(){
+        include_once CAN_PATH. '/inc/admin/page-settings.php';
     }
 
     function admin_settings_fields(){
-        include UCLWP_PATH.'/inc/arrays/admin-settings.php';
+        include CAN_PATH.'/inc/arrays/admin-settings.php';
         return $fieldsData;
     }
 
-    function uclwp_lising_sellers(){
-        include_once UCLWP_PATH. '/inc/admin/page-sellers.php';
+    function can_lising_sellers(){
+        include_once CAN_PATH. '/inc/admin/page-sellers.php';
     }
 
     function render_setting_field($field){
         ob_start();
-        include UCLWP_PATH.'/inc/admin/render-admin-settings.php';
+        include CAN_PATH.'/inc/admin/render-admin-settings.php';
         $field_html = ob_get_clean();
-        return apply_filters( 'uclwp_admin_settings_field_raw_html', $field_html, $field );
+        return apply_filters( 'can_admin_settings_field_raw_html', $field_html, $field );
     }
 
     function load_admin_scripts($slug){
 
         // Basic scripts for all ucl admin pages
-    	if(strpos($slug, "uclwp") !== -1){
-            wp_enqueue_style('uclwp-bs', UCLWP_URL."/assets/libs/css/bootstrap.css");
-            wp_enqueue_style('uclwp-icons', UCLWP_URL."/assets/libs/icons/bootstrap-icons.css");
-			wp_enqueue_script( 'uclwp-sweetalert', UCLWP_URL . '/assets/libs/sweetalert/sweetalert2.all.min.js', array( 'jquery' ));
+    	if(strpos($slug, "can") !== -1){
+            wp_enqueue_style('can-bs', CAN_URL."/assets/libs/css/bootstrap.css");
+            wp_enqueue_style('can-icons', CAN_URL."/assets/libs/icons/bootstrap-icons.css");
+			wp_enqueue_script( 'can-sweetalert', CAN_URL . '/assets/libs/sweetalert/sweetalert2.all.min.js', array( 'jquery' ));
     	}
 
         // Fields Sections
-        if($slug == 'uclwp_listing_page_uclwp_listing_fields_sections'){
-            wp_enqueue_style( 'uclwp-fields-sections', UCLWP_URL . '/assets/css/fields-sections.css');
-            wp_enqueue_script('uclwp-fields-sections', UCLWP_URL."/assets/js/fields-sections.js", array( 'jquery', 'jquery-ui-sortable', 'jquery-effects-highlight' ));
+        if($slug == 'can_listing_page_can_listing_fields_sections'){
+            wp_enqueue_style( 'can-fields-sections', CAN_URL . '/assets/css/fields-sections.css');
+            wp_enqueue_script('can-fields-sections', CAN_URL."/assets/js/fields-sections.js", array( 'jquery', 'jquery-ui-sortable', 'jquery-effects-highlight' ));
         }
 
         // Fields Buider   
-        if ($slug == 'uclwp_listing_page_uclwp_listing_fields_builder') {
-            wp_enqueue_style( 'ucl-iconpicker', UCLWP_URL . '/assets/libs/iconpicker/jquery.fonticonpicker.min.css');
-            wp_enqueue_style( 'ucl-iconpicker-grey', UCLWP_URL . '/assets/libs/iconpicker/jquery.fonticonpicker.grey.min.css');
-            wp_enqueue_script( 'ucl-iconpicker', UCLWP_URL . '/assets/libs/iconpicker/jquery.fonticonpicker.min.js', array('jquery'));
-            wp_enqueue_style( 'uclwp-fields-builder', UCLWP_URL . '/assets/css/fields-builder.css' );
-            wp_enqueue_script( 'uclwp-fields-builder', UCLWP_URL . '/assets/js/fields-builder.js'  , array( 'jquery', 'jquery-ui-accordion', 'jquery-ui-sortable', 'jquery-ui-draggable' ));
+        if ($slug == 'can_listing_page_can_listing_fields_builder') {
+            wp_enqueue_style( 'can-iconpicker', CAN_URL . '/assets/libs/iconpicker/jquery.fonticonpicker.min.css');
+            wp_enqueue_style( 'can-iconpicker-grey', CAN_URL . '/assets/libs/iconpicker/jquery.fonticonpicker.grey.min.css');
+            wp_enqueue_script( 'can-iconpicker', CAN_URL . '/assets/libs/iconpicker/jquery.fonticonpicker.min.js', array('jquery'));
+            wp_enqueue_style( 'can-fields-builder', CAN_URL . '/assets/css/fields-builder.css' );
+            wp_enqueue_script( 'can-fields-builder', CAN_URL . '/assets/js/fields-builder.js'  , array( 'jquery', 'jquery-ui-accordion', 'jquery-ui-sortable', 'jquery-ui-draggable' ));
         }
 
         // Settings Page   
-        if ($slug == 'uclwp_listing_page_uclwp_settings') {
+        if ($slug == 'can_listing_page_can_settings') {
             wp_enqueue_style( 'wp-color-picker' );
             wp_enqueue_media();
-            wp_enqueue_script( 'ucl-conditionize', UCLWP_URL . '/assets/js/conditionize.js' , array('jquery'));
-            wp_enqueue_script( 'ucl-save-settings-js', UCLWP_URL . '/assets/js/page-settings.js' , array('jquery', 'wp-color-picker' ));
+            wp_enqueue_script( 'can-conditionize', CAN_URL . '/assets/js/conditionize.js' , array('jquery'));
+            wp_enqueue_script( 'can-save-settings-js', CAN_URL . '/assets/js/page-settings.js' , array('jquery', 'wp-color-picker' ));
         }
 
         if ($slug == 'edit-tags.php' || $slug == 'term.php') {
-            if (isset($_GET['post_type']) && 'uclwp_listing' === $_GET['post_type']) {
+            if (isset($_GET['post_type']) && 'can_listing' === $_GET['post_type']) {
                 wp_enqueue_media();
-                wp_enqueue_style('uclwp-bs', UCLWP_URL."/assets/libs/css/bootstrap.css");
-                wp_enqueue_style( 'uclwp-admin', UCLWP_URL . '/assets/css/admin.css');
-                wp_enqueue_style('uclwp-icons', UCLWP_URL."/assets/libs/icons/bootstrap-icons.css");
-                wp_enqueue_style( 'ucl-iconpicker', UCLWP_URL . '/assets/libs/iconpicker/jquery.fonticonpicker.min.css');
-                wp_enqueue_style( 'ucl-iconpicker-grey', UCLWP_URL . '/assets/libs/iconpicker/jquery.fonticonpicker.grey.min.css');
-                wp_enqueue_script( 'ucl-iconpicker', UCLWP_URL . '/assets/libs/iconpicker/jquery.fonticonpicker.min.js', array('jquery'));
-                wp_enqueue_script( 'ucl-category-admin', UCLWP_URL . '/assets/js/category.js', array('jquery'));
+                wp_enqueue_style('can-bs', CAN_URL."/assets/libs/css/bootstrap.css");
+                wp_enqueue_style( 'can-admin', CAN_URL . '/assets/css/admin.css');
+                wp_enqueue_style('can-icons', CAN_URL."/assets/libs/icons/bootstrap-icons.css");
+                wp_enqueue_style( 'can-iconpicker', CAN_URL . '/assets/libs/iconpicker/jquery.fonticonpicker.min.css');
+                wp_enqueue_style( 'can-iconpicker-grey', CAN_URL . '/assets/libs/iconpicker/jquery.fonticonpicker.grey.min.css');
+                wp_enqueue_script( 'can-iconpicker', CAN_URL . '/assets/libs/iconpicker/jquery.fonticonpicker.min.js', array('jquery'));
+                wp_enqueue_script( 'can-category-admin', CAN_URL . '/assets/js/category.js', array('jquery'));
             }
         }
 
-        if($slug == 'uclwp_listing_page_uclwp_listing_sellers'){
-            wp_enqueue_script( 'ucl-manage-sellers', UCLWP_URL . '/assets/js/manage-sellers.js'  , array('jquery'));
+        if($slug == 'can_listing_page_can_listing_sellers'){
+            wp_enqueue_script( 'can-manage-sellers', CAN_URL . '/assets/js/manage-sellers.js'  , array('jquery'));
         }
 
     }
@@ -229,35 +229,35 @@ class UCLWP_Admin_Settings
     function get_builder_settings_fields(){
         $fields = array();
         $sectionTabs = $this->get_fields_sections();
-        include UCLWP_PATH.'/inc/arrays/builder-settings-fields.php';
+        include CAN_PATH.'/inc/arrays/builder-settings-fields.php';
         return $fields;
     }
 
     function get_listing_field_types(){
         $field_types = array(
-            'text' => __( 'Text Field', 'ultimate-classified-listings' ),
-            'price' => __( 'Price Field', 'ultimate-classified-listings' ),
-            'number' => __( 'Number Field', 'ultimate-classified-listings' ),
-            'select' => __( 'DropDown Field', 'ultimate-classified-listings' ),
-            'checkboxes' => __( 'Multi Checkboxes', 'ultimate-classified-listings' ),
-            'date' => __( 'Date Field', 'ultimate-classified-listings' ),
-            'video' => __( 'Video URL', 'ultimate-classified-listings' ),
-            'textarea' => __( 'Text Area', 'ultimate-classified-listings' ),
-            'shortcode' => __( 'Shortcode', 'ultimate-classified-listings' ),
+            'text' => __( 'Text Field', 'circular-arts-network' ),
+            'price' => __( 'Price Field', 'circular-arts-network' ),
+            'number' => __( 'Number Field', 'circular-arts-network' ),
+            'select' => __( 'DropDown Field', 'circular-arts-network' ),
+            'checkboxes' => __( 'Multi Checkboxes', 'circular-arts-network' ),
+            'date' => __( 'Date Field', 'circular-arts-network' ),
+            'video' => __( 'Video URL', 'circular-arts-network' ),
+            'textarea' => __( 'Text Area', 'circular-arts-network' ),
+            'shortcode' => __( 'Shortcode', 'circular-arts-network' ),
         );
         
-        return apply_filters( 'uclwp_listing_field_types', $field_types );
+        return apply_filters( 'can_listing_field_types', $field_types );
     }
 
     function get_section_accessibilities(){
         $accessibilities = array(
-            'public'        => __('Public', 'ultimate-classified-listings' ),
-            'seller'         => __('Seller', 'ultimate-classified-listings' ),
-            'registered'    => __('Registered Users', 'ultimate-classified-listings' ),
-            'admin'         => __('Administrator', 'ultimate-classified-listings' ),
-            'disable'       => __('Disable', 'ultimate-classified-listings' ),
+            'public'        => __('Public', 'circular-arts-network' ),
+            'seller'         => __('Seller', 'circular-arts-network' ),
+            'registered'    => __('Registered Users', 'circular-arts-network' ),
+            'admin'         => __('Administrator', 'circular-arts-network' ),
+            'disable'       => __('Disable', 'circular-arts-network' ),
         );
-        return apply_filters( 'uclwp_section_accessibilities', $accessibilities );
+        return apply_filters( 'can_section_accessibilities', $accessibilities );
     }
 
     function render_fields_builder_field_heading($title, $label){
@@ -285,60 +285,60 @@ class UCLWP_Admin_Settings
             }
         }
         if ($render_it) {
-            include UCLWP_PATH.'/inc/admin/render-builder-field.php';
+            include CAN_PATH.'/inc/admin/render-builder-field.php';
         }
     }
 
     function get_fields_sections(){
-        $savedSections = get_option('uclwp_field_sections');
+        $savedSections = get_option('can_field_sections');
         if ($savedSections != '' && is_array($savedSections)) {
             $fieldsSections = $savedSections;
         } else {
             $fieldsSections = array(
                 array(
-                    'title'     => __( 'Title and Description', 'ultimate-classified-listings' ),
+                    'title'     => __( 'Title and Description', 'circular-arts-network' ),
                     'key'       => 'description',
                     'icon'      => '',
                     'accessibility' => 'public',
                 ),
 		array(
-                    'title'     => __( 'Category', 'ultimate-classified-listings' ),
+                    'title'     => __( 'Category', 'circular-arts-network' ),
                     'key'       => 'category',
                     'icon'      => '',
                     'accessibility' => 'public',
                 ),
                 array(
-                    'title'     => __( 'Gallery Images', 'ultimate-classified-listings' ),
+                    'title'     => __( 'Gallery Images', 'circular-arts-network' ),
                     'key'       => 'gallery_images',
                     'icon'      => '',
                     'accessibility' => 'public',
                 ),
                 array(
-                    'title'     => __( 'Details', 'ultimate-classified-listings' ),
+                    'title'     => __( 'Details', 'circular-arts-network' ),
                     'key'       => 'details',
                     'icon'      => '',
                     'accessibility' => 'public',
                 ),
                 array(
-                    'title'     => __( 'Features', 'ultimate-classified-listings' ),
+                    'title'     => __( 'Features', 'circular-arts-network' ),
                     'key'       => 'features',
                     'icon'      => '',
                     'accessibility' => 'public',
                 ),
                 array(
-                    'title'     => __( 'Location', 'ultimate-classified-listings' ),
+                    'title'     => __( 'Location', 'circular-arts-network' ),
                     'key'       => 'location',
                     'icon'      => '',
                     'accessibility' => 'public',
                 ),
                 array(
-                    'title'     => __( 'Video', 'ultimate-classified-listings' ),
+                    'title'     => __( 'Video', 'circular-arts-network' ),
                     'key'       => 'video',
                     'icon'      => '',
                     'accessibility' => 'public',
                 ),
                 array(
-                    'title'     => __( 'Tags', 'ultimate-classified-listings' ),
+                    'title'     => __( 'Tags', 'circular-arts-network' ),
                     'key'       => 'tags',
                     'icon'      => '',
                     'accessibility' => 'public',
@@ -346,7 +346,7 @@ class UCLWP_Admin_Settings
             );
         }
 
-        $fieldsSections = apply_filters('uclwp_fields_sections', $fieldsSections);
+        $fieldsSections = apply_filters('can_fields_sections', $fieldsSections);
 
         return $fieldsSections;
     }
@@ -354,23 +354,23 @@ class UCLWP_Admin_Settings
     function save_field_sections(){
         $resp = array(
             'status' => 'error',
-            'title' => __( 'Failed!', 'ultimate-classified-listings' ),
-            'message' => __( 'There is some error or you did not make any change.', 'ultimate-classified-listings' ),
+            'title' => __( 'Failed!', 'circular-arts-network' ),
+            'message' => __( 'There is some error or you did not make any change.', 'circular-arts-network' ),
         );
         if (isset($_REQUEST['sections']) && !isset($_REQUEST['reset'])) {
-            $updated = update_option( 'uclwp_field_sections', $_REQUEST['sections'] );
+            $updated = update_option( 'can_field_sections', $_REQUEST['sections'] );
             if ($updated) {
                 $resp['status'] = 'success';
-                $resp['title'] = __( 'Settings Saved!', 'ultimate-classified-listings' );
-                $resp['message'] = __( 'Settings are saved in the database successfully.', 'ultimate-classified-listings' );
+                $resp['title'] = __( 'Settings Saved!', 'circular-arts-network' );
+                $resp['message'] = __( 'Settings are saved in the database successfully.', 'circular-arts-network' );
             }
         }
         if (isset($_REQUEST['reset']) && $_REQUEST['reset'] == 'yes') {
-            $deleted = delete_option( 'uclwp_field_sections' );
+            $deleted = delete_option( 'can_field_sections' );
             if ($deleted) {
                 $resp['status'] = 'success';
-                $resp['title'] = __( 'Reset Done!', 'ultimate-classified-listings' );
-                $resp['message'] = __( 'Section are reset successfully.', 'ultimate-classified-listings' );
+                $resp['title'] = __( 'Reset Done!', 'circular-arts-network' );
+                $resp['message'] = __( 'Section are reset successfully.', 'circular-arts-network' );
             }
         }
         
@@ -389,28 +389,28 @@ class UCLWP_Admin_Settings
                 $field['help'] = (isset($field['help']) && $field['help'] != '') ? stripcslashes($field['help']) : '';
                 $fields_arr[] = $field;
                 if (isset($field['title']) && $field['title'] != '') {
-                    uclwp_wpml_register($field['title'], 'ultimate-classified-listings-fields');
+                    can_wpml_register($field['title'], 'circular-arts-network-fields');
                 }
                 if (isset($field['help']) && $field['help'] != '') {
-                    uclwp_wpml_register($field['help'], 'ultimate-classified-listings-fields');
+                    can_wpml_register($field['help'], 'circular-arts-network-fields');
                 }
                 if (isset($field['default']) && $field['default'] != '') {
-                    uclwp_wpml_register($field['default'], 'ultimate-classified-listings-fields');
+                    can_wpml_register($field['default'], 'circular-arts-network-fields');
                 }
                 if (!empty($field['options'])) {
                     foreach ($field['options'] as $option_name) {
-                        uclwp_wpml_register(trim($option_name), 'ultimate-classified-listings-fields');
+                        can_wpml_register(trim($option_name), 'circular-arts-network-fields');
                     }
                 }
             }
-            if (update_option( 'uclwp_listing_fields', $fields_arr )) {
+            if (update_option( 'can_listing_fields', $fields_arr )) {
                 $resp['status'] = 'success';
-                $resp['title'] = __( 'Settings Saved!', 'ultimate-classified-listings' );
-                $resp['message'] = __( 'Settings are saved in the database successfully.', 'ultimate-classified-listings' );
+                $resp['title'] = __( 'Settings Saved!', 'circular-arts-network' );
+                $resp['message'] = __( 'Settings are saved in the database successfully.', 'circular-arts-network' );
             } else {
                 $resp['status'] = 'error';
-                $resp['title'] = __( 'Failed!', 'ultimate-classified-listings' );
-                $resp['message'] = __( 'There is some error or you did not make any change.', 'ultimate-classified-listings' );
+                $resp['title'] = __( 'Failed!', 'circular-arts-network' );
+                $resp['message'] = __( 'There is some error or you did not make any change.', 'circular-arts-network' );
             }
 
             echo json_encode($resp);
@@ -420,7 +420,7 @@ class UCLWP_Admin_Settings
 
     function reset_custom_fields(){
         if (isset($_REQUEST['reset']) && $_REQUEST['reset'] == 'yes') {
-            delete_option( 'uclwp_listing_fields' );
+            delete_option( 'can_listing_fields' );
         }
         die(0);
     }
@@ -429,23 +429,23 @@ class UCLWP_Admin_Settings
         if (isset($_REQUEST)) {
             $resp = array('status' => '', 'title' => '', 'message' => '');
             
-            $ucl_settings = $_REQUEST;
-            if (update_option( 'uclwp_all_settings', $ucl_settings )) {
+            $can_settings = $_REQUEST;
+            if (update_option( 'can_all_settings', $can_settings )) {
                 $resp['status'] = 'success';
-                $resp['title'] = __( 'Settings Saved!', 'ultimate-classified-listings' );
-                $resp['message'] = __( 'Settings are saved in the database successfully.', 'ultimate-classified-listings' );
+                $resp['title'] = __( 'Settings Saved!', 'circular-arts-network' );
+                $resp['message'] = __( 'Settings are saved in the database successfully.', 'circular-arts-network' );
                 if (isset($_REQUEST['listing_submission_mode'])) {
-                    $role = get_role( 'ucl_listing_seller' );
+                    $role = get_role( 'can_listing_seller' );
                     if ($_REQUEST['listing_submission_mode'] == 'publish') {
-                        $role->add_cap( 'publish_uclwp_listings' );
+                        $role->add_cap( 'publish_can_listings' );
                     } elseif ($_REQUEST['listing_submission_mode'] == 'approve') {
-                        $role->remove_cap( 'publish_uclwp_listings' );
+                        $role->remove_cap( 'publish_can_listings' );
                     }
                 }
             } else {
                 $resp['status'] = 'error';
-                $resp['title'] = __( 'Failed!', 'ultimate-classified-listings' );
-                $resp['message'] = __( 'There is some error or you did not make any change.', 'ultimate-classified-listings' );
+                $resp['title'] = __( 'Failed!', 'circular-arts-network' );
+                $resp['message'] = __( 'There is some error or you did not make any change.', 'circular-arts-network' );
             }
             echo json_encode($resp);
         }
@@ -453,30 +453,30 @@ class UCLWP_Admin_Settings
     }
 
     function add_category_image( $taxonomy ){
-        include UCLWP_PATH.'/inc/admin/add-category-image.php';
+        include CAN_PATH.'/inc/admin/add-category-image.php';
     }
 
     function save_category_image( $term_id, $tt_id ) {
-        if( isset( $_POST['ucl_category_image'] ) && '' !== $_POST['ucl_category_image'] ){
-            add_term_meta( $term_id, 'ucl_category_image', sanitize_text_field( $_POST['ucl_category_image'] ), true );
+        if( isset( $_POST['can_category_image'] ) && '' !== $_POST['can_category_image'] ){
+            add_term_meta( $term_id, 'can_category_image', sanitize_text_field( $_POST['can_category_image'] ), true );
         }
-        if( isset( $_POST['ucl_category_icon'] ) && '' !== $_POST['ucl_category_icon'] ){
-            add_term_meta( $term_id, 'ucl_category_icon', sanitize_text_field( $_POST['ucl_category_icon'] ), true );
+        if( isset( $_POST['can_category_icon'] ) && '' !== $_POST['can_category_icon'] ){
+            add_term_meta( $term_id, 'can_category_icon', sanitize_text_field( $_POST['can_category_icon'] ), true );
         }
     }
     function edit_category_image( $term, $taxonomy ) {
-        include UCLWP_PATH.'/inc/admin/edit-category-image.php';
+        include CAN_PATH.'/inc/admin/edit-category-image.php';
     }
     function updated_category_image( $term_id, $tt_id ) {
-        if( isset( $_POST['ucl_category_image'] ) && '' !== $_POST['ucl_category_image'] ){
-            update_term_meta ( $term_id, 'ucl_category_image', sanitize_text_field( $_POST['ucl_category_image'] ) );
+        if( isset( $_POST['can_category_image'] ) && '' !== $_POST['can_category_image'] ){
+            update_term_meta ( $term_id, 'can_category_image', sanitize_text_field( $_POST['can_category_image'] ) );
         } else {
-            update_term_meta ( $term_id, 'ucl_category_image', '' );
+            update_term_meta ( $term_id, 'can_category_image', '' );
         }
-        if( isset( $_POST['ucl_category_icon'] ) && '' !== $_POST['ucl_category_icon'] ){
-            update_term_meta ( $term_id, 'ucl_category_icon', sanitize_text_field( $_POST['ucl_category_icon'] ) );
+        if( isset( $_POST['can_category_icon'] ) && '' !== $_POST['can_category_icon'] ){
+            update_term_meta ( $term_id, 'can_category_icon', sanitize_text_field( $_POST['can_category_icon'] ) );
         } else {
-            update_term_meta ( $term_id, 'ucl_category_icon', '' );
+            update_term_meta ( $term_id, 'can_category_icon', '' );
         }
     }
 
@@ -484,47 +484,47 @@ class UCLWP_Admin_Settings
         if ( is_admin() || ! $query->is_main_query() ) {
             return;
         }
-        $number_of_listings = uclwp_get_option('listings_per_page', 9);
-        if (is_tax('uclwp_listing_tag') || is_tax('uclwp_listing_category')) {
+        $number_of_listings = can_get_option('listings_per_page', 9);
+        if (is_tax('can_listing_tag') || is_tax('can_listing_category')) {
             $query->set( 'posts_per_page', $number_of_listings );
         }
     }
 
     function listing_submission_email($new_status, $old_status, $listing){
-        if (isset($listing->post_type) && $listing->post_type == 'uclwp_listing' && uclwp_get_option('listing_submission_mode') == 'approve') {
+        if (isset($listing->post_type) && $listing->post_type == 'can_listing' && can_get_option('listing_submission_mode') == 'approve') {
             if ( $new_status === "pending" && $old_status !== 'pending' ) {
-                do_action( 'uclwp_new_listing_submitted', $listing->ID );
+                do_action( 'can_new_listing_submitted', $listing->ID );
             }
             if ( $new_status === "publish" && $old_status === 'pending' ) {
-                do_action( 'uclwp_new_listing_approved', $listing->ID );
+                do_action( 'can_new_listing_approved', $listing->ID );
             }
         }
     }
 
     function deny_seller(){
         if (isset($_REQUEST) && current_user_can( 'manage_options' )) {
-            $pending_sellers = get_option( 'uclwp_pending_users' );
-            do_action( 'uclwp_new_seller_rejected', $pending_sellers[$_REQUEST['userindex']] );
+            $pending_sellers = get_option( 'can_pending_users' );
+            do_action( 'can_new_seller_rejected', $pending_sellers[$_REQUEST['userindex']] );
             unset($pending_sellers[$_REQUEST['userindex']]);
-            update_option( 'uclwp_pending_users', $pending_sellers );
+            update_option( 'can_pending_users', $pending_sellers );
         }
         die(0);
     }
 
     function approve_seller(){
         if (isset($_REQUEST) && current_user_can( 'manage_options' )) {
-            $pending_sellers = get_option( 'uclwp_pending_users' );
+            $pending_sellers = get_option( 'can_pending_users' );
 
             $new_seller = $pending_sellers[$_REQUEST['userindex']];
 
             $seller_id = wp_create_user( $new_seller['username'], $new_seller['seller_password'], $new_seller['useremail'] );
 
-            do_action( 'uclwp_new_seller_approved', $new_seller );
+            do_action( 'can_new_seller_approved', $new_seller );
 
             if ($seller_id != '') {
                 wp_update_user( array( 
                     'ID' => $seller_id,
-                    'role' => 'ucl_listing_seller',
+                    'role' => 'can_listing_seller',
                     'first_name' => sanitize_text_field( $new_seller['first_name'] ),
                     'last_name' => sanitize_text_field( $new_seller['last_name'] ),
                 ) );
@@ -543,7 +543,7 @@ class UCLWP_Admin_Settings
             
             unset($pending_sellers[$_REQUEST['userindex']]);
 
-            update_option( 'uclwp_pending_users', $pending_sellers );
+            update_option( 'can_pending_users', $pending_sellers );
         }
 
         die(0);
@@ -573,5 +573,5 @@ class UCLWP_Admin_Settings
     }
 }
 
-$uclwp_admin_settings = new UCLWP_Admin_Settings;
+$can_admin_settings = new CAN_Admin_Settings;
 ?>

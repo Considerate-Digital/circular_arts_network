@@ -10,14 +10,14 @@ if( ! defined('ABSPATH' ) ){ exit; }
 
 get_header(); ?>
 
-<div class="uclwp-bs-wrapper">
+<div class="can-bs-wrapper">
 	<div class="container pt-5 pb-5">
 		<div class="row">
 			<div class="col-sm-9">
-				<?php do_action( 'uclwp_listing_content' ); ?>
+				<?php do_action( 'can_listing_content' ); ?>
 			</div>
 			<div class="col-sm-3">
-				<?php do_action( 'uclwp_listing_sidebar' ); ?>
+				<?php do_action( 'can_listing_sidebar' ); ?>
 			</div>
 		</div>
 	</div>

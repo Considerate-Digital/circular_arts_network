@@ -1,105 +1,78 @@
-# Circular Arts Network Plugin Documentation
+=== Circular Arts Network ===
+Contributors: Circular Arts Network, Sculpture Placement Group, Considerate Digital
+Tags: listings, directory, classifieds, ads, search, ajax, classified-ads
+Requires at least: 3.5
+Tested up to: 6.4
+Stable tag: 1.2
+License: GPLv3
+License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
-## Overview
 
-CAN is a recycling and reuse tool that helps the arts combat the climate emergency. It gives you access to the materials you need for your creative projects by providing a place where materials and resources can be exchanged. CAN stands for Circular Arts Network, it’s an online platform that supports  a circular economy within the arts.
 
- 
-CAN encourages reuse across all artforms, it works by connecting people and organisations together.  CAN partners with other industries such as construction and manufacturing, helping creative communities access their surplus materials and supporting industry to be more sustainable.
+CAN is a recycling and reuse tool that helps the arts combat the climate emergency. It gives you access to the materials you need for your creative projects by providing a place where materials and resources can be exchanged. CAN stands for Circular Arts Network, it’s an online platform that supports a circular economy within the arts.
 
- 
-It’s basically a Gumtree but for the arts. Finding affordable (or FREE!) materials and resources that are used by artists and makers in an easy and connected way.  CAN also facilitates the sharing of resources such as transport, equipment, time, and other essentials. We believe that by doing so, users will be able to make the most of their time and resources.
+CAN encourages reuse across all artforms, it works by connecting people and organisations together. CAN partners with other industries such as construction and manufacturing, helping creative communities access their surplus materials and supporting industry to be more sustainable.
 
- 
+It’s basically a Gumtree but for the arts. Finding affordable (or FREE!) materials and resources that are used by artists and makers in an easy and connected way. CAN also facilitates the sharing of resources such as transport, equipment, time, and other essentials. We believe that by doing so, users will be able to make the most of their time and resources.
+
 The National Theatre of Scotland, National Galleries Scotland, Glasgow School of Art and Edinburgh University are among 700+ users who have already benefited from CAN.
 
 CAN is not for profit, and is administrated by Sculpture Placement Group CIC.
 
 We welcome feedback, which you can give by emailing info@canarts.org.uk
 
-## Installation
+Original site developed by Sculpture Placement Group (SPG), in collaboration with developer Ralph Mackenzie.
 
-### Step 1: Download the Plugin
+CAN branding, logo, site layout all designed by Ralph Mackenzie.
 
-Obtain the ZIP file for the Circular Arts Network plugin from the source provided.
+Category Icons were commissioned for CAN, and illustrated by Esme Macintyre.
 
-### Step 2: Log in to Your WordPress Dashboard
+This WordPress plugin was adapted for CAN by Considerate Digital. It is based on the open source plugin Ultimate Classified Listings by “webcodingplace”. 
 
-Access your WordPress site's admin panel by navigating to `yourdomain.com/wp-admin`.
 
-### Step 3: Navigate to Plugins
 
-In your WordPress dashboard, go to the "Plugins" section on the left-hand menu and click on "Add New".
 
-### Step 4: Upload the Plugin
+=== Ultimate Classified Listings ===
+A simple yet complete classifieds and listings system for WordPress.
 
-At the top of the page, click on the "Upload Plugin" button. Then, choose the ZIP file of the Circular Arts Network plugin that you downloaded earlier.
+== Description ==
+Ultimate Classified Listings is a Responsive Classifieds or listings plugin for WordPress. It has nice & clean designs for listing templates and comes with special integration features like Unlimited Custom Fields, Gallery Sliders + Grids, Advanced AJAX Search, Google Maps or Open Street Maps, and much more…
 
-### Step 5: Install and Activate
+It is also a WordPress-based Listing Management System that allows you to own and maintain a listing or ads marketplace, approve registered sellers, accept listing submissions, seller profile management, etc.
 
-After uploading the ZIP file, click on the "Install Now" button. Once installed, you will need to activate the plugin by clicking on the "Activate Plugin" link.
+= Quick Links =
 
-## Shortcodes Documentation
+- **[Live Demo](https://www.wpclassifiedlistings.com/demo/)**
+- **[Documentation](https://www.wpclassifiedlistings.com/documentation/)**
+- **[AJAX Search](https://www.wpclassifiedlistings.com/demo/search-listings-ajax/)**
 
-### 1. Display Listings
+== Installation ==
 
-**Shortcode**: `[uclwp_listings]`
+1. Navigate to the WordPress Dashboard -> Plugins -> Add New
+2. Search for the Ultimate Classified Listings
+3. Install and Activate
+4. Now configure the settings from the Ultimate Classified Listings -> Settings
 
-This shortcode displays listings in a structured format with various customisation options.
+== Screenshots ==
+1. Listings
+2. Sections Manager
+3. Fields Builder
+4. Frontend Management
 
-#### Attributes
+== Docs ==
+https://www.wpclassifiedlistings.com/documentation/
 
-- **columns**: (Default: 3) Number of columns per row.
-- **style**: (Default: 1) Style template of the listings.
-- **image_size**: (Default: large) Size of the featured images.
-- **pagination**: (Default: enable) Enables or disables bottom pagination.
-- **top_bar**: (Default: enable) Enables or disables the top bar.
-- **order**: (Default: ASC) Sorting order of listings.
-- **orderby**: (Default: date) Basis for sorting listings.
-- **orderby_custom**: Specify a custom field name for sorting.
-- **author**: Filter listings by a specific author's ID.
-- **tags**: Display listings tagged with specific tags.
-- **categories**: Display listings from specific categories.
-- **ids**: Display specific listings by their IDs.
-- **exclude**: Exclude certain listings by their IDs.
-- **total**: (Default: 9) Total number of listings to show.
 
-### 2. Display Categories
+== Changelog ==
 
-**Shortcode**: `[uclwp_categories]`
+= 1.2 =
 
-This shortcode allows you to display categories.
+- Bug Fixed: Iframes not saving from frontend
 
-#### Attributes
+= 1.1 =
 
-- **columns**: (Default: auto) Number of columns per row.
-- **style**: (Default: 1) Style template for the categories display.
-- **image_size**: (Default: thumbnail) Size for category thumbnails.
+- Feature Added: Iframes support in the shortcode field
 
-### 3. Seller Dashboard
+= 1.0.0 =
 
-**Shortcode**: `[uclwp_dashboard]`
-
-This shortcode provides a dashboard for sellers to manage their listings and profile. It shows a login form when the user is not logged in.
-
-### 4. Search Form
-
-**Shortcode**: `[uclwp_search_form]`
-
-Displays a customisable search form.
-
-#### Attributes
-
-- **columns**: (Default: auto) Number of columns for the form.
-- **style**: (Default: 1) Styling of the search form.
-- **fields**: (Default: search_field, regular_price, purpose, condition) Fields to include in the form.
-- **results_selector**: HTML selector to append AJAX search results.
-- **results_url**: URL to redirect for search results, disabling AJAX.
-- **bg_colour**: (Default: #f5f5f5) Background colour of the search form.
-
-### 5. Search Results
-
-**Shortcode**: `[uclwp_search_results]`
-
-This shortcode is used to display the search results.
-
+- Initial Release

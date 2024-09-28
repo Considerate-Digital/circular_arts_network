@@ -1,65 +1,65 @@
 <?php
-$primaryColor = uclwp_get_option('ucl_primary_color', '#3AAF4A');
-$secondaryColor = uclwp_get_option('ucl_secondary_color', '#fffff');
+$primaryColor = can_get_option('can_primary_color', '#3AAF4A');
+$secondaryColor = can_get_option('can_secondary_color', '#fffff');
 
 if($primaryColor != '' && $secondaryColor != ''){
     echo "
-        .uclwp-bs-wrapper .ucl-single-cat:before,
-        .uclwp-bs-wrapper .uclwp-menu-box .active,
-        .uclwp-section .ucl-features li:before,
-        .ucl-pagination li a:hover, .ucl-pagination li .current,
-        .uclwp-bs-wrapper .ucl-btn {
+        .can-bs-wrapper .can-single-cat:before,
+        .can-bs-wrapper .can-menu-box .active,
+        .can-section .can-features li:before,
+        .can-pagination li a:hover, .can-pagination li .current,
+        .can-bs-wrapper .can-btn {
             background-color: $primaryColor !important;
         }
 
-        .uclwp-section .ucl-features li:before {
+        .can-section .can-features li:before {
             box-shadow: 0px 0px 0px 3px {$primaryColor}66 !important;
         }
 
-        .ucl-btn {
+        .can-btn {
             box-shadow: 0px 10px 30px 0px {$primaryColor}66 !important;
         }
 
-        .ucl-input-wrapper .ucl-text-input:focus,
-        .uclwp-menu-box .active,
-        .ucl-pagination li a:hover, .ucl-pagination li .current {
+        .can-input-wrapper .can-text-input:focus,
+        .can-menu-box .active,
+        .can-pagination li a:hover, .can-pagination li .current {
             border-color: $primaryColor !important;
         }
 
-        .uclwp-bs-wrapper .uclwp-grid-box-wrap .uclwp-box-inner .cats i,
-        .uclwp-bs-wrapper .uclwp-list-box-wrap .uclwp-box-inner .cats i,
-        .uclwp-bs-wrapper .uclwp-price-wrap .uclwp-price-amount {
+        .can-bs-wrapper .can-grid-box-wrap .can-box-inner .cats i,
+        .can-bs-wrapper .can-list-box-wrap .can-box-inner .cats i,
+        .can-bs-wrapper .can-price-wrap .can-price-amount {
             color: $primaryColor;
         }
 
-        .uclwp-bs-wrapper .ucl-btn:hover {
+        .can-bs-wrapper .can-btn:hover {
 		color: $primaryColor !important; 
             background-color: $secondaryColor !important;
         }
         
-        .ucl-single-cat:hover {
+        .can-single-cat:hover {
             border-color: $primaryColor;
         }
 
-	.uclwp-box-inner-stories {
+	.can-box-inner-stories {
 		border-color: $primaryColor !important;
 	}
 	
-	.uclwp-content-wrap-stories  {
+	.can-content-wrap-stories  {
 		background-color: $primaryColor;
 		color: $secondaryColor;
 	} 
-	.uclwp-content-wrap-stories *  {
+	.can-content-wrap-stories *  {
 		background-color: $primaryColor !important;
 		color: $secondaryColor !important;
 	}
-	.uclwp-content-wrap-stories {
+	.can-content-wrap-stories {
 		min-height: 12.3rem;
 	}
-	.uclwp-btn-wrap-stories {
+	.can-btn-wrap-stories {
 		background-color: $primaryColor !important;
 	}
-	.uclwp-btn-wrap-stories .ucl-btn {
+	.can-btn-wrap-stories .can-btn {
 		color: $primaryColor !important;
 		background-color: $secondaryColor !important;
 	    box-shadow: 0px 10px 30px 0px {$secondaryColor}66 !important;

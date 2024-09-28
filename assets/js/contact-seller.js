@@ -2,7 +2,7 @@ jQuery(document).ready(function($) {
     $('.contact-seller-form').submit(function(event) {
         event.preventDefault();
         var c_form = $(this);
-        c_form.find('.ucl-sending-email').show();
+        c_form.find('.can-sending-email').show();
         var ajaxurl = c_form.data('ajaxurl');
         var data = c_form.serialize();
 
