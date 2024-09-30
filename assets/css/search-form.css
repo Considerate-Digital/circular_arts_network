@@ -1,0 +1,135 @@
+.can-search-1 {
+	display: block;
+	background-color: #eae4e4;
+	border-radius: 35px;
+	padding: 10px;
+	width: max-content;
+	max-width: 100%;
+	margin: 0rem auto;
+}
+.can-search-1 .col {
+	width: 100%;
+}
+
+.can-search-1 .can-input-field {
+	position: relative;
+	width: 100%;
+	height: 50px;
+	font-size: 15px;
+	font-weight: 500;
+	color: #848484;
+	background: transparent;
+	padding: 10px 10px 10px 25px;
+	border: none;
+}
+
+.can-search-1 .can-input-field:focus {
+	border: none;
+	outline: none;
+	background-color: transparent;
+}
+
+.can-search-1 .can-input-wrap {
+	position: relative;
+	padding: 0rem 1rem;
+}
+
+.can-search-1 .can-btn {
+	width: 100%;
+}
+
+.can-search-1 .row > div {
+	position: relative;
+}
+
+.can-search-1 .row > div:before {
+	position: absolute;
+	content: '';
+	background: #e6ebeb;
+	width: 1px;
+	height: calc(100% + 20px);
+	top: -10px;
+	right: 0px;
+}
+
+.can-search-1 .row > div:nth-last-child(1):before {
+	display: none;
+}
+
+.can-search-1 .nice-select {
+	position: relative;
+	display: block;
+	width: 100%;
+	height: 50px;
+	border: none !important;
+	background: transparent;
+	font-size: 15px;
+	color: #848484;
+	font-weight: 500;
+	padding: 4px 25px;
+}
+.can-search-form .row {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+.can-search-form .nice-select .list {
+	margin: 0;
+	left: -20px;
+	right: 0;
+	padding: 0;
+}
+
+.can-search-form .nice-select .list li {
+	margin: 0;
+}
+
+.can-search-1 .can-input-wrap i {
+	font-size: 16px;
+	display: inline;
+	position: absolute;
+	top: 16px;
+	z-index: 1;
+	line-height: 1;
+}
+
+.can-price-search-wrap .can-input-field {
+	width: 35%;
+	padding: 10px 0;
+	display: inline-block;
+}
+
+.can-price-search-wrap .can-price-label {
+	padding: 10px 0;
+	width: 30%;
+	display: inline-block;
+}
+
+.can-price-search-wrap .can-price-label .p-symbol {
+	font-size: 13px;
+}
+
+.can-loader {
+	margin: 20px 0;
+	display: none;
+}
+
+.can-no-results .bi {
+	border-radius: 50%;
+	background: #16b2d4;
+	width: 20px;
+	height: 20px;
+	display: inline-block;
+	text-align: center;
+	line-height: 20px;
+	color: white;
+}
+
+.can-bs-wrapper .can-search-1 .can-btn {
+	box-shadow: none !important;
+}
+@media only screen and (min-width: 32rem) {
+	.can-search-1 .col {
+		width: auto;
+	}
+}

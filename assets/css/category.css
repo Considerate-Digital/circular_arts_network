@@ -1,0 +1,106 @@
+.can-single-cat {
+	position: relative;
+	width: 16rem;
+	height: 16rem;
+	margin: 1rem;
+	background: #fff;
+	padding: 0rem;
+	border: 4px dashed #cacaca;
+	transition: all 500ms ease;
+}
+
+.can-single-cat:before {
+	position: absolute;
+	content: '';
+	width: 100%;
+	height: 0%;
+	left: 0px;
+	top: 0px;
+	right: 0px;
+	transition: all 500ms ease;
+	background-color: #f85c70;
+}
+
+.can-cat-icon {
+	position: relative;
+	display: block;
+	font-size: 50px;
+	line-height: 90px;
+	color: #93959e;
+	transition: all 500ms ease;
+	width: 100%;
+	height: 100%;
+	margin: 0 auto;
+	overflow: hidden;
+	object-fit: fill;
+	padding: 0.6rem;
+}
+.can-cat-icon img {
+	width:100%;
+	height: 100%;
+}
+
+.can-absolute-link {
+	position: absolute;
+	display: block;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+.can-cat-title {
+	display: block;
+	font-size: 18px;
+	line-height: 26px;
+	position: absolute;
+	bottom: -0.4rem;
+	right: 0.3rem;
+	background-color: white;
+	transition: all 500ms ease;
+	font-family: "Oxygen Mono", monospace;
+}
+.can-cat-title h3 {
+	margin: 0rem;
+	padding: 0rem 0.4rem;
+}
+.can-cat-count {
+	position: absolute;
+	top: 0.8rem;
+	left: 1rem;
+}
+.can-cat-count span {
+	display: inline-block;
+	font-size: 15px;
+	font-weight: 600;
+	color: #93959e;
+	background: #f2f2f5;
+	width: 40px;
+	height: 40px;
+	line-height: 40px;
+	text-align: center;
+	border-radius: 50%;
+	transition: all 500ms ease;
+}
+
+.can-cat-icon i {
+	display: inline-flex;
+}
+
+
+.can-single-cat:hover:before {
+	height: 100%;
+}
+
+.can-single-cat:hover .can-cat-icon i  {
+	color: #FFF;
+}
+
+.can-single-cat:hover .can-cat-title h3  {
+}
+
+.can-single-cat:hover .can-cat-count span  {
+	color: #fff;
+	background-color: rgba(255,255,255,0.2);
+	position: relative;
+}

@@ -1,0 +1,2577 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"Project-Id-Version: Ultimate Classified Listings\n"
+"POT-Creation-Date: 2022-07-14 11:35+0500\n"
+"PO-Revision-Date: 2022-07-14 11:35+0500\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.4.3\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-Flags-xgettext: --add-comments=translators:\n"
+"X-Poedit-WPHeader: circular-arts-network.php\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.min.js\n"
+
+#: classes/class-admin-settings.php:41 classes/class-admin-settings.php:42
+msgid "Fields Sections"
+msgstr ""
+
+#: classes/class-admin-settings.php:53 classes/class-admin-settings.php:54
+msgid "Fields Builder"
+msgstr ""
+
+#: classes/class-admin-settings.php:65 classes/class-admin-settings.php:66
+msgid "Sellers"
+msgstr ""
+
+#: classes/class-admin-settings.php:77 classes/class-admin-settings.php:78
+msgid "Settings"
+msgstr ""
+
+#: classes/class-admin-settings.php:86
+msgid "Listing Information"
+msgstr ""
+
+#: classes/class-admin-settings.php:233
+msgid "Text Field"
+msgstr ""
+
+#: classes/class-admin-settings.php:234
+msgid "Price Field"
+msgstr ""
+
+#: classes/class-admin-settings.php:235
+msgid "Number Field"
+msgstr ""
+
+#: classes/class-admin-settings.php:236
+msgid "DropDown Field"
+msgstr ""
+
+#: classes/class-admin-settings.php:237
+msgid "Multi Checkboxes"
+msgstr ""
+
+#: classes/class-admin-settings.php:238
+msgid "Date Field"
+msgstr ""
+
+#: classes/class-admin-settings.php:239 inc/arrays/listing-fields.php:122
+msgid "Video URL"
+msgstr ""
+
+#: classes/class-admin-settings.php:240
+msgid "Text Area"
+msgstr ""
+
+#: classes/class-admin-settings.php:241
+msgid "Shortcode"
+msgstr ""
+
+#: classes/class-admin-settings.php:249
+#: inc/arrays/builder-settings-fields.php:44
+msgid "Public"
+msgstr ""
+
+#: classes/class-admin-settings.php:250 classes/class-can-init.php:29
+#: inc/arrays/builder-settings-fields.php:45
+msgid "Seller"
+msgstr ""
+
+#: classes/class-admin-settings.php:251
+msgid "Registered Users"
+msgstr ""
+
+#: classes/class-admin-settings.php:252
+#: inc/arrays/builder-settings-fields.php:46
+msgid "Administrator"
+msgstr ""
+
+#: classes/class-admin-settings.php:253 inc/admin/render-admin-settings.php:129
+#: inc/arrays/admin-settings.php:90 inc/arrays/admin-settings.php:125
+#: inc/arrays/admin-settings.php:179 inc/arrays/admin-settings.php:282
+#: inc/arrays/admin-settings.php:665 inc/arrays/builder-settings-fields.php:47
+msgid "Disable"
+msgstr ""
+
+#: classes/class-admin-settings.php:294
+msgid "Title and Description"
+msgstr ""
+
+#: classes/class-admin-settings.php:300
+msgid "Gallery Images"
+msgstr ""
+
+#: classes/class-admin-settings.php:306 classes/class-front-templates.php:473
+#: templates/loop/1/list.php:32
+msgid "Details"
+msgstr ""
+
+#: classes/class-admin-settings.php:312 inc/arrays/listing-fields.php:113
+msgid "Features"
+msgstr ""
+
+#: classes/class-admin-settings.php:318
+msgid "Location"
+msgstr ""
+
+#: classes/class-admin-settings.php:324
+msgid "Video"
+msgstr ""
+
+#: classes/class-admin-settings.php:330 classes/class-register-cpt.php:243
+#: templates/content-single/tags.php:2
+msgid "Tags"
+msgstr ""
+
+#: classes/class-admin-settings.php:346 classes/class-admin-settings.php:401
+#: classes/class-admin-settings.php:436
+msgid "Failed!"
+msgstr ""
+
+#: classes/class-admin-settings.php:347 classes/class-admin-settings.php:402
+#: classes/class-admin-settings.php:437
+msgid "There is some error or you did not make any change."
+msgstr ""
+
+#: classes/class-admin-settings.php:353 classes/class-admin-settings.php:397
+#: classes/class-admin-settings.php:424
+msgid "Settings Saved!"
+msgstr ""
+
+#: classes/class-admin-settings.php:354 classes/class-admin-settings.php:398
+#: classes/class-admin-settings.php:425
+msgid "Settings are saved in the database successfully."
+msgstr ""
+
+#: classes/class-admin-settings.php:361
+msgid "Reset Done!"
+msgstr ""
+
+#: classes/class-admin-settings.php:362
+msgid "Section are reset successfully."
+msgstr ""
+
+#: classes/class-email.php:44
+msgid "New Agent Registered "
+msgstr ""
+
+#: classes/class-email.php:56
+msgid "Registration Successful "
+msgstr ""
+
+#: classes/class-email.php:76
+msgid "Approved "
+msgstr ""
+
+#: classes/class-email.php:94
+msgid "Rejected "
+msgstr ""
+
+#: classes/class-email.php:118
+msgid "New Property Submitted "
+msgstr ""
+
+#: classes/class-email.php:124
+msgid "Property Submitted "
+msgstr ""
+
+#: classes/class-email.php:148
+msgid "Property Approved "
+msgstr ""
+
+#: classes/class-email.php:164 classes/class-shortcodes.php:403
+#: classes/class-shortcodes.php:459
+msgid "Please check the captcha form."
+msgstr ""
+
+#: classes/class-email.php:173 classes/class-shortcodes.php:412
+msgid "There was an error. Please try again after reloading page"
+msgstr ""
+
+#: classes/class-email.php:237
+msgid "Email Sent Successfully"
+msgstr ""
+
+#: classes/class-email.php:239
+msgid "There is some problem, please try later"
+msgstr ""
+
+#: classes/class-email.php:245
+msgid "Please fill the required fields."
+msgstr ""
+
+#: classes/class-front-templates.php:55
+msgid "Listings:"
+msgstr ""
+
+#: classes/class-front-templates.php:58
+msgid "Tag:"
+msgstr ""
+
+#: classes/class-front-templates.php:61
+msgid "Category:"
+msgstr ""
+
+#: classes/class-front-templates.php:168
+msgid "«"
+msgstr ""
+
+#: classes/class-front-templates.php:169
+msgid "»"
+msgstr ""
+
+#: classes/class-front-templates.php:197
+msgid "Sort By Date"
+msgstr ""
+
+#: classes/class-front-templates.php:201
+msgid "Sort By Title"
+msgstr ""
+
+#: classes/class-front-templates.php:205
+msgid "Sort By Price : High to Low"
+msgstr ""
+
+#: classes/class-front-templates.php:209
+msgid "Sort By Price : Low to High"
+msgstr ""
+
+#: classes/class-front-templates.php:220
+msgid "All Listings"
+msgstr ""
+
+#: classes/class-front-templates.php:224 shortcodes/dashboard/dashboard.php:39
+msgid "Published"
+msgstr ""
+
+#: classes/class-front-templates.php:228 shortcodes/dashboard/dashboard.php:17
+msgid "Drafts"
+msgstr ""
+
+#: classes/class-front-templates.php:232 shortcodes/dashboard/dashboard.php:28
+msgid "Pending"
+msgstr ""
+
+#: classes/class-front-templates.php:257
+msgid "Template Not Found!"
+msgstr ""
+
+#: classes/class-front-templates.php:464
+msgid "Add to compare"
+msgstr ""
+
+#: classes/class-register-cpt.php:71
+msgid "Listing Page Base"
+msgstr ""
+
+#: classes/class-register-cpt.php:75
+msgid "Listing Category Base"
+msgstr ""
+
+#: classes/class-register-cpt.php:79
+msgid "Listing Tag Base"
+msgstr ""
+
+#: classes/class-register-cpt.php:93 classes/class-register-cpt.php:96
+msgid "Listing updated."
+msgstr ""
+
+#: classes/class-register-cpt.php:94
+msgid "Custom field updated."
+msgstr ""
+
+#: classes/class-register-cpt.php:95
+msgid "Custom field deleted."
+msgstr ""
+
+#. translators: %s: date and time of the revision
+#: classes/class-register-cpt.php:98
+msgid "Listing restored to revision"
+msgstr ""
+
+#: classes/class-register-cpt.php:99
+msgid "Listing published."
+msgstr ""
+
+#: classes/class-register-cpt.php:100
+msgid "Listing saved."
+msgstr ""
+
+#: classes/class-register-cpt.php:101
+msgid "Listing submitted."
+msgstr ""
+
+#: classes/class-register-cpt.php:103
+msgid "Listing scheduled."
+msgstr ""
+
+#. translators: Publish box date format, see http://php.net/date
+#: classes/class-register-cpt.php:105
+msgid "M j, Y @ G:i"
+msgstr ""
+
+#: classes/class-register-cpt.php:107
+msgid "Listing draft updated."
+msgstr ""
+
+#: classes/class-register-cpt.php:113 classes/class-register-cpt.php:147
+msgid "View Listing"
+msgstr ""
+
+#: classes/class-register-cpt.php:119
+msgid "Preview Listing"
+msgstr ""
+
+#. Plugin Name of the plugin/theme
+#: classes/class-register-cpt.php:134
+msgid "Ultimate Classified Listings"
+msgstr ""
+
+#: classes/class-register-cpt.php:137 classes/class-register-cpt.php:141
+#: classes/class-register-cpt.php:153 inc/admin/page-sellers.php:74
+#: inc/arrays/admin-settings.php:147
+msgid "Listings"
+msgstr ""
+
+#: classes/class-register-cpt.php:142
+msgid "Listing"
+msgstr ""
+
+#: classes/class-register-cpt.php:143
+msgctxt "circular-arts-network"
+msgid "Add New Listing"
+msgstr ""
+
+#: classes/class-register-cpt.php:144
+msgid "Add New Listing"
+msgstr ""
+
+#: classes/class-register-cpt.php:145 shortcodes/dashboard/edit.php:8
+msgid "Edit Listing"
+msgstr ""
+
+#: classes/class-register-cpt.php:146
+msgid "New Listing"
+msgstr ""
+
+#: classes/class-register-cpt.php:148
+msgid "Search Listing"
+msgstr ""
+
+#: classes/class-register-cpt.php:149
+msgid "No Listing found"
+msgstr ""
+
+#: classes/class-register-cpt.php:150
+msgid "No Listing found in Trash"
+msgstr ""
+
+#: classes/class-register-cpt.php:151
+msgid "Parent Listing:"
+msgstr ""
+
+#: classes/class-register-cpt.php:190
+msgctxt "Categories"
+msgid "Categories"
+msgstr ""
+
+#: classes/class-register-cpt.php:191
+msgctxt "Categories"
+msgid "Category"
+msgstr ""
+
+#: classes/class-register-cpt.php:192
+msgid "Search Categories"
+msgstr ""
+
+#: classes/class-register-cpt.php:193
+msgid "Popular Categories"
+msgstr ""
+
+#: classes/class-register-cpt.php:194
+msgid "All Categories"
+msgstr ""
+
+#: classes/class-register-cpt.php:195 classes/class-register-cpt.php:196
+msgid "Parent Category"
+msgstr ""
+
+#: classes/class-register-cpt.php:197
+msgid "Edit Category"
+msgstr ""
+
+#: classes/class-register-cpt.php:198
+msgid "Update Category"
+msgstr ""
+
+#: classes/class-register-cpt.php:199
+msgid "Add New Category"
+msgstr ""
+
+#: classes/class-register-cpt.php:200
+msgid "New Category Name"
+msgstr ""
+
+#: classes/class-register-cpt.php:201
+msgid "Add or remove Categories"
+msgstr ""
+
+#: classes/class-register-cpt.php:202
+msgid "Choose from most used categories"
+msgstr ""
+
+#: classes/class-register-cpt.php:203
+msgid "Categories"
+msgstr ""
+
+#: classes/class-register-cpt.php:230
+msgctxt "Tags"
+msgid "Tags"
+msgstr ""
+
+#: classes/class-register-cpt.php:231
+msgctxt "Tags"
+msgid "Tag"
+msgstr ""
+
+#: classes/class-register-cpt.php:232
+msgid "Search Tags"
+msgstr ""
+
+#: classes/class-register-cpt.php:233
+msgid "Popular Tags"
+msgstr ""
+
+#: classes/class-register-cpt.php:234
+msgid "All Tags"
+msgstr ""
+
+#: classes/class-register-cpt.php:235 classes/class-register-cpt.php:236
+msgid "Parent Tag"
+msgstr ""
+
+#: classes/class-register-cpt.php:237
+msgid "Edit Tag"
+msgstr ""
+
+#: classes/class-register-cpt.php:238
+msgid "Update Tag"
+msgstr ""
+
+#: classes/class-register-cpt.php:239
+msgid "Add New Tag"
+msgstr ""
+
+#: classes/class-register-cpt.php:240
+msgid "New Tag Name"
+msgstr ""
+
+#: classes/class-register-cpt.php:241
+msgid "Add or remove Tags"
+msgstr ""
+
+#: classes/class-register-cpt.php:242
+msgid "Choose from most used tags"
+msgstr ""
+
+#: classes/class-shortcodes.php:43 classes/class-shortcodes.php:57
+msgid "Please wait..."
+msgstr ""
+
+#: classes/class-shortcodes.php:58
+msgid "Passwords did not match!"
+msgstr ""
+
+#: classes/class-shortcodes.php:59
+msgid "Maximum file size allowed is:"
+msgstr ""
+
+#: classes/class-shortcodes.php:60
+msgid "Allowed formats are:"
+msgstr ""
+
+#: classes/class-shortcodes.php:391
+msgid "Sorry! No Listings Found. Try Searching Again."
+msgstr ""
+
+#: classes/class-shortcodes.php:436
+msgid "Successful!"
+msgstr ""
+
+#: classes/class-shortcodes.php:468
+msgid "There was an error. Please try again after reloading page."
+msgstr ""
+
+#: classes/class-shortcodes.php:476
+msgid "Username or Email already exists"
+msgstr ""
+
+#: classes/class-shortcodes.php:517
+msgid "Registered Successfully, now please login"
+msgstr ""
+
+#: classes/class-shortcodes.php:519 classes/class-shortcodes.php:553
+msgid "Error, please try later"
+msgstr ""
+
+#: classes/class-shortcodes.php:539
+msgid "User is already in pending state."
+msgstr ""
+
+#: classes/class-shortcodes.php:551
+msgid "Registered Successfully, please wait until admin approves."
+msgstr ""
+
+#: classes/class-shortcodes.php:567
+msgid "Dashboard"
+msgstr ""
+
+#: classes/class-shortcodes.php:572 shortcodes/dashboard/listings.php:3
+msgid "My Listings"
+msgstr ""
+
+#: classes/class-shortcodes.php:577 shortcodes/dashboard/add.php:7
+#: shortcodes/dashboard/add.php:17
+msgid "Create Listing"
+msgstr ""
+
+#: classes/class-shortcodes.php:582
+msgid "My Profile"
+msgstr ""
+
+#: classes/class-shortcodes.php:615
+msgid "There is some error"
+msgstr ""
+
+#: classes/class-shortcodes.php:635
+msgid "Listing Updated!"
+msgstr ""
+
+#: classes/class-shortcodes.php:645
+msgid "Listing Submitted!"
+msgstr ""
+
+#: classes/class-shortcodes.php:649
+msgid "Listing Published!"
+msgstr ""
+
+#: classes/class-shortcodes.php:680
+msgid "Profile Updated!"
+msgstr ""
+
+#: classes/class-shortcodes.php:687
+msgid "You are not allowed to update"
+msgstr ""
+
+#: classes/class-shortcodes.php:719
+msgid "Deleted!"
+msgstr ""
+
+#: classes/class-shortcodes.php:725
+msgid "There is some error, please try again later"
+msgstr ""
+
+#: inc/admin/add-category-image.php:5 inc/admin/edit-category-image.php:14
+#: inc/arrays/builder-settings-fields.php:71
+msgid "Icon"
+msgstr ""
+
+#: inc/admin/add-category-image.php:7 inc/admin/edit-category-image.php:16
+#: inc/admin/render-builder-field.php:96
+msgid "No icon"
+msgstr ""
+
+#: inc/admin/add-category-image.php:17 inc/admin/edit-category-image.php:27
+#: inc/admin/render-admin-settings.php:220
+msgid "Image"
+msgstr ""
+
+#: inc/admin/edit-category-image.php:3
+msgid "Icon or Image"
+msgstr ""
+
+#: inc/admin/fields-builder.php:2
+msgid "CAN - Fields Builder"
+msgstr ""
+
+#: inc/admin/fields-builder.php:8
+msgid "Drag and Drop the fields from Field Types into the Active Fields area."
+msgstr ""
+
+#: inc/admin/fields-builder.php:16
+msgid "Field Types"
+msgstr ""
+
+#: inc/admin/fields-builder.php:42
+msgid "Active Fields"
+msgstr ""
+
+#: inc/admin/fields-builder.php:43 inc/admin/page-settings.php:46
+msgid "Save Settings"
+msgstr ""
+
+#: inc/admin/fields-builder.php:44
+msgid "Reset Fields"
+msgstr ""
+
+#: inc/admin/fields-sections.php:2
+msgid "CAN - Field Sections"
+msgstr ""
+
+#: inc/admin/fields-sections.php:8
+msgid "Create Section"
+msgstr ""
+
+#: inc/admin/fields-sections.php:11
+msgid ""
+"Here you can create, delete or sort the sections for the listing fields."
+msgstr ""
+
+#: inc/admin/fields-sections.php:13
+msgid "Create New"
+msgstr ""
+
+#: inc/admin/fields-sections.php:21
+msgid "Field Sections"
+msgstr ""
+
+#: inc/admin/fields-sections.php:22
+msgid "Save Sections"
+msgstr ""
+
+#: inc/admin/fields-sections.php:23
+msgid "Reset Sections"
+msgstr ""
+
+#: inc/admin/fields-sections.php:43
+msgid "Section Title"
+msgstr ""
+
+#: inc/admin/fields-sections.php:51 inc/arrays/builder-settings-fields.php:16
+msgid "Data Name (lowercase without spaces)"
+msgstr ""
+
+#: inc/admin/fields-sections.php:59
+msgid "Icon Class or Image URL"
+msgstr ""
+
+#: inc/admin/fields-sections.php:67 inc/arrays/builder-settings-fields.php:49
+msgid "Accessibility"
+msgstr ""
+
+#: inc/admin/page-sellers.php:12
+msgid "Pending Sellers"
+msgstr ""
+
+#: inc/admin/page-sellers.php:23 inc/admin/page-sellers.php:68
+#: shortcodes/register.php:35
+msgid "Profile Picture"
+msgstr ""
+
+#: inc/admin/page-sellers.php:24 inc/admin/page-sellers.php:69
+#: shortcodes/dashboard/profile.php:31 shortcodes/register.php:7
+msgid "First Name"
+msgstr ""
+
+#: inc/admin/page-sellers.php:25 inc/admin/page-sellers.php:70
+#: shortcodes/dashboard/profile.php:35 shortcodes/register.php:11
+msgid "Last Name"
+msgstr ""
+
+#: inc/admin/page-sellers.php:26 inc/admin/page-sellers.php:71
+#: shortcodes/dashboard/profile.php:39 shortcodes/register.php:15
+msgid "Username"
+msgstr ""
+
+#: inc/admin/page-sellers.php:27 inc/admin/page-sellers.php:72
+#: shortcodes/dashboard/profile.php:43 shortcodes/login.php:8
+#: shortcodes/register.php:19 templates/sidebar/default.php:51
+msgid "Email"
+msgstr ""
+
+#: inc/admin/page-sellers.php:28 inc/admin/page-sellers.php:73
+#: shortcodes/dashboard/profile.php:47 shortcodes/register.php:23
+#: templates/sidebar/default.php:55
+msgid "Phone"
+msgstr ""
+
+#: inc/admin/page-sellers.php:29
+msgid "Registered"
+msgstr ""
+
+#: inc/admin/page-sellers.php:30
+msgid "Action"
+msgstr ""
+
+#: inc/admin/page-sellers.php:44
+msgid "Deny"
+msgstr ""
+
+#: inc/admin/page-sellers.php:45
+msgid "Approve"
+msgstr ""
+
+#: inc/admin/page-sellers.php:53
+msgid "You dont have any pending sellers."
+msgstr ""
+
+#: inc/admin/page-sellers.php:61
+msgid "Registered Sellers"
+msgstr ""
+
+#: inc/admin/page-sellers.php:75
+msgid "Profile"
+msgstr ""
+
+#: inc/admin/page-sellers.php:90
+msgid "View Profile"
+msgstr ""
+
+#: inc/admin/page-sellers.php:98
+msgid "You dont have any registered sellers."
+msgstr ""
+
+#: inc/admin/page-sellers.php:104
+msgid "Register New Seller"
+msgstr ""
+
+#: inc/admin/page-settings.php:14
+msgid "Ultimate Classified Listings - Settings"
+msgstr ""
+
+#: inc/admin/page-settings.php:45
+msgid "Please Wait..."
+msgstr ""
+
+#: inc/admin/render-admin-settings.php:106 inc/arrays/admin-settings.php:79
+msgid "Default"
+msgstr ""
+
+#: inc/admin/render-admin-settings.php:170
+msgid "No Pages Found!"
+msgstr ""
+
+#: inc/admin/render-admin-settings.php:183
+#: inc/admin/render-admin-settings.php:184
+msgid "Choose a currency&hellip;"
+msgstr ""
+
+#: inc/admin/render-admin-settings.php:221
+msgid "Select"
+msgstr ""
+
+#: inc/admin/render-admin-settings.php:222
+msgid "Media"
+msgstr ""
+
+#: inc/admin/render-admin-settings.php:238
+#: inc/admin/render-builder-field.php:51 inc/arrays/admin-settings.php:89
+#: inc/arrays/admin-settings.php:124 inc/arrays/admin-settings.php:178
+#: inc/arrays/admin-settings.php:281 inc/arrays/admin-settings.php:666
+msgid "Enable"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:5
+msgid "Style"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:11
+msgid "Currency Options"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:20
+msgid "Currency"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:21
+msgid "Choose the default currency for the listings."
+msgstr ""
+
+#: inc/arrays/admin-settings.php:28
+msgid "Currency Position"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:30
+msgid "Left"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:31
+msgid "Right"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:32
+msgid "Left with Space"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:33
+msgid "Right with Space"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:35
+msgid "Position of the Currency Symbol"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:41
+msgid "Thousand Separator"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:42
+msgid "Thousand separator of display price"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:49
+msgid "Decimal Separator"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:50
+msgid "Decimal separator of display price"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:57
+msgid "Number of Decimals"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:58
+msgid "Number of decimal points shown in display price"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:67
+msgid "Templates Settings"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:74
+msgid "Listing Base Page"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:75
+msgid "If you choose custom, create a page having slug"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:77
+msgid ""
+"and it will be used as the listing base page. After changing this, go to "
+"Settings -> Permalinks and click save changes button."
+msgstr ""
+
+#: inc/arrays/admin-settings.php:80
+msgid "Custom"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:86
+msgid "Listing Page Seller Info"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:87
+msgid ""
+"Enable or disable default seller info area and contact form on the listing "
+"page"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:96
+msgid "Listing Page Sidebar"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:97
+msgid ""
+"You can add your own widgets in the selected sidebar to display them with "
+"the listings."
+msgstr ""
+
+#: inc/arrays/admin-settings.php:102
+msgid "Gallery Type"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:103
+msgid "How you want to display gallery images on the single listing page"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:105
+msgid "Simple Slider"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:106
+msgid "Grid with Popup"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:113
+msgid "View All Images Text"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:114
+msgid "If there are more than 5 images, this title will appear."
+msgstr ""
+
+#: inc/arrays/admin-settings.php:121
+msgid "Gallery Featured Image"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:122
+msgid "Enable to display featured image in slider"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:132
+msgid "Gallery Images Size"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:133
+msgid "Choose size for the gallery images"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:139
+msgid "Date Field Format"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:140
+msgid "Provide date format if you are using date field. Eg: "
+msgstr ""
+
+#: inc/arrays/admin-settings.php:155
+msgid "Listings Per Page"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:156
+msgid "Number of listings you want to display on archive pages. (tags etc)"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:162
+msgid "Featured Image Size"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:163
+msgid "Choose size of featured image to use"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:169
+msgid "Featured Image Placeholder"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:170
+msgid "This image will be used for the listings without a featured image"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:175 templates/compare-box.php:27
+msgid "Compare Listings"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:176
+msgid "Choose either to enable or disable the compare listings feature"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:185
+msgid "Comparison Fields"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:186
+msgid ""
+"Provide label and field key each per line to display in the compare screen. "
+"Eg:"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:194
+msgid "Search Settings"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:202
+msgid "Total Listings"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:203
+msgid "Number of listings you want to display on search results"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:209
+msgid "Search Results Link Target"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:210
+msgid ""
+"How you want to open the listings when user clicks on the search results."
+msgstr ""
+
+#: inc/arrays/admin-settings.php:212
+msgid "New Tab"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:213
+msgid "Same Tab"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:222
+msgid "Email Messages"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:230
+msgid "To Admin on Seller Registered"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:231
+msgid "This message will sent to "
+msgstr ""
+
+#: inc/arrays/admin-settings.php:231
+msgid ""
+" when new seller is registered. You can use %username% and %email% for "
+"details"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:237
+msgid "To Registered Seller"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:238
+msgid ""
+"This message will be sent to the newly regisreted sellers. You can use "
+"%username% and %email% for details"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:244
+msgid "To Approved Seller"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:245
+msgid ""
+"This message will be sent to the approved seller. You can use %username% and "
+"%email% for details"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:251
+msgid "To Rejected Seller"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:252
+msgid ""
+"This message will be sent to the rejected seller. You can use %username% and "
+"%email% for details"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:258
+msgid "To Admin on Submission"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:259
+msgid "This message will be sent to "
+msgstr ""
+
+#: inc/arrays/admin-settings.php:259
+msgid ""
+" when new listing is submitted. You can use variables %username% %approve_url"
+"% and %email% for details"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:265
+msgid "To Seller on Submission"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:266
+msgid ""
+"This message will be sent to the seller when a new listing is submitted."
+msgstr ""
+
+#: inc/arrays/admin-settings.php:272
+msgid "To Seller on Submission Approved"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:273
+msgid "This message will be sent to seller when his listing is approved."
+msgstr ""
+
+#: inc/arrays/admin-settings.php:279
+msgid "Line Breaks in Emails"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:284
+msgid ""
+"Enable to inserts HTML line breaks before all newlines in the Email message."
+msgstr ""
+
+#: inc/arrays/admin-settings.php:292
+msgid "Agent Contact Form"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:299
+msgid "Email Subject"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:300
+msgid ""
+"Provide email subject here if someone contacts seller through listing page. "
+"You can also use these special tags."
+msgstr ""
+
+#: inc/arrays/admin-settings.php:306
+msgid "Email Format"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:307
+msgid "Provide email markup here. You can also use these special tags."
+msgstr ""
+
+#: inc/arrays/admin-settings.php:313
+msgid "Seller Contact Email Addresses"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:314
+msgid ""
+"Provide Additional Email addresses each per line to cc mail when visitor "
+"fills the contact seller form."
+msgstr ""
+
+#: inc/arrays/admin-settings.php:321
+msgid "GDPR Message"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:322
+msgid ""
+"Provide the message to display with the contact form with a required "
+"checkbox."
+msgstr ""
+
+#: inc/arrays/admin-settings.php:329
+msgid "reCAPTCHA V2"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:337
+msgid "Site key"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:338
+msgid "Provide Google reCAPTCHA V2 Site Key. You can create Site key "
+msgstr ""
+
+#: inc/arrays/admin-settings.php:338 inc/arrays/admin-settings.php:344
+#: inc/arrays/admin-settings.php:438
+msgid "here"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:343
+msgid "Secret key"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:344
+msgid "Provide Google reCAPTCHA V2 Secret Key. You can create Secret key "
+msgstr ""
+
+#: inc/arrays/admin-settings.php:349
+msgid "Seller Registration"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:350
+msgid "Check to enable captcha on the registration form."
+msgstr ""
+
+#: inc/arrays/admin-settings.php:355
+msgid "Seller Login"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:356
+msgid "Check to enable captcha on login form."
+msgstr ""
+
+#: inc/arrays/admin-settings.php:361
+msgid "Contact Seller"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:362
+msgid "Check to enable captcha on contact form."
+msgstr ""
+
+#: inc/arrays/admin-settings.php:371
+msgid "Labels and Headings"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:379
+msgid "Heading for Listing Base Page"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:380
+msgid "Provide heading for listings archive"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:386
+msgid "Heading for Category Base Page"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:387
+#, php-format
+msgid "You can use %category% for category name"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:393
+msgid "Heading for Tag Base page"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:394
+msgid "You can use %tag% for tag name"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:401
+msgid "Search Results Title"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:403
+msgid ""
+"Provide text to display above the AJAX search results, you can use the "
+"variable"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:409
+msgid "No Results Found Message"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:410
+msgid "Provide custom message when no listings found in search results"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:418
+msgid "Maps Settings"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:426
+msgid "Use Map From"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:428
+msgid "Leaflet"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:429
+msgid "Google Maps"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:431
+msgid "Choose map provider"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:437
+msgid "Google Maps API Key"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:438
+msgid "Provide Google Maps API key here. You can create API key "
+msgstr ""
+
+#: inc/arrays/admin-settings.php:445
+msgid "Map Type"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:447
+msgid "Road Map"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:448
+msgid "Google Earth"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:449
+msgid "Hybrid"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:450
+msgid "Terrain"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:452
+msgid "Choose default map type here"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:459
+msgid "Map Zoom Level"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:460
+msgid "Provide Zoom level between 0 and 21+ for single listing map"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:466
+msgid "Drag Icon URL"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:467
+msgid ""
+"Upload custom icon for dragging on map while creating new listing. "
+"Recommended size: 72x60"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:473
+msgid "Location Icon URL"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:474
+msgid ""
+"Upload custom icon for location on map when visiting listing page. "
+"Recommended size: 72x60"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:480
+msgid "Icons Size"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:481
+msgid "Provide custom icons size. Default is "
+msgstr ""
+
+#: inc/arrays/admin-settings.php:488
+msgid "Icons Anchor"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:489
+msgid "Provide custom anchor point for the icons. Default is "
+msgstr ""
+
+#: inc/arrays/admin-settings.php:496
+msgid "Property Icon URL (Hover)"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:497
+msgid ""
+"Upload custom icon for listing location marker on large map for hover state."
+msgstr ""
+
+#: inc/arrays/admin-settings.php:504
+msgid "Circle Icon URL"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:505
+msgid "Upload custom icon for circle counter marker on large map."
+msgstr ""
+
+#: inc/arrays/admin-settings.php:512
+msgid "My Location Icon URL"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:513
+msgid "Upload custom icon for my location marker on large map."
+msgstr ""
+
+#: inc/arrays/admin-settings.php:520
+msgid "Default Latitude"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:521
+msgid "Provide latitude for default map location on create listing page"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:527
+msgid "Default Longitude"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:528
+msgid "Provide longitude for default map location on create listing page"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:534
+msgid "Map Styles Object"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:535
+msgid "Provide map styles here."
+msgstr ""
+
+#: inc/arrays/admin-settings.php:535
+msgid "Help"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:542
+msgid "Map Style"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:544
+msgid "Choose style for leaflet map. "
+msgstr ""
+
+#: inc/arrays/admin-settings.php:544
+msgid "Preview"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:551
+msgid "Display location as"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:553
+msgid "Exact Pin"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:554
+msgid "Radius Circle"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:556
+msgid "How you want to display location on the single listing page"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:562
+msgid "Circle Radius"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:563
+msgid "If above is set to Radius Circle, provide the radius in meters here"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:572
+msgid "Colors and CSS"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:580
+msgid "Primary Color"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:582
+msgid "Choose main theme color for templates"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:588
+msgid "Secondary Color"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:590
+msgid "Choose secondary color for templates"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:596
+msgid "Custom CSS Code"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:598
+msgid "Paste your custom css code here, you can prefix with"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:604
+msgid "Custom JavaScript Code"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:606
+msgid "Please keep this box empty if you are not sure what you are doing"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:615
+msgid "Advanced Settings"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:623
+msgid "Listing Submission Mode"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:625
+msgid "Publish Right Away"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:626
+msgid "Approve by Administrator"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:628
+msgid "Set permission for seller for creating new listings"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:634
+msgid "Delete Permanently"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:635
+msgid "Move to Trash"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:637
+msgid "Property Deletion"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:638
+msgid "What to do when a seller deletes a listing."
+msgstr ""
+
+#: inc/arrays/admin-settings.php:644
+msgid "Keep"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:645 shortcodes/dashboard/listings.php:94
+msgid "Delete"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:647
+msgid "Attachments Deletion"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:648
+msgid "What to do with gallery images after deleting listing."
+msgstr ""
+
+#: inc/arrays/admin-settings.php:653
+msgid "Seller Approval"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:655
+msgid "Manual"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:656
+msgid "Automatic"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:658
+msgid "We recommend you to use manual method"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:663
+msgid "Auto Login"
+msgstr ""
+
+#: inc/arrays/admin-settings.php:668
+msgid "Auto-login newly registered seller."
+msgstr ""
+
+#: inc/arrays/builder-settings-fields.php:11
+msgid "Label"
+msgstr ""
+
+#: inc/arrays/builder-settings-fields.php:21
+msgid "Options (each per line)"
+msgstr ""
+
+#: inc/arrays/builder-settings-fields.php:27
+msgid "Default Value"
+msgstr ""
+
+#: inc/arrays/builder-settings-fields.php:32
+msgid "Help Text"
+msgstr ""
+
+#: inc/arrays/builder-settings-fields.php:38
+msgid "Section or Tab"
+msgstr ""
+
+#: inc/arrays/builder-settings-fields.php:54 inc/helpers.php:428
+#: inc/helpers.php:453 inc/helpers.php:474 inc/helpers.php:511
+#: inc/helpers.php:533
+msgid "Required"
+msgstr ""
+
+#: inc/arrays/builder-settings-fields.php:59
+msgid "Minimum Value"
+msgstr ""
+
+#: inc/arrays/builder-settings-fields.php:65
+msgid "Maximum Value"
+msgstr ""
+
+#: inc/arrays/listing-fields.php:9 shortcodes/dashboard/listings.php:31
+#: templates/compare-box.php:15
+msgid "Price"
+msgstr ""
+
+#: inc/arrays/listing-fields.php:10
+msgid "Price for the listing"
+msgstr ""
+
+#: inc/arrays/listing-fields.php:17
+msgid "Sell"
+msgstr ""
+
+#: inc/arrays/listing-fields.php:18
+msgid "Rent"
+msgstr ""
+
+#: inc/arrays/listing-fields.php:22 templates/compare-box.php:16
+msgid "Purpose"
+msgstr ""
+
+#: inc/arrays/listing-fields.php:23 inc/arrays/listing-fields.php:37
+msgid "Visual condition of the element"
+msgstr ""
+
+#: inc/arrays/listing-fields.php:30
+msgid "New"
+msgstr ""
+
+#: inc/arrays/listing-fields.php:31
+msgid "Used"
+msgstr ""
+
+#: inc/arrays/listing-fields.php:32
+msgid "Normal"
+msgstr ""
+
+#: inc/arrays/listing-fields.php:36 templates/compare-box.php:17
+msgid "Condition"
+msgstr ""
+
+#: inc/arrays/listing-fields.php:45 templates/compare-box.php:18
+msgid "Build Date"
+msgstr ""
+
+#: inc/arrays/listing-fields.php:46
+msgid "Build date of the element"
+msgstr ""
+
+#: inc/arrays/listing-fields.php:55
+msgid "Model"
+msgstr ""
+
+#: inc/arrays/listing-fields.php:56
+msgid "Model of the element"
+msgstr ""
+
+#: inc/arrays/listing-fields.php:65 inc/arrays/listing-fields.php:66
+msgid "Country"
+msgstr ""
+
+#: inc/arrays/listing-fields.php:75 inc/arrays/listing-fields.php:76
+msgid "City"
+msgstr ""
+
+#: inc/arrays/listing-fields.php:85
+msgid "Address"
+msgstr ""
+
+#: inc/arrays/listing-fields.php:86
+msgid "Provide street address"
+msgstr ""
+
+#: inc/arrays/listing-fields.php:95
+msgid "Zip Code"
+msgstr ""
+
+#: inc/arrays/listing-fields.php:96
+msgid "Zipcode"
+msgstr ""
+
+#: inc/arrays/listing-fields.php:104
+msgid "1 Year international warranty"
+msgstr ""
+
+#: inc/arrays/listing-fields.php:105
+msgid "Air Conditioning"
+msgstr ""
+
+#: inc/arrays/listing-fields.php:106
+msgid "Power Locks"
+msgstr ""
+
+#: inc/arrays/listing-fields.php:107
+msgid "Power Windows"
+msgstr ""
+
+#: inc/arrays/listing-fields.php:108
+msgid "Mobile Controlled Gates"
+msgstr ""
+
+#: inc/arrays/listing-fields.php:109
+msgid "Keyless entry"
+msgstr ""
+
+#: inc/arrays/listing-fields.php:110
+msgid "Best Market Price"
+msgstr ""
+
+#: inc/arrays/listing-fields.php:114
+msgid "Choose appropriate features"
+msgstr ""
+
+#: inc/arrays/listing-fields.php:123
+msgid "Provide video URL"
+msgstr ""
+
+#: inc/arrays/listing-fields.php:132
+msgid "Ribbon Text"
+msgstr ""
+
+#: inc/arrays/listing-fields.php:133
+msgid "Provide text for the ribbon"
+msgstr ""
+
+#: inc/helpers.php:167
+msgid "Listing Title"
+msgstr ""
+
+#: inc/helpers.php:200 inc/helpers.php:205
+msgid "Select Images"
+msgstr ""
+
+#: inc/helpers.php:201
+msgid "Add"
+msgstr ""
+
+#: inc/helpers.php:276
+msgid "Type to Search..."
+msgstr ""
+
+#: inc/helpers.php:281
+msgid "Search the address on the search bar. "
+msgstr ""
+
+#: inc/helpers.php:282
+msgid "Drag the pin to the location on the map"
+msgstr ""
+
+#: inc/helpers.php:336
+msgid "Minimum"
+msgstr ""
+
+#: inc/helpers.php:338
+msgid "Maximum"
+msgstr ""
+
+#: inc/helpers.php:482
+msgid "Before Text"
+msgstr ""
+
+#: inc/helpers.php:499
+msgid "After Text"
+msgstr ""
+
+#: inc/helpers.php:645
+msgid "United Arab Emirates dirham"
+msgstr ""
+
+#: inc/helpers.php:646
+msgid "Afghan afghani"
+msgstr ""
+
+#: inc/helpers.php:647
+msgid "Albanian lek"
+msgstr ""
+
+#: inc/helpers.php:648
+msgid "Armenian dram"
+msgstr ""
+
+#: inc/helpers.php:649
+msgid "Netherlands Antillean guilder"
+msgstr ""
+
+#: inc/helpers.php:650
+msgid "Angolan kwanza"
+msgstr ""
+
+#: inc/helpers.php:651
+msgid "Argentine peso"
+msgstr ""
+
+#: inc/helpers.php:652
+msgid "Australian dollar"
+msgstr ""
+
+#: inc/helpers.php:653
+msgid "Aruban florin"
+msgstr ""
+
+#: inc/helpers.php:654
+msgid "Azerbaijani manat"
+msgstr ""
+
+#: inc/helpers.php:655
+msgid "Bosnia and Herzegovina convertible mark"
+msgstr ""
+
+#: inc/helpers.php:656
+msgid "Barbadian dollar"
+msgstr ""
+
+#: inc/helpers.php:657
+msgid "Bangladeshi taka"
+msgstr ""
+
+#: inc/helpers.php:658
+msgid "Bulgarian lev"
+msgstr ""
+
+#: inc/helpers.php:659
+msgid "Bahraini dinar"
+msgstr ""
+
+#: inc/helpers.php:660
+msgid "Burundian franc"
+msgstr ""
+
+#: inc/helpers.php:661
+msgid "Bermudian dollar"
+msgstr ""
+
+#: inc/helpers.php:662
+msgid "Brunei dollar"
+msgstr ""
+
+#: inc/helpers.php:663
+msgid "Bolivian boliviano"
+msgstr ""
+
+#: inc/helpers.php:664
+msgid "Brazilian real"
+msgstr ""
+
+#: inc/helpers.php:665
+msgid "Bahamian dollar"
+msgstr ""
+
+#: inc/helpers.php:666
+msgid "Bitcoin"
+msgstr ""
+
+#: inc/helpers.php:667
+msgid "Bhutanese ngultrum"
+msgstr ""
+
+#: inc/helpers.php:668
+msgid "Botswana pula"
+msgstr ""
+
+#: inc/helpers.php:669
+msgid "Belarusian ruble"
+msgstr ""
+
+#: inc/helpers.php:670
+msgid "Belize dollar"
+msgstr ""
+
+#: inc/helpers.php:671
+msgid "Canadian dollar"
+msgstr ""
+
+#: inc/helpers.php:672
+msgid "Congolese franc"
+msgstr ""
+
+#: inc/helpers.php:673
+msgid "Swiss franc"
+msgstr ""
+
+#: inc/helpers.php:674
+msgid "Chilean peso"
+msgstr ""
+
+#: inc/helpers.php:675
+msgid "Chinese yuan"
+msgstr ""
+
+#: inc/helpers.php:676
+msgid "Colombian peso"
+msgstr ""
+
+#: inc/helpers.php:677
+msgid "Costa Rican col&oacute;n"
+msgstr ""
+
+#: inc/helpers.php:678
+msgid "Cuban convertible peso"
+msgstr ""
+
+#: inc/helpers.php:679
+msgid "Cuban peso"
+msgstr ""
+
+#: inc/helpers.php:680
+msgid "Cape Verdean escudo"
+msgstr ""
+
+#: inc/helpers.php:681
+msgid "Czech koruna"
+msgstr ""
+
+#: inc/helpers.php:682
+msgid "Djiboutian franc"
+msgstr ""
+
+#: inc/helpers.php:683
+msgid "Danish krone"
+msgstr ""
+
+#: inc/helpers.php:684
+msgid "Dominican peso"
+msgstr ""
+
+#: inc/helpers.php:685
+msgid "Algerian dinar"
+msgstr ""
+
+#: inc/helpers.php:686
+msgid "Egyptian pound"
+msgstr ""
+
+#: inc/helpers.php:687
+msgid "Eritrean nakfa"
+msgstr ""
+
+#: inc/helpers.php:688
+msgid "Ethiopian birr"
+msgstr ""
+
+#: inc/helpers.php:689
+msgid "Euro"
+msgstr ""
+
+#: inc/helpers.php:690
+msgid "Fijian dollar"
+msgstr ""
+
+#: inc/helpers.php:691
+msgid "Falkland Islands pound"
+msgstr ""
+
+#: inc/helpers.php:692
+msgid "Pound sterling"
+msgstr ""
+
+#: inc/helpers.php:693
+msgid "Georgian lari"
+msgstr ""
+
+#: inc/helpers.php:694
+msgid "Guernsey pound"
+msgstr ""
+
+#: inc/helpers.php:695
+msgid "Ghana cedi"
+msgstr ""
+
+#: inc/helpers.php:696
+msgid "Gibraltar pound"
+msgstr ""
+
+#: inc/helpers.php:697
+msgid "Gambian dalasi"
+msgstr ""
+
+#: inc/helpers.php:698
+msgid "Guinean franc"
+msgstr ""
+
+#: inc/helpers.php:699
+msgid "Guatemalan quetzal"
+msgstr ""
+
+#: inc/helpers.php:700
+msgid "Guyanese dollar"
+msgstr ""
+
+#: inc/helpers.php:701
+msgid "Hong Kong dollar"
+msgstr ""
+
+#: inc/helpers.php:702
+msgid "Honduran lempira"
+msgstr ""
+
+#: inc/helpers.php:703
+msgid "Croatian kuna"
+msgstr ""
+
+#: inc/helpers.php:704
+msgid "Haitian gourde"
+msgstr ""
+
+#: inc/helpers.php:705
+msgid "Hungarian forint"
+msgstr ""
+
+#: inc/helpers.php:706
+msgid "Indonesian rupiah"
+msgstr ""
+
+#: inc/helpers.php:707
+msgid "Israeli new shekel"
+msgstr ""
+
+#: inc/helpers.php:708
+msgid "Manx pound"
+msgstr ""
+
+#: inc/helpers.php:709
+msgid "Indian rupee"
+msgstr ""
+
+#: inc/helpers.php:710
+msgid "Iraqi dinar"
+msgstr ""
+
+#: inc/helpers.php:711
+msgid "Iranian rial"
+msgstr ""
+
+#: inc/helpers.php:712
+msgid "Icelandic kr&oacute;na"
+msgstr ""
+
+#: inc/helpers.php:713
+msgid "Jersey pound"
+msgstr ""
+
+#: inc/helpers.php:714
+msgid "Jamaican dollar"
+msgstr ""
+
+#: inc/helpers.php:715
+msgid "Jordanian dinar"
+msgstr ""
+
+#: inc/helpers.php:716
+msgid "Japanese yen"
+msgstr ""
+
+#: inc/helpers.php:717
+msgid "Kenyan shilling"
+msgstr ""
+
+#: inc/helpers.php:718
+msgid "Kyrgyzstani som"
+msgstr ""
+
+#: inc/helpers.php:719
+msgid "Cambodian riel"
+msgstr ""
+
+#: inc/helpers.php:720
+msgid "Comorian franc"
+msgstr ""
+
+#: inc/helpers.php:721
+msgid "North Korean won"
+msgstr ""
+
+#: inc/helpers.php:722
+msgid "South Korean won"
+msgstr ""
+
+#: inc/helpers.php:723
+msgid "Kuwaiti dinar"
+msgstr ""
+
+#: inc/helpers.php:724
+msgid "Cayman Islands dollar"
+msgstr ""
+
+#: inc/helpers.php:725
+msgid "Kazakhstani tenge"
+msgstr ""
+
+#: inc/helpers.php:726
+msgid "Lao kip"
+msgstr ""
+
+#: inc/helpers.php:727
+msgid "Lebanese pound"
+msgstr ""
+
+#: inc/helpers.php:728
+msgid "Sri Lankan rupee"
+msgstr ""
+
+#: inc/helpers.php:729
+msgid "Liberian dollar"
+msgstr ""
+
+#: inc/helpers.php:730
+msgid "Lesotho loti"
+msgstr ""
+
+#: inc/helpers.php:731
+msgid "Libyan dinar"
+msgstr ""
+
+#: inc/helpers.php:732
+msgid "Moroccan dirham"
+msgstr ""
+
+#: inc/helpers.php:733
+msgid "Moldovan leu"
+msgstr ""
+
+#: inc/helpers.php:734
+msgid "Malagasy ariary"
+msgstr ""
+
+#: inc/helpers.php:735
+msgid "Macedonian denar"
+msgstr ""
+
+#: inc/helpers.php:736
+msgid "Burmese kyat"
+msgstr ""
+
+#: inc/helpers.php:737
+msgid "Mongolian t&ouml;gr&ouml;g"
+msgstr ""
+
+#: inc/helpers.php:738
+msgid "Macanese pataca"
+msgstr ""
+
+#: inc/helpers.php:739
+msgid "Mauritanian ouguiya"
+msgstr ""
+
+#: inc/helpers.php:740
+msgid "Mauritian rupee"
+msgstr ""
+
+#: inc/helpers.php:741
+msgid "Maldivian rufiyaa"
+msgstr ""
+
+#: inc/helpers.php:742
+msgid "Malawian kwacha"
+msgstr ""
+
+#: inc/helpers.php:743
+msgid "Mexican peso"
+msgstr ""
+
+#: inc/helpers.php:744
+msgid "Malaysian ringgit"
+msgstr ""
+
+#: inc/helpers.php:745
+msgid "Mozambican metical"
+msgstr ""
+
+#: inc/helpers.php:746
+msgid "Namibian dollar"
+msgstr ""
+
+#: inc/helpers.php:747
+msgid "Nigerian naira"
+msgstr ""
+
+#: inc/helpers.php:748
+msgid "Nicaraguan c&oacute;rdoba"
+msgstr ""
+
+#: inc/helpers.php:749
+msgid "Norwegian krone"
+msgstr ""
+
+#: inc/helpers.php:750
+msgid "Nepalese rupee"
+msgstr ""
+
+#: inc/helpers.php:751
+msgid "New Zealand dollar"
+msgstr ""
+
+#: inc/helpers.php:752
+msgid "Omani rial"
+msgstr ""
+
+#: inc/helpers.php:753
+msgid "Panamanian balboa"
+msgstr ""
+
+#: inc/helpers.php:754
+msgid "Peruvian nuevo sol"
+msgstr ""
+
+#: inc/helpers.php:755
+msgid "Papua New Guinean kina"
+msgstr ""
+
+#: inc/helpers.php:756
+msgid "Philippine peso"
+msgstr ""
+
+#: inc/helpers.php:757
+msgid "Pakistani rupee"
+msgstr ""
+
+#: inc/helpers.php:758
+msgid "Polish z&#x142;oty"
+msgstr ""
+
+#: inc/helpers.php:759
+msgid "Transnistrian ruble"
+msgstr ""
+
+#: inc/helpers.php:760
+msgid "Paraguayan guaran&iacute;"
+msgstr ""
+
+#: inc/helpers.php:761
+msgid "Qatari riyal"
+msgstr ""
+
+#: inc/helpers.php:762
+msgid "Romanian leu"
+msgstr ""
+
+#: inc/helpers.php:763
+msgid "Serbian dinar"
+msgstr ""
+
+#: inc/helpers.php:764
+msgid "Russian ruble"
+msgstr ""
+
+#: inc/helpers.php:765
+msgid "Rwandan franc"
+msgstr ""
+
+#: inc/helpers.php:766
+msgid "Saudi riyal"
+msgstr ""
+
+#: inc/helpers.php:767
+msgid "Solomon Islands dollar"
+msgstr ""
+
+#: inc/helpers.php:768
+msgid "Seychellois rupee"
+msgstr ""
+
+#: inc/helpers.php:769
+msgid "Sudanese pound"
+msgstr ""
+
+#: inc/helpers.php:770
+msgid "Swedish krona"
+msgstr ""
+
+#: inc/helpers.php:771
+msgid "Singapore dollar"
+msgstr ""
+
+#: inc/helpers.php:772
+msgid "Saint Helena pound"
+msgstr ""
+
+#: inc/helpers.php:773
+msgid "Sierra Leonean leone"
+msgstr ""
+
+#: inc/helpers.php:774
+msgid "Somali shilling"
+msgstr ""
+
+#: inc/helpers.php:775
+msgid "Surinamese dollar"
+msgstr ""
+
+#: inc/helpers.php:776
+msgid "South Sudanese pound"
+msgstr ""
+
+#: inc/helpers.php:777
+msgid "S&atilde;o Tom&eacute; and Pr&iacute;ncipe dobra"
+msgstr ""
+
+#: inc/helpers.php:778
+msgid "Syrian pound"
+msgstr ""
+
+#: inc/helpers.php:779
+msgid "Swazi lilangeni"
+msgstr ""
+
+#: inc/helpers.php:780
+msgid "Thai baht"
+msgstr ""
+
+#: inc/helpers.php:781
+msgid "Tajikistani somoni"
+msgstr ""
+
+#: inc/helpers.php:782
+msgid "Turkmenistan manat"
+msgstr ""
+
+#: inc/helpers.php:783
+msgid "Tunisian dinar"
+msgstr ""
+
+#: inc/helpers.php:784
+msgid "Tongan pa&#x2bb;anga"
+msgstr ""
+
+#: inc/helpers.php:785
+msgid "Turkish lira"
+msgstr ""
+
+#: inc/helpers.php:786
+msgid "Trinidad and Tobago dollar"
+msgstr ""
+
+#: inc/helpers.php:787
+msgid "New Taiwan dollar"
+msgstr ""
+
+#: inc/helpers.php:788
+msgid "Tanzanian shilling"
+msgstr ""
+
+#: inc/helpers.php:789
+msgid "Ukrainian hryvnia"
+msgstr ""
+
+#: inc/helpers.php:790
+msgid "Ugandan shilling"
+msgstr ""
+
+#: inc/helpers.php:791
+msgid "United States dollar"
+msgstr ""
+
+#: inc/helpers.php:792
+msgid "Uruguayan peso"
+msgstr ""
+
+#: inc/helpers.php:793
+msgid "Uzbekistani som"
+msgstr ""
+
+#: inc/helpers.php:794
+msgid "Venezuelan bol&iacute;var"
+msgstr ""
+
+#: inc/helpers.php:795
+msgid "Vietnamese &#x111;&#x1ed3;ng"
+msgstr ""
+
+#: inc/helpers.php:796
+msgid "Vanuatu vatu"
+msgstr ""
+
+#: inc/helpers.php:797
+msgid "Samoan t&#x101;l&#x101;"
+msgstr ""
+
+#: inc/helpers.php:798
+msgid "Central African CFA franc"
+msgstr ""
+
+#: inc/helpers.php:799
+msgid "East Caribbean dollar"
+msgstr ""
+
+#: inc/helpers.php:800
+msgid "West African CFA franc"
+msgstr ""
+
+#: inc/helpers.php:801
+msgid "CFP franc"
+msgstr ""
+
+#: inc/helpers.php:802
+msgid "Yemeni rial"
+msgstr ""
+
+#: inc/helpers.php:803
+msgid "South African rand"
+msgstr ""
+
+#: inc/helpers.php:804
+msgid "Zambian kwacha"
+msgstr ""
+
+#: shortcodes/categories/style-1.php:26
+msgid "Categories Not found"
+msgstr ""
+
+#: shortcodes/dashboard/dashboard.php:3
+msgid "Welcome"
+msgstr ""
+
+#: shortcodes/dashboard/dashboard.php:8
+msgid "Logout"
+msgstr ""
+
+#: shortcodes/dashboard/edit.php:22
+msgid "Draft"
+msgstr ""
+
+#: shortcodes/dashboard/edit.php:23
+msgid "Publish"
+msgstr ""
+
+#: shortcodes/dashboard/edit.php:28
+msgid "This listing is awaiting approval"
+msgstr ""
+
+#: shortcodes/dashboard/edit.php:33
+msgid "Save Changes"
+msgstr ""
+
+#: shortcodes/dashboard/listings.php:4
+msgid "Add New"
+msgstr ""
+
+#: shortcodes/dashboard/listings.php:12
+msgid "Search for..."
+msgstr ""
+
+#: shortcodes/dashboard/listings.php:14
+msgid "All Status"
+msgstr ""
+
+#: shortcodes/dashboard/listings.php:15
+msgid "Only Published"
+msgstr ""
+
+#: shortcodes/dashboard/listings.php:16
+msgid "Only Pending"
+msgstr ""
+
+#: shortcodes/dashboard/listings.php:17
+msgid "Only Draft"
+msgstr ""
+
+#: shortcodes/dashboard/listings.php:19 shortcodes/search/style-1.php:29
+msgid "Search"
+msgstr ""
+
+#: shortcodes/dashboard/listings.php:29
+msgid "Thumbnail"
+msgstr ""
+
+#: shortcodes/dashboard/listings.php:30 templates/compare-box.php:44
+msgid "Title"
+msgstr ""
+
+#: shortcodes/dashboard/listings.php:32
+msgid "Created"
+msgstr ""
+
+#: shortcodes/dashboard/listings.php:33
+msgid "Status"
+msgstr ""
+
+#: shortcodes/dashboard/listings.php:34
+msgid "Actions"
+msgstr ""
+
+#: shortcodes/dashboard/listings.php:42
+msgid "pending"
+msgstr ""
+
+#: shortcodes/dashboard/listings.php:43
+msgid "draft"
+msgstr ""
+
+#: shortcodes/dashboard/listings.php:44
+msgid "future"
+msgstr ""
+
+#: shortcodes/dashboard/listings.php:45
+msgid "publish"
+msgstr ""
+
+#: shortcodes/dashboard/listings.php:90 shortcodes/dashboard/profile.php:23
+msgid "Edit"
+msgstr ""
+
+#: shortcodes/dashboard/listings.php:103
+msgid "No Listings Found!"
+msgstr ""
+
+#: shortcodes/dashboard/profile.php:6
+msgid "Edit Profile"
+msgstr ""
+
+#: shortcodes/dashboard/profile.php:19
+msgid "Choose Image for Profile Picture"
+msgstr ""
+
+#: shortcodes/dashboard/profile.php:20
+msgid "Set Profile"
+msgstr ""
+
+#: shortcodes/dashboard/profile.php:52
+msgid "Update Profile"
+msgstr ""
+
+#: shortcodes/login.php:3
+msgid "Login"
+msgstr ""
+
+#: shortcodes/login.php:12 shortcodes/register.php:27
+msgid "Password"
+msgstr ""
+
+#: shortcodes/login.php:16
+msgid "Forgot Password?"
+msgstr ""
+
+#: shortcodes/login.php:25
+msgid "Login Now"
+msgstr ""
+
+#: shortcodes/login.php:29
+msgid "Don't have an account?"
+msgstr ""
+
+#: shortcodes/login.php:30 shortcodes/register.php:48
+msgid "Register Now"
+msgstr ""
+
+#: shortcodes/register.php:3
+msgid "Register"
+msgstr ""
+
+#: shortcodes/register.php:31
+msgid "Confirm Password"
+msgstr ""
+
+#: shortcodes/register.php:52
+msgid "Already have an account?"
+msgstr ""
+
+#: shortcodes/register.php:53
+msgid "Sign In"
+msgstr ""
+
+#: shortcodes/search/style-1.php:11
+msgid "Search Keywords..."
+msgstr ""
+
+#: shortcodes/search/style-1.php:35
+msgid "Loading..."
+msgstr ""
+
+#: templates/compare-box.php:28
+msgid "Close Compare Panel"
+msgstr ""
+
+#: templates/compare-box.php:29
+msgid "Open Compare Panel"
+msgstr ""
+
+#: templates/compare-box.php:35
+msgid "Compare"
+msgstr ""
+
+#: templates/sidebar/default.php:47
+msgid "Name"
+msgstr ""
+
+#: templates/sidebar/default.php:59
+msgid "Your Message"
+msgstr ""
+
+#: templates/sidebar/default.php:75
+msgid "Sending Email, Please Wait..."
+msgstr ""
+
+#: templates/sidebar/default.php:79
+msgid "SEND MESSAGE"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+msgid "https://webcodingplace.com/circular-arts-network/"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid "A simple yet complete classifieds and listings system for WordPress."
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "WebCodingPlace"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "https://webcodingplace.com/"
+msgstr ""

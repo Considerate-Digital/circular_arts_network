@@ -1,0 +1,196 @@
+.can-section {
+	display: block;
+	background: #fff;
+	padding: 24px 30px 28px 30px;
+	box-shadow: 0px 20px 60px 0px rgb(0 0 0 / 10%);
+	margin-bottom: 30px;
+	border: 4px dashed grey;
+}
+.can-section h2 {
+	font-size: 22px;
+	line-height: 30px;
+	font-weight: 800;
+	margin: 0 0 14px 0;
+}
+
+.can-section h2:before {
+	display: none;
+}
+
+.can-section .listing-content p {
+	line-height: 28px;
+	margin: 0;
+	margin-bottom: 28px;
+	color: #848484;
+	transition: all 500ms ease;
+}
+
+.can-section p:last-child {
+	margin-bottom: 0;
+}
+
+.can-section .can-tags {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+.can-section .can-tags li {
+	position: relative;
+	display: inline-block;
+	margin: 0 10px 0 0;
+}
+
+.can-section .can-tags li a {
+	display: inline-block;
+	font-size: 15px;
+	line-height: 26px;
+	color: #808080;
+	border: 1px solid #e5e7ec;
+	border-radius: 25px;
+	padding: 8.5px 20px;
+	text-decoration: none;
+	transition: all 500ms ease;
+	-moz-transition: all 500ms ease;
+	-webkit-transition: all 500ms ease;
+	-ms-transition: all 500ms ease;
+	-o-transition: all 500ms ease;
+	text-transform: uppercase;
+}
+
+.can-section .can-tags li a:hover {
+  color: #fff;
+  box-shadow: 0px 10px 30px 0px rgba(248,92,112,0.4);
+  background-color: #F97C8C;
+}
+
+.can-section iframe {
+	width: 100%;
+}
+
+.can-section .can-features {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.can-section .can-features li {
+	position: relative;
+	display: inline-block;
+	float: left;
+	width: 50%;
+	margin: 0 0 8px 0;
+	padding-left: 35px;
+	padding-bottom: 0.1rem;
+}
+
+.can-section .can-features li:before{
+  position: absolute;
+  content: "\f633";
+  font-family: bootstrap-icons !important;
+  font-size: 15px;
+  background-color: #f85c70;
+  color: #fff;
+  width: 15px;
+  height: 15px;
+  line-height: 14px;
+  text-align: center;
+  border-radius: 50%;
+  left: 5px;
+  top: 6px;
+  box-shadow: 0px 0px 0px 3px rgba(248,92,112,0.3);
+}
+
+.can-section #map-canvas {
+	height: 300px;
+}
+
+.section-details h2 {
+	margin-bottom: 0;
+}
+.section-details .can-single-field {
+	margin: 0rem;
+	padding: 0rem; 0.2rem;
+}
+.section-details .can-field-title, .section-details .can-field-value {
+	font-size: 1rem;
+}
+.section-details .can-field-title {
+	letter-spacing: var(--bs-bold-sans-letter-spacing);
+}
+.section-details .row {
+	flex-direction: column;
+}
+.section-details .row .col-sm-4 {
+	width: 100%;
+}
+
+.can-sending-email {
+	display: none;
+}
+
+.can-sending-email div {
+	font-size: 15px;
+	line-height: 26px;
+	border: 1px solid #e5e7ec;
+	border-radius: 25px;
+	padding: 8.5px 20px;
+	margin-bottom: 20px;
+}
+
+.can-sending-email div i {
+	color: #0ba3ca;
+}
+
+.can-section .seller-info .seller-image img {
+	width: 80px;
+	height: 80px;
+	margin: 0 auto;
+	display: block;
+}
+
+.can-section .seller-info .seller-name {
+	position: relative;
+	font-size: 20px;
+	line-height: 50px;
+	font-weight: 700;
+	margin: 0;
+	text-align: center;
+}
+
+.seller-info .seller-contact {
+	padding: 0;
+	margin: 0;
+	list-style: none;
+	text-align: center;
+}
+
+.seller-info .seller-contact li {
+	margin: 0;
+	border: 1px solid #e5e7ec;
+	border-radius: 6px;
+	padding: 6.5px 6.5px 6.5px 50px;
+	position: relative;
+	margin-bottom: 15px;
+	font-size: 14px;
+	overflow: scroll;
+}
+
+.seller-info .seller-contact i {
+	position: absolute;
+	left: 15px;
+	border-right: 1px solid #e5e7ec;
+	padding-right: 13px;
+}
+
+.contact-seller-form .title-contact-seller {
+	text-align: center;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	font-size: 20px;
+}
+
+.can-single-field .can-before-text, .can-single-field .can-after-text {
+	color: #808288;
+	font-size: 13px;
+}

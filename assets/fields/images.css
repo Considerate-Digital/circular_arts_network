@@ -1,0 +1,35 @@
+.can-preview-image {
+    box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
+    background-color: #FFF;
+    cursor: move;
+    margin-bottom: 30px;
+}
+.can-preview-image img {
+  border-radius: 4px;
+  padding: 5px;
+  max-width: 100% !important;
+  width: auto;
+}
+.can-image-wrap {
+  height: 120px;
+  overflow: hidden;
+  text-align: center;
+}
+.can-preview-image .can-actions-wrap {
+  padding: 0.25rem;
+  text-align: center;
+}
+.can-preview-image .can-actions-wrap .remove-image {
+  background: #d30505;
+  color: #FFF;
+}
+.thumbs-prev .drag-placeholder {
+    background-color: #ededed;
+    height: 169px;
+    width: 178.88px; 
+    padding: 0 !important;
+    border: 5px dashed #555454;
+}
+.can-preview-image .can-actions-wrap a {
+    margin: 5px;
+}

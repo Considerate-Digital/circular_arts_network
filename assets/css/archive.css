@@ -1,0 +1,360 @@
+.can-top-bar {
+	display: block;
+	background: #fff;
+	padding: 25px 25px;
+	box-shadow: 0px 20px 60px 0px rgb(0 0 0 / 10%);
+	margin-bottom: 30px;
+}
+
+.can-top-bar h2 {
+	line-height: 40px;
+	margin: 0;
+	font-size: 24px;
+}
+
+.can-menu-box .active {
+	color: #fff;
+	background-color: #f85c70;
+	border-color: #f85c70;
+}
+
+.can-menu-box a {
+	position: relative;
+	display: inline-block;
+	width: 40px;
+	height: 40px;
+	line-height: 40px;
+	text-align: center;
+	border: 1px solid #e6e7ec;
+	border-radius: 50%;
+	font-size: 14px;
+	color: #93959e;
+	font-weight: 700;
+	cursor: pointer;
+	background: transparent;
+	transition: all 500ms ease;
+}
+
+.can-select-box {
+	margin-right: 25px;
+}
+
+.can-select-box .nice-select {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 50px;
+    border: none !important;
+    background: transparent;
+    font-size: 15px;
+    color: #848484;
+    font-weight: 500;
+    padding: 4px 55px;
+	height: 40px;
+	padding: 0px 42px 0px 0px;
+}
+
+.can-select-box .list {
+	margin: 0;
+	padding: 0;
+	min-width: 200px;
+	left: auto !important;
+	right: 0;
+}
+
+.can-select-box .list li {
+	margin: 0;
+}
+
+.can-list-box-wrap .can-box-inner,
+.can-grid-box-wrap .can-box-inner {
+	background: #fff;
+	box-shadow: 0px 10px 50px 0px rgb(0 0 0 / 10%);
+	margin-bottom: 30px;
+	position: relative;
+	border: 4px dashed #cacaca;
+}
+
+.can-list-box-wrap .can-box-inner {
+	display: flex;
+}
+.can-list-box-wrap .can-meta-area .col {
+	width: 100%;
+	justify-content: flex-start;
+
+}
+.can-list-box-wrap .can-meta-area .can-single-field {
+	font-size: 0.85rem;
+	margin-bottom: 0rem;
+}
+.can-list-box-wrap .can-title-area .cats .can-category {
+	margin: 0rem;
+}
+.can-list-box-wrap .can-box-inner .can-title-area .cats {
+	margin-bottom: 1.42rem;
+}
+.can-grid-box-wrap .can-content-wrap {
+	padding: 15px 20px; 
+	overflow: hidden;
+}
+
+
+.can-grid-box-wrap .can-footer-area {
+	padding-top: 10px;
+}
+
+.can-list-box-wrap .can-box-inner .can-image-wrap {
+	flex: 2;
+	overflow: hidden;
+	border-radius: 10px 0 0 10px;
+}
+
+.can-ribbon {
+    position: absolute;
+    left: -7px;
+    top: 20px;
+    font-size: 12px;
+    line-height: 20px;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: 500;
+    border-radius: 0px 3px 3px 0px;
+    padding: 3px 17px;
+    background-color: #2dbe6c;
+    z-index: 2;
+}
+
+.can-ribbon:before {
+	position: absolute;
+	content: '';
+	width: 7px;
+	height: 7px;
+	left: 0px;
+	bottom: -7px;
+	clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 100% 100%, 0% 0%);
+    background-color: #2dbe6c;
+}
+
+.can-list-box-wrap .can-box-inner .can-content-wrap {
+	flex: 3;
+	padding: 1.57rem 1.4rem;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	border-right: 1px solid #e5e7ec;
+}
+
+.can-list-box-wrap .can-box-inner .can-content-wrap h2 {
+    line-height: 28px;
+    margin: 0 0 5px 0;
+}
+
+.can-grid-box-wrap .can-box-inner .cats,
+.can-list-box-wrap .can-box-inner .cats {
+	font-size: 14px;
+	margin: 0;
+}
+
+
+.can-grid-box-wrap .can-image {
+	display: block;
+	position: relative;
+	overflow: hidden;
+	border-radius: 10px 10px 0px 0px;
+}
+
+.can-grid-box-wrap .can-box-inner .can-excerpt {
+	margin: 0;
+	font-size: 1rem;
+	overflow: hidden;
+	margin-bottom: 10px;
+}
+.can-list-box-wrap .can-box-inner .can-excerpt-title {
+	font-size: 0.85rem;
+	font-family: var(--bs-font-sans);
+	font-weight: bold;
+	letter-spacing: var(--bs-bold-sans-letter-spacing);
+	margin-bottom: 0rem;
+}
+
+.can-grid-box-wrap .can-footer-area:before {
+	position: absolute;
+	content: '';
+	background: #edeff2;
+	width: calc(100% + 60px);
+	height: 1px;
+	left: -30px;
+	top: 0px;
+}
+
+.can-footer-area {
+	position: relative;
+}
+
+.can-grid-box-wrap .can-box-inner .cats i,
+.can-list-box-wrap .can-box-inner .cats i {
+	color: #f85c70;
+}
+
+.can-grid-box-wrap .can-box-inner .cats a,
+.can-list-box-wrap .can-box-inner .cats a {
+	text-decoration: none;
+	margin: 0 0 0 5px;
+	color: #848484;
+}
+
+.can-list-box-wrap .can-box-inner .can-btn-wrap {
+	flex: 1;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	text-decoration: none;
+}
+
+.can-box-inner .can-meta {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.can-list-box-wrap .can-box-inner .can-excerpt {
+	margin: 0;
+	font-size: 14px;
+}
+
+.can-list-box-wrap .can-box-inner .can-excerpt p {
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+	margin-bottom: 5px;
+	width: 100%;
+}
+
+.can-actions a {
+	border: 1px solid #989aa3;
+	color: #989aa3;
+	width: 30px;
+	height: 30px;
+	display: inline-block;
+	margin: 5px;
+	text-align: center;
+	padding: 6px;
+	border-radius: 50%;
+	font-size: 14px;
+	text-decoration: none;
+	line-height: 18px;
+}
+
+.can-bs-wrapper .can-price-wrap {
+	line-height: 40px;
+	margin: 0;
+}
+
+.can-price-wrap .can-before-text, .can-price-wrap .can-after-text {
+	font-size: 14px;
+	color: #808080;
+}
+
+.can-price-wrap .can-price-amount {
+	font-size: 24px;
+	color: #f85c70;
+	margin: 0 5px;
+	font-weight: bold;
+}
+
+.can-box-inner .can-image-wrap img {
+	width: 100%;
+	transition: all 300ms ease;
+	object-fit:cover;
+}
+.can-box-inner:hover .can-image-wrap img {
+    /*transform: scale(1.05);*/
+	filter: grayscale(1);
+}
+
+.can-pagination {
+	position: relative;
+	display: block;
+	background: #fff;
+	padding: 25px 30px;
+	border-radius: 10px;
+	box-shadow: 0px 20px 60px 0px rgb(0 0 0 / 10%);
+}
+
+.can-pagination ul {
+	position: relative;
+	display: block;
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	text-align: center;
+}
+
+.can-pagination ul li {
+	display: inline-block;
+	padding: 0;
+	margin: 0 3px;
+}
+
+.can-pagination ul li a, .can-pagination ul li span {
+	position: relative;
+	display: inline-block;
+	font-size: 15px;
+	font-weight: 500;
+	height: 40px;
+	width: 40px;
+	line-height: 40px;
+	background: transparent;
+	text-align: center;
+	color: #061a3a;
+	border-radius: 50%;
+	z-index: 1;
+	border: 1px solid #e6e7ec;
+	transition: all 500ms ease;
+	text-decoration: none !important;
+}
+
+.can-pagination ul li .next {
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+
+
+.can-pagination ul li .prev {
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+.can-pagination li a:hover, .can-pagination li .current {
+    background-color: #f85c70;
+    border-color: #f85c70;
+    color: #FFF;
+}
+
+.can-pagination:empty {
+	display: none;
+}
+
+@media only screen and (max-width: 992px){
+	.can-list-box-wrap .can-box-inner {
+		flex-direction: column;
+	}
+	.can-list-box-wrap .can-box-inner .can-image-wrap {
+		border-radius: 10px;
+		max-width: 200px;
+		margin: 15px auto 0 auto;
+	}
+	.can-list-box-wrap .can-box-inner .can-content-wrap {
+		border-right: none;
+		border-bottom: 1px solid #e5e7ec;
+	}
+	.can-btn-wrap {
+		padding: 20px 0 20px 0;
+	}
+	.can-title-area {
+		text-align: center;
+	}
+}

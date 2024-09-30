@@ -1,0 +1,35 @@
+.can-bs-wrapper .can-image-upload {
+	border: 2px dashed #aaa;
+	width: 100px;
+	height: 100px;
+	margin: 0 auto;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+}
+.can-bs-wrapper .can-image-upload i {
+	font-size: 30px;
+	color: #aaa;
+}
+
+.can-bs-wrapper .can-category-thumb {
+	margin: 0 auto;
+	padding: 0;
+	height: 100px;
+	width: 100px;
+	display: block;
+}
+
+.can-bs-wrapper #category-image-wrapper {
+	position: relative;
+}
+
+.can-bs-wrapper #category-image-wrapper .bi {
+	position: absolute;
+	bottom: -9px;
+	right: 46%;
+	font-size: 17px;
+	color: red;
+	cursor: pointer;
+}
