@@ -43,7 +43,7 @@ After uploading the ZIP file, click on the "Install Now" button. Once installed,
 
 ### 1. Display Listings
 
-**Shortcode**: `[uclwp_listings]`
+**Shortcode**: `[can_listings]`
 
 This shortcode displays listings in a structured format with various customisation options.
 
@@ -66,7 +66,7 @@ This shortcode displays listings in a structured format with various customisati
 
 ### 2. Display Categories
 
-**Shortcode**: `[uclwp_categories]`
+**Shortcode**: `[can_categories]`
 
 This shortcode allows you to display categories.
 
@@ -78,13 +78,13 @@ This shortcode allows you to display categories.
 
 ### 3. Seller Dashboard
 
-**Shortcode**: `[uclwp_dashboard]`
+**Shortcode**: `[can_dashboard]`
 
 This shortcode provides a dashboard for sellers to manage their listings and profile. It shows a login form when the user is not logged in.
 
 ### 4. Search Form
 
-**Shortcode**: `[uclwp_search_form]`
+**Shortcode**: `[can_search_form]`
 
 Displays a customisable search form.
 
@@ -99,7 +99,7 @@ Displays a customisable search form.
 
 ### 5. Search Results
 
-**Shortcode**: `[uclwp_search_results]`
+**Shortcode**: `[can_search_results]`
 
 This shortcode is used to display the search results.
 
