@@ -3,7 +3,7 @@
  * Plugin Name: Circular Arts Network 
  * Plugin URI: https://canarts.org.uk
  * Description: A circular arts network for WordPress.
- * Version: 1.2
+ * Version: 0.2
  * Author: Considerate Digital
  * Author URI: https://considerate.digital
  * License: GPLv2 or later
