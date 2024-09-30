@@ -1,4 +1,6 @@
-# Circular Arts Network Plugin Documentation
+# Circular Arts Network Plugin
+
+A recycling and reuse tool created specificaly for WordPress.
 
 ## Overview
 
