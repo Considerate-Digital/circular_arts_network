@@ -16,7 +16,7 @@ This code of conduct is based on the ["rust-lang" code of conduct](https://www.r
 
 These are the policies for upholding our community’s standards of conduct. If you feel that a thread needs moderation, please contact the team at Considerate Digital.
 
-- Remarks that violate the CarbonClicks standards of conduct, including hateful, hurtful, oppressive, or exclusionary remarks, are not allowed. (Cursing is allowed, but never targeting another user, and never in a hateful manner.)
+- Remarks that violate the CAN standards of conduct, including hateful, hurtful, oppressive, or exclusionary remarks, are not allowed. (Cursing is allowed, but never targeting another user, and never in a hateful manner.)
 - Remarks that moderators find inappropriate, whether listed in the code of conduct or not, are also not allowed.
 - Moderators will first respond to such remarks with a warning.
 - If the warning is unheeded, the user will be “kicked,” i.e., kicked out of the communication channel to cool off.
