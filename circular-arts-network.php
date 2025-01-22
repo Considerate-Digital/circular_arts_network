@@ -4,8 +4,8 @@
  * Plugin URI: https://canarts.org.uk
  * Description: A circular arts network for WordPress.
  * Version: 0.2
- * Author: Considerate Digital
- * Author URI: https://considerate.digital
+ * Author: CANARTS
+ * Author URI: https:canarts.org.uk
  * License: GPLv2 or later
  * License URI: http://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain: circular-arts-network
