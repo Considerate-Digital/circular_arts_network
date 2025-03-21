@@ -7,7 +7,7 @@
  * Author: Considerate Digital
  * Author URI: https://considerate.digital
  * License: GPLv3 or later
- * License URI: http://www.gnu.org/licenses/gpl-2.0.html
+ * License URI: https://www.gnu.org/licenses/gpl-3.0.html
  * Text Domain: circular-arts-network
  * Domain Path: /languages
  */
