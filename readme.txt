@@ -147,4 +147,12 @@ Here, in no particular order, are a list of future developments we'd like to und
 - Adapt the search to incoporate advanced search options
 - Add "create alert" functionality
 
+== Changelog ==
+
+= 0.2 =
+* WordPress plugin requirements adhered to.
+
+== Upgrade Notice ==
+
+No upgrades at present.
 
