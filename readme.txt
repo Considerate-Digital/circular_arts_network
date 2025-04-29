@@ -1,10 +1,10 @@
-=== Plugin Name ===
+=== Circular Arts Network ===
 Contributors: circularartsnetwork
 Donate link: https://canarts.org.uk
 Tags: circular, arts, classifieds, 
 Requires at least: 4.7
-Tested up to: 5.4
-Stable tag: 4.3
+Tested up to: 6.8
+Stable tag: 0.2
 Requires PHP: 7.0
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html

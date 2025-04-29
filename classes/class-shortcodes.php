@@ -780,9 +780,8 @@ class CAN_Shortcodes
 		die(0);
 	}
 
-	function insert_listing_in_db($listing_id = '', $data, $current_user_data, $status = 'draft'){
+	function insert_listing_in_db($listing_id, $data, $current_user_data, $status = 'draft'){
 		/*
-		 * TODO 
 		 * Can't error_log here or it breaks the process
 		 */
 		$listing_data = array(
