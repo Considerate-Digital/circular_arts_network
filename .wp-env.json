@@ -1,0 +1,11 @@
+{
+    "plugins": [ 
+      ".",
+      "https://github.com/WordPress/plugin-check/releases/download/1.4.0/plugin-check.zip"
+    ],
+    "config": {
+    },
+    "env": {
+                  }
+}
+

@@ -21,7 +21,7 @@
                             <div class="can-single-cat text-center">
                                 <div class="can-cat-icon">
                                     <?php if ( in_array($cat->name, $cat_names ) ) { ?>
-                                        <img src="<?php echo plugins_url() ?>/circular_arts_network/assets/images/categories/<?php echo $cat->name ?>.svg" />
+                                        <img src="<?php echo plugins_url() ?>/circular-arts-network/assets/images/categories/<?php echo $cat->name ?>.svg" />
                                     <?php } else { 
                                         $this->render_category_image($cat->term_id, $attrs['image_size']); 
                                     } ?>

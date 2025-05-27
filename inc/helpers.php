@@ -611,7 +611,7 @@ function can_get_field_value($listing_id, $field, $value = ''){
 }
 
 function can_get_section_title($tabData){
-    $title = __( $tabData['title'], 'circular-arts-network' );
+    $title = printf( __( '%t', 'circular-arts-network' ), $tabData['title']);
     $tab_key = $tabData['key'];
     $icon = '';
 

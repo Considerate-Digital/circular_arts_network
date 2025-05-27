@@ -228,35 +228,36 @@ $fieldsData = array(
                 'type' => 'textarea',
                 'name' => 'to_admin_on_seller_register',
                 'title' => __( 'To Admin on Seller Registered', 'circular-arts-network' ),
-                'help' => __( 'This message will sent to ', 'circular-arts-network' ).'<b>'.get_bloginfo('admin_email').'</b>'.__( ' when new seller is registered. You can use %username% and %email% for details', 'circular-arts-network' ),
+                /* translators: admin email address */
+                'help' => __( 'This message will sent to ', 'circular-arts-network' ).'<b>'.get_bloginfo('admin_email').'</b>'.__( ' when new seller is registered. You can use &percnt;username&percnt; and &percnt;email&percnt; for details', 'circular-arts-network' ),
             ),
 
             array(
                 'type' => 'textarea',
                 'name' => 'to_seller_registered',
                 'title' => __( 'To Registered Seller', 'circular-arts-network' ),
-                'help' => __( 'This message will be sent to the newly regisreted sellers. You can use %username% and %email% for details', 'circular-arts-network' ),
+                'help' => __( 'This message will be sent to the newly regisreted sellers. You can use &percntusername&percnt and &percntemail&percnt for details', 'circular-arts-network' ),
             ),
 
             array(
                 'type' => 'textarea',
                 'name' => 'to_seller_approved',
                 'title' => __( 'To Approved Seller', 'circular-arts-network' ),
-                'help' => __( 'This message will be sent to the approved seller. You can use %username% and %email% for details', 'circular-arts-network' ),
+                'help' => __( 'This message will be sent to the approved seller. You can use &percntusername&percnt and &percntemail&percnt for details', 'circular-arts-network' ),
             ),
 
             array(
                 'type' => 'textarea',
                 'name' => 'to_seller_rejected',
                 'title' => __( 'To Rejected Seller', 'circular-arts-network' ),
-                'help' => __( 'This message will be sent to the rejected seller. You can use %username% and %email% for details', 'circular-arts-network' ),
+                'help' => __( 'This message will be sent to the rejected seller. You can use &percntusername&percnt and &percntemail&percnt for details', 'circular-arts-network' ),
             ),
 
             array(
                 'type' => 'textarea',
                 'name' => 'to_admin_submission',
                 'title' => __( 'To Admin on Submission', 'circular-arts-network' ),
-                'help' => __( 'This message will be sent to ', 'circular-arts-network' ).'<b>'.get_bloginfo('admin_email').'</b>'.__( ' when new listing is submitted. You can use variables %username% %approve_url% and %email% for details', 'circular-arts-network' ),
+                'help' => __( 'This message will be sent to ', 'circular-arts-network' ).'<b>'.get_bloginfo('admin_email').'</b>'.__( ' when new listing is submitted. You can use variables &percntusername&percnt &percntapprove_url&percnt and &percntemail&percnt for details', 'circular-arts-network' ),
             ),
 
             array(
@@ -297,14 +298,14 @@ $fieldsData = array(
                 'type' => 'text',
                 'name' => 'email_subject',
                 'title' => __( 'Email Subject', 'circular-arts-network' ),
-                'help' => __( 'Provide email subject here if someone contacts seller through listing page. You can also use these special tags.', 'circular-arts-network' ).' <code>%listing_title%</code>, <code>%listing_id%</code>',
+                'help' => __( 'Provide email subject here if someone contacts seller through listing page. You can also use these special tags.', 'circular-arts-network' ).' <code>&percntlisting_title&percnt</code>, <code>&percntlisting_id&percnt</code>',
             ),
 
             array(
                 'type' => 'textarea',
                 'name' => 'email_message',
                 'title' => __( 'Email Format', 'circular-arts-network' ),
-                'help' => __( 'Provide email markup here. You can also use these special tags.', 'circular-arts-network' ). '<code>%listing_title%</code>, <code>%listing_id%</code>, <code>%listing_url%</code>, <code>%client_message%</code>, <code>%client_email%</code>, <code>%client_name%</code>, <code>%client_phone%</code>',
+                'help' => __( 'Provide email markup here. You can also use these special tags.', 'circular-arts-network' ). '<code>&percntlisting_title&percnt</code>, <code>&percntlisting_id&percnt</code>, <code>&percntlisting_url&percnt</code>, <code>&percntclient_message&percnt</code>, <code>&percntclient_email&percnt</code>, <code>&percntclient_name&percnt</code>, <code>&percntclient_phone&percnt</code>',
             ),
 
             array(
@@ -384,14 +385,14 @@ $fieldsData = array(
                 'type' => 'text',
                 'name' => 'category_title',
                 'title' => __( 'Heading for Category Base Page', 'circular-arts-network' ),
-                'help' => __( 'You can use %category% for category name', 'circular-arts-network' ),
+                'help' => __( 'You can use &percntcategory&percnt for category name', 'circular-arts-network' ),
             ),
 
             array(
                 'type' => 'text',
                 'name' => 'tag_title',
                 'title' => __( 'Heading for Tag Base page', 'circular-arts-network' ),
-                'help' => __( 'You can use %tag% for tag name', 'circular-arts-network' ),
+                'help' => __( 'You can use &percnttag&percnt for tag name', 'circular-arts-network' ),
             ),
 
 
@@ -399,8 +400,8 @@ $fieldsData = array(
                 'type' => 'text',
                 'name' => 'search_results_title',
                 'title' => __( 'Search Results Title', 'circular-arts-network' ),
-                'default' => 'Search Results (%count%)',
-                'help' => __( 'Provide text to display above the AJAX search results, you can use the variable', 'circular-arts-network' ).'<code>%count%</code>',
+                'default' => 'Search Results (&percntcount&percnt)',
+                'help' => __( 'Provide text to display above the AJAX search results, you can use the variable', 'circular-arts-network' ).'<code>&percntcount&percnt</code>',
             ),
 
             array(
