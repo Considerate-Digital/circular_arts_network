@@ -1,7 +1,18 @@
-# Circular Arts Network Plugin
+=== Plugin Name ===
+Contributors: circularartsnetwork
+Donate link: https://canarts.org.uk
+Tags: circular, arts, classifieds, 
+Requires at least: 4.7
+Tested up to: 5.4
+Stable tag: 4.3
+Requires PHP: 7.0
+License: GPLv3 or later
+License URI: https://www.gnu.org/licenses/gpl-3.0.html
+
 
 A recycling and reuse tool created specifically for WordPress.
 
+== Description ==
 ## Overview
 
 CAN is a recycling and reuse tool that helps the arts combat the climate emergency. It gives you access to the materials you need for your creative projects by providing a place where materials and resources can be exchanged. CAN stands for Circular Arts Network, it’s an online platform that supports  a circular economy within the arts.
@@ -136,4 +147,12 @@ Here, in no particular order, are a list of future developments we'd like to und
 - Adapt the search to incoporate advanced search options
 - Add "create alert" functionality
 
+== Changelog ==
+
+= 0.2 =
+* WordPress plugin requirements adhered to.
+
+== Upgrade Notice ==
+
+No upgrades at present.
 

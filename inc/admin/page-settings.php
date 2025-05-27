@@ -11,7 +11,7 @@ if( ! defined('ABSPATH' ) ){ exit; }
 ?>
 <div class="wrap can-bs-wrapper">
 	<h2 class="border-bottom mb-3">
-		<?php _e( 'Ultimate Classified Listings - Settings', 'circular-arts-network' ); ?> <span class="badge badge-sm bg-info">v<?php echo CAN_VERSION; ?></span>
+		<?php _e( 'Circular Arts Network - Settings', 'circular-arts-network' ); ?> <span class="badge badge-sm bg-info">v<?php echo CAN_VERSION; ?></span>
 	</h2>
 	<div class="row">
 		<div class="col-sm-3">

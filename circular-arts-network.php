@@ -64,7 +64,11 @@ function add_categories() {
     }
   }
 }
+<<<<<<< HEAD
 //add_action( 'activate_circular-arts-network/circular-arts-network.php', 'add_categories');
+=======
+//add_action( 'activate_circular_arts_network/circular-arts-network.php', 'add_categories');
+>>>>>>> master
 add_action( 'admin_init', 'add_categories');
   
 function hide_admin_bar_for_specific_roles() {
