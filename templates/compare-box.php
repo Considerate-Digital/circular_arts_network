@@ -43,7 +43,7 @@
           <tr>
             <th class='fixed-row'><?php _e( "Title", "circular-arts-network" ); ?></th>
             <?php foreach ($table_columns_labels as $label) { ?>
-            	<th><?php _e( $label, "circular-arts-network" ); ?></th>
+            	<th><?php printf(_e( '%1', "circular-arts-network" ), $label); ?></h>
             <?php } ?>
           </tr>
         </thead>
