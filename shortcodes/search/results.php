@@ -20,7 +20,7 @@
 
         while ( $listings_query->have_posts() ) {
             $listings_query->the_post();
-            echo '<div id="listing-'.get_the_id().'" class="'.esc_attr( $columns ).'">';
+            echo esc_html('<div id="listing-'.get_the_id().'" class="'.esc_attr( $columns ).'">');
                 do_action('can_listing_box', get_the_id(), '1', 'grid', $links_target);
             echo '</div>';
         }
@@ -33,7 +33,7 @@
 
     } else {
         $msg = can_get_option('no_results_message', 'No Results Found.');
-        echo '<div class="alert alert-info">'.stripcslashes($msg).'</div>';
+        echo esc_html('<div class="alert alert-info">'.stripcslashes($msg).'</div>');
     }
     echo '</div>';
 } ?>

@@ -3,7 +3,7 @@ $primaryColor = can_get_option('can_primary_color', '#3AAF4A');
 $secondaryColor = can_get_option('can_secondary_color', '#fffff');
 
 if($primaryColor != '' && $secondaryColor != ''){
-    echo "
+    echo esc_html("
         .can-bs-wrapper .can-single-cat:before,
         .can-bs-wrapper .can-menu-box .active,
         .can-section .can-features li:before,
@@ -64,6 +64,6 @@ if($primaryColor != '' && $secondaryColor != ''){
 		background-color: $secondaryColor !important;
 	    box-shadow: 0px 10px 30px 0px {$secondaryColor}66 !important;
 	}
-    ";
+    ");
 }
 ?>

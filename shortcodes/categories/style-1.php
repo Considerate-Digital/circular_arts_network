@@ -21,7 +21,7 @@
                             <div class="can-single-cat text-center">
                                 <div class="can-cat-icon">
                                     <?php if ( in_array($cat->name, $cat_names ) ) { ?>
-                                        <img src="<?php echo plugins_url() ?>/circular-arts-network/assets/images/categories/<?php echo $cat->name ?>.svg" />
+                                        <img src="<?php echo esc_html(plugins_url()) ?>/circular-arts-network/assets/images/categories/<?php echo esc_html($cat->name) ?>.svg" />
                                     <?php } else { 
                                         $this->render_category_image($cat->term_id, $attrs['image_size']); 
                                     } ?>
@@ -35,13 +35,13 @@
                                 <div class="can-cat-count">
                                     <span><?php echo esc_attr( $cat->count ); ?></span>
                                 </div>
-                                <a href="<?php echo get_term_link($cat->term_id); ?>" class="can-absolute-link"></a>
+                                <a href="<?php echo esc_html(get_term_link($cat->term_id)); ?>" class="can-absolute-link"></a>
                             </div>
     				</div>
     				<?php 
     			} 
             } else { ?>
-                <div class="col"><?phpesc_html_e( 'Categories Not found', 'circular-arts-network' ); ?></div>
+                <div class="col"><?php esc_html_e( 'Categories Not found', 'circular-arts-network' ); ?></div>
             <?php } ?>
 	</div>
 </div>

@@ -4,7 +4,7 @@ $field_sections = $can_admin_settings->get_fields_sections();
 ?>
 <div class="can-screen-wrapper">
 	<div class="can-screen-header">
-		<?phpesc_html_e( 'Create Listing', 'circular-arts-network' ) ?>
+		<?php esc_html_e( 'Create Listing', 'circular-arts-network' ) ?>
 	</div>
 	<div class="edit-listing-wrap can-screen-content">
 		<form action="#" class="can-listing-form">
@@ -14,7 +14,7 @@ $field_sections = $can_admin_settings->get_fields_sections();
 					can_render_listing_section($section);
 				}
 			?>
-			<input class="btn btn-success" type="submit" value="<?phpesc_html_e( 'Create Listing', 'circular-arts-network' ); ?>">
+			<input class="btn btn-success" type="submit" value="<?php esc_html_e( 'Create Listing', 'circular-arts-network' ); ?>">
 		</form>
 	</div>
 </div>

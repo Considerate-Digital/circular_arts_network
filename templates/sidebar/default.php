@@ -13,7 +13,7 @@
 		<h4 class="seller-name">
 			<?php
 				$user_info = get_userdata($author_id);
-				echo can_wpml_translate($user_info->display_name, 'Seller', 'display_name_'.$author_id);
+				echo esc_html(can_wpml_translate($user_info->display_name, 'Seller', 'display_name_'.$author_id));
 			?>
 		</h4>
 		<ul class="seller-contact">
@@ -30,7 +30,7 @@
 		</ul>
 	</div>
 	<?php } ?>
-	<form class="form-contact contact-seller-form" method="post" role="form" data-toggle="validator" data-ajaxurl="<?php echo admin_url( 'admin-ajax.php' ); ?>">
+	<form class="form-contact contact-seller-form" method="post" role="form" data-toggle="validator" data-ajaxurl="<?php echo esc_html(admin_url( 'admin-ajax.php' )); ?>">
 	    <input type="hidden" name="seller_id" value="<?php echo esc_attr( $author_id ); ?>">
 	    <input type="hidden" name="action" value="can_contact_seller">
 	    <?php if(isset($_GET['listing_id'])){ ?>
@@ -46,39 +46,39 @@
 	    		<h2 class="title-contact-seller">Contact</h2>
 	    	</div>
 	        <div class="col-sm-12 can-input-wrapper">
-	            <label for="client_name"><?phpesc_html_e( 'Name', 'circular-arts-network' ); ?> *</label>
+	            <label for="client_name"><?php esc_html_e( 'Name', 'circular-arts-network' ); ?> *</label>
 	            <input name="client_name" id="client_name" type="text" class="can-text-input" required>
 	        </div>
 	        <div class="col-sm-12 can-input-wrapper">
-	        	<label for="client_email"><?phpesc_html_e( 'Email', 'circular-arts-network' ); ?> *</label>
+	        	<label for="client_email"><?php esc_html_e( 'Email', 'circular-arts-network' ); ?> *</label>
 	            <input type="email" class="can-text-input" name="client_email" id="client_email" required>
 	        </div>
 	        <div class="col-sm-12 can-input-wrapper">
-	        	<label for="client_phone"><?phpesc_html_e( 'Phone', 'circular-arts-network' ); ?> *</label>
+	        	<label for="client_phone"><?php esc_html_e( 'Phone', 'circular-arts-network' ); ?> *</label>
 	        	<input type="text" class="can-text-input" name="client_phone" id="client_phone" required>
 	        </div>
 	        <div class="col-sm-12 can-input-wrapper">
-	        	<label for="client_msg"><?phpesc_html_e( 'Your Message', 'circular-arts-network' ); ?> *</label>
+	        	<label for="client_msg"><?php esc_html_e( 'Your Message', 'circular-arts-network' ); ?> *</label>
 	            <textarea name="client_msg" id="client_msg" class="can-text-input text-form" required></textarea>
 	        </div>
 			<?php
 		        if (can_get_option('gdpr_message') != '') {
-		            echo '<div class="col-sm-12 can-input-wrapper"><label><input type="checkbox" required> '.stripcslashes(can_get_option('gdpr_message')).'</label></div>';
+		            echo esc_html('<div class="col-sm-12 can-input-wrapper"><label><input type="checkbox" required> '.stripcslashes(can_get_option('gdpr_message')).'</label></div>');
 		        }
 			    if (can_get_option('captcha_on_contact') == 'on') { ?>
 			        <script src='https://www.google.com/recaptcha/api.js'></script>
-			        <div class="g-recaptcha" style="transform:scale(0.77);-webkit-transform:scale(0.77);transform-origin:0 0;-webkit-transform-origin:0 0;" data-sitekey="<?php echo can_get_option('captcha_site_key', '6LcDhUQUAAAAAFAsfyTUPCwDIyXIUqvJiVjim2E9'); ?>"></div>
+			        <div class="g-recaptcha" style="transform:scale(0.77);-webkit-transform:scale(0.77);transform-origin:0 0;-webkit-transform-origin:0 0;" data-sitekey="<?php echo esc_html( can_get_option('captcha_site_key', '6LcDhUQUAAAAAFAsfyTUPCwDIyXIUqvJiVjim2E9')); ?>"></div>
 			        <br>
 			    <?php }
 			?>
 			<div class="col-sm-12 can-sending-email">
 				<div role="alert">
 				    <i class="bi bi-hourglass-split"></i>
-				    <span class="msg"><?phpesc_html_e( 'Sending Email, Please Wait...', 'circular-arts-network' ); ?></span>
+				    <span class="msg"><?php esc_html_e( 'Sending Email, Please Wait...', 'circular-arts-network' ); ?></span>
 				</div>
 			</div>
 	        <div class="col-sm-12 can-input-wrapper">
-	            <button type="submit" class="can-btn"><span class=""></span> <?phpesc_html_e( 'SEND MESSAGE', 'circular-arts-network' ); ?></button>
+	            <button type="submit" class="can-btn"><span class=""></span> <?php esc_html_e( 'SEND MESSAGE', 'circular-arts-network' ); ?></button>
 	        </div>
 	    </div><!-- /.row -->
 	</form><!-- /.form -->

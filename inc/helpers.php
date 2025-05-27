@@ -181,7 +181,7 @@ function can_render_listing_section($section, $listing_id = 0){
 	//TODO use render_listing_field as an example, but essentially render the categories here
 	case 'category':
 		$required = true;
-		$categories = get_terms("can_listing_category", array( 'hide_empty'=> false));
+		$categories = get_terms("can_listing_category");
 ?>
 		
                 <div class="card mb-2">
@@ -378,7 +378,7 @@ function can_render_search_field($field, $label = false, $icon = true){
     $field_value = $field['default'];
 
     if (isset($_GET[$field['key']])) {
-        $field_value = $_GET[$field['key']];
+        $field_value = wp_unslash($_GET[$field['key']]);
     }
 
     $html  = '';
@@ -591,7 +591,7 @@ function can_get_field_value($listing_id, $field, $value = ''){
 
     if (isset($field['type']) && $field['type'] == 'date') {
         $format = can_get_option('date_format', 'd-m-Y');
-        $value = date($format, strtotime($value));
+        $value = gmdate($format, strtotime($value));
     }
 
     if (isset($field['type']) && $field['type'] == 'price') {

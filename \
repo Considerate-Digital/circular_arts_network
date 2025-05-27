@@ -89,7 +89,7 @@
 										<i class="fas fa-pencil-alt"></i>
 										<?php esc_html_e( 'Edit', 'circular-arts-network' ); ?>
 									</a>
-									<a class="btn btn-danger btn-sm delete-listing" data-pid="<?php echo esc_html(get_the_id()); ?>" href="#">
+									<a class="btn btn-danger btn-sm delete-listing" data-pid="<?php echo get_the_id(); ?>" href="#">
 										<i class="fa fa-trash"></i>
 										<?php esc_html_e( 'Delete', 'circular-arts-network' ); ?>
 									</a>

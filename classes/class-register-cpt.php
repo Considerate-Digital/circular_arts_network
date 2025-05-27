@@ -68,15 +68,15 @@ class CAN_Register_CPT
         ?>
         <table class="form-table">
             <tr>
-                <th><label for="can_listing_permalink"><?phpesc_html_e( 'Listing Page Base' , 'circular-arts-network' ); ?></label></th>
+                <th><label for="can_listing_permalink"><?php esc_html_e( 'Listing Page Base' , 'circular-arts-network' ); ?></label></th>
                 <td><input type="text" value="<?php echo esc_attr( $listing_slug ); ?>" name="can_listing_permalink" id="can_listing_permalink" class="regular-text" /></td>
             </tr>
             <tr>
-                <th><label for="can_category_permalink"><?phpesc_html_e( 'Listing Category Base' , 'circular-arts-network' ); ?></label></th>
+                <th><label for="can_category_permalink"><?php esc_html_e( 'Listing Category Base' , 'circular-arts-network' ); ?></label></th>
                 <td><input type="text" value="<?php echo esc_attr( $category_slug ); ?>" name="can_category_permalink" id="can_category_permalink" class="regular-text" /></td>
             </tr>
             <tr>
-                <th><label for="can_tag_permalink"><?phpesc_html_e( 'Listing Tag Base' , 'circular-arts-network' ); ?></label></th>
+                <th><label for="can_tag_permalink"><?php esc_html_e( 'Listing Tag Base' , 'circular-arts-network' ); ?></label></th>
                 <td><input type="text" value="<?php echo esc_attr( $tag_slug ); ?>" name="can_tag_permalink" id="can_tag_permalink" class="regular-text" /></td>
             </tr>
         </table>

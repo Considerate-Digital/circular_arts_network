@@ -262,7 +262,7 @@ class CAN_Admin_Settings
 
     function render_fields_builder_field_heading($title, $label){
         ?>
-        <b><?php echo ($title != '') ? stripcslashes($title).' - ' : '' ; ?></b>
+        <b><?php echo ($title != '') ? esc_html(stripcslashes($title).' - ') : '' ; ?></b>
         <?php echo esc_attr( $label ); ?>
         <span class="float-end btn btn-sm btn-outline-primary trigger-sort">
             <i class="bi bi-arrows-move"></i>

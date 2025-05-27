@@ -79,10 +79,10 @@ class CAN_Front_Templates
                 <script type="text/javascript">
                 <!--
                     jQuery(document).ready(function($) {
-                        <?php echo stripcslashes(can_get_option('custom_js')); ?>
+                        <?php echo esc_html(stripcslashes(can_get_option('custom_js'))); ?>
                     });             
                 //--></script>              
-            <?php echo ob_get_clean();            
+            <?php echo esc_html(ob_get_clean());            
         }
     }
 
@@ -135,7 +135,7 @@ class CAN_Front_Templates
         if( has_post_thumbnail($id) ){
             echo get_the_post_thumbnail( $id, $image_size, $attr );
         } elseif (can_get_option('placeholder_image', '') != '') {
-            echo '<img class="can-featured-image" data-pid="'.$id.'" src="'.can_get_option('placeholder_image').'">';
+            echo esc_html('<img class="can-featured-image" data-pid="'.$id.'" src="'.can_get_option('placeholder_image').'">');
         } else {
 
         // Use the first gallery picture
@@ -159,7 +159,7 @@ class CAN_Front_Templates
         echo '<div class="can-pagination">';
         $search_for   = array( $big, '#038;' );
         $replace_with = array( '%#%', '&' );          
-        echo paginate_links( array(
+        echo esc_html(paginate_links( array(
             'base'       => str_replace($search_for, $replace_with, esc_url(get_pagenum_link( $big ))),
             'format'     => '?paged=%#%',
             'current'    => max( 1, $paged ),
@@ -168,7 +168,7 @@ class CAN_Front_Templates
             'prev_text'  => __('«', 'circular-arts-network'),
             'next_text'  => __('»', 'circular-arts-network'),
             'type'       => 'list'
-        ) );
+        ) ));
         echo '</div>';
     }
 
@@ -254,7 +254,7 @@ class CAN_Front_Templates
         if (file_exists($file_path)) {
          	include $file_path;
         } else {
-        	echo __( 'Template Not Found!', 'circular-arts-network' );
+        	echo esc_html_e( 'Template Not Found!', 'circular-arts-network' );
         }
     }
 
@@ -505,7 +505,7 @@ class CAN_Front_Templates
     function render_ribbon($listing_id){
         $ribbon_text = get_post_meta( $listing_id, 'can_listing_ribbon', true );
         if ($ribbon_text) {
-    	   echo '<div class="can-ribbon">'.$ribbon_text.'</div>';
+    	   echo esc_html('<div class="can-ribbon">'.$ribbon_text.'</div>');
         }
     }
 
@@ -519,7 +519,7 @@ class CAN_Front_Templates
     				        if ( is_wp_error( $term_link ) ) {
     				            continue;
     				        }
-    				        echo '<a class="can-category" href="' . esc_url( $term_link ) . '">' . $term->name . ' </a></li>';
+    				        echo '<a class="can-category" href="' . esc_url( $term_link ) . '">' . esc_html($term->name) . ' </a></li>';
     				    }
     				?>
     			</p>

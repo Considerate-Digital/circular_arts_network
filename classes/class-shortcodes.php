@@ -126,7 +126,7 @@ class CAN_Shortcodes
 		if ($image_id != '') {
 			echo wp_get_attachment_image( $image_id, $image_size );
 		} elseif ($icon_class != '') {
-			echo "<i class='bi bi-{$icon_class}'></i>";
+			echo esc_html("<i class='bi bi-{$icon_class}'></i>");
 		} else {
 			echo '';
 		}
@@ -410,7 +410,7 @@ class CAN_Shortcodes
 		<?php } ?>
 		<div class="row">
 		    <?php while ( $the_query->have_posts() ) : $the_query->the_post(); ?>
-			<div id="listing-<?php echo get_the_id(); ?>" class="col-sm-12 can-results-box">
+			<div id="listing-<?php echo esc_html(get_the_id()); ?>" class="col-sm-12 can-results-box">
 			    <?php do_action('can_listing_box', get_the_id(), '1', 'list', $target); ?>
 			</div>
 		    <?php endwhile; ?>
@@ -419,7 +419,7 @@ class CAN_Shortcodes
 	    <?php else : ?>
 		<div class="can-no-results alert alert-info mt-2" role="alert">
 		    <i class="bi bi-info"></i>
-		    <span><?php $msg = can_get_option('no_results_message', __( 'Sorry! No Listings Found. Try Searching Again.', 'circular-arts-network' )); echo apply_filters( 'no_results_message',  stripcslashes($msg)); ?></span>
+		    <span><?php $msg = can_get_option('no_results_message', esc_html_e( 'Sorry! No Listings Found. Try Searching Again.', 'circular-arts-network' )); echo esc_html(apply_filters( 'no_results_message',  stripcslashes($msg))); ?></span>
 		</div>
 <?php endif;
 		}
@@ -642,7 +642,7 @@ class CAN_Shortcodes
 			$url = explode( '?', esc_url_raw( add_query_arg( array() ) ) );
 			$no_query_args = $url[0];
 
-			echo "<a href='".esc_url( add_query_arg( 'can_page', $item['url'], $no_query_args) )."' class='list-group-item list-group-item-action {$active} can-menu-".esc_attr( $key )."'><i class='".esc_attr( $item['icon'] )."'></i> ".esc_attr( $item['title'] )."</a>";
+			echo esc_html("<a href='".esc_url( add_query_arg( 'can_page', $item['url'], $no_query_args) )."' class='list-group-item list-group-item-action {$active} can-menu-".esc_attr( $key )."'><i class='".esc_attr( $item['icon'] )."'></i> ".esc_attr( $item['title'] )."</a>");
 		}
 		echo '</div>';
 	}

@@ -1,5 +1,5 @@
 <div class="can-section">
-	<h2><?phpesc_html_e( 'Tags', 'circular-arts-network' ); ?></h2>
+	<h2><?php esc_html_e( 'Tags', 'circular-arts-network' ); ?></h2>
 	<?php
             echo '<ul class="can-tags">';
                  
@@ -11,7 +11,7 @@
                         continue;
                     }
 
-                    echo '<li><a class="filter" href="' . esc_url( $term_link ) . '">' . $term->name . ' </a></li>';
+                    echo esc_html('<li><a class="filter" href="' . esc_url( $term_link ) . '">' . $term->name . ' </a></li>');
                 }
                  
             echo '</ul>';

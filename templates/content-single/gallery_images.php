@@ -1,6 +1,6 @@
 <div class="can-section">
     <div class="wrap-slider">
-        <div class="<?php echo esc_attr( $gallery_type ); ?>-custom" <?php echo call_user_func(array($this, $gallery_type.'_data_attrs')); ?>>
+        <div class="<?php echo esc_attr( $gallery_type ); ?>-custom" <?php echo esc_html( call_user_func(array($this, $gallery_type.'_data_attrs'))); ?>>
             <?php if($featured_image){
                 echo get_the_post_thumbnail( $listing_id, $image_size, array('class' => 'skip-lazy') );
             } ?>
@@ -14,7 +14,7 @@
                     if (wp_attachment_is( 'video', $id )) {
                         echo '<a href="$image_url" data-video="true"></a>';
                     } else {
-                        echo '<img class="skip-lazy rem-slider-image" data-alt="'.$image_alt.'" data-title="'.$image_title.'" src="'.$image_url.'">';
+                        echo esc_html('<img class="skip-lazy rem-slider-image" data-alt="'.$image_alt.'" data-title="'.$image_title.'" src="'.$image_url.'">');
                     }
                 }
             ?>
