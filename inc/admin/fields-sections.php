@@ -1,16 +1,16 @@
 <div class="wrap can-bs-wrapper">
-	<h2 class="border-bottom mb-3"><?php _e( 'CAN - Field Sections', 'circular-arts-network' ); ?></h2>
+	<h2 class="border-bottom mb-3"><?php esc_html_e( 'CAN - Field Sections', 'circular-arts-network' ); ?></h2>
 
     	<div class="row">
     	<div class="col-sm-3">
             <div class="card">
                 <h5 class="card-header">
-	                <?php _e( 'Create Section', 'circular-arts-network' ); ?>
+	                <?php esc_html_e( 'Create Section', 'circular-arts-network' ); ?>
                 </h5>
                 <div class="card-body">
                 	<p class="text-center"><?php esc_attr_e( 'Here you can create, delete or sort the sections for the listing fields.', 'circular-arts-network' ); ?></p>
                 	<p class="text-center">
-                		<button class="button btn-info can-create-field-section"><?php _e( 'Create New', 'circular-arts-network' ); ?></button>
+                		<button class="button btn-info can-create-field-section"><?php esc_html_e( 'Create New', 'circular-arts-network' ); ?></button>
                 	</p>
                 </div>
             </div>
@@ -18,9 +18,9 @@
         <div class="col-sm-9">
             <div class="card">
                 <h5 class="card-header">
-	                <?php _e( 'Field Sections', 'circular-arts-network' ); ?>
-					<button class="btn btn-success btn-sm float-end can-save-field-section"><?php _e( 'Save Sections', 'circular-arts-network' ); ?></button>
-					<button class="btn btn-danger btn-sm float-end can-reset-field-section me-2"><?php _e( 'Reset Sections', 'circular-arts-network' ); ?></button>
+	                <?php esc_html_e( 'Field Sections', 'circular-arts-network' ); ?>
+					<button class="btn btn-success btn-sm float-end can-save-field-section"><?php esc_html_e( 'Save Sections', 'circular-arts-network' ); ?></button>
+					<button class="btn btn-danger btn-sm float-end can-reset-field-section me-2"><?php esc_html_e( 'Reset Sections', 'circular-arts-network' ); ?></button>
                 </h5>
                 <div class="card-body" id="field-sections-wrap">
 		                <?php foreach ($field_sections as $index => $tab) { ?>
@@ -40,7 +40,7 @@
 						    <div class="card-body inside-contents">
 								<div class="row mb-3">
 									<label class="col-sm-4 col-form-label">
-										<?php _e( 'Section Title', 'circular-arts-network' ); ?>
+										<?php esc_html_e( 'Section Title', 'circular-arts-network' ); ?>
 									</label>
 									<div class="col-sm-8">
 										<input type="text" class="form-control form-control-sm section_title" value="<?php echo esc_attr( $tab['title'] ); ?>">
@@ -48,7 +48,7 @@
 								</div>
 								<div class="row mb-3">
 									<label class="col-sm-4 col-form-label">
-										<?php _e( 'Data Name (lowercase without spaces)', 'circular-arts-network' ); ?>
+										<?php esc_html_e( 'Data Name (lowercase without spaces)', 'circular-arts-network' ); ?>
 									</label>
 									<div class="col-sm-8">
 										<input <?php echo (can_is_default_section($tab)) ? 'disabled' : ''; ?> type="text" class="form-control form-control-sm section_key" value="<?php echo esc_attr( $tab['key'] ); ?>">
@@ -56,7 +56,7 @@
 								</div>
 								<div class="row mb-3">
 									<label class="col-sm-4 col-form-label">
-										<?php _e( 'Icon Class or Image URL', 'circular-arts-network' ); ?>
+										<?php esc_html_e( 'Icon Class or Image URL', 'circular-arts-network' ); ?>
 									</label>
 									<div class="col-sm-8">
 										<input type="text" class="form-control form-control-sm section_icon" value="<?php echo esc_attr( $tab['icon'] ); ?>">
@@ -64,7 +64,7 @@
 								</div>
 								<div class="row mb-3">
 									<label class="col-sm-4 col-form-label">
-										<?php _e( 'Accessibility', 'circular-arts-network' ); ?>
+										<?php esc_html_e( 'Accessibility', 'circular-arts-network' ); ?>
 									</label>
 									<div class="col-sm-8">
 								        <select class="form-select form-select-sm section_accessibility">

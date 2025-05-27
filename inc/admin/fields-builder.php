@@ -1,11 +1,11 @@
 <div class="wrap wcp-main-wrap can-bs-wrapper">
-    <h2 class="border-bottom mb-3"><?php _e( 'CAN - Fields Builder', 'circular-arts-network' ); ?></h2>
+    <h2 class="border-bottom mb-3"><?php esc_html_e( 'CAN - Fields Builder', 'circular-arts-network' ); ?></h2>
 
     <div class="row">
         <div class="col-sm-12">
             <div class="alert alert-info">
                 <span class="glyphicon glyphicon-info-sign"></span>
-                <?php _e( 'Drag and Drop the fields from Field Types into the Active Fields area.', 'circular-arts-network' ); ?>
+                <?php esc_html_e( 'Drag and Drop the fields from Field Types into the Active Fields area.', 'circular-arts-network' ); ?>
             </div>
         </div>
     </div>
@@ -13,7 +13,7 @@
         <div class="col-sm-3">
             <div class="card">
                 <h5 class="card-header">
-                    <?php _e( 'Field Types', 'circular-arts-network' ); ?>
+                    <?php esc_html_e( 'Field Types', 'circular-arts-network' ); ?>
                 </h5>
                 <div class="card-body">
                     <div class="hard-coded-list">
@@ -39,9 +39,9 @@
         <div class="col-sm-9">
             <div class="card">
                 <h5 class="card-header">
-                    <?php _e( 'Active Fields', 'circular-arts-network' ); ?>
-                    <button class="btn btn-success btn-sm float-end can-save-settings"><?php _e( 'Save Settings', 'circular-arts-network' ); ?></button>
-                    <button class="btn btn-danger btn-sm me-2 float-end can-reset-settings"><?php _e( 'Reset Fields', 'circular-arts-network' ); ?></button>
+                    <?php esc_html_e( 'Active Fields', 'circular-arts-network' ); ?>
+                    <button class="btn btn-success btn-sm float-end can-save-settings"><?php esc_html_e( 'Save Settings', 'circular-arts-network' ); ?></button>
+                    <button class="btn btn-danger btn-sm me-2 float-end can-reset-settings"><?php esc_html_e( 'Reset Fields', 'circular-arts-network' ); ?></button>
                 </h5>
                 <div class="card-body">
                     <div class="form-meta-setting form-horizontal">

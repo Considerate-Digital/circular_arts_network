@@ -8,7 +8,7 @@
 						<div class="<?php echo esc_attr( $columns ); ?>">
 							<div class="can-input-wrap">
 								<i class="bi bi-search"></i>
-								<input type="text" class="can-input-field" name="keywords" placeholder="<?php _e( 'Search Keywords...', 'circular-arts-network' ); ?>">	
+								<input type="text" class="can-input-field" name="keywords" placeholder="<?phpesc_html_e( 'Search Keywords...', 'circular-arts-network' ); ?>">	
 							</div>
 						</div>
 					<?php }
@@ -26,13 +26,13 @@
 					}
 				?>
 				<div class="<?php echo esc_attr( $columns ); ?> text-end">
-					<input type="submit" class="can-btn" value="<?php _e( 'Search', 'circular-arts-network' ) ?>">
+					<input type="submit" class="can-btn" value="<?phpesc_html_e( 'Search', 'circular-arts-network' ) ?>">
 				</div>
 			</div>
 		</form>
 	</div>
 	<div class="can-loader text-center">
-		<img src="<?php echo CAN_URL.'/assets/images/ajax-loader.gif'; ?>" alt="<?php _e( 'Loading...', 'circular-arts-network' ); ?>">
+		<img src="<?php echo CAN_URL.'/assets/images/ajax-loader.gif'; ?>" alt="<?phpesc_html_e( 'Loading...', 'circular-arts-network' ); ?>">
 	</div>
 	<div class="search-results"></div>
 </div>

@@ -1738,12 +1738,12 @@ var leafletControlGeocoder = (function (exports, L) {
 
       var cb = function cb(results) {
         if (requestCount === _this3._requestCount) {
-          var _event = {
+          varesc_html_event = {
             input: value,
             results: results
           };
 
-          _this3.fire(suggest ? 'finishsuggest' : 'finishgeocode', _event);
+          _this3.fire(suggest ? 'finishsuggest' : 'finishgeocode',esc_html_event);
 
           _this3._geocodeResult(results, suggest);
         }
@@ -1782,7 +1782,7 @@ var leafletControlGeocoder = (function (exports, L) {
       }
     };
 
-    _proto._expand = function _expand() {
+    _proto._expand = functionesc_html_expand() {
       L__namespace.DomUtil.addClass(this._container, 'leaflet-control-geocoder-expanded');
 
       this._input.select();

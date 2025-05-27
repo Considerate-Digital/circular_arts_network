@@ -56,7 +56,7 @@
             <div class="row mb-3 wrap_<?php echo esc_attr( $field['name'] ); ?>" <?php echo esc_attr( $c_data ); ?>>
                 <label for="<?php echo esc_attr( $field['name'] ); ?>" class="col-sm-4 col-form-label"><?php echo esc_attr( $field['title'] ); ?></label>
                 <div class="col-sm-8">
-                    <textarea <?php echo esc_attr( $disabled ); ?> name="<?php echo esc_attr( $field['name'] ); ?>" class="form-control" id="<?php echo esc_attr( $field['name'] ); ?>"><?php echo (is_array($field_value)) ? implode("\n", $field_value) : $field_value; ?></textarea>
+                    <textarea <?php echo esc_attr( $disabled ); ?> name="<?php echo esc_attr( $field['name'] ); ?>" class="form-control" id="<?php echo esc_attr( $field['name'] ); ?>"><?php echo (is_array($field_value)) ? esc_html(implode("\n", $field_value)) : esc_html($field_value); ?></textarea>
                     <span class="help-block"><?php echo wp_kses( $field['help'], array('code' => array()) ); ?></span>
                 </div>
             </div>
@@ -85,7 +85,7 @@
                                 }
                                 $disabled = (strpos($val, 'disabled')) ? 'disabled' : '' ;
 
-                                echo '<option value="'.$val.'" '.$selected.' '.$disabled.'>'.$label.'</option>';
+                                echo esc_html('<option value="'.$val.'" '.$selected.' '.$disabled.'>'.$label.'</option>');
                             }
                         }
                         ?>
@@ -102,7 +102,7 @@
                 <div class="col-sm-8">
                     <select name="<?php echo esc_attr( $field['name'] ); ?>" id="<?php echo esc_attr( $field['name'] ); ?>" class="form-control form-control-sm">
                         <?php
-                        echo '<option value="">'.__( 'Default', 'circular-arts-network' ).'</option>';
+                        echo esc_html('<option value="">'.__( 'Default', 'circular-arts-network' ).'</option>');
                         $image_sizes = get_intermediate_image_sizes();
                         foreach ($image_sizes as $val) {
                             $selected = ($field_value == $val) ? 'selected' : '' ;
@@ -125,13 +125,13 @@
                     <select name="<?php echo esc_attr( $field['name'] ); ?>" id="<?php echo esc_attr( $field['name'] ); ?>" class="form-control form-control-sm">
                         <?php
                         $selected = ($field_value == '') ? 'selected' : '' ;
-                        echo '<option value="" '.$selected.'>'.__( 'Disable', 'circular-arts-network' ).'</option>';
+                        echo esc_html('<option value="" '.$selected.'>'.__( 'Disable', 'circular-arts-network' ).'</option>');
                         if (isset($GLOBALS['wp_registered_sidebars']) && $GLOBALS['wp_registered_sidebars'] != '') {
                             foreach ($GLOBALS['wp_registered_sidebars'] as $sidebar) {
                                 $selected = ($field_value == $sidebar['id']) ? 'selected' : '' ;
                                 $disabled = (strpos($field_value, 'disabled')) ? 'disabled' : '' ;
 
-                                echo '<option value="'.$sidebar['id'].'" '.esc_attr( $selected ).' '.esc_attr( $disabled ).'>'.$sidebar['name'].'</option>';
+                                echo esc_html('<option value="'.$sidebar['id'].'" '.esc_attr( $selected ).' '.esc_attr( $disabled ).'>'.$sidebar['name'].'</option>');
                             }
                         }
                         ?>
@@ -166,7 +166,7 @@
                             </select>
                             <?php wp_reset_postdata();
                         } else {
-                            echo __( 'No Pages Found!', 'circular-arts-network' );
+                            echo esc_html_e( 'No Pages Found!', 'circular-arts-network' );
                         }
                     ?>
                     <span class="help-block"><?php echo wp_kses( $field['help'], array('code' => array()) ); ?></span>
@@ -180,7 +180,7 @@
                 <label for="<?php echo esc_attr( $field['name'] ); ?>" class="col-sm-4 col-form-label"><?php echo esc_attr( $field['title'] ); ?></label>
                 <div class="col-sm-8">
                     <select name="<?php echo esc_attr( $field['name'] ); ?>" id="<?php echo esc_attr( $field['name'] ); ?>" data-placeholder="<?php esc_attr_e( 'Choose a currency&hellip;', 'circular-arts-network' ); ?>" class="form-control form-control-sm">
-                        <option value=""><?php _e( 'Choose a currency&hellip;', 'circular-arts-network' ); ?></option>
+                        <option value=""><?php esc_html_e( 'Choose a currency&hellip;', 'circular-arts-network' ); ?></option>
                         <?php
                         foreach ( can_get_all_currencies() as $code => $name ) {
                             echo '<option value="' . esc_attr( $code ) . '" ' . selected( $field_value, $code, false ) . '>' . esc_html( $name . ' (' . can_get_currency_symbol( $code ) . ')' ) . '</option>';
@@ -216,9 +216,9 @@
                                 <input type="text" class="form-control form-control-sm image-url" id="<?php echo esc_attr( $field['name'] ); ?>"
                                 name="<?php echo esc_attr( $field['name'] ); ?>" value="<?php echo esc_url( $field_value ); ?>">
                                 <span class="input-group-btn">
-                                    <button type="button" class="btn btn-info btn-sm upload_image_button" data-title="<?php _e( 'Image', 'circular-arts-network' ); ?>"
-                        data-btntext="<?php _e( 'Select', 'circular-arts-network' ); ?>">
-                                        <?php _e( 'Media', 'circular-arts-network' ); ?></button>
+                                    <button type="button" class="btn btn-info btn-sm upload_image_button" data-title="<?php esc_html_e( 'Image', 'circular-arts-network' ); ?>"
+                        data-btntext="<?php esc_html_e( 'Select', 'circular-arts-network' ); ?>">
+                                        <?php esc_html_e( 'Media', 'circular-arts-network' ); ?></button>
                                 </span>
                             </div>
                             <span class="help-block"><?php echo wp_kses( $field['help'], array('code' => array()) ); ?></span>
@@ -234,7 +234,7 @@
                     <div class="checkbox">
                         <label>
                             <?php $checked = ($field_value != '') ? 'checked' : '' ; ?>
-                            <input type="checkbox" name="<?php echo esc_attr( $field['name'] ); ?>" id="<?php echo esc_attr( $field['name'] ); ?>" <?php echo esc_attr( $checked ); ?>> <?php _e( 'Enable', 'circular-arts-network' ); ?>
+                            <input type="checkbox" name="<?php echo esc_attr( $field['name'] ); ?>" id="<?php echo esc_attr( $field['name'] ); ?>" <?php echo esc_attr( $checked ); ?>> <?php esc_html_e( 'Enable', 'circular-arts-network' ); ?>
                         </label>
                     </div>                            
                     <span class="help-block"><?php echo wp_kses( $field['help'], array('code' => array()) ); ?></span>

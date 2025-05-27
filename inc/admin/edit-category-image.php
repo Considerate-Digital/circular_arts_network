@@ -1,6 +1,6 @@
  <tr class="form-field term-group-wrap">
    <th scope="row">
-     <label for="category-image-id"><?php _e( 'Icon or Image', 'circular-arts-network' ); ?></label>
+     <label for="category-image-id"><?php esc_html_e( 'Icon or Image', 'circular-arts-network' ); ?></label>
    </th>
    <td>
     <?php
@@ -11,20 +11,20 @@
       <div class="card p-3 mb-3">
         <div class="row text-center">
           <div class="col-sm-6">
-            <h4><?php _e('Icon', 'circular-arts-network'); ?></h4>
+            <h4><?php esc_html_e('Icon', 'circular-arts-network'); ?></h4>
               <select class="can-iconpicker" id="can-iconpicker" name="can_category_icon">
-                <option value=""><?php _e( 'No icon', 'circular-arts-network' ) ?></option>
+                <option value=""><?php esc_html_e( 'No icon', 'circular-arts-network' ) ?></option>
                 <?php
                   $icons = can_get_icons_list();
                   foreach ($icons as $iconClass) {
                     $selected = ($saved_icon == $iconClass) ? 'selected' : '' ;
-                    echo "<option {$selected}>{$iconClass}</option>";
+                    echo esc_html("<option {$selected}>{$iconClass}</option>");
                   }
                 ?>
               </select>
           </div>
           <div class="col-sm-6">
-            <h4><?php _e('Image', 'circular-arts-network'); ?></h4>
+            <h4><?php esc_html_e('Image', 'circular-arts-network'); ?></h4>
               <input type="hidden" id="category-image-id" name="can_category_image" class="custom_media_url" value="">
               <div id="category-image-wrapper">
                 <?php if ( $saved_image ) {

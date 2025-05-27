@@ -37,7 +37,7 @@
 					_e( 'Details', 'circular-arts-network' );
 					else: 
 
-					 _e( 'Read', 'circular-arts-network' );
+					esc_html_e( 'Read', 'circular-arts-network' );
 				endif; ?>
 
 </a>

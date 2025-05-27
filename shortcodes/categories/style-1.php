@@ -41,7 +41,7 @@
     				<?php 
     			} 
             } else { ?>
-                <div class="col"><?php _e( 'Categories Not found', 'circular-arts-network' ); ?></div>
+                <div class="col"><?phpesc_html_e( 'Categories Not found', 'circular-arts-network' ); ?></div>
             <?php } ?>
 	</div>
 </div>

@@ -1,7 +1,7 @@
 <div class="can-screen-wrapper">
 	<div class="can-screen-header">
-		<?php _e( 'My Listings', 'circular-arts-network' ) ?>
-		<a href="<?php echo esc_url( add_query_arg( 'can_page', 'add') ); ?>" class="btn btn-sm btn-success float-end text-decoration-none"><i class="bi bi-plus-circle"></i> <?php _e( 'Add New', 'circular-arts-network' ) ?></a>
+		<?phpesc_html_e( 'My Listings', 'circular-arts-network' ) ?>
+		<a href="<?php echo esc_url( add_query_arg( 'can_page', 'add') ); ?>" class="btn btn-sm btn-success float-end text-decoration-none"><i class="bi bi-plus-circle"></i> <?phpesc_html_e( 'Add New', 'circular-arts-network' ) ?></a>
 	</div>
 	<div class="can-screen-content mb-4">
 		<div class="row mb-4">
@@ -9,14 +9,14 @@
 				<form action="#" method="GET">
 					<input type="hidden" name="can_page" value="listings">
 				    <div class="input-group">
-					    <input type="text" value="<?php echo (isset($_GET['can_search_query'])) ? $_GET['can_search_query'] : '' ; ?>" name="can_search_query" class="form-control" placeholder="<?php _e( 'Search for...', 'circular-arts-network' ); ?>">
+					    <input type="text" value="<?php echo (isset($_GET['can_search_query'])) ? $_GET['can_search_query'] : '' ; ?>" name="can_search_query" class="form-control" placeholder="<?phpesc_html_e( 'Search for...', 'circular-arts-network' ); ?>">
 						<select name="can_status" class="form-select">
-							<option value="any"><?php _e( 'All Status', 'circular-arts-network' ); ?></option>
-							<option value="publish" <?php echo (isset($_GET['can_status']) && $_GET['can_status'] == 'publish') ? 'selected' : '' ; ?>><?php _e( 'Only Published', 'circular-arts-network' ); ?></option>
-							<option value="pending" <?php echo (isset($_GET['can_status']) && $_GET['can_status'] == 'pending') ? 'selected' : '' ; ?>><?php _e( 'Only Pending', 'circular-arts-network' ); ?></option>
-							<option value="draft" <?php echo (isset($_GET['can_status']) && $_GET['can_status'] == 'draft') ? 'selected' : '' ; ?>><?php _e( 'Only Draft', 'circular-arts-network' ); ?></option>
+							<option value="any"><?phpesc_html_e( 'All Status', 'circular-arts-network' ); ?></option>
+							<option value="publish" <?php echo (isset($_GET['can_status']) && $_GET['can_status'] == 'publish') ? 'selected' : '' ; ?>><?phpesc_html_e( 'Only Published', 'circular-arts-network' ); ?></option>
+							<option value="pending" <?php echo (isset($_GET['can_status']) && $_GET['can_status'] == 'pending') ? 'selected' : '' ; ?>><?phpesc_html_e( 'Only Pending', 'circular-arts-network' ); ?></option>
+							<option value="draft" <?php echo (isset($_GET['can_status']) && $_GET['can_status'] == 'draft') ? 'selected' : '' ; ?>><?phpesc_html_e( 'Only Draft', 'circular-arts-network' ); ?></option>
 						</select>
-					    <button class="btn btn-outline-secondary" type="submit"><?php _e( 'Search', 'circular-arts-network' ); ?></button>
+					    <button class="btn btn-outline-secondary" type="submit"><?phpesc_html_e( 'Search', 'circular-arts-network' ); ?></button>
 				    </div>
 				</form>
 			</div>
@@ -26,12 +26,12 @@
 		<table class="table align-middle my-listings">
 		  <thead>
 			<tr>
-				<th><?php _e( 'Thumbnail', 'circular-arts-network' ); ?></th>
-				<th><?php _e( 'Title', 'circular-arts-network' ); ?></th>
-				<th><?php _e( 'Price', 'circular-arts-network' ); ?></th>
-				<th><?php _e( 'Updated', 'circular-arts-network' ); ?></th>
-				<th><?php _e( 'Status', 'circular-arts-network' ); ?></th>
-				<th><?php _e( 'Actions', 'circular-arts-network' ); ?></th>
+				<th><?phpesc_html_e( 'Thumbnail', 'circular-arts-network' ); ?></th>
+				<th><?phpesc_html_e( 'Title', 'circular-arts-network' ); ?></th>
+				<th><?phpesc_html_e( 'Price', 'circular-arts-network' ); ?></th>
+				<th><?phpesc_html_e( 'Updated', 'circular-arts-network' ); ?></th>
+				<th><?phpesc_html_e( 'Status', 'circular-arts-network' ); ?></th>
+				<th><?phpesc_html_e( 'Actions', 'circular-arts-network' ); ?></th>
 			</tr>
 		  </thead>
 		  <tbody>
@@ -87,11 +87,11 @@
 								<td>
 									<a href="<?php echo esc_url( add_query_arg( array('can_page' => 'edit', 'listing_id' => get_the_id()) ) ); ?>" class="btn btn-info btn-sm">
 										<i class="fas fa-pencil-alt"></i>
-										<?php _e( 'Edit', 'circular-arts-network' ); ?>
+										<?phpesc_html_e( 'Edit', 'circular-arts-network' ); ?>
 									</a>
 									<a class="btn btn-danger btn-sm delete-listing" data-pid="<?php echo get_the_id(); ?>" href="#">
 										<i class="fa fa-trash"></i>
-										<?php _e( 'Delete', 'circular-arts-network' ); ?>
+										<?phpesc_html_e( 'Delete', 'circular-arts-network' ); ?>
 									</a>
 								</td>
 							</tr>
@@ -100,7 +100,7 @@
 					wp_reset_postdata();
 				} else { ?>
 					<tr><td colspan="6">
-						<div class="alert alert-primary text-center"><?php _e( 'No Listings Found!', 'circular-arts-network' ) ?></div>
+						<div class="alert alert-primary text-center"><?phpesc_html_e( 'No Listings Found!', 'circular-arts-network' ) ?></div>
 					</td></tr>
 				<?php }
 			?>

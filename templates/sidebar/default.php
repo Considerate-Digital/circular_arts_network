@@ -46,19 +46,19 @@
 	    		<h2 class="title-contact-seller">Contact</h2>
 	    	</div>
 	        <div class="col-sm-12 can-input-wrapper">
-	            <label for="client_name"><?php _e( 'Name', 'circular-arts-network' ); ?> *</label>
+	            <label for="client_name"><?phpesc_html_e( 'Name', 'circular-arts-network' ); ?> *</label>
 	            <input name="client_name" id="client_name" type="text" class="can-text-input" required>
 	        </div>
 	        <div class="col-sm-12 can-input-wrapper">
-	        	<label for="client_email"><?php _e( 'Email', 'circular-arts-network' ); ?> *</label>
+	        	<label for="client_email"><?phpesc_html_e( 'Email', 'circular-arts-network' ); ?> *</label>
 	            <input type="email" class="can-text-input" name="client_email" id="client_email" required>
 	        </div>
 	        <div class="col-sm-12 can-input-wrapper">
-	        	<label for="client_phone"><?php _e( 'Phone', 'circular-arts-network' ); ?> *</label>
+	        	<label for="client_phone"><?phpesc_html_e( 'Phone', 'circular-arts-network' ); ?> *</label>
 	        	<input type="text" class="can-text-input" name="client_phone" id="client_phone" required>
 	        </div>
 	        <div class="col-sm-12 can-input-wrapper">
-	        	<label for="client_msg"><?php _e( 'Your Message', 'circular-arts-network' ); ?> *</label>
+	        	<label for="client_msg"><?phpesc_html_e( 'Your Message', 'circular-arts-network' ); ?> *</label>
 	            <textarea name="client_msg" id="client_msg" class="can-text-input text-form" required></textarea>
 	        </div>
 			<?php
@@ -74,11 +74,11 @@
 			<div class="col-sm-12 can-sending-email">
 				<div role="alert">
 				    <i class="bi bi-hourglass-split"></i>
-				    <span class="msg"><?php _e( 'Sending Email, Please Wait...', 'circular-arts-network' ); ?></span>
+				    <span class="msg"><?phpesc_html_e( 'Sending Email, Please Wait...', 'circular-arts-network' ); ?></span>
 				</div>
 			</div>
 	        <div class="col-sm-12 can-input-wrapper">
-	            <button type="submit" class="can-btn"><span class=""></span> <?php _e( 'SEND MESSAGE', 'circular-arts-network' ); ?></button>
+	            <button type="submit" class="can-btn"><span class=""></span> <?phpesc_html_e( 'SEND MESSAGE', 'circular-arts-network' ); ?></button>
 	        </div>
 	    </div><!-- /.row -->
 	</form><!-- /.form -->

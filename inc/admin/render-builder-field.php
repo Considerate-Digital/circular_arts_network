@@ -48,7 +48,7 @@ switch ($field['type']) {
 				<div class="checkbox">
 					<label>
 						<input type="checkbox" class="field_<?php echo esc_attr( $field['name'] ); ?>" <?php echo (isset($data[$field['name']]) && $data[$field['name']] == 'true') ? 'checked' : '' ; ?>>
-						<?php _e( 'Enable', 'circular-arts-network' ); ?>	
+						<?php esc_html_e( 'Enable', 'circular-arts-network' ); ?>	
 					</label>
 				</div>
 		    </div>
@@ -81,7 +81,7 @@ switch ($field['type']) {
 		        <?php echo esc_attr( $field['title'] ); ?>
 		    </label>
 		    <div class="col-sm-8">
-		        <input type="number" class="form-control form-control-sm field_<?php echo esc_attr( $field['name'] ); ?>" value="<?php echo (isset($data[$field['name']])) ? $data[$field['name']] : '' ; ?>">
+		        <input type="number" class="form-control form-control-sm field_<?php echo esc_attr( $field['name'] ); ?>" value="<?php echo (isset($data[$field['name']])) ? esc_html($data[$field['name']]) : '' ; ?>">
 		    </div>
 		</div>
 		<?php break;
@@ -93,12 +93,12 @@ switch ($field['type']) {
 		    </label>
 		    <div class="col-sm-8">
 		    	<select class="can-iconpicker">
-		    		<option value=""><?php _e( 'No icon', 'circular-arts-network' ) ?></option>
+		    		<option value=""><?php esc_html_e( 'No icon', 'circular-arts-network' ) ?></option>
 		    		<?php
 		    			$icons = can_get_icons_list();
 		    			foreach ($icons as $iconClass) {
 		    				$selected = (isset($data[$field['name']]) && $data[$field['name']] == $iconClass) ? 'selected' : '' ;
-		    				echo "<option $selected>{$iconClass}</option>";
+		    				echo esc_html("<option $selected>{$iconClass}</option>");
 		    			}
 		    		?>
 		    	</select>
@@ -116,7 +116,7 @@ switch ($field['type']) {
 		        <?php echo esc_attr( $field['title'] ); ?>
 		    </label>
 		    <div class="col-sm-8">
-		        <input type="text" class="form-control form-control-sm field_<?php echo esc_attr( $field['name'] ); ?>" value="<?php echo (isset($data[$field['name']])) ? stripcslashes( $data[$field['name']] ) : '' ; ?>" <?php echo ($field['name'] == 'key' && isset($data['editable']) && $data['editable'] == false) ? 'disabled' : '' ; ?>>
+		        <input type="text" class="form-control form-control-sm field_<?php echo esc_attr( $field['name'] ); ?>" value="<?php echo (isset($data[$field['name']])) ? esc_html(stripcslashes( $data[$field['name']] )) : '' ; ?>" <?php echo ($field['name'] == 'key' && isset($data['editable']) && $data['editable'] == false) ? 'disabled' : '' ; ?>>
 		    </div>
 		</div>
 		<?php break;

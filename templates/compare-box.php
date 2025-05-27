@@ -24,15 +24,15 @@
 ?>
 <div class="prop-compare-wrapper can-bs-wrapper">
 	<div class="prop-compare">
-		<h4 class="title_compare"><?php _e( 'Compare Listings', 'circular-arts-network' ); ?></h4>
-		<button class="compare_close" title="<?php _e( 'Close Compare Panel', 'circular-arts-network' ); ?>" style="display: none"><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
-		<button class="compare_open" title="<?php _e( 'Open Compare Panel', 'circular-arts-network' ); ?>" style="display: none"><i class="bi bi-chevron-left" aria-hidden="true"></i></button>
+		<h4 class="title_compare"><?php esc_html_e( 'Compare Listings', 'circular-arts-network' ); ?></h4>
+		<button class="compare_close" title="<?php esc_html_e( 'Close Compare Panel', 'circular-arts-network' ); ?>" style="display: none"><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+		<button class="compare_open" title="<?php esc_html_e( 'Open Compare Panel', 'circular-arts-network' ); ?>" style="display: none"><i class="bi bi-chevron-left" aria-hidden="true"></i></button>
 		<div class="can-compare-table">
 			<table class="property-box">
 				
 			</table>
 		</div>
-		<button id="submit_compare" class="can-btn compare_prop_button" data-izimodal-open="#can-compare-modal"> <?php _e( "Compare", "circular-arts-network" ) ?></button>
+		<button id="submit_compare" class="can-btn compare_prop_button" data-izimodal-open="#can-compare-modal"> <?php esc_html_e( "Compare", "circular-arts-network" ) ?></button>
 	</div>
 </div>
 <div id="can-compare-modal" class="can-bs-wrapper iziModal">
@@ -41,9 +41,9 @@
 	  <table class="table can-compare-table table-bordered m-0">
         <thead>
           <tr>
-            <th class='fixed-row'><?php _e( "Title", "circular-arts-network" ); ?></th>
+            <th class='fixed-row'><?php esc_html_e( "Title", "circular-arts-network" ); ?></th>
             <?php foreach ($table_columns_labels as $label) { ?>
-            	<th><?php printf(_e( '%1', "circular-arts-network" ), $label); ?></h>
+            	<th><?php printf(esc_html_e( '%1', "circular-arts-network" ), esc_html($label)); ?></h>
             <?php } ?>
           </tr>
         </thead>

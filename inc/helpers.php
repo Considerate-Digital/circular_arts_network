@@ -164,7 +164,7 @@ function can_render_listing_section($section, $listing_id = 0){
                     <h5 class="card-header"><?php echo esc_attr( $section['title'] ); ?></h5>
                     <div class="card-body">
                         <?php do_action( 'can_before_section_edit_'.$section['key'] ); ?>
-                            <input value="<?php echo ($listing_id) ? $listing_data->post_title : ''; ?>" id="listing_title" class="form-control mb-3" type="text" required placeholder="<?php _e( 'Listing Title', 'circular-arts-network' ); ?>" name="listing_title">
+                            <input value="<?php echo ($listing_id) ? esc_html($listing_data->post_title) : ''; ?>" id="listing_title" class="form-control mb-3" type="text" required placeholder="<?php esc_html_e( 'Listing Title', 'circular-arts-network' ); ?>" name="listing_title">
                             <?php wp_editor( ($listing_id) ? $listing_data->post_content : '', 'can-description', array(
                                 'quicktags' => array( 'buttons' => 'strong,em,del,ul,ol,li,close' ),
                                 'textarea_name' => 'description',
@@ -190,13 +190,13 @@ function can_render_listing_section($section, $listing_id = 0){
 		<div class="row mb-3">
                 <label class="col-sm-4 col-form-label" for="can_listing_category">
                     <?php echo esc_attr(($section['title'])); ?>
-                    <?php echo ($required) ? '<span title="'.__( 'Required', 'circular-arts-network' ).'" class="glyphicon glyphicon-asterisk"></span>' : '' ; ?>
+                    <?php echo ($required) ? '<span title="'. esc_html_e( 'Required', 'circular-arts-network' ).'" class="glyphicon glyphicon-asterisk"></span>' : '' ; ?>
                 </label>
                 <div class="col-sm-8">
                     <select name="can_listing_category" class="form-control form-control-sm">
                         <?php
                             foreach ($categories as $term) {
-                                echo '<option value="'.$term->name.'">'.$term->name.'</option>';
+                                echo esc_html('<option value="'.$term->name.'">'.$term->name.'</option>');
                             }
                         ?>
                     </select>
@@ -228,12 +228,12 @@ function can_render_listing_section($section, $listing_id = 0){
                 <div class="card-body">
                     <div class="can-images-field text-center" id="images-<?php echo esc_attr( $section['key'] ); ?>">
                         <button class="btn btn-primary btn-sm upload_image_button"
-                            data-title="<?php _e( 'Select Images', 'circular-arts-network' ); ?>"
-                            data-btntext="<?php _e( 'Add', 'circular-arts-network' ); ?>"
+                            data-title="<?php esc_html_e( 'Select Images', 'circular-arts-network' ); ?>"
+                            data-btntext="<?php esc_html_e( 'Add', 'circular-arts-network' ); ?>"
                             data-fieldname="<?php echo esc_attr( $section['key'] ); ?>"
                         >
                             <span class="dashicons dashicons-images-alt2"></span>
-                            <?php _e( 'Select Images', 'circular-arts-network' ) ?>
+                            <?php esc_html_e( 'Select Images', 'circular-arts-network' ) ?>
                         </button>
                         
                         <div class="row thumbs-prev mt-3">
@@ -301,16 +301,16 @@ function can_render_listing_section($section, $listing_id = 0){
             <div class="card mb-2">
                 <h5 class="card-header"><?php echo esc_attr( $section['title'] ); ?></h5>
                 <div class="card-body">
-                    <input type="hidden" class="can_listing_latitude" value="<?php echo isset($savedLatitude) ? $savedLatitude : ''; ?>" name="can_listing_latitude">
-                    <input type="hidden" class="can_listing_longitude" value="<?php echo isset($savedLongitude) ? $savedLongitude : ''; ?>" name="can_listing_longitude">
+                    <input type="hidden" class="can_listing_latitude" value="<?php echo isset($savedLatitude) ? esc_html($savedLatitude): ''; ?>" name="can_listing_latitude">
+                    <input type="hidden" class="can_listing_longitude" value="<?php echo isset($savedLongitude) ? esc_html($savedLongitude) : ''; ?>" name="can_listing_longitude">
                     <?php if (can_get_option('use_map_from', 'leaflet') == 'google_maps') { ?>
-                    <input type="text" class="form-control" id="search-map" placeholder="<?php _e( 'Type to Search...', 'circular-arts-network' ); ?>">
+                    <input type="text" class="form-control" id="search-map" placeholder="<?php esc_html_e( 'Type to Search...', 'circular-arts-network' ); ?>">
                     <?php } ?>
                     <div id="map-canvas" style="height: 300px"></div>
                     <div id="position" class="alert alert-info mb-0 py-2 mt-2">
                         <?php
-                            _e( 'Search the address on the search bar. ', 'circular-arts-network' );
-                            _e( 'Drag the pin to the location on the map', 'circular-arts-network' );
+                            esc_html_e( 'Search the address on the search bar. ', 'circular-arts-network' );
+                            esc_html_e( 'Drag the pin to the location on the map', 'circular-arts-network' );
                         ?>
                     </div>
                 </div>
@@ -443,10 +443,10 @@ function can_render_listing_field($field, $listing_id = 0){
             ?>
 
             <div class="can-checkboxes-wrap">
-                <p class="fw-bold"><?php echo can_wpml_translate($field_title, 'circular-arts-network-fields'); ?></p>
+                <p class="fw-bold"><?php echo esc_html(can_wpml_translate($field_title, 'circular-arts-network-fields')); ?></p>
                 <div class="row">
                     <?php foreach ($field['options'] as $key => $option) {
-                        $translated_label = can_wpml_translate($option, 'circular-arts-network-fields');
+                        $translated_label = esc_html(can_wpml_translate($option, 'circular-arts-network-fields'));
                         $cb_id = 'can-'.$field_id.'-'.$key;
                         $value = (isset($field_value[$option])) ? $field_value[$option] : ''; ?>
                         <div class="col-sm-6">
@@ -476,8 +476,8 @@ function can_render_listing_field($field, $listing_id = 0){
 
             <div class="row mb-3">
                 <label class="col-sm-4 col-form-label" for="<?php echo esc_attr( $field_id ); ?>">
-                    <?php echo can_wpml_translate($field_title, 'circular-arts-network-fields'); ?>
-                    <?php echo ($required) ? '<span title="'.__( 'Required', 'circular-arts-network' ).'" class="glyphicon glyphicon-asterisk"></span>' : '' ; ?>
+                    <?php echo esc_html(can_wpml_translate($field_title, 'circular-arts-network-fields')); ?>
+                    <?php echo ($required) ? esc_html('<span title="'.__( 'Required', 'circular-arts-network' ).'" class="glyphicon glyphicon-asterisk"></span>') : '' ; ?>
                 </label>
                 <div class="col-sm-8">
                     <select name="<?php echo esc_attr( $field_name ); ?>" <?php echo esc_attr( $field_id ); ?> class="form-control form-control-sm">
@@ -485,7 +485,7 @@ function can_render_listing_field($field, $listing_id = 0){
                             $options = (is_array($field['options'])) ? $field['options'] : explode("\n", $field['options']);
                             foreach ($options as $name) {
                                 $translated_label = can_wpml_translate($name, 'circular-arts-network-fields');
-                                echo '<option value="'.$name.'" '.selected( $field_value, $name, false ).'>'.$translated_label.'</option>';
+                                echo esc_html('<option value="'.$name.'" '.selected( $field_value, $name, false ).'>'.$translated_label.'</option>');
                             }
                         ?>
                     </select>
@@ -501,8 +501,8 @@ function can_render_listing_field($field, $listing_id = 0){
             ?>
             <div class="row mb-3">
                 <label class="col-sm-4 col-form-label" for="<?php echo esc_attr( $field_id ); ?>">
-                    <?php echo can_wpml_translate($field_title, 'circular-arts-network-fields'); ?>
-                    <?php echo ($required) ? '<span title="'.__( 'Required', 'circular-arts-network' ).'" class="glyphicon glyphicon-asterisk"></span>' : '' ; ?>
+                    <?php echo esc_html(can_wpml_translate($field_title, 'circular-arts-network-fields')); ?>
+                    <?php echo ($required) ? esc_html('<span title="'.__( 'Required', 'circular-arts-network' ).'" class="glyphicon glyphicon-asterisk"></span>') : '' ; ?>
                 </label>
                 <div class="col-sm-8">
                    <textarea
@@ -525,8 +525,8 @@ function can_render_listing_field($field, $listing_id = 0){
             ?>
             <div class="row mb-3">
                 <label class="col-sm-4 col-form-label" for="<?php echo esc_attr( $field_id ); ?>">
-                    <?php echo can_wpml_translate($field_title, 'circular-arts-network-fields'); ?>
-                    <?php echo ($required) ? '<span title="'.__( 'Required', 'circular-arts-network' ).'" class="glyphicon glyphicon-asterisk"></span>' : '' ; ?>
+                    <?php echo esc_html(can_wpml_translate($field_title, 'circular-arts-network-fields')); ?>
+                    <?php echo ($required) ? esc_html('<span title="'.__( 'Required', 'circular-arts-network' ).'" class="glyphicon glyphicon-asterisk"></span>') : '' ; ?>
                 </label>
                 
                 <div class="col-sm-8">
@@ -547,8 +547,8 @@ function can_render_listing_field($field, $listing_id = 0){
             ?>
             <div class="row mb-3">
                 <label class="col-sm-4 col-form-label" for="<?php echo esc_attr( $field_id ); ?>">
-                    <?php echo can_wpml_translate($field_title, 'circular-arts-network-fields'); ?>
-                    <?php echo ($required) ? '<span title="'.__( 'Required', 'circular-arts-network' ).'" class="glyphicon glyphicon-asterisk"></span>' : '' ; ?>
+                    <?php echo esc_html(can_wpml_translate($field_title, 'circular-arts-network-fields')); ?>
+                    <?php echo ($required) ? esc_html('<span title="'.__( 'Required', 'circular-arts-network' ).'" class="glyphicon glyphicon-asterisk"></span>') : '' ; ?>
                 </label>
                 <div class="col-sm-8">
                    <input
@@ -569,8 +569,8 @@ function can_render_listing_field($field, $listing_id = 0){
         default: ?>
             <div class="row mb-3">
                 <label class="col-sm-4 col-form-label" for="<?php echo esc_attr( $field_id ); ?>">
-                    <?php echo can_wpml_translate($field_title, 'circular-arts-network-fields'); ?>
-                    <?php echo ($required) ? '<span title="'.__( 'Required', 'circular-arts-network' ).'" class="glyphicon glyphicon-asterisk"></span>' : '' ; ?>
+                    <?php echo esc_html(can_wpml_translate($field_title, 'circular-arts-network-fields')); ?>
+                    <?php echo ($required) ? esc_html('<span title="'.__( 'Required', 'circular-arts-network' ).'" class="glyphicon glyphicon-asterisk"></span>') : '' ; ?>
                 </label>
                 <div class="col-sm-8">
                    <input type="<?php echo esc_attr( $field_type ); ?>" name="<?php echo esc_attr( $field_name ); ?>" class="form-control form-control-sm" id="<?php echo esc_attr( $field_id ); ?>" value="<?php echo esc_attr( $field_value ); ?>"> 
@@ -611,7 +611,7 @@ function can_get_field_value($listing_id, $field, $value = ''){
 }
 
 function can_get_section_title($tabData){
-    $title = printf( __( '%t', 'circular-arts-network' ), $tabData['title']);
+    $title = printf( esc_html_e( '%t', 'circular-arts-network' ), esc_html($tabData['title']));
     $tab_key = $tabData['key'];
     $icon = '';
 

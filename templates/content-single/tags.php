@@ -1,5 +1,5 @@
 <div class="can-section">
-	<h2><?php _e( 'Tags', 'circular-arts-network' ); ?></h2>
+	<h2><?phpesc_html_e( 'Tags', 'circular-arts-network' ); ?></h2>
 	<?php
             echo '<ul class="can-tags">';
                  
