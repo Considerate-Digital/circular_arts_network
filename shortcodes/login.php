@@ -16,7 +16,9 @@
                 <div class="can-lost-pass"><a href="<?php echo esc_html(wp_lostpassword_url()); ?>"><?php esc_html_e( 'Forgot Password?', 'circular-arts-network' ); ?></a></div>
             </div>
             <?php if (can_get_option('captcha_on_login') == 'on') { ?>
-            	<script src="https://www.google.com/recaptcha/api.js"></script>
+
+                
+            <!--recaptcha script moved -->
             	<div class="form-group">
             		<div class="g-recaptcha mb-2" data-sitekey="<?php echo esc_html(can_get_option('captcha_site_key')); ?>"></div>
             	</div>

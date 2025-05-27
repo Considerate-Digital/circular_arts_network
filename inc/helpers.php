@@ -378,7 +378,7 @@ function can_render_search_field($field, $label = false, $icon = true){
     $field_value = $field['default'];
 
     if (isset($_GET[$field['key']])) {
-        $field_value = wp_unslash($_GET[$field['key']]);
+        $field_value = esc_html(wp_unslash($_GET[$field['key']]));
     }
 
     $html  = '';

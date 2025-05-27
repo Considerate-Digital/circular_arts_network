@@ -32,6 +32,8 @@ class CAN_Shortcodes
 		wp_enqueue_style('can-dashboard', CAN_URL."/assets/css/dashboard.css");
 		wp_enqueue_style('can-archive', CAN_URL."/assets/css/archive.css");
 		wp_enqueue_script( 'can-sweetalert', CAN_URL . '/assets/libs/sweetalert/sweetalert2.all.min.js', array( 'jquery' ));
+		/* testing queing recaptcha script here */
+		wp_enqueue_script( 'recaptcha', 'https://www.google.com/recaptcha/api.js');
 
 		ob_start();
 

@@ -39,7 +39,7 @@
               <div class="clearfix"></div>
             </div>
             <?php if (can_get_option('captcha_on_registration') == 'on') { ?>
-            	<script src='https://www.google.com/recaptcha/api.js'></script>
+            <!--recaptcha script moved -->
             	<div class="form-group">
             		<div class="g-recaptcha mb-2" data-sitekey="<?php echo esc_html(can_get_option('captcha_site_key')); ?>"></div>
             	</div>

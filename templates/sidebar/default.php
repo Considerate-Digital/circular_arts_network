@@ -66,7 +66,6 @@
 		            echo esc_html('<div class="col-sm-12 can-input-wrapper"><label><input type="checkbox" required> '.stripcslashes(can_get_option('gdpr_message')).'</label></div>');
 		        }
 			    if (can_get_option('captcha_on_contact') == 'on') { ?>
-			        <script src='https://www.google.com/recaptcha/api.js'></script>
 			        <div class="g-recaptcha" style="transform:scale(0.77);-webkit-transform:scale(0.77);transform-origin:0 0;-webkit-transform-origin:0 0;" data-sitekey="<?php echo esc_html( can_get_option('captcha_site_key', '6LcDhUQUAAAAAFAsfyTUPCwDIyXIUqvJiVjim2E9')); ?>"></div>
 			        <br>
 			    <?php }
