@@ -8,6 +8,7 @@
 						<div class="<?php echo esc_attr( $columns ); ?>">
 							<div class="can-input-wrap">
 								<i class="bi bi-search"></i>
+								<?php wp_nonce_field( 'search-form'); ?>
 								<input type="text" class="can-input-field" name="keywords" placeholder="<?php esc_html_e( 'Search Keywords...', 'circular-arts-network' ); ?>">	
 							</div>
 						</div>

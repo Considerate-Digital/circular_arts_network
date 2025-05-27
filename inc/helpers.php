@@ -375,11 +375,21 @@ function can_render_search_field($field, $label = false, $icon = true){
         echo "<i class='".esc_attr( $field['icon'] )."'></i>";
     }
 
-    $field_value = $field['default'];
+    if (isset($_GET['search-form']) && wp_verify_nonce(
+        sanitize_text_field( 
+            wp_unslash($_GET['search-form']), 'search-form' )
+        )
+    ) {
 
-    if (isset($_GET[$field['key']])) {
-        $field_value = esc_html(wp_unslash($_GET[$field['key']]));
+    } else {
+        wp_nonce_ays();
     }
+
+
+    $field_value = isset($_GET[$field['key']]) ? 
+        sanitize_text_field(
+            wp_unslash($_GET[$field['key']])
+        ) :  $field['default'];
 
     $html  = '';
     switch ($field['type']) {

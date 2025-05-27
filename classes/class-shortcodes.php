@@ -644,7 +644,7 @@ class CAN_Shortcodes
 			$url = explode( '?', esc_url_raw( add_query_arg( array() ) ) );
 			$no_query_args = $url[0];
 
-			echo esc_html("<a href='".esc_url( add_query_arg( 'can_page', $item['url'], $no_query_args) )."' class='list-group-item list-group-item-action {$active} can-menu-".esc_attr( $key )."'><i class='".esc_attr( $item['icon'] )."'></i> ".esc_attr( $item['title'] )."</a>");
+			echo "<a href='". esc_url( add_query_arg( 'can_page', $item['url'], $no_query_args) )."' class='list-group-item list-group-item-action {$active} can-menu-".esc_attr( $key )."'><i class='".esc_attr( $item['icon'] )."'></i> ".esc_attr( $item['title'] )."</a>";
 		}
 		echo '</div>';
 	}

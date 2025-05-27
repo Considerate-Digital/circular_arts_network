@@ -1,6 +1,17 @@
 <?php
 global $can_admin_settings;
-$listing_id = esc_attr( $_GET['listing_id'] );
+/*
+if (isset($_GET['listing-id-nonce']) && wp_verify_nonce(
+        sanitize_text_field( 
+            wp_unslash($_GET['listing-id-nonce']), 'listing-id-nonce' )
+        )
+    ) {
+
+    } else {
+        wp_nonce_ays();
+    }
+ */
+$listing_id = isset($_GET['listing_id']) ? sanitize_text_field(wp_unslash($_GET['listing_id'], 'listing_id' )) : '';
 $field_sections = $can_admin_settings->get_fields_sections();
 ?>
 <div class="can-screen-wrapper">
