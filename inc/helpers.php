@@ -6,14 +6,14 @@
  */
 if( ! function_exists('can_wpml_register') ) {
     function can_wpml_register($field_value, $domain, $field_name = '') {
-        $field_name = ($field_name == '') ? $field_value : $field_name ;
+        $field_name = ($field_name == '') ? esc_html($field_value) : esc_html($field_name) ;
         do_action( 'wpml_register_single_string', $domain, $field_name, $field_value );
     }
 }
 
 if( ! function_exists('can_wpml_translate') ) {
     function can_wpml_translate($field_value, $domain, $field_name = '', $language = '') {
-        $field_name = ($field_name == '') ? $field_value : $field_name ;
+        $field_name = ($field_name == '') ? esc_html($field_value) : esc_html($field_name) ;
         return apply_filters('wpml_translate_single_string', stripcslashes($field_value), $domain, $field_name, $language );
     }
 }
@@ -26,7 +26,7 @@ if( ! function_exists('can_wpml_translate') ) {
 function can_get_option($key, $default = '') {
     $can_settings = get_option( 'can_all_settings' );
     if (isset($can_settings[$key]) && $can_settings[$key] != '') {
-        return apply_filters( 'can_get_option_'.$key, $can_settings[$key], $default );
+        return apply_filters( 'can_get_option_'.$key, esc_html($can_settings[$key]), $default );
     } else {
         return $default;
     }
@@ -591,10 +591,11 @@ function can_render_listing_field($field, $listing_id = 0){
     }
 }
 
+
 function can_get_field_value($listing_id, $field, $value = ''){
 
     if (!$value) {
-        $value = get_post_meta( $listing_id, 'can_'.$field['key'], true );
+        $value = esc_html(get_post_meta( $listing_id, 'can_'.$field['key'], true ));
     }
 
     $value = can_wpml_translate($value, 'circular-arts-network-fields');
@@ -610,14 +611,16 @@ function can_get_field_value($listing_id, $field, $value = ''){
         $before_value   =   get_post_meta( $listing_id, 'can_'.$field['key'].'_before', true );
         $after_value    =   get_post_meta( $listing_id, 'can_'.$field['key'].'_after', true );
         if ($before_value) {
-            $value = "<span class='can-before-text'>{$before_value}</span> ".$value;
+            $value = "<span class='can-before-text'>" . esc_html($before_value) . "</span> ".$value;
         }
         if ($after_value) {
-            $value = $value." <span class='can-after-text'>{$after_value}</span>";
+            $value = $value." <span class='can-after-text'" . esc_html($after_value) ."</span>";
         }
     }
 
-    return apply_filters( 'can_listing_field_value', $value, $field, $listing_id );
+    //return apply_filters( 'can_listing_field_value', $value, $field, $listing_id );
+    // TODO filter here
+    return $value;
 }
 
 function can_get_section_title($tabData){
@@ -677,7 +680,7 @@ function can_get_listing_price( $price, $args = array() ) {
         $price = wc_trim_zeros( $price );
     }
 
-    $formatted_price = ( $negative ? '-' : '' ) . sprintf( $price_format, '<span class="can-currency-symbol">' . can_get_currency_symbol( $currency ) . '</span>', $price );
+    $formatted_price = ( $negative ? '-' : '' ) . sprintf( esc_html($price_format), '<span class="can-currency-symbol">' . can_get_currency_symbol( $currency ) . '</span>', esc_html($price) );
     $return          = '<span class="can-price-amount">' . $formatted_price . '</span>';
 
     return apply_filters( 'can_property_price', $return, $price, $args, $price_digits );
@@ -1033,7 +1036,7 @@ function can_get_currency_symbol( $currency = '' ) {
         'ZMW' => 'ZK',
     ) );
 
-    $currency_symbol = isset( $symbols[ $currency ] ) ? $symbols[ $currency ] : '';
+    $currency_symbol = isset( $symbols[ $currency ] ) ? esc_html($symbols[ $currency ]) : '';
 
     return apply_filters( 'can_currency_symbol', $currency_symbol, $currency );
 }

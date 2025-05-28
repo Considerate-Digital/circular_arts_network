@@ -11,17 +11,24 @@
 				    <div class="input-group">
 							<?php 
 								/* check nonce */
-								if (isset($_GET['search-query']) && wp_verify_nonce(
+
+								if (isset($_GET['search-query'])) {
+										if (wp_verify_nonce(
 											sanitize_text_field( 
 													wp_unslash($_GET['search-query']), 'search-query' )
-											)
-									) {
-								} else {
-											wp_nonce_ays();
+												)
+										== false ) {
+										echo "<p>Nonce not passed</p>";
+										/*
+												wp_nonce_ays('hello');
+										 */
+										} else {
+
+										}
 								}
 
-								$can_search_query = isset($_GET['can_search_query']) ? sanitize_text_field(wp_unslash(($_GET['can_search_query']) : ''));
-					     echo esc_html('<input type="text" value="$can_search_query" name="can_search_query" class="form-control" placeholder="' . esc_html_e( 'Search for...', 'circular-arts-network' ) . '">');
+								$can_search_query = isset($_GET['can_search_query']) ? sanitize_text_field(wp_unslash($_GET['can_search_query'])) : '';
+					     echo '<input type="text" value="' . esc_attr($can_search_query) . '" name="can_search_query" class="form-control" placeholder="' . esc_html_e( 'Search for...', 'circular-arts-network' ) . '">';
 							?>
 						<select name="can_status" class="form-select">
 							<option value="any"><?php esc_html_e( 'All Status', 'circular-arts-network' ); ?></option>
@@ -29,7 +36,7 @@
 							$can_status = isset($_GET['can_status']) ? sanitize_text_field(wp_unslash(($_GET['can_status']))) : '';
 							echo esc_html('<option value="publish"'. $can_status == 'publish' ? 'selected' : '' . esc_html_e( 'Only Published', 'circular-arts-network' ) . '</option>');
 
-							echo esc_html('<option value="pending"' . $can_status == 'pending') ? 'selected' : '' . esc_html_e( 'Only Pending', 'circular-arts-network' ) . '</option>');
+							echo '<option value="pending"' . $can_status == 'pending' ? 'selected' : '' . esc_html_e( 'Only Pending', 'circular-arts-network' ) . '</option>';
 
 							echo esc_html('<option value="draft"' . $can_status  == 'draft' ? 'selected' : '' . esc_html_e( 'Only Draft', 'circular-arts-network' ) . '</option>');
 							
@@ -80,7 +87,7 @@
 					'post_status' => $statuses
 				);
 
-				$can_search_query = isset($_GET['can_search_query']) ? sanitize_text_field(wp_unslash(($_GET['can_search_query']) : ''));
+				$can_search_query = isset($_GET['can_search_query']) ? sanitize_text_field(wp_unslash(($_GET['can_search_query']))) : '';
 				if ($can_search_query) {
 					$args['s'] = $can_search_query;
 				}
@@ -105,7 +112,7 @@
 									</a>
 								</td>
 								<td>
-									<?php echo esc_html(can_get_field_value(get_the_id(), array('key' =>'regular_price', 'type' => 'price'))); ?>
+									<?php echo can_get_field_value(get_the_id(), array('key' =>'regular_price', 'type' => 'price')); ?>
 								</td>
 								<td><?php echo esc_html( human_time_diff( get_the_time('U'), current_time('timestamp') ) ) . ' ago'; ?></td>
 								<td><?php echo esc_html(ucfirst(get_post_status(get_the_id()))); ?></td>
