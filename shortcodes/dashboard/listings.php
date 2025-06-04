@@ -11,7 +11,7 @@
 				    <div class="input-group">
 							<?php 
 								/* check nonce */
-
+								/*
 								if (isset($_GET['search-query'])) {
 										if (wp_verify_nonce(
 											sanitize_text_field( 
@@ -19,13 +19,12 @@
 												)
 										== false ) {
 										echo "<p>Nonce not passed</p>";
-										/*
 												wp_nonce_ays('hello');
-										 */
 										} else {
 
 										}
 								}
+								 */
 
 								$can_search_query = isset($_GET['can_search_query']) ? sanitize_text_field(wp_unslash($_GET['can_search_query'])) : '';
 					     echo '<input type="text" value="' . esc_attr($can_search_query) . '" name="can_search_query" class="form-control" placeholder="' . esc_html_e( 'Search for...', 'circular-arts-network' ) . '">';
@@ -39,8 +38,10 @@
 							echo '<option value="pending"' . $can_status == 'pending' ? 'selected' : '' . esc_html_e( 'Only Pending', 'circular-arts-network' ) . '</option>';
 
 							echo esc_html('<option value="draft"' . $can_status  == 'draft' ? 'selected' : '' . esc_html_e( 'Only Draft', 'circular-arts-network' ) . '</option>');
-							
+
+						/*	
 						wp_nonce_field( 'search-query'); 
+						 */
 
 						?>
 

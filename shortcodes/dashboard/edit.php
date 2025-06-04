@@ -1,11 +1,10 @@
 <?php
 global $can_admin_settings;
+$listing_id = isset($_GET['listing_id']) ? sanitize_text_field(wp_unslash($_GET['listing_id'], 'listing_id' )) : '';
 /*
-if (isset($_GET['listing-id-nonce']) && wp_verify_nonce(
-        sanitize_text_field( 
-            wp_unslash($_GET['listing-id-nonce']), 'listing-id-nonce' )
-        )
-    ) {
+if (isset($_REQUEST['_wpnonce']) && wp_verify_nonce(
+            wp_unslash($_REQUEST['_wpnonce']), 'listing-nonce_'.$listing_id
+)) {
 
     } else {
         wp_nonce_ays();
@@ -44,6 +43,7 @@ $field_sections = $can_admin_settings->get_fields_sections();
 					<input class="btn btn-success" type="submit" value="<?php esc_html_e( 'Save Changes', 'circular-arts-network' ); ?>">
 				</div>
 			</div>
+			<?php /* wp_nonce_field( 'listing-nonce_'.$listing_id );*/ ?>
 		</form>
 	</div>
 </div>
