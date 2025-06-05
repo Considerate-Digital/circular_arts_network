@@ -47,6 +47,7 @@
             <div class="form-group">
                 <button type="submit" class="can-btn"><?php esc_html_e( 'Register Now', 'circular-arts-network' ); ?></button>
             </div>
+          <?php wp_nonce_field( 'register'); ?>
         </form>
         <p class="text-center mb-0 mt-2">
         	<?php esc_html_e( "Already have an account?", 'circular-arts-network' ); ?>

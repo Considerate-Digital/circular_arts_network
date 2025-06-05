@@ -391,7 +391,8 @@ class CAN_Shortcodes
 	}
 
 	function search_results(){
-		if(isset($_REQUEST) && !empty($_REQUEST)){
+		$nonce_success = check_ajax_referer( 'search' ); 
+		if($nonce_success && isset($_REQUEST) && !empty($_REQUEST)){
 			$args = can_get_search_query($_REQUEST);
 
 			$the_query = new WP_Query( $args );
@@ -430,13 +431,15 @@ class CAN_Shortcodes
 	}
 
 	function login(){
-		if (isset($_REQUEST)) {
-			if (isset($_REQUEST['g-recaptcha-response'])) {
-				if (!$_REQUEST['g-recaptcha-response']) {
+		$nonce_success = check_ajax_referer( 'login' ); 
+		if ($nonce_success && isset($_REQUEST)) {
+
+			$captcha = isset($_REQUEST['g-recaptcha-response']) ?? sanitize_text_field( $_REQUEST['g-recaptcha-response'] ): false;
+
+			if (!$captcha) {
 					$resp = array('status' => 'error', 'message' => __( 'Please check the captcha form.', 'circular-arts-network' ));
 					echo json_encode($resp); exit;
 				} else {
-					$captcha = sanitize_text_field( $_REQUEST['g-recaptcha-response'] );
 					$secretKey = can_get_option('captcha_secret_key');
 					$ip = sanitize_text_field( $_SERVER['REMOTE_ADDR'] );
 					$response = wp_remote_post("https://www.google.com/recaptcha/api/siteverify?secret=".$secretKey."&response=".$captcha."&remoteip=".$ip);
@@ -480,7 +483,8 @@ class CAN_Shortcodes
 
 	function register(){
 
-		if (isset($_REQUEST['username'])) {
+		$nonce_success = check_ajax_referer( 'login' ); 
+		if ($nonce_success && isset($_REQUEST['username'])) {
 			$username 	= 	sanitize_text_field( $_REQUEST['username'] );
 			$useremail 	= 	sanitize_email( $_REQUEST['seller_email'] );
 			$password 	= 	$_REQUEST['seller_password'];
