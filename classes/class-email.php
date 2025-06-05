@@ -159,6 +159,7 @@ class CAN_Email
     function contact_seller(){
 				$nonce_success = check_ajax_referer( 'contact-seller' ); 
         if ($nonce_success && isset($_REQUEST) && $_REQUEST != '') {
+            /*
 
             if (isset($_REQUEST['g-recaptcha-response'])) {
                 if (!$_REQUEST['g-recaptcha-response']) {
@@ -183,15 +184,68 @@ class CAN_Email
             $client_phone = (isset($_REQUEST['client_phone'])) ? sanitize_text_field( $_REQUEST['client_phone'] ) : '' ;
             $client_msg = (isset($_REQUEST['client_msg'])) ? sanitize_text_field( $_REQUEST['client_msg'] ) : '' ;
             $seller_id = (isset($_REQUEST['seller_id'])) ? intval( $_REQUEST['seller_id'] ) : '' ;
-            
+             */ 
+            // Sanitize individual request values with proper checks
+            $recaptcha_response = isset($_REQUEST['g-recaptcha-response']) ? sanitize_text_field(wp_unslash($_REQUEST['g-recaptcha-response'])) : '';
+            $client_name = isset($_REQUEST['client_name']) ? sanitize_text_field(wp_unslash($_REQUEST['client_name'])) : '';
+            $client_email = isset($_REQUEST['client_email']) ? sanitize_email(wp_unslash($_REQUEST['client_email'])) : '';
+            $client_phone = isset($_REQUEST['client_phone']) ? sanitize_text_field(wp_unslash($_REQUEST['client_phone'])) : '';
+            $client_msg = isset($_REQUEST['client_msg']) ? sanitize_textarea_field(wp_unslash($_REQUEST['client_msg'])) : '';
+            $seller_id = isset($_REQUEST['seller_id']) ? absint($_REQUEST['seller_id']) : 0;
+
+            // Handle reCAPTCHA validation
+            if (!empty($recaptcha_response)) {
+                // reCAPTCHA response exists, validate it
+                $secretKey = can_get_option('captcha_secret_key', '6LcDhUQUAAAAAGKQ7gd1GsGAkEGooVISGEl3s7ZH');
+                $ip = isset($_SERVER['REMOTE_ADDR']) ? sanitize_text_field($_SERVER['REMOTE_ADDR']) : '';
+                
+                // Build the verification URL safely
+                $verify_url = add_query_arg(array(
+                    'secret' => $secretKey,
+                    'response' => $recaptcha_response,
+                    'remoteip' => $ip
+                ), 'https://www.google.com/recaptcha/api/siteverify');
+                
+                $response = wp_remote_post($verify_url);
+                
+                if (is_wp_error($response)) {
+                    $resp = array(
+                        'fail' => 'error', 
+                        'msg' => __('There was an error connecting to reCAPTCHA. Please try again.', 'circular-arts-network')
+                    );
+                    echo json_encode($resp); 
+                    exit;
+                }
+                
+                $response_body = wp_remote_retrieve_body($response);
+                $responseKeys = json_decode($response_body, true);
+                
+                if (!$responseKeys || intval($responseKeys["success"]) !== 1) {
+                    $resp = array(
+                        'fail' => 'error', 
+                        'msg' => __('There was an error. Please try again after reloading page', 'circular-arts-network')
+                    );
+                    echo json_encode($resp); 
+                    exit;
+                }
+            } else {
+                // No reCAPTCHA response provided
+                $resp = array(
+                    'fail' => 'already', 
+                    'msg' => __('Please check the captcha form.', 'circular-arts-network')
+                );
+                echo json_encode($resp); 
+                exit;
+            }
             if($client_name && $client_email && $client_msg && $seller_id){
                 
                 $subject = can_get_option('email_subject', 'Listing Contact');
                 $message = can_get_option('email_message', $client_msg);
                 
+                $listing_id = isset($_REQUEST['listing_id']) ?? sanitize_text_field(
+                  wp_unslash($_REQUEST['listing_id']));
                 // if property id is available
-                if (isset($_REQUEST['listing_id']) && $_REQUEST['listing_id'] != '') {
-                    $listing_id = intval($_REQUEST['listing_id']);
+                if ($listing_id && $listing_id != '') {
                     $listing_title = esc_attr( get_the_title( $listing_id ) );
                     $subject = str_replace("%listing_title%", $listing_title, $subject);
                     $subject = str_replace("%listing_id%", $listing_id, $subject);

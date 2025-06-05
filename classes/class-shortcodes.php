@@ -434,14 +434,14 @@ class CAN_Shortcodes
 		$nonce_success = check_ajax_referer( 'login' ); 
 		if ($nonce_success && isset($_REQUEST)) {
 
-			$captcha = isset($_REQUEST['g-recaptcha-response']) ?? sanitize_text_field( $_REQUEST['g-recaptcha-response'] ): false;
+			$captcha = isset($_REQUEST['g-recaptcha-response']) ?? sanitize_text_field( wp_unslash($_REQUEST['g-recaptcha-response'] ));
 
 			if (!$captcha) {
 					$resp = array('status' => 'error', 'message' => __( 'Please check the captcha form.', 'circular-arts-network' ));
 					echo json_encode($resp); exit;
 				} else {
 					$secretKey = can_get_option('captcha_secret_key');
-					$ip = sanitize_text_field( $_SERVER['REMOTE_ADDR'] );
+					$ip = isset($_SERVER['REMOTE_ADDR']) ? sanitize_text_field( wp_unslash($_SERVER['REMOTE_ADDR'] )): '';
 					$response = wp_remote_post("https://www.google.com/recaptcha/api/siteverify?secret=".$secretKey."&response=".$captcha."&remoteip=".$ip);
 					$responseKeys = json_decode($response['body'], true);
 					if(intval($responseKeys["success"]) !== 1) {
@@ -452,8 +452,10 @@ class CAN_Shortcodes
 			}        	
 			global $user;
 			$creds = array();
-			$creds['user_login'] = sanitize_email( $_REQUEST['seller_email'] );
-			$creds['user_password'] =  $_REQUEST['seller_password'];
+			$creds['user_login'] = isset($_REQUEST['seller_email']) ?? 
+				sanitize_email( wp_unslash($_REQUEST['seller_email']));
+			$creds['user_password'] = isset($_REQUEST['seller_password']) ??  
+				sanitize_text_field( wp_unslash($_REQUEST['seller_password']));
 			$creds['remember'] = (isset($_REQUEST['rememberme'])) ? true : false;
 			$user = wp_signon( $creds, true );
 
@@ -479,28 +481,32 @@ class CAN_Shortcodes
 
 			die(0);
 		}
-	}
 
 	function register(){
 
 		$nonce_success = check_ajax_referer( 'login' ); 
-		if ($nonce_success && isset($_REQUEST['username'])) {
-			$username 	= 	sanitize_text_field( $_REQUEST['username'] );
-			$useremail 	= 	sanitize_email( $_REQUEST['seller_email'] );
-			$password 	= 	$_REQUEST['seller_password'];
+			$username 	= isset($_REQUEST['username']) ??	sanitize_text_field( 
+				wp_unslash($_REQUEST['username'] ));
+			$useremail 	= 	isset($_REQUEST['seller_email']) ?? sanitize_email( 
+				wp_unslash($_REQUEST['seller_email']) );
+			$password 	= isset($_REQUEST['seller_password']) ?? sanitize_text_field(
+				wp_unslash($_REQUEST['seller_password']));
 
+		$captcha = isset($_REQUEST['g-recaptcha-response']) ?? sanitize_text_field(
+		 	wp_unslash($_REQUEST['g-recaptcha-response']) );
 
+		if ($nonce_success && $username && $useremail && $password) {
+			
 			$resp = array();
 
 			// Checking for Spams
-			if (isset($_REQUEST['g-recaptcha-response'])) {
-				if (!$_REQUEST['g-recaptcha-response']) {
+				if (!$captcha) {
 					$resp = array('status' => 'info', 'message' => __( 'Please check the captcha form.', 'circular-arts-network' ));
 					echo json_encode($resp); exit;
 				} else {
-					$captcha = sanitize_text_field( $_REQUEST['g-recaptcha-response'] );
 					$secretKey = can_get_option('captcha_secret_key');
-					$ip = sanitize_text_field( $_SERVER['REMOTE_ADDR'] );
+					$ip = isset($_SERVER['REMOTE_ADDR']) ?? sanitize_text_field( 
+						wp_unslash($_SERVER['REMOTE_ADDR']) );
 					$response = wp_remote_post("https://www.google.com/recaptcha/api/siteverify?secret=".$secretKey."&response=".$captcha."&remoteip=".$ip);
 					$responseKeys = json_decode($response['body'], true);
 					if(intval($responseKeys["success"]) !== 1) {
@@ -508,21 +514,28 @@ class CAN_Shortcodes
 						echo json_encode($resp); exit;
 					}
 				}
-			}
 
 
 			// Lets Check if username already exists
-			if (username_exists( $_REQUEST['username'] ) || email_exists( $_REQUEST['seller_email'] )) {
+			if (username_exists( $username ) || email_exists( $useremail )) {
 				$resp = array('status' => 'info', 'message' => __( 'Username or Email already exists', 'circular-arts-network' ));
 			} else {
+				$firstname = isset($_REQUEST['first_name']) ? sanitize_text_field(wp_unslash($_REQUEST['first_name'])) : '';
+				$lastname = isset($_REQUEST['last_name']) ? sanitize_text_field(wp_unslash($_REQUEST['last_name'])) : '';
+				$username = isset($_REQUEST['username']) ? sanitize_text_field(wp_unslash($_REQUEST['username'])) : '';
+				$useremail = isset($_REQUEST['seller_email']) ? sanitize_email(wp_unslash($_REQUEST['seller_email'])) : '';
+				$seller_phone = isset($_REQUEST['seller_phone']) ? sanitize_text_field(wp_unslash($_REQUEST['seller_phone'])) : '';
+				$seller_password = isset($_REQUEST['seller_password']) ? sanitize_text_field(wp_unslash($_REQUEST['seller_password'])) : ''; 
+
+				// Create the seller data array using the sanitized variables
 				$sellerData = array(
-					'first_name'	=> 		sanitize_text_field( $_REQUEST['first_name'] ),
-					'last_name'		=> 		sanitize_text_field( $_REQUEST['last_name'] ),
-					'username'		=> 		sanitize_text_field( $_REQUEST['username'] ),
-					'useremail'	=> 		sanitize_email( $_REQUEST['seller_email'] ),
-					'seller_phone'	=> 		sanitize_text_field( $_REQUEST['seller_phone'] ),
-					'seller_password'=> 	$_REQUEST['seller_password'],
-					'time'			=> 		current_time( 'mysql' ),
+						'first_name'     => $firstname,
+						'last_name'      => $lastname,
+						'username'       => $username,
+						'useremail'      => $useremail,
+						'seller_phone'   => $seller_phone,
+						'seller_password'=> $seller_password, 
+						'time'           => current_time('mysql'),
 				);
 
 				if (can_get_option('seller_approval', 'manual') == 'auto') {
@@ -533,12 +546,12 @@ class CAN_Shortcodes
 						wp_update_user( array( 
 							'ID' => $seller_id,
 							'role' => 'can_listing_seller',
-							'first_name' => sanitize_text_field( $_REQUEST['first_name'] ),
-							'last_name' => sanitize_text_field( $_REQUEST['last_name'] ),
+							'first_name' => $firstname,
+							'last_name' => $lastname,
 						) );
 
 						if(isset($_REQUEST['seller_phone'])){
-							update_user_meta( $seller_id, 'seller_phone', sanitize_text_field( $_REQUEST['seller_phone'] ));
+							update_user_meta( $seller_id, 'seller_phone', $seller_phone);
 						}
 
 						// if image uploaded
@@ -559,7 +572,9 @@ class CAN_Shortcodes
 
 						// WPML Language
 						if (isset($_REQUEST['wpml_user_email_language'])) {
-							update_user_meta( $seller_id, 'icl_admin_language', sanitize_text_field( $_REQUEST['wpml_user_email_language'] ));
+							$wpml_user_email_language = isset($_REQUEST['wpml_user_email_language']) ? sanitize_text_field(wp_unslash($_REQUEST['wpml_user_email_language'])) : '';
+
+							update_user_meta( $seller_id, 'icl_admin_language', $wpml_user_email_language);
 						}
 
 						do_action( 'can_new_seller_registered', $sellerData );
@@ -654,8 +669,10 @@ class CAN_Shortcodes
 	}
 
 	function render_dashboard_page(){
-		if (isset($_GET['can_page']) && file_exists(CAN_PATH. '/shortcodes/dashboard/'.$_GET['can_page'].'.php')) {
-			include CAN_PATH. '/shortcodes/dashboard/'.$_GET['can_page'].'.php';
+		$can_page = isset($_GET['can_page']) ?? sanitize_text_field(
+			wp_unslash($_GET['can_page']));
+		if ($can_page && file_exists(CAN_PATH. '/shortcodes/dashboard/'.$can_page.'.php')) {
+			include CAN_PATH. '/shortcodes/dashboard/'.$can_page.'.php';
 		} else {
 			include CAN_PATH. '/shortcodes/dashboard/dashboard.php';
 		}
@@ -673,22 +690,26 @@ class CAN_Shortcodes
 
 			$current_user_data = wp_get_current_user();
 
+			$listing_id = isset($_REQUEST['listing_id']) ?? sanitize_text_field(
+				wp_unslash($_REQUEST['listing_id']));
+
 			// If needs update
-			if (isset($_REQUEST['listing_id']) && get_post_field( 'post_author', $_REQUEST['listing_id'] ) == $current_user_data->ID) {
-				$status = (isset($_REQUEST['listing_admin_status']) && $_REQUEST['listing_admin_status'] != '') ? $_REQUEST['listing_admin_status'] : get_post_status( $_REQUEST['listing_id'] ) ;
-				if (isset($_REQUEST['listing_admin_status']) && $_REQUEST['listing_admin_status'] == 'publish') {
+			if ($listing_id && get_post_field( 'post_author', $listing_id ) == $current_user_data->ID) {
+				$status = (isset($_REQUEST['listing_admin_status']) && $_REQUEST['listing_admin_status'] != '') ? sanitize_text_field(
+					wp_unslash($_REQUEST['listing_admin_status'])) : get_post_status( $listing_id ) ;
+				if ($status == 'publish') {
 
 					$nonce_success = check_ajax_referer( 'listing-updated' ); 
 					//print_r($nonce_success);
 
-					if($nonce_success && $this->listing_can_be_published($_REQUEST['listing_id'])){
+					if($nonce_success && $this->listing_can_be_published($listing_id)){
 
-						$listing_id = $this->insert_listing_in_db($_REQUEST['listing_id'], $_REQUEST, $current_user_data, 'publish');
+						$listing_id = $this->insert_listing_in_db($listing_id, $_REQUEST, $current_user_data, 'publish');
 					} else {
-						$listing_id = $this->insert_listing_in_db($_REQUEST['listing_id'], $_REQUEST, $current_user_data, 'pending');
+						$listing_id = $this->insert_listing_in_db($listing_id, $_REQUEST, $current_user_data, 'pending');
 					}
 				} else {
-					$listing_id = $this->insert_listing_in_db($_REQUEST['listing_id'], $_REQUEST, $current_user_data, $status);
+					$listing_id = $this->insert_listing_in_db($listing_id, $_REQUEST, $current_user_data, $status);
 				}
 
 				$resp = array(
@@ -706,7 +727,7 @@ class CAN_Shortcodes
 					$resp['status'] = 'success';
 					$resp['message'] = __( 'Listing Submitted!', 'circular-arts-network' );
 				} else {
-					$listing_id = $this->insert_listing_in_db($_REQUEST['listing_id'], $_REQUEST, $current_user_data, 'publish');
+					$listing_id = $this->insert_listing_in_db($listing_id, $_REQUEST, $current_user_data, 'publish');
 					$resp['status'] = 'success';
 					$resp['message'] = __( 'Listing Published!', 'circular-arts-network' );
 				}
@@ -722,20 +743,31 @@ class CAN_Shortcodes
 	function update_profile(){
 		if (!empty($_REQUEST)) {
 			$current_user_data = wp_get_current_user();
-			if ($current_user_data->ID == $_REQUEST['seller_id']) {
+			$seller_id = isset($_REQUEST['seller_id']) ?? sanitize_text_field(
+				wp_unslash($_REQUEST['seller_id']));	
+			$firstname = isset($_REQUEST['first_name']) ? sanitize_text_field(wp_unslash($_REQUEST['first_name'])) : '';
+			$lastname = isset($_REQUEST['last_name']) ? sanitize_text_field(wp_unslash($_REQUEST['last_name'])) : '';
+			$username = isset($_REQUEST['username']) ? sanitize_text_field(wp_unslash($_REQUEST['username'])) : '';
+			$useremail = isset($_REQUEST['seller_email']) ? sanitize_email(wp_unslash($_REQUEST['seller_email'])) : '';
+			if ($firstname && $lastname &&
+				$username &&
+				$useremail &&
+			 	$seller_id && $current_user_data->ID == $seller_id) {
 				wp_update_user( array( 
 					'ID' => $current_user_data->ID,
-					'first_name' => sanitize_text_field( $_REQUEST['first_name'] ),
-					'last_name' => sanitize_text_field( $_REQUEST['last_name'] ),
-					'user_email' => sanitize_email( $_REQUEST['seller_email'] ),
+					'first_name' => $firstname,
+					'last_name'  => $lastname,
+					'user_email' => $useremail,
 				) );
 
-				if (isset($_REQUEST['seller_image'])) {
-					update_user_meta( $current_user_data->ID, 'seller_image', sanitize_text_field( $_REQUEST['seller_image'] ));
+				$seller_image = isset($_REQUEST['seller_image']) ? sanitize_email(wp_unslash($_REQUEST['seller_image'])) : '';
+				if ($seller_image) {
+					update_user_meta( $current_user_data->ID, 'seller_image', $seller_image);
 				}
 
-				if (isset($_REQUEST['seller_phone'])) {
-					update_user_meta( $current_user_data->ID, 'seller_phone', sanitize_text_field( $_REQUEST['seller_phone'] ));
+				$seller_phone = isset($_REQUEST['seller_phone']) ? sanitize_email(wp_unslash($_REQUEST['seller_phone'])) : '';
+				if ($seller_phone) {
+					update_user_meta( $current_user_data->ID, 'seller_phone', $seller_phone);
 				}
 
 				$resp = array(
@@ -763,19 +795,22 @@ class CAN_Shortcodes
 	}
 
 	function delete_listing(){
-		if (isset($_REQUEST['listing_id'])) {
+
+		$listing_id = isset($_REQUEST['listing_id']) ?? sanitize_text_field(
+			wp_unslash($_REQUEST['listing_id']));
+		if ($listing_id) {
 			$current_user_data = wp_get_current_user();
-			if (get_post_field( 'post_author', $_REQUEST['listing_id'] ) == $current_user_data->ID || current_user_can( 'manage_options' )) {
+			if (get_post_field( 'post_author', $listing_id) == $current_user_data->ID || current_user_can( 'manage_options' )) {
 				if (can_get_option('attachment_deletion', 'remain') == 'delete') {
-					$gallery_images = get_post_meta( $_REQUEST['listing_id'], 'can_gallery_images', true );
+					$gallery_images = get_post_meta( $listing_id, 'can_gallery_images', true );
 					foreach ($gallery_images as $key => $id) {
 						wp_delete_attachment( $id, false );
 					}
 				}
 				if (can_get_option('property_deletion', 'delete') == 'trash') {
-					wp_trash_post( $_REQUEST['listing_id'] );
+					wp_trash_post( $listing_id );
 				} else {
-					wp_delete_post( $_REQUEST['listing_id'], true );
+					wp_delete_post( $listing_id, true );
 				}
 				$resp = array(
 					'status'    => 'success',
@@ -792,12 +827,83 @@ class CAN_Shortcodes
 		}
 		die(0);
 	}
+function sanitize_request_data($data) {
+    if (!is_array($data) || empty($data)) {
+        return array();
+    }
+    
+    $sanitized = array();
+    
+    foreach ($data as $key => $value) {
+        // Skip if key or value is not set
+        if (!isset($key) || !isset($value)) {
+            continue;
+        }
+        
+        // Sanitize the key itself
+        $clean_key = sanitize_key($key);
+        
+        // Handle arrays recursively
+        if (is_array($value)) {
+            $sanitized[$clean_key] = sanitize_request_data($value);
+            continue;
+        }
+        
+        // Convert to string and unslash
+        $value = wp_unslash($value);
+        
+        // Apply specific sanitization based on field name patterns
+        if (preg_match('/(email|user_email|seller_email)$/i', $key)) {
+            // Email fields
+            $sanitized[$clean_key] = sanitize_email($value);
+            
+        } elseif (preg_match('/(url|website|link)$/i', $key)) {
+            // URL fields
+            $sanitized[$clean_key] = esc_url_raw($value);
+            
+        } elseif (preg_match('/(phone|tel|mobile)$/i', $key)) {
+            // Phone numbers - keep numbers, spaces, dashes, parentheses, plus
+            $sanitized[$clean_key] = preg_replace('/[^0-9\s\-\(\)\+]/', '', $value);
+            
+        } elseif (preg_match('/(password|pass|pwd)$/i', $key)) {
+            // Passwords - don't sanitize, but ensure it's a string
+            $sanitized[$clean_key] = (string) $value;
+            
+        } elseif (preg_match('/(description|content|message|comment|bio|about)$/i', $key)) {
+            // Long text content - allow some HTML but sanitize
+            $sanitized[$clean_key] = wp_kses_post($value);
+            
+        } elseif (preg_match('/(id|ID|_id)$/i', $key) || is_numeric($value)) {
+            // IDs and numeric values
+            $sanitized[$clean_key] = absint($value);
+            
+        } elseif (preg_match('/(date|time)$/i', $key)) {
+            // Date/time fields
+            $sanitized[$clean_key] = sanitize_text_field($value);
+            
+        } elseif (preg_match('/(slug|username|user_login)$/i', $key)) {
+            // Slugs and usernames
+            $sanitized[$clean_key] = sanitize_user($value);
+            
+        } elseif (preg_match('/(key|token|hash|nonce)$/i', $key)) {
+            // Keys, tokens, hashes - alphanumeric only
+            $sanitized[$clean_key] = preg_replace('/[^a-zA-Z0-9]/', '', $value);
+            
+        } else {
+            // Default: regular text field
+            $sanitized[$clean_key] = sanitize_text_field($value);
+        }
+    }
+    
+    return $sanitized;
+}
 
 	function insert_listing_in_db($listing_id = '', $data, $current_user_data, $status = 'draft'){
 		/*
 		 * TODO 
 		 * Can't error_log here or it breaks the process
 		 */
+		$data = sanitize_request_data($data);
 		$listing_data = array(
 			'post_title'    	=> wp_strip_all_tags( $data['listing_title'] ),
 			'post_content'  	=> $data['content'],
