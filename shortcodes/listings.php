@@ -15,7 +15,7 @@ if ( $the_query->have_posts() ) {
 
 	while ( $the_query->have_posts() ) {
 		$the_query->the_post();
-		echo esc_html('<div id="listing-'.get_the_id().'" class="'.esc_attr( $columns ).'">');
+		echo '<div id="listing-'. esc_attr(get_the_id()).'" class="'.esc_attr( $columns ).'">';
 			do_action('can_listing_box', get_the_id(), '1', 'grid');
 		echo '</div>';
 	}

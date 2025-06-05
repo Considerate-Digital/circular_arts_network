@@ -6,7 +6,11 @@
     "config": {
     },
     "env": {
-                  }
+                  },
+    "mappings": {
+      "wp-cli.yml": "./wp-cli.wp-env.yml",
+      ".htaccess": "./.htaccess"
+    }
 }
 
 

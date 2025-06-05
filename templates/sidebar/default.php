@@ -80,5 +80,6 @@
 	            <button type="submit" class="can-btn"><span class=""></span> <?php esc_html_e( 'SEND MESSAGE', 'circular-arts-network' ); ?></button>
 	        </div>
 	    </div><!-- /.row -->
+			<?php wp_nonce_field( 'seller-contact'); ?>
 	</form><!-- /.form -->
 </div>

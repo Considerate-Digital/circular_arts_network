@@ -15,6 +15,7 @@ $field_sections = $can_admin_settings->get_fields_sections();
 				}
 			?>
 			<input class="btn btn-success" type="submit" value="<?php esc_html_e( 'Create Listing', 'circular-arts-network' ); ?>">
+			<?php wp_nonce_field( 'listing-added'); ?>
 		</form>
 	</div>
 </div>

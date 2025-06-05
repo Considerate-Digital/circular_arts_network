@@ -157,7 +157,8 @@ class CAN_Email
     }
 
     function contact_seller(){
-        if (isset($_REQUEST) && $_REQUEST != '') {
+				$nonce_success = check_ajax_referer( 'contact-seller' ); 
+        if ($nonce_success && isset($_REQUEST) && $_REQUEST != '') {
 
             if (isset($_REQUEST['g-recaptcha-response'])) {
                 if (!$_REQUEST['g-recaptcha-response']) {

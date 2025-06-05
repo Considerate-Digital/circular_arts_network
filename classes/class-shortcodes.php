@@ -666,13 +666,19 @@ class CAN_Shortcodes
 				'message'   => __( 'There is some error', 'circular-arts-network' ),
 			);
 
+
 			$current_user_data = wp_get_current_user();
 
 			// If needs update
 			if (isset($_REQUEST['listing_id']) && get_post_field( 'post_author', $_REQUEST['listing_id'] ) == $current_user_data->ID) {
 				$status = (isset($_REQUEST['listing_admin_status']) && $_REQUEST['listing_admin_status'] != '') ? $_REQUEST['listing_admin_status'] : get_post_status( $_REQUEST['listing_id'] ) ;
 				if (isset($_REQUEST['listing_admin_status']) && $_REQUEST['listing_admin_status'] == 'publish') {
-					if($this->listing_can_be_published($_REQUEST['listing_id'])){
+
+					$nonce_success = check_ajax_referer( 'listing-updated' ); 
+					//print_r($nonce_success);
+
+					if($nonce_success && $this->listing_can_be_published($_REQUEST['listing_id'])){
+
 						$listing_id = $this->insert_listing_in_db($_REQUEST['listing_id'], $_REQUEST, $current_user_data, 'publish');
 					} else {
 						$listing_id = $this->insert_listing_in_db($_REQUEST['listing_id'], $_REQUEST, $current_user_data, 'pending');
@@ -690,7 +696,8 @@ class CAN_Shortcodes
 
 				// Create a new    
 			} else {
-				if(can_get_option('listing_submission_mode') == 'approve'){
+				$nonce_success = check_ajax_referer( 'listing-added' ); 
+				if($nonce_success && can_get_option('listing_submission_mode') == 'approve'){
 					$listing_id = $this->insert_listing_in_db('', $_REQUEST, $current_user_data, 'pending');
 					$resp['status'] = 'success';
 					$resp['message'] = __( 'Listing Submitted!', 'circular-arts-network' );

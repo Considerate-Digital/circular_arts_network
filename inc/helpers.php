@@ -181,7 +181,10 @@ function can_render_listing_section($section, $listing_id = 0){
 	//TODO use render_listing_field as an example, but essentially render the categories here
 	case 'category':
 		$required = true;
-		$categories = get_terms("can_listing_category");
+    $categories = get_terms(array(
+        'taxonomy' => "can_listing_category",
+        'hide_empty' => false
+    ));
 ?>
 		
                 <div class="card mb-2">
@@ -196,7 +199,7 @@ function can_render_listing_section($section, $listing_id = 0){
                     <select name="can_listing_category" class="form-control form-control-sm">
                         <?php
                             foreach ($categories as $term) {
-                                echo esc_html('<option value="'.$term->name.'">'.$term->name.'</option>');
+                                echo '<option value="' . esc_html($term->name) . '">' . esc_html($term->name) . '</option>';
                             }
                         ?>
                     </select>

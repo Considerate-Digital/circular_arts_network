@@ -1,5 +1,11 @@
 <?php if(isset($_GET['action']) && $_GET['action'] == 'can_search_listing'){
-    
+/*
+    $nonce_success = wp_verify_nonce( wp_unslash($_REQUEST['_wpnonce']), 'search' ); 
+    if (!$nonce_success) {
+        wp_nonce_ays('log-out');
+    }
+        echo "<p>Nonce check</p>";
+ */
     $args = can_get_search_query($_REQUEST);
     $paged = ( get_query_var('paged') ) ? get_query_var('paged') : 1; 
     $args['paged'] = $paged;
@@ -20,7 +26,7 @@
 
         while ( $listings_query->have_posts() ) {
             $listings_query->the_post();
-            echo esc_html('<div id="listing-'.get_the_id().'" class="'.esc_attr( $columns ).'">');
+            echo '<div id="listing-'.esc_html(get_the_id()) .'" class="'.esc_attr( $columns ).'">';
                 do_action('can_listing_box', get_the_id(), '1', 'grid', $links_target);
             echo '</div>';
         }
@@ -33,7 +39,7 @@
 
     } else {
         $msg = can_get_option('no_results_message', 'No Results Found.');
-        echo esc_html('<div class="alert alert-info">'.stripcslashes($msg).'</div>');
+        echo '<div class="alert alert-info">'.esc_html(stripcslashes($msg)).'</div>';
     }
     echo '</div>';
 } ?>

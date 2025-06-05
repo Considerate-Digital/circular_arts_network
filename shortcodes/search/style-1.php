@@ -30,6 +30,8 @@
 					<input type="submit" class="can-btn" value="<?php esc_html_e( 'Search', 'circular-arts-network' ) ?>">
 				</div>
 			</div>
+		
+			<?php wp_nonce_field( 'search'); ?>
 		</form>
 	</div>
 	<div class="can-loader text-center">

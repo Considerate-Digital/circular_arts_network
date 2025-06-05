@@ -19,7 +19,7 @@
 			</div>
 			<div class="can-footer-area clearfix">
 				<p class="can-price-wrap float-start">
-					<?php echo esc_html(can_get_field_value($listing_id, array('key' =>'regular_price', 'type' => 'price'))); ?>
+					<?php echo can_get_field_value($listing_id, array('key' =>'regular_price', 'type' => 'price')); ?>
 				</p>
 				<div class="can-actions float-end">
 					<?php $this->render_action_buttons($listing_id); ?>
