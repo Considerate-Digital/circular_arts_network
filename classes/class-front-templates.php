@@ -87,7 +87,7 @@ class CAN_Front_Templates
     }
 
     function listings_compare_table(){
-        $listing_ids = array_map( 'sanitize_text_field', $_REQUEST['listing_ids'] );
+        $listing_ids = array_map( 'sanitize_text_field', sanitize_html(wp_unslash($_REQUEST['listing_ids'])) );
 
         $saved_table_label = can_get_option('listing_compare_columns');
         if (!empty($saved_table_label)) {
@@ -240,7 +240,7 @@ class CAN_Front_Templates
     function listing_box($listing_id, $style = '1', $layout='grid', $target=''){
 
     	if (isset($_GET['layout']) && $_GET['layout'] != '') {
-    		$layout = sanitize_text_field( $_GET['layout'] );
+    		$layout = sanitize_text_field(wp_unslash( $_GET['layout'] ));
     	}
         
         $in_theme = get_stylesheet_directory().'/can/loop/'.$style.'/'.$layout.'.php';

@@ -293,7 +293,7 @@ class CAN_Shortcodes
 		}
 
 		if (isset($_GET['sort_by']) && $_GET['sort_by'] != '') {
-			$sort_op = explode("-", $_GET['sort_by']);
+			$sort_op = explode("-", sanitize_html(wp_unslash($_GET['sort_by'])));
 			$args['order'] = strtoupper($sort_op[1]);
 			$args['orderby'] = $sort_op[0];
 			if ($sort_op[0] == 'price') {

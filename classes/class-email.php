@@ -197,7 +197,7 @@ class CAN_Email
             if (!empty($recaptcha_response)) {
                 // reCAPTCHA response exists, validate it
                 $secretKey = can_get_option('captcha_secret_key', '6LcDhUQUAAAAAGKQ7gd1GsGAkEGooVISGEl3s7ZH');
-                $ip = isset($_SERVER['REMOTE_ADDR']) ? sanitize_text_field($_SERVER['REMOTE_ADDR']) : '';
+                $ip = isset($_SERVER['REMOTE_ADDR']) ? sanitize_text_field(wp_unslash($_SERVER['REMOTE_ADDR'])) : '';
                 
                 // Build the verification URL safely
                 $verify_url = add_query_arg(array(

@@ -43,13 +43,13 @@ class CAN_Register_CPT
 
     function permalink_settings(){
         if( isset( $_POST['can_listing_permalink'] ) ){
-            update_option( 'can_listing_permalink', sanitize_title_with_dashes( $_POST['can_listing_permalink'] ) );
+            update_option( 'can_listing_permalink', sanitize_title_with_dashes( wp_unslash($_POST['can_listing_permalink']) ) );
         }
         if( isset( $_POST['can_category_permalink'] ) ){
-            update_option( 'can_category_permalink', sanitize_title_with_dashes( $_POST['can_category_permalink'] ) );
+            update_option( 'can_category_permalink', sanitize_title_with_dashes( wp_unslash($_POST['can_category_permalink']) ) );
         }
         if( isset( $_POST['can_tag_permalink'] ) ){
-            update_option( 'can_tag_permalink', sanitize_title_with_dashes( $_POST['can_tag_permalink'] ) );
+            update_option( 'can_tag_permalink', sanitize_title_with_dashes( wp_unslash($_POST['can_tag_permalink']) ) );
         }
         
         // Add setting fields to the permalink page
@@ -95,7 +95,7 @@ class CAN_Register_CPT
             3  => __( 'Custom field deleted.', 'circular-arts-network' ),
             4  => __( 'Listing updated.', 'circular-arts-network' ),
             /* translators: %s: date and time of the revision */
-            5  => isset( $_GET['revision'] ) ? sprintf( __( 'Listing restored to revision', 'circular-arts-network' ), wp_post_revision_title( (int) $_GET['revision'], false ) ) : false,
+            5  => isset( $_GET['revision'] ) ? sprintf( __( 'Listing restored to revision', 'circular-arts-network' ), wp_post_revision_title( (int) sanitize_html(wp_unslash($_GET['revision'])), false ) ) : false,
             6  => __( 'Listing published.', 'circular-arts-network' ),
             7  => __( 'Listing saved.', 'circular-arts-network' ),
             8  => __( 'Listing submitted.', 'circular-arts-network' ),

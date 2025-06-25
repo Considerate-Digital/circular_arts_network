@@ -106,7 +106,7 @@ class CAN_Admin_Settings
         
         // OK, we're authenticated: we need to find and save the data
         if (isset($_POST['can_data']) && !empty($_POST['can_data'])) {
-            foreach ($_POST['can_data'] as $key => $value) {
+            foreach (sanitize_html(wp_unslash($_POST['can_data'])) as $key => $value) {
                 if (is_array($value)) {
                     $value = array_map( 'sanitize_text_field', $value );
                     update_post_meta($post_id, 'can_'.$key, $value);
@@ -118,7 +118,7 @@ class CAN_Admin_Settings
 
         // Saving Gallery Images
         if (isset($_POST['gallery_images']) && $_POST['gallery_images'] != '') {
-            $images = array_map( 'sanitize_text_field', $_POST['gallery_images'] );
+            $images = array_map( 'sanitize_text_field', sanitize_html(wp_unslash($_POST['gallery_images'] )));
             update_post_meta( $post_id, 'can_gallery_images', $images );
         } else {
             update_post_meta( $post_id, 'can_gallery_images', '' );
@@ -126,10 +126,10 @@ class CAN_Admin_Settings
 
         // Saving Location
         if (isset($_POST['can_listing_latitude']) && $_POST['can_listing_latitude'] != '') {
-            update_post_meta( $post_id, 'can_listing_latitude', sanitize_text_field($_POST['can_listing_latitude']) );
+            update_post_meta( $post_id, 'can_listing_latitude', sanitize_text_field(wp_unslash($_POST['can_listing_latitude'])) );
         }
         if (isset($_POST['can_listing_longitude']) && $_POST['can_listing_longitude'] != '') {
-            update_post_meta( $post_id, 'can_listing_longitude', sanitize_text_field($_POST['can_listing_longitude']) );
+            update_post_meta( $post_id, 'can_listing_longitude', sanitize_text_field(wp_unslash($_POST['can_listing_longitude'])) );
         }
 
 
@@ -358,7 +358,7 @@ class CAN_Admin_Settings
             'message' => __( 'There is some error or you did not make any change.', 'circular-arts-network' ),
         );
         if (isset($_REQUEST['sections']) && !isset($_REQUEST['reset'])) {
-            $updated = update_option( 'can_field_sections', $_REQUEST['sections'] );
+            $updated = update_option( 'can_field_sections', sanitize_html(wp_unslash($_REQUEST['sections'])) );
             if ($updated) {
                 $resp['status'] = 'success';
                 $resp['title'] = __( 'Settings Saved!', 'circular-arts-network' );
@@ -382,7 +382,7 @@ class CAN_Admin_Settings
         if (isset($_REQUEST['fields'])) {
             $resp = array('status' => '', 'title' => '', 'message' => '');
             $fields_arr = array();
-            foreach ($_REQUEST['fields'] as $field) {
+            foreach (sanitize_html(wp_unslash($_REQUEST['fields'])) as $field) {
                 $field['editable'] = (isset($field['editable']) && $field['editable'] == 'false') ? false : true;
                 $field['options'] = (isset($field['options']) && $field['options'] != '') ? explode("\n", trim($field['options'])) : array();
                 $field['title'] = (isset($field['title']) && $field['title'] != '') ? stripcslashes($field['title']) : '';
@@ -429,7 +429,7 @@ class CAN_Admin_Settings
         if (isset($_REQUEST)) {
             $resp = array('status' => '', 'title' => '', 'message' => '');
             
-            $can_settings = $_REQUEST;
+            $can_settings = sanitize_html(wp_unslash($_REQUEST));
             if (update_option( 'can_all_settings', $can_settings )) {
                 $resp['status'] = 'success';
                 $resp['title'] = __( 'Settings Saved!', 'circular-arts-network' );
@@ -458,10 +458,10 @@ class CAN_Admin_Settings
 
     function save_category_image( $term_id, $tt_id ) {
         if( isset( $_POST['can_category_image'] ) && '' !== $_POST['can_category_image'] ){
-            add_term_meta( $term_id, 'can_category_image', sanitize_text_field( $_POST['can_category_image'] ), true );
+            add_term_meta( $term_id, 'can_category_image', sanitize_text_field(wp_unslash( $_POST['can_category_image'])) , true );
         }
         if( isset( $_POST['can_category_icon'] ) && '' !== $_POST['can_category_icon'] ){
-            add_term_meta( $term_id, 'can_category_icon', sanitize_text_field( $_POST['can_category_icon'] ), true );
+            add_term_meta( $term_id, 'can_category_icon', sanitize_text_field(wp_unslash( $_POST['can_category_icon']) ), true );
         }
     }
     function edit_category_image( $term, $taxonomy ) {
@@ -469,12 +469,12 @@ class CAN_Admin_Settings
     }
     function updated_category_image( $term_id, $tt_id ) {
         if( isset( $_POST['can_category_image'] ) && '' !== $_POST['can_category_image'] ){
-            update_term_meta ( $term_id, 'can_category_image', sanitize_text_field( $_POST['can_category_image'] ) );
+            update_term_meta( $term_id, 'can_category_image', sanitize_text_field( wp_unslash($_POST['can_category_image'] )) );
         } else {
             update_term_meta ( $term_id, 'can_category_image', '' );
         }
         if( isset( $_POST['can_category_icon'] ) && '' !== $_POST['can_category_icon'] ){
-            update_term_meta ( $term_id, 'can_category_icon', sanitize_text_field( $_POST['can_category_icon'] ) );
+            update_term_meta ( $term_id, 'can_category_icon', sanitize_text_field( wp_unslash($_POST['can_category_icon'] )) );
         } else {
             update_term_meta ( $term_id, 'can_category_icon', '' );
         }
@@ -531,13 +531,13 @@ class CAN_Admin_Settings
 
                 // WPML Language
                 if (isset($_REQUEST['wpml_user_email_language'])) {
-                    update_user_meta( $seller_id, 'icl_admin_language', sanitize_text_field( $_REQUEST['wpml_user_email_language'] ));
+                    update_user_meta( $seller_id, 'icl_admin_language', sanitize_text_field( wp_unslash($_REQUEST['wpml_user_email_language'] )));
                 }
 
-                update_user_meta( $seller_id, 'seller_phone', sanitize_text_field( $new_seller['seller_phone'] ));
+                update_user_meta( $seller_id, 'seller_phone', sanitize_text_field(wp_unslash( $new_seller['seller_phone'] )));
                 
                 if (isset($new_seller['seller_image'])) {
-                    update_user_meta( $seller_id, 'seller_image', sanitize_text_field( $new_seller['seller_image'] ));
+                    update_user_meta( $seller_id, 'seller_image', sanitize_text_field(wp_unslash( $new_seller['seller_image'] )));
                 }
             }
             
