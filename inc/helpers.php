@@ -498,7 +498,7 @@ function can_render_listing_field($field, $listing_id = 0){
                             $options = (is_array($field['options'])) ? $field['options'] : explode("\n", $field['options']);
                             foreach ($options as $name) {
                                 $translated_label = can_wpml_translate($name, 'circular-arts-network-fields');
-                                echo esc_html('<option value="'.$name.'" '.selected( $field_value, $name, false ).'>'.$translated_label.'</option>');
+                                echo '<option value="'.esc_attr($name).'" '.selected( esc_attr($field_value), esc_attr($name), false ).'>'.$translated_label.'</option>';
                             }
                         ?>
                     </select>
@@ -539,7 +539,7 @@ function can_render_listing_field($field, $listing_id = 0){
             <div class="row mb-3">
                 <label class="col-sm-4 col-form-label" for="<?php echo esc_attr( $field_id ); ?>">
                     <?php echo esc_html(can_wpml_translate($field_title, 'circular-arts-network-fields')); ?>
-                    <?php echo ($required) ? esc_html('<span title="'.__( 'Required', 'circular-arts-network' ).'" class="glyphicon glyphicon-asterisk"></span>') : '' ; ?>
+                    <?php echo ($required) ? '<span title="'.esc_html_e( 'Required', 'circular-arts-network' ).'" class="glyphicon glyphicon-asterisk"></span>' : '' ; ?>
                 </label>
                 
                 <div class="col-sm-8">
@@ -561,7 +561,7 @@ function can_render_listing_field($field, $listing_id = 0){
             <div class="row mb-3">
                 <label class="col-sm-4 col-form-label" for="<?php echo esc_attr( $field_id ); ?>">
                     <?php echo esc_html(can_wpml_translate($field_title, 'circular-arts-network-fields')); ?>
-                    <?php echo ($required) ? esc_html('<span title="'.__( 'Required', 'circular-arts-network' ).'" class="glyphicon glyphicon-asterisk"></span>') : '' ; ?>
+                    <?php echo ($required) ? '<span title="'.esc_html_e( 'Required', 'circular-arts-network' ).'" class="glyphicon glyphicon-asterisk"></span>' : '' ; ?>
                 </label>
                 <div class="col-sm-8">
                    <input
@@ -583,7 +583,7 @@ function can_render_listing_field($field, $listing_id = 0){
             <div class="row mb-3">
                 <label class="col-sm-4 col-form-label" for="<?php echo esc_attr( $field_id ); ?>">
                     <?php echo esc_html(can_wpml_translate($field_title, 'circular-arts-network-fields')); ?>
-                    <?php echo ($required) ? esc_html('<span title="'.__( 'Required', 'circular-arts-network' ).'" class="glyphicon glyphicon-asterisk"></span>') : '' ; ?>
+                    <?php echo ($required) ? '<span title="'.esc_html_e( 'Required', 'circular-arts-network' ).'" class="glyphicon glyphicon-asterisk"></span>' : '' ; ?>
                 </label>
                 <div class="col-sm-8">
                    <input type="<?php echo esc_attr( $field_type ); ?>" name="<?php echo esc_attr( $field_name ); ?>" class="form-control form-control-sm" id="<?php echo esc_attr( $field_id ); ?>" value="<?php echo esc_attr( $field_value ); ?>"> 

@@ -27,7 +27,7 @@
                 <button type="submit" class="can-btn"><?php esc_html_e( 'Login Now', 'circular-arts-network' ); ?></button>
             </div>
 
-          <?php wp_nonce_field( 'search'); ?>
+          <?php wp_nonce_field( 'login'); ?>
         </form>
         <p class="text-center mb-0 mt-2">
         	<?php esc_html_e( "Don't have an account?", 'circular-arts-network' ); ?>

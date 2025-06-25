@@ -242,8 +242,8 @@ class CAN_Email
                 $subject = can_get_option('email_subject', 'Listing Contact');
                 $message = can_get_option('email_message', $client_msg);
                 
-                $listing_id = isset($_REQUEST['listing_id']) ?? sanitize_text_field(
-                  wp_unslash($_REQUEST['listing_id']));
+                $listing_id = isset($_REQUEST['listing_id']) ? sanitize_text_field(
+                  wp_unslash($_REQUEST['listing_id'])) : '';
                 // if property id is available
                 if ($listing_id && $listing_id != '') {
                     $listing_title = esc_attr( get_the_title( $listing_id ) );

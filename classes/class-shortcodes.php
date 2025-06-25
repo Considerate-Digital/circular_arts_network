@@ -434,84 +434,89 @@ class CAN_Shortcodes
 		$nonce_success = check_ajax_referer( 'login' ); 
 		if ($nonce_success && isset($_REQUEST)) {
 
-			$captcha = isset($_REQUEST['g-recaptcha-response']) ?? sanitize_text_field( wp_unslash($_REQUEST['g-recaptcha-response'] ));
+			$captcha = isset($_REQUEST['g-recaptcha-response']) ? sanitize_text_field( wp_unslash($_REQUEST['g-recaptcha-response'] )) : false;
 
-			if (!$captcha) {
-					$resp = array('status' => 'error', 'message' => __( 'Please check the captcha form.', 'circular-arts-network' ));
-					echo json_encode($resp); exit;
-				} else {
-					$secretKey = can_get_option('captcha_secret_key');
-					$ip = isset($_SERVER['REMOTE_ADDR']) ? sanitize_text_field( wp_unslash($_SERVER['REMOTE_ADDR'] )): '';
-					$response = wp_remote_post("https://www.google.com/recaptcha/api/siteverify?secret=".$secretKey."&response=".$captcha."&remoteip=".$ip);
-					$responseKeys = json_decode($response['body'], true);
-					if(intval($responseKeys["success"]) !== 1) {
-						$resp = array('status' => 'error', 'message' => __( 'There was an error. Please try again after reloading page', 'circular-arts-network' ));
+			if (can_get_option('captcha_on_login') == 'on') {
+				if (!$captcha) {
+						$resp = array('status' => 'error', 'message' => __( 'Please check the captcha form.', 'circular-arts-network' ));
 						echo json_encode($resp); exit;
+					} else {
+						$secretKey = can_get_option('captcha_secret_key');
+						$ip = isset($_SERVER['REMOTE_ADDR']) ? sanitize_text_field( wp_unslash($_SERVER['REMOTE_ADDR'] )): '';
+						$response = wp_remote_post("https://www.google.com/recaptcha/api/siteverify?secret=".$secretKey."&response=".$captcha."&remoteip=".$ip);
+						$responseKeys = json_decode($response['body'], true);
+						if(intval($responseKeys["success"]) !== 1) {
+							$resp = array('status' => 'error', 'message' => __( 'There was an error. Please try again after reloading page', 'circular-arts-network' ));
+							echo json_encode($resp); exit;
+						}
 					}
 				}
+				global $user;
+				$creds = array();
+				$creds['user_login'] = isset($_REQUEST['seller_email']) ? 
+					sanitize_email( wp_unslash($_REQUEST['seller_email'])) : "";
+
+				$creds['user_password'] = isset($_REQUEST['seller_password']) ?  
+					sanitize_text_field( wp_unslash($_REQUEST['seller_password'])) : "";
+				$creds['remember'] = (isset($_REQUEST['rememberme'])) ? true : false;
+				$user = wp_signon( $creds, true );
+
+				if ( is_wp_error($user) ) {
+
+					$resp = array(
+						'status'    => 'error',
+						'message'   => $user->get_error_message(),
+					);
+
+					echo json_encode($resp);
+				}
+				if ( !is_wp_error($user) ) {
+					$resp = array(
+						'status'    => 'success',
+						'message'   => __( 'Successful!', 'circular-arts-network' ),
+					);
+
+					wp_set_auth_cookie( $user->ID, true, false );
+					wp_set_current_user( $user->ID );
+					echo json_encode($resp);
+				}
+
 			}        	
-			global $user;
-			$creds = array();
-			$creds['user_login'] = isset($_REQUEST['seller_email']) ?? 
-				sanitize_email( wp_unslash($_REQUEST['seller_email']));
-			$creds['user_password'] = isset($_REQUEST['seller_password']) ??  
-				sanitize_text_field( wp_unslash($_REQUEST['seller_password']));
-			$creds['remember'] = (isset($_REQUEST['rememberme'])) ? true : false;
-			$user = wp_signon( $creds, true );
-
-			if ( is_wp_error($user) ) {
-
-				$resp = array(
-					'status'    => 'error',
-					'message'   => $user->get_error_message(),
-				);
-
-				echo json_encode($resp);
-			}
-			if ( !is_wp_error($user) ) {
-				$resp = array(
-					'status'    => 'success',
-					'message'   => __( 'Successful!', 'circular-arts-network' ),
-				);
-
-				wp_set_auth_cookie( $user->ID, true, false );
-				wp_set_current_user( $user->ID );
-				echo json_encode($resp);
-			}
-
 			die(0);
 		}
 
 	function register(){
 
-		$nonce_success = check_ajax_referer( 'login' ); 
-			$username 	= isset($_REQUEST['username']) ??	sanitize_text_field( 
-				wp_unslash($_REQUEST['username'] ));
-			$useremail 	= 	isset($_REQUEST['seller_email']) ?? sanitize_email( 
-				wp_unslash($_REQUEST['seller_email']) );
-			$password 	= isset($_REQUEST['seller_password']) ?? sanitize_text_field(
-				wp_unslash($_REQUEST['seller_password']));
+		$nonce_success = check_ajax_referer( 'register' ); 
+			$username 	= isset($_REQUEST['username']) ?	sanitize_text_field( 
+				wp_unslash($_REQUEST['username'] )): "";
+			$useremail 	= 	isset($_REQUEST['seller_email']) ? sanitize_email( 
+				wp_unslash($_REQUEST['seller_email']) ) : "";
+			$password 	= isset($_REQUEST['seller_password']) ? sanitize_text_field(
+				wp_unslash($_REQUEST['seller_password'])): "";
 
-		$captcha = isset($_REQUEST['g-recaptcha-response']) ?? sanitize_text_field(
-		 	wp_unslash($_REQUEST['g-recaptcha-response']) );
+		$captcha = isset($_REQUEST['g-recaptcha-response']) ? sanitize_text_field(
+		 	wp_unslash($_REQUEST['g-recaptcha-response']) ): "";
 
 		if ($nonce_success && $username && $useremail && $password) {
 			
 			$resp = array();
 
 			// Checking for Spams
-				if (!$captcha) {
-					$resp = array('status' => 'info', 'message' => __( 'Please check the captcha form.', 'circular-arts-network' ));
-					echo json_encode($resp); exit;
-				} else {
-					$secretKey = can_get_option('captcha_secret_key');
-					$ip = isset($_SERVER['REMOTE_ADDR']) ?? sanitize_text_field( 
-						wp_unslash($_SERVER['REMOTE_ADDR']) );
-					$response = wp_remote_post("https://www.google.com/recaptcha/api/siteverify?secret=".$secretKey."&response=".$captcha."&remoteip=".$ip);
-					$responseKeys = json_decode($response['body'], true);
-					if(intval($responseKeys["success"]) !== 1) {
-						$resp = array('status' => 'error', 'message' => __( 'There was an error. Please try again after reloading page.', 'circular-arts-network' ));
+				if (can_get_option('captcha_on_login') == 'on') {
+					if (!$captcha) {
+						$resp = array('status' => 'info', 'message' => __( 'Please check the captcha form.', 'circular-arts-network' ));
 						echo json_encode($resp); exit;
+					} else {
+						$secretKey = can_get_option('captcha_secret_key');
+						$ip = isset($_SERVER['REMOTE_ADDR']) ? sanitize_text_field( 
+							wp_unslash($_SERVER['REMOTE_ADDR']) ): "";
+						$response = wp_remote_post("https://www.google.com/recaptcha/api/siteverify?secret=".$secretKey."&response=".$captcha."&remoteip=".$ip);
+						$responseKeys = json_decode($response['body'], true);
+						if(intval($responseKeys["success"]) !== 1) {
+							$resp = array('status' => 'error', 'message' => __( 'There was an error. Please try again after reloading page.', 'circular-arts-network' ));
+							echo json_encode($resp); exit;
+						}
 					}
 				}
 
@@ -669,8 +674,8 @@ class CAN_Shortcodes
 	}
 
 	function render_dashboard_page(){
-		$can_page = isset($_GET['can_page']) ?? sanitize_text_field(
-			wp_unslash($_GET['can_page']));
+		$can_page = isset($_GET['can_page']) ? sanitize_text_field(
+			wp_unslash($_GET['can_page'])) : "";
 		if ($can_page && file_exists(CAN_PATH. '/shortcodes/dashboard/'.$can_page.'.php')) {
 			include CAN_PATH. '/shortcodes/dashboard/'.$can_page.'.php';
 		} else {
@@ -690,8 +695,8 @@ class CAN_Shortcodes
 
 			$current_user_data = wp_get_current_user();
 
-			$listing_id = isset($_REQUEST['listing_id']) ?? sanitize_text_field(
-				wp_unslash($_REQUEST['listing_id']));
+			$listing_id = isset($_REQUEST['listing_id']) ? sanitize_text_field(
+				wp_unslash($_REQUEST['listing_id'])) : "";
 
 			// If needs update
 			if ($listing_id && get_post_field( 'post_author', $listing_id ) == $current_user_data->ID) {
@@ -700,7 +705,6 @@ class CAN_Shortcodes
 				if ($status == 'publish') {
 
 					$nonce_success = check_ajax_referer( 'listing-updated' ); 
-					//print_r($nonce_success);
 
 					if($nonce_success && $this->listing_can_be_published($listing_id)){
 
@@ -743,8 +747,8 @@ class CAN_Shortcodes
 	function update_profile(){
 		if (!empty($_REQUEST)) {
 			$current_user_data = wp_get_current_user();
-			$seller_id = isset($_REQUEST['seller_id']) ?? sanitize_text_field(
-				wp_unslash($_REQUEST['seller_id']));	
+			$seller_id = isset($_REQUEST['seller_id']) ? sanitize_text_field(
+				wp_unslash($_REQUEST['seller_id'])) : "";
 			$firstname = isset($_REQUEST['first_name']) ? sanitize_text_field(wp_unslash($_REQUEST['first_name'])) : '';
 			$lastname = isset($_REQUEST['last_name']) ? sanitize_text_field(wp_unslash($_REQUEST['last_name'])) : '';
 			$username = isset($_REQUEST['username']) ? sanitize_text_field(wp_unslash($_REQUEST['username'])) : '';
@@ -796,8 +800,8 @@ class CAN_Shortcodes
 
 	function delete_listing(){
 
-		$listing_id = isset($_REQUEST['listing_id']) ?? sanitize_text_field(
-			wp_unslash($_REQUEST['listing_id']));
+		$listing_id = isset($_REQUEST['listing_id']) ? sanitize_text_field(
+			wp_unslash($_REQUEST['listing_id'])) : "";
 		if ($listing_id) {
 			$current_user_data = wp_get_current_user();
 			if (get_post_field( 'post_author', $listing_id) == $current_user_data->ID || current_user_can( 'manage_options' )) {
@@ -828,6 +832,7 @@ class CAN_Shortcodes
 		die(0);
 	}
 function sanitize_request_data($data) {
+		return $data;
     if (!is_array($data) || empty($data)) {
         return array();
     }
@@ -851,7 +856,6 @@ function sanitize_request_data($data) {
         
         // Convert to string and unslash
         $value = wp_unslash($value);
-        
         // Apply specific sanitization based on field name patterns
         if (preg_match('/(email|user_email|seller_email)$/i', $key)) {
             // Email fields
@@ -903,7 +907,8 @@ function sanitize_request_data($data) {
 		 * TODO 
 		 * Can't error_log here or it breaks the process
 		 */
-		$data = sanitize_request_data($data);
+		// TODO not working yet
+		//$data = sanitize_request_data($data);
 		$listing_data = array(
 			'post_title'    	=> wp_strip_all_tags( $data['listing_title'] ),
 			'post_content'  	=> $data['content'],
@@ -945,7 +950,6 @@ function sanitize_request_data($data) {
 			update_post_meta( $listing_id, 'can_listing_longitude', $data['can_listing_longitude'] );
 		}
 
-		//TODO save the category -- something is going wroing here
 		if (isset($data['can_listing_category']) && $data['can_listing_category'] != '') {
 			$category_value = $data['can_listing_category'];
 			wp_set_object_terms($listing_id, $category_value, 'can_listing_category', true);
