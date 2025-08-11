@@ -13,15 +13,15 @@
                   'Time',
                   'Skills',
                   'Everything Else',
-		  'Wanted',
-		  'Stories'
+                  'Wanted',
+                  'Stories'
                 );
           ?>
     				<div class="<?php echo esc_attr( $col_classes ); ?>">
                             <div class="can-single-cat text-center">
                                 <div class="can-cat-icon">
                                     <?php if ( in_array($cat->name, $cat_names ) ) { ?>
-                                        <img src="<?php echo esc_html(plugins_url()) ?>/circular-arts-network/assets/images/categories/<?php echo esc_html($cat->name) ?>.svg" />
+                                        <img src="<?php echo esc_html(plugins_url()) ?>/circular-arts-network/assets/images/categories/<?php echo esc_html(str_replace(' ', '', $cat->name ) ) ?>.svg" />
                                     <?php } else { 
                                         $this->render_category_image($cat->term_id, $attrs['image_size']); 
                                     } ?>
@@ -29,7 +29,6 @@
                                 <div class="can-cat-title">
                                     <h3>
                                         <?php echo esc_attr( $cat->name ); ?>
-                                        <?php //var_dump( $cat ) ?>
                                     </h3>
                                 </div>
                                 <div class="can-cat-count">

@@ -178,7 +178,6 @@ function can_render_listing_section($section, $listing_id = 0){
                 </div>
             <?php }
             break;
-	//TODO use render_listing_field as an example, but essentially render the categories here
 	case 'category':
 		$required = true;
     $categories = get_terms(array(
