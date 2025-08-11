@@ -1,3 +1,6 @@
+<?php
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+?>
 <div class="can-bs-wrapper">
 	<div class="can-search-1" style="background-color: <?php echo esc_attr( $attrs['bg_color'] ); ?>;">
 		<form action="<?php echo esc_url( $attrs['results_url'] ); ?>" method="get" class="can-search-form">

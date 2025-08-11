@@ -2,6 +2,7 @@
 /**
  * UCL: Renders all the Frontend Templates
  */
+  if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 class CAN_Front_Templates
 {
@@ -318,8 +319,14 @@ class CAN_Front_Templates
 				$image_size = can_get_option('gallery_image_size', 'full');
 
 	            if ($gallery_type == 'slick') {
-		            wp_enqueue_style( 'can-carousel-css', CAN_URL . '/assets/libs/css/slick.css' );
-		            wp_enqueue_script( 'can-carousel-js', CAN_URL . '/assets/libs/js/slick.min.js', array('jquery'));
+
+                wp_register_script( 'can-carousel-js', 'https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js' );
+                wp_enqueue_script( 'can-carousel-js' );
+
+                wp_register_style( 'can-carousel-css', 'https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css' );
+                wp_enqueue_style( 'can-carousel-css' );
+
+
 	                wp_enqueue_script( 'can-trigger-slick', CAN_URL . '/assets/js/trigger-slick.js', array('jquery'));
 	            }
 
@@ -353,8 +360,12 @@ class CAN_Front_Templates
 			if ($latitude && $longitude) {
 
                 if (can_get_option('use_map_from', 'leaflet') == 'leaflet') {
-	                wp_enqueue_style( 'can-leaflet-css', CAN_URL . '/assets/leaflet/leaflet.css');
-	                wp_enqueue_script( 'can-leaflet-js', CAN_URL . '/assets/leaflet/leaflet.js', array('jquery'));
+
+                  wp_register_script( 'can-leaflet-js', 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js' );
+                  wp_enqueue_script( 'can-leaflet-js' );
+
+                    wp_register_style( 'can-leaflet-css', 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css' );
+                  wp_enqueue_style( 'can-leaftlet-css' );
                 } else {
                 	$maps_api_key = can_get_option('maps_api_key');
                     if (is_ssl()) {
@@ -406,7 +417,7 @@ class CAN_Front_Templates
             'arrows' => true,
         );
         $attrs = apply_filters( 'can_single_listing_slick_attrs', $attrs );
-        $data_attrs = 'data-slick='.json_encode($attrs);
+        $data_attrs = 'data-slick='.wp_json_encode($attrs);
         return $data_attrs;
     }
 
@@ -416,7 +427,7 @@ class CAN_Front_Templates
             'align' => true,
         );
         $attrs = apply_filters( 'can_single_listing_grid_attrs', $attrs );
-        $data_attrs = 'data-grid='.json_encode($attrs);
+        $data_attrs = 'data-grid='.wp_json_encode($attrs);
         return $data_attrs;
     }
 

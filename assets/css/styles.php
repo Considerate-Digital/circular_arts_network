@@ -1,4 +1,7 @@
 <?php
+
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly 
+
 $primaryColor = can_get_option('can_primary_color', '#3AAF4A');
 $secondaryColor = can_get_option('can_secondary_color', '#fffff');
 

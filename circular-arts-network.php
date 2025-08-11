@@ -26,7 +26,7 @@ require_once( CAN_PATH.'/classes/class-shortcodes.php' );
 require_once( CAN_PATH.'/classes/class-email.php' );
 require_once( CAN_PATH.'/classes/class-front-templates.php' );
 
-function add_categories() {
+function can_add_categories() {
   //sleep();
   //print_r("plugin activated");
 	$args = array(
@@ -63,7 +63,7 @@ function add_categories() {
     }
   }
 }
-add_action( 'admin_init', 'add_categories');
+add_action( 'admin_init', 'can_add_categories');
   
 function hide_admin_bar_for_specific_roles() {
 	    $user = wp_get_current_user();

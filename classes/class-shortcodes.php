@@ -439,7 +439,7 @@ class CAN_Shortcodes
 			if (can_get_option('captcha_on_login') == 'on') {
 				if (!$captcha) {
 						$resp = array('status' => 'error', 'message' => __( 'Please check the captcha form.', 'circular-arts-network' ));
-						echo json_encode($resp); exit;
+						echo wp_json_encode($resp); exit;
 					} else {
 						$secretKey = can_get_option('captcha_secret_key');
 						$ip = isset($_SERVER['REMOTE_ADDR']) ? sanitize_text_field( wp_unslash($_SERVER['REMOTE_ADDR'] )): '';
@@ -447,7 +447,7 @@ class CAN_Shortcodes
 						$responseKeys = json_decode($response['body'], true);
 						if(intval($responseKeys["success"]) !== 1) {
 							$resp = array('status' => 'error', 'message' => __( 'There was an error. Please try again after reloading page', 'circular-arts-network' ));
-							echo json_encode($resp); exit;
+							echo wp_json_encode($resp); exit;
 						}
 					}
 				}
@@ -468,7 +468,7 @@ class CAN_Shortcodes
 						'message'   => $user->get_error_message(),
 					);
 
-					echo json_encode($resp);
+					echo wp_json_encode($resp);
 				}
 				if ( !is_wp_error($user) ) {
 					$resp = array(
@@ -478,7 +478,7 @@ class CAN_Shortcodes
 
 					wp_set_auth_cookie( $user->ID, true, false );
 					wp_set_current_user( $user->ID );
-					echo json_encode($resp);
+					echo wp_json_encode($resp);
 				}
 
 			}        	
@@ -506,7 +506,7 @@ class CAN_Shortcodes
 				if (can_get_option('captcha_on_login') == 'on') {
 					if (!$captcha) {
 						$resp = array('status' => 'info', 'message' => __( 'Please check the captcha form.', 'circular-arts-network' ));
-						echo json_encode($resp); exit;
+						echo wp_json_encode($resp); exit;
 					} else {
 						$secretKey = can_get_option('captcha_secret_key');
 						$ip = isset($_SERVER['REMOTE_ADDR']) ? sanitize_text_field( 
@@ -515,7 +515,7 @@ class CAN_Shortcodes
 						$responseKeys = json_decode($response['body'], true);
 						if(intval($responseKeys["success"]) !== 1) {
 							$resp = array('status' => 'error', 'message' => __( 'There was an error. Please try again after reloading page.', 'circular-arts-network' ));
-							echo json_encode($resp); exit;
+							echo wp_json_encode($resp); exit;
 						}
 					}
 				}
@@ -611,7 +611,7 @@ class CAN_Shortcodes
 						foreach ($previous_users as $single_user) {
 							if ($single_user['username'] == $sellerData['username'] || $single_user['seller_email'] == $sellerData['seller_email']) {
 								$resp = array('status' => 'info', 'message' => __( 'User is already in pending state.', 'circular-arts-network' ));
-								echo json_encode($resp);
+								echo wp_json_encode($resp);
 								exit;
 							}
 						}
@@ -629,7 +629,7 @@ class CAN_Shortcodes
 				}
 			}
 
-			echo json_encode($resp);
+			echo wp_json_encode($resp);
 		}
 
 		die(0);
@@ -721,7 +721,7 @@ class CAN_Shortcodes
 					'message'   => __( 'Listing Updated!', 'circular-arts-network' ),
 				);
 
-				echo json_encode($resp);
+				echo wp_json_encode($resp);
 
 				// Create a new    
 			} else {
@@ -736,7 +736,7 @@ class CAN_Shortcodes
 					$resp['message'] = __( 'Listing Published!', 'circular-arts-network' );
 				}
 
-				echo json_encode($resp);
+				echo wp_json_encode($resp);
 			}
 
 		}
@@ -778,14 +778,14 @@ class CAN_Shortcodes
 					'status'    => 'success',
 					'message'   => __( 'Profile Updated!', 'circular-arts-network' ),
 				);
-				echo json_encode($resp);
+				echo wp_json_encode($resp);
 
 			} else {
 				$resp = array(
 					'status'    => 'error',
 					'message'   => __( 'You are not allowed to update', 'circular-arts-network' ),
 				);
-				echo json_encode($resp);
+				echo wp_json_encode($resp);
 			}
 		}
 		die(0);
@@ -820,13 +820,13 @@ class CAN_Shortcodes
 					'status'    => 'success',
 					'message'   => __( 'Deleted!', 'circular-arts-network' ),
 				);
-				echo json_encode($resp);
+				echo wp_json_encode($resp);
 			} else {
 				$resp = array(
 					'status'    => 'error',
 					'message'   => __( 'There is some error, please try again later', 'circular-arts-network' ),
 				);
-				echo json_encode($resp);
+				echo wp_json_encode($resp);
 			}
 		}
 		die(0);

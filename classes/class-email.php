@@ -164,7 +164,7 @@ class CAN_Email
             if (isset($_REQUEST['g-recaptcha-response'])) {
                 if (!$_REQUEST['g-recaptcha-response']) {
                     $resp = array('fail' => 'already', 'msg' => __( 'Please check the captcha form.', 'circular-arts-network' ));
-                    echo json_encode($resp); exit;
+                    echo wp_json_encode($resp); exit;
                 } else {
                     $captcha = $_REQUEST['g-recaptcha-response'];
                     $secretKey = can_get_option('captcha_secret_key', '6LcDhUQUAAAAAGKQ7gd1GsGAkEGooVISGEl3s7ZH');
@@ -173,7 +173,7 @@ class CAN_Email
                     $responseKeys = json_decode($response['body'], true);
                     if(intval($responseKeys["success"]) !== 1) {
                         $resp = array('fail' => 'error', 'msg' => __( 'There was an error. Please try again after reloading page', 'circular-arts-network' ));
-                        echo json_encode($resp); exit;
+                        echo wp_json_encode($resp); exit;
                     }
                 }
             }
@@ -213,7 +213,7 @@ class CAN_Email
                         'fail' => 'error', 
                         'msg' => __('There was an error connecting to reCAPTCHA. Please try again.', 'circular-arts-network')
                     );
-                    echo json_encode($resp); 
+                    echo wp_json_encode($resp); 
                     exit;
                 }
                 
@@ -225,7 +225,7 @@ class CAN_Email
                         'fail' => 'error', 
                         'msg' => __('There was an error. Please try again after reloading page', 'circular-arts-network')
                     );
-                    echo json_encode($resp); 
+                    echo wp_json_encode($resp); 
                     exit;
                 }
             } else {
@@ -234,7 +234,7 @@ class CAN_Email
                     'fail' => 'already', 
                     'msg' => __('Please check the captcha form.', 'circular-arts-network')
                 );
-                echo json_encode($resp); 
+                echo wp_json_encode($resp); 
                 exit;
             }
             if($client_name && $client_email && $client_msg && $seller_id){
@@ -294,11 +294,11 @@ class CAN_Email
                     $resp = array('status' => 'fail', 'msg' => __( 'There is some problem, please try later', 'circular-arts-network' ) );
                 }
 
-                echo json_encode($resp); die(0);
+                echo wp_json_encode($resp); die(0);
 
             } else {
                 $resp = array('fail' => 'error', 'msg' => __( 'Please fill the required fields.', 'circular-arts-network' ));
-                echo json_encode($resp); exit;
+                echo wp_json_encode($resp); exit;
             }
         }
     }

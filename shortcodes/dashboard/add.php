@@ -1,4 +1,5 @@
 <?php
+  if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 global $can_admin_settings;
 $field_sections = $can_admin_settings->get_fields_sections();
 ?>
