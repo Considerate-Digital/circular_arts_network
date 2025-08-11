@@ -1,4 +1,5 @@
 <?php
+  if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
     foreach ($sectionTabs as $tabData) {
         if (!can_is_default_section($tabData)) {
             $tabOptions[$tabData['key']] = $tabData['title'];

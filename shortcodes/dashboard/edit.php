@@ -1,4 +1,5 @@
 <?php
+  if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly 
 global $can_admin_settings;
 /*
 $nonce_success = wp_verify_nonce( wp_unslash($_REQUEST['_wpnonce']), 'listing' ); 

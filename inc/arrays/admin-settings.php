@@ -1,4 +1,5 @@
 <?php
+  if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 $leaflet_map_styles = array();
 
 for ($style=1; $style <= 23 ; $style++) {
