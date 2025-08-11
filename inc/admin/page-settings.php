@@ -8,6 +8,7 @@
 */
 if( ! defined('ABSPATH' ) ){ exit; }
 
+
 ?>
 <div class="wrap can-bs-wrapper">
 	<h2 class="border-bottom mb-3">
@@ -19,7 +20,7 @@ if( ! defined('ABSPATH' ) ){ exit; }
 				<?php $all_fields_settings = $this->admin_settings_fields();
 					foreach ($all_fields_settings as $panel) { ?>
 						<a href="#<?php echo esc_attr( $panel['panel_name'] ); ?>" role="button" class="list-group-item">
-							<?php echo (isset($panel['icon'])) ? esc_html($panel['icon']) : '' ; ?>
+							<?php echo (isset($panel['icon'])) ? $panel['icon'] : '' ; ?>
 							<?php echo esc_attr( $panel['panel_title'] ); ?>
 						</a>
 				<?php } ?>
@@ -32,11 +33,11 @@ if( ! defined('ABSPATH' ) ){ exit; }
 					foreach ($all_fields_settings as $panel) { ?>
 						<div class="card panel-settings" id="<?php echo esc_attr( $panel['panel_name'] ); ?>">
 							<div class="card-header">
-								<b><?php echo (isset($panel['icon'])) ? esc_html($panel['icon']) : '' ; ?> <?php echo esc_attr( $panel['panel_title'] ); ?></b>
+								<b><?php echo (isset($panel['icon'])) ? $panel['icon'] : '' ; ?> <?php echo esc_attr( $panel['panel_title'] ); ?></b>
 							</div>
 							<div class="card-body">
 								<?php foreach ($panel['fields'] as $field) {
-									echo esc_html($this->render_setting_field($field));
+									echo $this->render_setting_field($field);
 								} ?>
 							</div>
 						</div>
