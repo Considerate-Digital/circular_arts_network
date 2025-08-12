@@ -75,23 +75,30 @@ function initialize_can_maps() {
 if (can_map_settings.use_map_from == 'google_maps') {
     google.maps.event.addDomListener(window, 'load', initialize_can_maps);
 }
+
 jQuery(document).ready(function($) {
     if (can_map_settings.use_map_from == 'leaflet' && $('#map-canvas').length != 0) {
         var listing_map = L.map('map-canvas').setView([can_map_settings.def_lat, can_map_settings.def_long], parseInt(can_map_settings.zoom_level));
-        
+    
+        console.log(listing_map);
         L.tileLayer(can_map_settings.leaflet_styles.provider, {
                 maxZoom: 21,
-            }).addTo(listing_map);
+         }).addTo(listing_map);
         var propertyIcon = L.icon({
             iconUrl: can_map_settings.drag_icon,
             iconSize: [72, 60],
             iconAnchor: [36, 47],
         });
-        var marker = L.marker([can_map_settings.def_lat, can_map_settings.def_long], {icon: propertyIcon, draggable: true}).addTo(listing_map);
+        var marker = L.marker(
+            [can_map_settings.def_lat, can_map_settings.def_long], {
+                icon: propertyIcon, 
+                draggable: true
+            }).addTo(listing_map);
+
         setTimeout(function() {
             listing_map.invalidateSize();
         }, 1000);
-
+/*
         var geocoder = L.Control.geocoder({
             defaultMarkGeocode: false
         })
@@ -115,5 +122,7 @@ jQuery(document).ready(function($) {
         jQuery('.leaflet-control-geocoder-form input').keypress(function(e){
             if ( e.which == 13 ) e.preventDefault();
         });
+
+    */
     }    
 });

@@ -101,7 +101,7 @@ class CAN_Admin_Settings
             return;
 
 
-        if ( !wp_verify_nonce( $_POST['can_listing_info_nonce'], plugin_basename( __FILE__ ) ) )
+        if ( !wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['can_listing_info_nonce'] ) ), plugin_basename( __FILE__ ) ) )
             return;
         
         // OK, we're authenticated: we need to find and save the data
@@ -413,7 +413,7 @@ class CAN_Admin_Settings
                 $resp['message'] = __( 'There is some error or you did not make any change.', 'circular-arts-network' );
             }
 
-            echo json_encode($resp);
+            echo wp_json_encode($resp);
         }
         die(0);
     }
@@ -447,7 +447,7 @@ class CAN_Admin_Settings
                 $resp['title'] = __( 'Failed!', 'circular-arts-network' );
                 $resp['message'] = __( 'There is some error or you did not make any change.', 'circular-arts-network' );
             }
-            echo json_encode($resp);
+            echo wp_json_encode($resp);
         }
         die(0);
     }

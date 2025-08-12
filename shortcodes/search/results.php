@@ -1,4 +1,6 @@
-<?php if(isset($_GET['action']) && $_GET['action'] == 'can_search_listing'){
+<?php 
+  if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+if(isset($_GET['action']) && $_GET['action'] == 'can_search_listing'){
 /*
     $nonce_success = wp_verify_nonce( wp_unslash($_REQUEST['_wpnonce']), 'search' ); 
     if (!$nonce_success) {

@@ -1,3 +1,5 @@
+
+<?php if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly ?>
 <div class="<?php echo esc_attr( $cols ); ?>">
 	<div class="can-single-field">
 		<span class="can-field-title"><?php echo esc_html(can_wpml_translate($field['title'], 'circular-arts-network-fields')); ?>:</span>

@@ -85,7 +85,7 @@
                                 }
                                 $disabled = (strpos($val, 'disabled')) ? 'disabled' : '' ;
 
-                                echo esc_html('<option value="'.$val.'" '.$selected.' '.$disabled.'>'.$label.'</option>');
+                                echo '<option value="'.esc_attr($val).'" '.esc_attr($selected).' '.esc_attr($disabled).'>'.esc_attr($label).'</option>';
                             }
                         }
                         ?>
@@ -131,7 +131,7 @@
                                 $selected = ($field_value == $sidebar['id']) ? 'selected' : '' ;
                                 $disabled = (strpos($field_value, 'disabled')) ? 'disabled' : '' ;
 
-                                echo esc_html('<option value="'.$sidebar['id'].'" '.esc_attr( $selected ).' '.esc_attr( $disabled ).'>'.$sidebar['name'].'</option>');
+                                echo '<option value="'.$sidebar['id'].'" '.esc_attr( $selected ).' '.esc_attr( $disabled ).'>'.$sidebar['name'].'</option>';
                             }
                         }
                         ?>

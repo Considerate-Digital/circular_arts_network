@@ -1,4 +1,5 @@
 <?php
+  if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 $icons = array(
     "bi bi-123",
     "bi bi-activity",

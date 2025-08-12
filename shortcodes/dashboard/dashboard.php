@@ -1,3 +1,6 @@
+<?php
+  if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+?>
 <div class="welcome-screen can-screen-wrapper mb-3">
 	<div class="can-screen-header">
 		<?php esc_html_e( 'Welcome', 'circular-arts-network' ) ?>
