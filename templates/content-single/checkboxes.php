@@ -4,7 +4,7 @@
 	    	foreach ($value as $cb => $val) {
 	            $feature = stripcslashes($cb);
 	            $translated_feature = can_wpml_translate($feature, 'circular-arts-network-features');
-	            echo esc_html("<li>$translated_feature</li>");
+	            echo "<li>" . esc_attr($translated_feature) . "</li>";
 	    	}
 	    ?>
 	</ul>

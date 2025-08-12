@@ -279,7 +279,7 @@ function can_render_listing_section($section, $listing_id = 0){
                   wp_enqueue_script( 'can-leaflet-js' );
 
                     wp_register_style( 'can-leaflet-css', 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css' );
-                  wp_enqueue_style( 'can-leaftlet-css' );
+                  wp_enqueue_style( 'can-leaflet-css' );
                 /* TODO check if still in use
                 wp_enqueue_style( 'can-leaflet-geo-css', CAN_URL . '/assets/leaflet/Control.Geocoder.css');
                 wp_enqueue_script( 'can-leaflet-geo-js', CAN_URL . '/assets/leaflet/Control.Geocoder.js');
@@ -631,7 +631,7 @@ function can_get_field_value($listing_id, $field, $value = ''){
 }
 
 function can_get_section_title($tabData){
-    $title = printf( esc_html_e( '%t', 'circular-arts-network' ), esc_html($tabData['title']));
+    $title = esc_html($tabData['title']);
     $tab_key = $tabData['key'];
     $icon = '';
 

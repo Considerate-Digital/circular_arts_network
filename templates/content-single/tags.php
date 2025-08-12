@@ -11,7 +11,7 @@
                         continue;
                     }
 
-                    echo esc_html('<li><a class="filter" href="' . esc_url( $term_link ) . '">' . $term->name . ' </a></li>');
+                    echo '<li><a class="filter" href="' . esc_url( $term_link ) . '">' . esc_attr($term->name) . ' </a></li>';
                 }
                  
             echo '</ul>';
