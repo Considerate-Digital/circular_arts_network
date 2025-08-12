@@ -1,7 +1,6 @@
 <?php
 /**
  * Plugin Name: Circular Arts Network 
- * Plugin URI: https://canarts.org.uk
  * Description: A circular arts network for WordPress.
  * Version: 0.2
  * Author: CANARTS

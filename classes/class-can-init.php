@@ -19,7 +19,7 @@ class CAN_Init
 	}
 
     function can_load_plugin_textdomain(){
-        load_plugin_textdomain( 'circular-arts-network', false, basename( CAN_PATH ) . '/languages/' );
+        //load_plugin_textdomain( 'circular-arts-network', false, basename( CAN_PATH ) . '/languages/' );
     }
 
 	function register_role_caps(){
