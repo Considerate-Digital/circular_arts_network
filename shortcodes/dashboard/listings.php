@@ -8,22 +8,6 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 	</div>
 	<div class="can-screen-content mb-4">
 		<div class="row mb-4">
-			<?php
-				/* TODO check nonce */
-				if (isset($_GET['search-query'])) {
-						if (wp_verify_nonce(
-							sanitize_text_field( 
-									wp_unslash($_GET['search-query']), 'search-query' )
-								)
-						== false ) {
-						echo "<p>Nonce not passed</p>";
-								wp_nonce_ays('hello');
-						} else {
-
-						}
-				}
-			?>
-
 
 			<div class="col">
 				<form action="#" method="GET">

@@ -329,10 +329,10 @@ class CAN_Front_Templates
 
 	            if ($gallery_type == 'slick') {
 
-                wp_register_script( 'can-carousel-js', 'https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js' );
+                wp_register_script( 'can-carousel-js', CAN_URL . '/assets/libs/js/carousel.js');
                 wp_enqueue_script( 'can-carousel-js' );
 
-                wp_register_style( 'can-carousel-css', 'https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css' );
+                wp_register_style( 'can-carousel-css', CAN_URL . '/assets/libs/css/carousel.css'); 
                 wp_enqueue_style( 'can-carousel-css' );
 
 

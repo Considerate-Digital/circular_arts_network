@@ -106,7 +106,7 @@ class CAN_Admin_Settings
         
         // OK, we're authenticated: we need to find and save the data
         if (isset($_POST['can_data']) && !empty($_POST['can_data'])) {
-            foreach (sanitize_html(wp_unslash($_POST['can_data'])) as $key => $value) {
+            foreach (sanitize_text_field(wp_unslash($_POST['can_data'])) as $key => $value) {
                 if (is_array($value)) {
                     $value = array_map( 'sanitize_text_field', $value );
                     update_post_meta($post_id, 'can_'.$key, $value);
@@ -118,7 +118,7 @@ class CAN_Admin_Settings
 
         // Saving Gallery Images
         if (isset($_POST['gallery_images']) && $_POST['gallery_images'] != '') {
-            $images = array_map( 'sanitize_text_field', sanitize_html(wp_unslash($_POST['gallery_images'] )));
+            $images = array_map( 'sanitize_text_field', sanitize_text_field(wp_unslash($_POST['gallery_images'] )));
             update_post_meta( $post_id, 'can_gallery_images', $images );
         } else {
             update_post_meta( $post_id, 'can_gallery_images', '' );
@@ -358,7 +358,7 @@ class CAN_Admin_Settings
             'message' => __( 'There is some error or you did not make any change.', 'circular-arts-network' ),
         );
         if (isset($_REQUEST['sections']) && !isset($_REQUEST['reset'])) {
-            $updated = update_option( 'can_field_sections', sanitize_html(wp_unslash($_REQUEST['sections'])) );
+            $updated = update_option( 'can_field_sections', sanitize_text_field(wp_unslash($_REQUEST['sections'])) );
             if ($updated) {
                 $resp['status'] = 'success';
                 $resp['title'] = __( 'Settings Saved!', 'circular-arts-network' );
@@ -382,7 +382,7 @@ class CAN_Admin_Settings
         if (isset($_REQUEST['fields'])) {
             $resp = array('status' => '', 'title' => '', 'message' => '');
             $fields_arr = array();
-            foreach (sanitize_html(wp_unslash($_REQUEST['fields'])) as $field) {
+            foreach (sanitize_text_field(wp_unslash($_REQUEST['fields'])) as $field) {
                 $field['editable'] = (isset($field['editable']) && $field['editable'] == 'false') ? false : true;
                 $field['options'] = (isset($field['options']) && $field['options'] != '') ? explode("\n", trim($field['options'])) : array();
                 $field['title'] = (isset($field['title']) && $field['title'] != '') ? stripcslashes($field['title']) : '';
@@ -504,9 +504,11 @@ class CAN_Admin_Settings
     function deny_seller(){
         if (isset($_REQUEST) && current_user_can( 'manage_options' )) {
             $pending_sellers = get_option( 'can_pending_users' );
-            do_action( 'can_new_seller_rejected', $pending_sellers[$_REQUEST['userindex']] );
-            unset($pending_sellers[$_REQUEST['userindex']]);
-            update_option( 'can_pending_users', $pending_sellers );
+            if (isset($_REQUEST['userindex'])) {
+                do_action( 'can_new_seller_rejected', $pending_sellers[sanitize_text_field(wp_unslash($_REQUEST['userindex'])) ]);
+                unset($pending_sellers[$_REQUEST['userindex']]);
+                update_option( 'can_pending_users', $pending_sellers );
+            }
         }
         die(0);
     }
@@ -514,36 +516,37 @@ class CAN_Admin_Settings
     function approve_seller(){
         if (isset($_REQUEST) && current_user_can( 'manage_options' )) {
             $pending_sellers = get_option( 'can_pending_users' );
+            if (isset($_REQUEST['userindex'])) {
+                $new_seller = $pending_sellers[sanitize_text_field(wp_unslash($_REQUEST['userindex']))];
 
-            $new_seller = $pending_sellers[$_REQUEST['userindex']];
+                $seller_id = wp_create_user( $new_seller['username'], $new_seller['seller_password'], $new_seller['useremail'] );
 
-            $seller_id = wp_create_user( $new_seller['username'], $new_seller['seller_password'], $new_seller['useremail'] );
+                do_action( 'can_new_seller_approved', $new_seller );
 
-            do_action( 'can_new_seller_approved', $new_seller );
+                if ($seller_id != '') {
+                    wp_update_user( array( 
+                        'ID' => $seller_id,
+                        'role' => 'can_listing_seller',
+                        'first_name' => sanitize_text_field( $new_seller['first_name'] ),
+                        'last_name' => sanitize_text_field( $new_seller['last_name'] ),
+                    ) );
 
-            if ($seller_id != '') {
-                wp_update_user( array( 
-                    'ID' => $seller_id,
-                    'role' => 'can_listing_seller',
-                    'first_name' => sanitize_text_field( $new_seller['first_name'] ),
-                    'last_name' => sanitize_text_field( $new_seller['last_name'] ),
-                ) );
+                    // WPML Language
+                    if (isset($_REQUEST['wpml_user_email_language'])) {
+                        update_user_meta( $seller_id, 'icl_admin_language', sanitize_text_field( wp_unslash($_REQUEST['wpml_user_email_language'] )));
+                    }
 
-                // WPML Language
-                if (isset($_REQUEST['wpml_user_email_language'])) {
-                    update_user_meta( $seller_id, 'icl_admin_language', sanitize_text_field( wp_unslash($_REQUEST['wpml_user_email_language'] )));
+                    update_user_meta( $seller_id, 'seller_phone', sanitize_text_field(wp_unslash( $new_seller['seller_phone'] )));
+                    
+                    if (isset($new_seller['seller_image'])) {
+                        update_user_meta( $seller_id, 'seller_image', sanitize_text_field(wp_unslash( $new_seller['seller_image'] )));
+                    }
                 }
-
-                update_user_meta( $seller_id, 'seller_phone', sanitize_text_field(wp_unslash( $new_seller['seller_phone'] )));
-                
-                if (isset($new_seller['seller_image'])) {
-                    update_user_meta( $seller_id, 'seller_image', sanitize_text_field(wp_unslash( $new_seller['seller_image'] )));
-                }
-            }
             
-            unset($pending_sellers[$_REQUEST['userindex']]);
+                unset($pending_sellers[$_REQUEST['userindex']]);
 
-            update_option( 'can_pending_users', $pending_sellers );
+                update_option( 'can_pending_users', $pending_sellers );
+            }
         }
 
         die(0);
