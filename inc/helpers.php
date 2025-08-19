@@ -275,10 +275,10 @@ function can_render_listing_section($section, $listing_id = 0){
             }
 
             if (can_get_option('use_map_from', 'leaflet') == 'leaflet') {
-                  wp_register_script( 'can-leaflet-js', 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js' );
+                  wp_register_script( 'can-leaflet-js', '/assets/libs/js/leaflet.js' );
                   wp_enqueue_script( 'can-leaflet-js' );
 
-                    wp_register_style( 'can-leaflet-css', 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css' );
+                    wp_register_style( 'can-leaflet-css', '/assets/libs/css/leaflet.css' );
                   wp_enqueue_style( 'can-leaflet-css' );
                 /* TODO check if still in use
                 wp_enqueue_style( 'can-leaflet-geo-css', CAN_URL . '/assets/leaflet/Control.Geocoder.css');

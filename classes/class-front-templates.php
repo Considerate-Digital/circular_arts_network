@@ -361,10 +361,10 @@ class CAN_Front_Templates
 
                 if (can_get_option('use_map_from', 'leaflet') == 'leaflet') {
 
-                  wp_register_script( 'can-leaflet-js', 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js' );
+                  wp_register_script( 'can-leaflet-js', '/assets/libs/js/leaflet.js' );
                   wp_enqueue_script( 'can-leaflet-js' );
 
-                  wp_register_style( 'can-leaflet-css', 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css' );
+                  wp_register_style( 'can-leaflet-css', '/assets/libs/css/leaflet.css' );
                   wp_enqueue_style( 'can-leaflet-css' );
                 } else {
                 	$maps_api_key = can_get_option('maps_api_key');
