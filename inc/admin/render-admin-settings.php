@@ -131,7 +131,7 @@
                                 $selected = ($field_value == $sidebar['id']) ? 'selected' : '' ;
                                 $disabled = (strpos($field_value, 'disabled')) ? 'disabled' : '' ;
 
-                                echo '<option value="'.$sidebar['id'].'" '.esc_attr( $selected ).' '.esc_attr( $disabled ).'>'.$sidebar['name'].'</option>';
+                                echo '<option value="'. esc_attr($sidebar['id']) .'" '.esc_attr( $selected ).' '.esc_attr( $disabled ).'>'. esc_attr($sidebar['name']) .'</option>';
                             }
                         }
                         ?>

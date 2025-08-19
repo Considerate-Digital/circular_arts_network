@@ -22,6 +22,8 @@ jQuery(document).ready(function($) {
 
 	jQuery('.my-listings').on('click', '.delete-listing', function(event) {
 		event.preventDefault();
+		console.log(event)
+
 		var listing_title = $(this).closest('tr').find('.listing-title').text();
 		var listing_id = $(this).data('pid');
 		Swal.fire({
@@ -38,7 +40,7 @@ jQuery(document).ready(function($) {
 		  		action: 'can_delete_listing',
 		  		listing_id: listing_id,
 		  	}
-		  	$.post(can_dash_vars.ajaxurl, data, function(resp) {
+		  	$.post(can_dash_vars.ajaxurl + event.currentTarget.search, data, function(resp) {
 		  		Swal.fire('', resp.message, resp.status);
 		  		window.location.reload();
 		  	}, "json");

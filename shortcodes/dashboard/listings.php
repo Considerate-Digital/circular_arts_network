@@ -9,7 +9,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 	<div class="can-screen-content mb-4">
 		<div class="row mb-4">
 			<?php
-				/* check nonce */
+				/* TODO check nonce */
 				if (isset($_GET['search-query'])) {
 						if (wp_verify_nonce(
 							sanitize_text_field( 
@@ -120,11 +120,11 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 								<td><?php echo esc_html( human_time_diff( get_the_time('U'), current_time('timestamp') ) ) . ' ago'; ?></td>
 								<td><?php echo esc_html(ucfirst(get_post_status(get_the_id()))); ?></td>
 								<td>
-									<a href="<?php echo esc_url( add_query_arg( array('can_page' => 'edit', 'listing_id' => get_the_id()) ) ); ?>" class="btn btn-info btn-sm">
+									<a href="<?php echo esc_url( add_query_arg( array('can_page' => 'edit', 'listing_id' => get_the_id()), wp_nonce_url('#', 'edit-listing'))); ?>" class="btn btn-info btn-sm">
 										<i class="fas fa-pencil-alt"></i>
 										<?php esc_html_e( 'Edit', 'circular-arts-network' ); ?>
 									</a>
-									<a class="btn btn-danger btn-sm delete-listing" data-pid="<?php echo esc_html(get_the_id()); ?>" href="#">
+										<a class="btn btn-danger btn-sm delete-listing" data-pid="<?php echo esc_html(get_the_id()); ?>" href="<?php echo wp_nonce_url('#', 'delete-listing')?>">
 										<i class="fa fa-trash"></i>
 										<?php esc_html_e( 'Delete', 'circular-arts-network' ); ?>
 									</a>

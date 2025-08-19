@@ -1,13 +1,15 @@
 <?php 
   if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
-if(isset($_GET['action']) && $_GET['action'] == 'can_search_listing'){
-/*
-    $nonce_success = wp_verify_nonce( wp_unslash($_REQUEST['_wpnonce']), 'search' ); 
-    if (!$nonce_success) {
+
+$nonce_success = false;
+if (isset($_REQUEST['_wpnonce'])) {
+    $nonce_success = wp_verify_nonce( sanitize_text_field(wp_unslash($_REQUEST['_wpnonce'])), 'search' ); 
+}
+if (!$nonce_success) {
         wp_nonce_ays('log-out');
-    }
-        echo "<p>Nonce check</p>";
- */
+}
+if(isset($_GET['action']) && $_GET['action'] == 'can_search_listing'){
+    
     $args = can_get_search_query($_REQUEST);
     $paged = ( get_query_var('paged') ) ? get_query_var('paged') : 1; 
     $args['paged'] = $paged;

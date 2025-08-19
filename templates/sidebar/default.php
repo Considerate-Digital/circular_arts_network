@@ -34,7 +34,7 @@
 	    <input type="hidden" name="seller_id" value="<?php echo esc_attr( $author_id ); ?>">
 	    <input type="hidden" name="action" value="can_contact_seller">
 			<?php if(isset($_GET['listing_id'])){ ?>
-					<input type="hidden" name="listing_id" value="<?php echo intval($_GET['listing_id']); ?>">
+					<input type="hidden" name="listing_id" value="<?php echo intval(absint($_GET['listing_id'])); ?>">
 			<?php } else {
 	        global $post;
 	        if(isset($post->ID)){ ?>

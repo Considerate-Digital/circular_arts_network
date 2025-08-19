@@ -1,12 +1,13 @@
 <?php
   if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly 
 global $can_admin_settings;
-/*
-$nonce_success = wp_verify_nonce( wp_unslash($_REQUEST['_wpnonce']), 'listing' ); 
+$nonce_success = false;
+if (isset($_REQUEST['_wpnonce'])) {
+	$nonce_success = wp_verify_nonce( sanitize_text_field((wp_unslash($_REQUEST['_wpnonce']))), 'edit-listing' ); 
+}
 if (!$nonce_success) {
 		wp_nonce_ays('log-out');
 }
- */
 $listing_id = isset($_GET['listing_id']) ? sanitize_text_field(wp_unslash($_GET['listing_id'], 'listing_id' )) : '';
 $field_sections = $can_admin_settings->get_fields_sections();
 ?>

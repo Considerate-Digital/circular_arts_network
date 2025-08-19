@@ -88,37 +88,46 @@ class CAN_Front_Templates
     }
 
     function listings_compare_table(){
-        $listing_ids = array_map( 'sanitize_text_field', sanitize_html(wp_unslash($_REQUEST['listing_ids'])) );
-
-        $saved_table_label = can_get_option('listing_compare_columns');
-        if (!empty($saved_table_label)) {
-            $array_value = explode("\n", $saved_table_label);
-            foreach ($array_value as $value) {
-                $column_value = explode( "|", $value);
-                $table_columns_labels[] = $column_value['1'];
-            }
-        } else {
-            $default_labels = array(
-                'regular_price',
-                'purpose',
-                'condition',
-                'build_date',
-            );
-            $default_labels = apply_filters( 'can_compare_table_default_fields', $default_labels );
-            $table_columns_labels = $default_labels;
+        $nonce_success = false;
+        if (isset($_REQUEST['_wpnonce'])) {
+          $nonce_success = wp_verify_nonce( sanitize_text_field(wp_unslash($_REQUEST['_wpnonce'])), 'compare' ); 
         }
-        $tr = "";
-        foreach ($listing_ids as $id) { 
-            
-            $tr .= "<tr>";
-                $tr .= "<th class='fixed-row'><a href='".get_permalink( $id )."'>".get_the_title( $id )."</a></th>";
-                foreach ($table_columns_labels as $field_key) {
-                    $field_key = trim($field_key);
-                    $tr .= "<td>".can_get_field_value($id, array('key' => $field_key))."</td>";
+        if (!$nonce_success) {
+            wp_nonce_ays('log-out');
+        }
+        if (isset($_REQUEST['listing_ids'])) {
+            $listing_ids = array_map( 'sanitize_text_field', sanitize_text_field((wp_unslash($_REQUEST['listing_ids'])) ));
+
+            $saved_table_label = can_get_option('listing_compare_columns');
+            if (!empty($saved_table_label)) {
+                $array_value = explode("\n", $saved_table_label);
+                foreach ($array_value as $value) {
+                    $column_value = explode( "|", $value);
+                    $table_columns_labels[] = $column_value['1'];
                 }
-            $tr .= "</tr>";
-         }
-        wp_send_json($tr);
+            } else {
+                $default_labels = array(
+                    'regular_price',
+                    'purpose',
+                    'condition',
+                    'build_date',
+                );
+                $default_labels = apply_filters( 'can_compare_table_default_fields', $default_labels );
+                $table_columns_labels = $default_labels;
+            }
+            $tr = "";
+            foreach ($listing_ids as $id) { 
+                
+                $tr .= "<tr>";
+                    $tr .= "<th class='fixed-row'><a href='".get_permalink( $id )."'>".get_the_title( $id )."</a></th>";
+                    foreach ($table_columns_labels as $field_key) {
+                        $field_key = trim($field_key);
+                        $tr .= "<td>".can_get_field_value($id, array('key' => $field_key))."</td>";
+                    }
+                $tr .= "</tr>";
+             }
+            wp_send_json($tr);
+        }
     }
 
 	function featured_image($id = '', $size = 'full'){
@@ -361,10 +370,10 @@ class CAN_Front_Templates
 
                 if (can_get_option('use_map_from', 'leaflet') == 'leaflet') {
 
-                  wp_register_script( 'can-leaflet-js', '/assets/libs/js/leaflet.js' );
+                  wp_register_script( 'can-leaflet-js', CAN_URL .'/assets/libs/js/leaflet.js' );
                   wp_enqueue_script( 'can-leaflet-js' );
 
-                  wp_register_style( 'can-leaflet-css', '/assets/libs/css/leaflet.css' );
+                  wp_register_style( 'can-leaflet-css', CAN_URL . '/assets/libs/css/leaflet.css' );
                   wp_enqueue_style( 'can-leaflet-css' );
                 } else {
                 	$maps_api_key = can_get_option('maps_api_key');
@@ -472,8 +481,9 @@ class CAN_Front_Templates
         $actions = array();
 
         if (can_get_option('enable_compare', 'enable') == 'enable') {
+            $full_url = wp_nonce_url( '#', 'compare');
             $actions['compare'] = array(
-                'href' => '#',
+                'href' => $full_url,
                 'title' => __( 'Add to compare', 'circular-arts-network' ),
                 'icon' => 'bi bi-plus',
                 'class' => 'can-compare-btn',

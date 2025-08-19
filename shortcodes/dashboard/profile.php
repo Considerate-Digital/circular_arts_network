@@ -52,6 +52,7 @@
 					<div class="text-end px-2">
 						<input class="btn btn-success" type="submit" value="<?php esc_html_e( 'Update Profile', 'circular-arts-network' ); ?>">
 					</div>
+					<?php wp_nonce_field( 'update-profile' ); ?>
 				</div>
 			</div>
 				

@@ -23,7 +23,7 @@
 				</select>
 
 		 */?>
-				<input type="hidden" name="layout" value="<?php echo isset($_GET['layout']) ? esc_html($_GET['layout']) : 'grid' ;  ?>">
+				<input type="hidden" name="layout" value="<?php echo isset($_GET['layout']) ? esc_html(wp_unslash($_GET['layout'])) : 'grid' ;  ?>">
 	        </div>
 			<div class="can-menu-box <?php echo (is_archive()) ? 'float-start' : 'float-end'; ?>">
 			    <a href="<?php echo esc_url( add_query_arg( 'layout', 'list' ) ); ?>" class="can-list-view <?php echo (isset($_GET['layout']) && $_GET['layout'] == 'list') ? 'active' : '' ; ?>">

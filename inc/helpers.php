@@ -275,10 +275,10 @@ function can_render_listing_section($section, $listing_id = 0){
             }
 
             if (can_get_option('use_map_from', 'leaflet') == 'leaflet') {
-                  wp_register_script( 'can-leaflet-js', '/assets/libs/js/leaflet.js' );
+                  wp_register_script( 'can-leaflet-js', CAN_URL . '/assets/libs/js/leaflet.js' );
                   wp_enqueue_script( 'can-leaflet-js' );
 
-                    wp_register_style( 'can-leaflet-css', '/assets/libs/css/leaflet.css' );
+                    wp_register_style( 'can-leaflet-css', CAN_URL . '/assets/libs/css/leaflet.css' );
                   wp_enqueue_style( 'can-leaflet-css' );
                 /* TODO check if still in use
                 wp_enqueue_style( 'can-leaflet-geo-css', CAN_URL . '/assets/leaflet/Control.Geocoder.css');
@@ -413,7 +413,7 @@ function can_render_search_field($field, $label = false, $icon = true){
                 $options = (is_array($field['options'])) ? $field['options'] : explode("\n", $field['options']);
                 foreach ($options as $name) {
                     $translated_label = can_wpml_translate($name, 'circular-arts-network-fields');
-                    $html .= '<option value="'.$name.'" '.selected( $field_value, $name, false ).'>'.$translated_label.'</option>';
+                    $html .= '<option value="'.$name.'" '.selected( $field_value, $name, false ).'>'. esc_html($translated_label) .'</option>';
                 }
 
             $html .= '</select>';
@@ -502,7 +502,7 @@ function can_render_listing_field($field, $listing_id = 0){
                             $options = (is_array($field['options'])) ? $field['options'] : explode("\n", $field['options']);
                             foreach ($options as $name) {
                                 $translated_label = can_wpml_translate($name, 'circular-arts-network-fields');
-                                echo '<option value="'.esc_attr($name).'" '.selected( esc_attr($field_value), esc_attr($name), false ).'>'.$translated_label.'</option>';
+                                echo '<option value="'.esc_attr($name).'" '.selected( esc_attr($field_value), esc_attr($name), false ).'>'. esc_html($translated_label) .'</option>';
                             }
                         ?>
                     </select>

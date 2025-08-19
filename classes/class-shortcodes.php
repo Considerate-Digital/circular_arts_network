@@ -745,6 +745,13 @@ class CAN_Shortcodes
 	}
 
 	function update_profile(){
+		$nonce_success = false;
+		if (isset($_REQUEST['_wpnonce'])) {
+			$nonce_success = wp_verify_nonce( sanitize_text_field((wp_unslash($_REQUEST['_wpnonce'])), 'update-profile' )); 
+		}
+		if (!$nonce_success) {
+				wp_nonce_ays('log-out');
+		}
 		if (!empty($_REQUEST)) {
 			$current_user_data = wp_get_current_user();
 			$seller_id = isset($_REQUEST['seller_id']) ? sanitize_text_field(
@@ -799,7 +806,15 @@ class CAN_Shortcodes
 	}
 
 	function delete_listing(){
-
+		$nonce_success = false;
+		if (isset($_REQUEST['_wpnonce'])) {
+			$nonce_success = wp_verify_nonce( sanitize_text_field((wp_unslash($_REQUEST['_wpnonce']))), 'delete-listing' ); 
+		} else if ($nonce_success == false) {
+			$nonce_success = check_ajax_referer('delete-listing');
+		}
+		if (!$nonce_success) {
+				wp_nonce_ays('log-out');
+		}
 		$listing_id = isset($_REQUEST['listing_id']) ? sanitize_text_field(
 			wp_unslash($_REQUEST['listing_id'])) : "";
 		if ($listing_id) {
