@@ -1,3 +1,7 @@
+<?php
+
+  if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+?>
 <div class="can-list-box-wrap clearfix">
 	<div class="can-box-inner can-box-inner-<?php echo esc_html($this->get_category_name($listing_id)); ?>"">
 		<div class="can-image-wrap">

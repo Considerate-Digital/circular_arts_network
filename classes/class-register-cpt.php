@@ -2,6 +2,9 @@
 /**
 * CAN_Register_CPT: registers cpt can_listing & taxonomy can_listing_category
 */
+
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+
 class CAN_Register_CPT
 {
 	

@@ -1,3 +1,7 @@
+<?php 
+
+  if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+?>
 <div class="can-section">
     <div class="wrap-slider">
         <div class="<?php echo esc_attr( $gallery_type ); ?>-custom" <?php echo esc_html( call_user_func(array($this, $gallery_type.'_data_attrs'))); ?>>

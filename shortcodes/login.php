@@ -1,3 +1,7 @@
+<?php 
+
+  if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+?>
 <div class="can-bs-wrapper">
 	<div class="can-login-wrap">
 		<h2><?php esc_html_e( 'Login', 'circular-arts-network' ); ?></h2>

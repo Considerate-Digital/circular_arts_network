@@ -1,3 +1,6 @@
+
+<?php if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly ?>
+
 <div class="wrap can-bs-wrapper">
 	<h2 class="border-bottom mb-3"><?php esc_html_e( 'CAN - Field Sections', 'circular-arts-network' ); ?></h2>
 

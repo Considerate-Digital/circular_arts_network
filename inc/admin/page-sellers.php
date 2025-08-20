@@ -1,4 +1,6 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+
 	$pending_sellers = get_option( 'can_pending_users' );
 	$args = array(
 		'role'         => 'can_listing_seller',

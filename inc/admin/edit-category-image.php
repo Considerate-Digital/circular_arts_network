@@ -1,3 +1,6 @@
+
+<?php if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly ?>
+
  <tr class="form-field term-group-wrap">
    <th scope="row">
      <label for="category-image-id"><?php esc_html_e( 'Icon or Image', 'circular-arts-network' ); ?></label>

@@ -1,3 +1,7 @@
+<?php
+
+  if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+?>
 <div class="can-section">
 	<h2><?php esc_html_e( 'Tags', 'circular-arts-network' ); ?></h2>
 	<?php

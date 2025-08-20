@@ -1,4 +1,7 @@
 <?php 
+
+  if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+
 	$saved_table_label = can_get_option('listing_compare_columns');
 
 	if (!empty($saved_table_label)) {

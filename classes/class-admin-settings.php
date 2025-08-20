@@ -2,6 +2,8 @@
 /**
 * CAN - Admin Settings Page and Fields Builder
 */
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly 
+
 class CAN_Admin_Settings
 {
 	

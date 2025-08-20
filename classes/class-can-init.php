@@ -2,6 +2,9 @@
 /**
 * Initialize the Plugin base
 */
+
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly 
+
 class CAN_Init
 {
     public $can_options = array(

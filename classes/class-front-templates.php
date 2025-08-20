@@ -2,7 +2,7 @@
 /**
  * UCL: Renders all the Frontend Templates
  */
-  if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 class CAN_Front_Templates
 {

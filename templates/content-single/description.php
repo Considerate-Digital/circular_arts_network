@@ -1,3 +1,7 @@
+<?php
+
+  if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+?>
 <div class="can-section">
 	<h2><?php echo get_the_title( $listing_id ) ?></h2>
 	<div class="listing-content">

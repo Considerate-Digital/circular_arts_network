@@ -1,4 +1,6 @@
 <?php
+   
+  if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 	$saved_settings = get_option( 'can_all_settings' );
     $default = (isset($field['default'])) ? $field['default'] : '' ;

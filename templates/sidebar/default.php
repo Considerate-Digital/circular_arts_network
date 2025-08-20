@@ -1,3 +1,6 @@
+<?php 
+  if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+?>
 <div class="can-section">
 	<?php if(can_get_option('seller_info', 'enable') == 'enable'){ ?>
 	<div class="seller-info">

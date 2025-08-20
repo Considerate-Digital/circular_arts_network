@@ -2,6 +2,9 @@
 /**
  * Renders the shortcodes
  */
+
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+
 class CAN_Shortcodes
 {
 

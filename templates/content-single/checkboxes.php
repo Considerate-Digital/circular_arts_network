@@ -1,3 +1,7 @@
+<?php
+
+  if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+?>
 <div class="col-sm-12">
 	<ul class="can-features clearfix">
 	    <?php

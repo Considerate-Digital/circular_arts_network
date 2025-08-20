@@ -1,3 +1,7 @@
+<?php 
+
+  if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+?>
 <div class="can-bs-wrapper can-dashboard">
 	<div class="row">
 		<div class="col-sm-3">

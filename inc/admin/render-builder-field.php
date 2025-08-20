@@ -1,4 +1,8 @@
 <?php
+
+
+  if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+
 switch ($field['type']) {
 	case 'textarea': ?>
 		<div class="row mb-3">

@@ -1,3 +1,5 @@
+
+<?php if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly ?>
 <div class="can-bs-wrapper">
 	<div class="card p-3 mb-3">
 		<div class="row text-center">

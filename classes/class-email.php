@@ -3,6 +3,8 @@
 * Real Estate Management Main Class - Since 1.0.0
 */
 
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly 
+
 class CAN_Email
 {
     
