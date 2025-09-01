@@ -76,13 +76,15 @@ class CAN_Front_Templates
         }
 
         if (can_get_option('custom_js', '') != '') {
-            ob_start(); ?>
-                <script type="text/javascript">
-                <!--
+            ob_start(); 
+            // TODO: implement custom JS options
+        ?>
+                
+                <!--script type="text/javascript">
                     jQuery(document).ready(function($) {
                         <?php echo esc_html(stripcslashes(can_get_option('custom_js'))); ?>
                     });             
-                //--></script>              
+                </script-->              
             <?php echo esc_html(ob_get_clean());            
         }
     }

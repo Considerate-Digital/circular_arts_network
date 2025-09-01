@@ -322,30 +322,12 @@ function can_render_listing_section($section, $listing_id = 0){
                     </div>
                 </div>
             </div>
-		<script>
-			setTimeout(() => {
-				let postcode = document.getElementById("listing_zipcode");
-				let location_search = document.querySelector(".leaflet-control-geocoder-form input");
-				console.log(location_search);
-				    postcode.addEventListener("blur", () => {
-					console.log("setting location search");
-					console.log(postcode.value);
-					location_search.value = postcode.value;	
-					location_search.dispatchEvent(new KeyboardEvent("keydown", {
-						code: 'Enter',
-					    key: 'Enter',
-					    charCode: 13,
-					    keyCode: 13,
-					    view: window,
-					    bubbles: true
-					}));
-					});
-			    }, 3000);
-		
-		</script>
-
+            
                 
-            <?php break;
+            <?php 
+                  wp_register_script( 'can-listing-location-js', CAN_URL . '/assets/js/listing-location.js' );
+                  wp_enqueue_script( 'can-listing-location-js' );
+                            break;
         
         default:
             $inputFields = can_get_listing_fields(); ?>

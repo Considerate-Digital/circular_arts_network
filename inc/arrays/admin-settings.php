@@ -600,6 +600,8 @@ $fieldsData = array(
                 'help' => __( 'Paste your custom css code here, you can prefix with', 'circular-arts-network' ).'<code>.can-bs-wrapper</code>',
             ),
 
+            /*
+             * TODO: implement custom JS code
             array(
                 'type' => 'textarea',
                 'name' => 'custom_js',
@@ -607,6 +609,7 @@ $fieldsData = array(
                 'default' => '',
                 'help' => __( 'Please keep this box empty if you are not sure what you are doing','circular-arts-network' ),
             ),
+             */
 
         ),
 
