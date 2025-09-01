@@ -100,11 +100,11 @@ jQuery(document).ready(function($) {
 	 		
 	 		});
 	 		var data = {
-	 			'action' : 'can_compare_listings',
+	 			'action' : 'circartsnet_compare_listings',
 	 			'listing_ids' : listing_ids
 	 		}
 	        modal.startLoading();
-	        $.post(can_compare.ajaxurl, data , function(resp) {
+	        $.post(circartsnet_compare.ajaxurl, data , function(resp) {
 	        	
 	            $("#can-compare-modal .iziModal-content tbody").html(resp);
 	 			// stop loading

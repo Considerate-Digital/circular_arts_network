@@ -8,7 +8,7 @@
 			<?php $this->render_ribbon($listing_id); ?>
 			<a href="<?php echo esc_html(get_the_permalink( $listing_id )); ?>" target="<?php echo esc_attr( $target ); ?>" class="can-link">
 				<picture class="can-image">
-					<?php do_action( 'can_featured_image', $listing_id ) ?>
+					<?php do_action( 'circartsnet_featured_image', $listing_id ) ?>
 				</picture>
 			</a>
 		</div>
@@ -27,7 +27,7 @@
 			</div>
 			<div class="can-footer-area">
 				<p class="can-price-wrap float-start">
-					<?php echo can_get_field_value($listing_id, array('key' =>'regular_price', 'type' => 'price')); ?>
+					<?php echo circartsnet_get_field_value($listing_id, array('key' =>'regular_price', 'type' => 'price')); ?>
 				</p>
 				<div class="can-actions float-end">
 					<?php $this->render_action_buttons($listing_id); ?>

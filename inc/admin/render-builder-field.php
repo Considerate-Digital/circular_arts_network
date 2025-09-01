@@ -99,7 +99,7 @@ switch ($field['type']) {
 		    	<select class="can-iconpicker">
 		    		<option value=""><?php esc_html_e( 'No icon', 'circular-arts-network' ) ?></option>
 		    		<?php
-		    			$icons = can_get_icons_list();
+		    			$icons = circartsnet_get_icons_list();
 		    			foreach ($icons as $iconClass) {
 		    				$selected = (isset($data[$field['name']]) && $data[$field['name']] == $iconClass) ? 'selected' : '' ;
 		    				echo esc_html("<option $selected>{$iconClass}</option>");

@@ -14,10 +14,10 @@ get_header(); ?>
 	<div class="container pt-5 pb-5">
 		<div class="row">
 			<div class="col-sm-9">
-				<?php do_action( 'can_listing_content' ); ?>
+				<?php do_action( 'circartsnet_listing_content' ); ?>
 			</div>
 			<div class="col-sm-3">
-				<?php do_action( 'can_listing_sidebar' ); ?>
+				<?php do_action( 'circartsnet_listing_sidebar' ); ?>
 			</div>
 		</div>
 	</div>

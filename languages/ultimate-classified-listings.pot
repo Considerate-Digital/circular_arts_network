@@ -601,7 +601,7 @@ msgid "Icon or Image"
 msgstr ""
 
 #: inc/admin/fields-builder.php:2
-msgid "CAN - Fields Builder"
+msgid "CIRCARTSNET - Fields Builder"
 msgstr ""
 
 #: inc/admin/fields-builder.php:8
@@ -625,7 +625,7 @@ msgid "Reset Fields"
 msgstr ""
 
 #: inc/admin/fields-sections.php:2
-msgid "CAN - Field Sections"
+msgid "CIRCARTSNET - Field Sections"
 msgstr ""
 
 #: inc/admin/fields-sections.php:8

@@ -4,15 +4,15 @@
  * WPML
  * registering and translating strings input by users
  */
-if( ! function_exists('can_wpml_register') ) {
-    function can_wpml_register($field_value, $domain, $field_name = '') {
+if( ! function_exists('circartsnet_wpml_register') ) {
+    function circartsnet_wpml_register($field_value, $domain, $field_name = '') {
         $field_name = ($field_name == '') ? esc_html($field_value) : esc_html($field_name) ;
         do_action( 'wpml_register_single_string', $domain, $field_name, $field_value );
     }
 }
 
-if( ! function_exists('can_wpml_translate') ) {
-    function can_wpml_translate($field_value, $domain, $field_name = '', $language = '') {
+if( ! function_exists('circartsnet_wpml_translate') ) {
+    function circartsnet_wpml_translate($field_value, $domain, $field_name = '', $language = '') {
         $field_name = ($field_name == '') ? esc_html($field_value) : esc_html($field_name) ;
         return apply_filters('wpml_translate_single_string', stripcslashes($field_value), $domain, $field_name, $language );
     }
@@ -23,27 +23,27 @@ if( ! function_exists('can_wpml_translate') ) {
  * @since  1.0.0
  * @return string
  */
-function can_get_option($key, $default = '') {
-    $can_settings = get_option( 'can_all_settings' );
-    if (isset($can_settings[$key]) && $can_settings[$key] != '') {
-        return apply_filters( 'can_get_option_'.$key, esc_html($can_settings[$key]), $default );
+function circartsnet_get_option($key, $default = '') {
+    $circartsnet_settings = get_option( 'circartsnet_all_settings' );
+    if (isset($circartsnet_settings[$key]) && $circartsnet_settings[$key] != '') {
+        return apply_filters( 'circartsnet_get_option_'.$key, esc_html($circartsnet_settings[$key]), $default );
     } else {
         return $default;
     }
 }
 
-function can_load_basic_styles(){
-    wp_enqueue_style('can-bs', CAN_URL."/assets/libs/css/bootstrap.css");
-    wp_enqueue_style('can-icons', CAN_URL."/assets/libs/icons/bootstrap-icons.css");
-    wp_enqueue_style('can-main', CAN_URL."/assets/css/main.css");
+function circartsnet_load_basic_styles(){
+    wp_enqueue_style('can-bs', CIRCARTSNET_URL."/assets/libs/css/bootstrap.css");
+    wp_enqueue_style('can-icons', CIRCARTSNET_URL."/assets/libs/icons/bootstrap-icons.css");
+    wp_enqueue_style('can-main', CIRCARTSNET_URL."/assets/css/main.css");
 
     ob_start();
-        include_once CAN_PATH . '/assets/css/styles.php';
+        include_once CIRCARTSNET_PATH . '/assets/css/styles.php';
     $custom_css = ob_get_clean();
     wp_add_inline_style( 'can-main', $custom_css );
 }
 
-function can_can_user_access($section, $listing_id = ''){
+function circartsnet_circartsnet_user_access($section, $listing_id = ''){
     $accessibility = (isset($section['accessibility'])) ? $section['accessibility'] : 'public' ;
     switch ($accessibility) {
         case 'public':
@@ -83,29 +83,29 @@ function can_can_user_access($section, $listing_id = ''){
             break;
     }
     
-    return apply_filters( 'can_can_user_access'.$section['key'], $is_accessible, $section, $listing_id );
+    return apply_filters( 'circartsnet_circartsnet_user_access'.$section['key'], $is_accessible, $section, $listing_id );
 }
 
 /**
  * Get all the listing fields
  */
-function can_get_listing_fields(){
-    $saved_fields = get_option( 'can_listing_fields' );
+function circartsnet_get_listing_fields(){
+    $saved_fields = get_option( 'circartsnet_listing_fields' );
     $inputFields  = array();
     if ($saved_fields != '' && is_array($saved_fields)) {
         $inputFields = $saved_fields;
     } else {
-        include CAN_PATH.'/inc/arrays/listing-fields.php';
+        include CIRCARTSNET_PATH.'/inc/arrays/listing-fields.php';
     }
 
-    if(has_filter('can_all_listing_fields')) {
-        $inputFields = apply_filters('can_all_listing_fields', $inputFields);
+    if(has_filter('circartsnet_all_listing_fields')) {
+        $inputFields = apply_filters('circartsnet_all_listing_fields', $inputFields);
     }
 
     return $inputFields;
 }
 
-function can_is_default_section($section){
+function circartsnet_is_default_section($section){
     $def_keys = array('description', 'gallery_images', 'location', 'tags');
     if (in_array($section['key'], $def_keys)) {
         return true;
@@ -113,13 +113,13 @@ function can_is_default_section($section){
     return false;
 }
 
-function can_get_icons_list(){
+function circartsnet_get_icons_list(){
     $icons = array();
-        include CAN_PATH.'/inc/arrays/icons.php';
-    return apply_filters( 'can_font_icons', $icons );
+        include CIRCARTSNET_PATH.'/inc/arrays/icons.php';
+    return apply_filters( 'circartsnet_font_icons', $icons );
 }
 
-function can_get_column_classes($columns){
+function circartsnet_get_column_classes($columns){
     switch ($columns) {
         case '1':
             $classes = 'col-sm-12';
@@ -139,21 +139,21 @@ function can_get_column_classes($columns){
             break;
     }
 
-    return apply_filters( 'can_column_classes', $classes, $columns );
+    return apply_filters( 'circartsnet_column_classes', $classes, $columns );
 }
 
 /**
  * Renders the listing section for editing fields
  */
-function can_render_listing_section($section, $listing_id = 0){
+function circartsnet_render_listing_section($section, $listing_id = 0){
 
-    if (!can_can_user_access($section, $listing_id)) {
+    if (!circartsnet_circartsnet_user_access($section, $listing_id)) {
         return;
     }
 
     if (!$listing_id) {
         global $post;
-        $listing_id = (isset($post->ID) && $post->post_type == 'can_listing') ? $post->ID : 0 ;
+        $listing_id = (isset($post->ID) && $post->post_type == 'circartsnet_listing') ? $post->ID : 0 ;
     }
 
     switch ($section['key']) {
@@ -163,7 +163,7 @@ function can_render_listing_section($section, $listing_id = 0){
                 <div class="card mb-2">
                     <h5 class="card-header"><?php echo esc_attr( $section['title'] ); ?></h5>
                     <div class="card-body">
-                        <?php do_action( 'can_before_section_edit_'.$section['key'] ); ?>
+                        <?php do_action( 'circartsnet_before_section_edit_'.$section['key'] ); ?>
                             <input value="<?php echo ($listing_id) ? esc_html($listing_data->post_title) : ''; ?>" id="listing_title" class="form-control mb-3" type="text" required placeholder="<?php esc_html_e( 'Listing Title', 'circular-arts-network' ); ?>" name="listing_title">
                             <?php wp_editor( ($listing_id) ? $listing_data->post_content : '', 'can-description', array(
                                 'quicktags' => array( 'buttons' => 'strong,em,del,ul,ol,li,close' ),
@@ -172,7 +172,7 @@ function can_render_listing_section($section, $listing_id = 0){
 				'media_buttons' => false
                             ) ); ?>
 
-                        <?php do_action( 'can_after_section_edit_'.$section['key'] );
+                        <?php do_action( 'circartsnet_after_section_edit_'.$section['key'] );
                         ?>
                     </div>
                 </div>
@@ -181,7 +181,7 @@ function can_render_listing_section($section, $listing_id = 0){
 	case 'category':
 		$required = true;
     $categories = get_terms(array(
-        'taxonomy' => "can_listing_category",
+        'taxonomy' => "circartsnet_listing_category",
         'hide_empty' => false
     ));
 ?>
@@ -190,12 +190,12 @@ function can_render_listing_section($section, $listing_id = 0){
                     <h5 class="card-header"><?php echo esc_attr( $section['title'] ); ?></h5>
                     <div class="card-body">
 		<div class="row mb-3">
-                <label class="col-sm-4 col-form-label" for="can_listing_category">
+                <label class="col-sm-4 col-form-label" for="circartsnet_listing_category">
                     <?php echo esc_attr(($section['title'])); ?>
                     <?php echo ($required) ? '<span title="'. esc_html_e( 'Required', 'circular-arts-network' ).'" class="glyphicon glyphicon-asterisk"></span>' : '' ; ?>
                 </label>
                 <div class="col-sm-8">
-                    <select name="can_listing_category" class="form-control form-control-sm">
+                    <select name="circartsnet_listing_category" class="form-control form-control-sm">
                         <?php
                             foreach ($categories as $term) {
                                 echo '<option value="' . esc_html($term->name) . '">' . esc_html($term->name) . '</option>';
@@ -220,10 +220,10 @@ function can_render_listing_section($section, $listing_id = 0){
         case 'gallery_images':
 
             if ($listing_id) {
-                $savedImages = get_post_meta( $listing_id, 'can_'.$section['key'], true );
+                $savedImages = get_post_meta( $listing_id, 'circartsnet_'.$section['key'], true );
             }
-            wp_enqueue_script('can-field-image', CAN_URL."/assets/fields/images.js", array( 'jquery' ));
-            wp_enqueue_style('can-field-image', CAN_URL."/assets/fields/images.css");
+            wp_enqueue_script('can-field-image', CIRCARTSNET_URL."/assets/fields/images.js", array( 'jquery' ));
+            wp_enqueue_style('can-field-image', CIRCARTSNET_URL."/assets/fields/images.css");
             ?>
             <div class="card mb-2">
                 <h5 class="card-header"><?php echo esc_attr( $section['title'] ); ?></h5>
@@ -270,47 +270,47 @@ function can_render_listing_section($section, $listing_id = 0){
         case 'location':
 
             if ($listing_id) {
-                $savedLatitude = get_post_meta( $listing_id, 'can_listing_latitude', true );
-                $savedLongitude = get_post_meta( $listing_id, 'can_listing_longitude', true );
+                $savedLatitude = get_post_meta( $listing_id, 'circartsnet_listing_latitude', true );
+                $savedLongitude = get_post_meta( $listing_id, 'circartsnet_listing_longitude', true );
             }
 
-            if (can_get_option('use_map_from', 'leaflet') == 'leaflet') {
-                  wp_register_script( 'can-leaflet-js', CAN_URL . '/assets/libs/js/leaflet.js' );
+            if (circartsnet_get_option('use_map_from', 'leaflet') == 'leaflet') {
+                  wp_register_script( 'can-leaflet-js', CIRCARTSNET_URL . '/assets/libs/js/leaflet.js' );
                   wp_enqueue_script( 'can-leaflet-js' );
 
-                    wp_register_style( 'can-leaflet-css', CAN_URL . '/assets/libs/css/leaflet.css' );
+                    wp_register_style( 'can-leaflet-css', CIRCARTSNET_URL . '/assets/libs/css/leaflet.css' );
                   wp_enqueue_style( 'can-leaflet-css' );
                 /* TODO check if still in use
-                wp_enqueue_style( 'can-leaflet-geo-css', CAN_URL . '/assets/leaflet/Control.Geocoder.css');
-                wp_enqueue_script( 'can-leaflet-geo-js', CAN_URL . '/assets/leaflet/Control.Geocoder.js');
+                wp_enqueue_style( 'can-leaflet-geo-css', CIRCARTSNET_URL . '/assets/leaflet/Control.Geocoder.css');
+                wp_enqueue_script( 'can-leaflet-geo-js', CIRCARTSNET_URL . '/assets/leaflet/Control.Geocoder.js');
                  */
             } else {
-                $maps_api_key = can_get_option('maps_api_key');
+                $maps_api_key = circartsnet_get_option('maps_api_key');
                 if (is_ssl()) {
                     wp_enqueue_script( 'google-maps', 'https://maps.googleapis.com/maps/api/js?key='.$maps_api_key.'&libraries=places' );
                 } else {
                     wp_enqueue_script( 'google-maps', 'http://maps.googleapis.com/maps/api/js?key='.$maps_api_key.'&libraries=places' );
                 }
             }
-            wp_enqueue_script('can-field-location', CAN_URL."/assets/fields/location.js", array( 'jquery' ));
+            wp_enqueue_script('can-field-location', CIRCARTSNET_URL."/assets/fields/location.js", array( 'jquery' ));
             $localize_vars = array(
-                'use_map_from' => can_get_option('use_map_from', 'leaflet'),
-                'def_lat' => isset($savedLatitude) ? $savedLatitude : can_get_option('default_map_lat', '55.8617'),
-                'def_long' => isset($savedLongitude) ? $savedLongitude : can_get_option('default_map_long', '-4.2583'),
-                'leaflet_styles' => can_get_leaflet_provider(1),
-                'zoom_level' => can_get_option('maps_zoom_level', 5),
-                'drag_icon' => can_get_option('maps_drag_image', CAN_URL.'/assets/images/pin-drag.png') ,
+                'use_map_from' => circartsnet_get_option('use_map_from', 'leaflet'),
+                'def_lat' => isset($savedLatitude) ? $savedLatitude : circartsnet_get_option('default_map_lat', '55.8617'),
+                'def_long' => isset($savedLongitude) ? $savedLongitude : circartsnet_get_option('default_map_long', '-4.2583'),
+                'leaflet_styles' => circartsnet_get_leaflet_provider(1),
+                'zoom_level' => circartsnet_get_option('maps_zoom_level', 5),
+                'drag_icon' => circartsnet_get_option('maps_drag_image', CIRCARTSNET_URL.'/assets/images/pin-drag.png') ,
             );
 
-            wp_localize_script( 'can-field-location', 'can_map_settings', $localize_vars );
-            wp_enqueue_style('can-field-location', CAN_URL."/assets/fields/images.css");
+            wp_localize_script( 'can-field-location', 'circartsnet_map_settings', $localize_vars );
+            wp_enqueue_style('can-field-location', CIRCARTSNET_URL."/assets/fields/images.css");
             ?>
             <div class="card mb-2">
                 <h5 class="card-header"><?php echo esc_attr( $section['title'] ); ?></h5>
                 <div class="card-body">
-                    <input type="hidden" class="can_listing_latitude" value="<?php echo isset($savedLatitude) ? esc_html($savedLatitude): ''; ?>" name="can_listing_latitude">
-                    <input type="hidden" class="can_listing_longitude" value="<?php echo isset($savedLongitude) ? esc_html($savedLongitude) : ''; ?>" name="can_listing_longitude">
-                    <?php if (can_get_option('use_map_from', 'leaflet') == 'google_maps') { ?>
+                    <input type="hidden" class="circartsnet_listing_latitude" value="<?php echo isset($savedLatitude) ? esc_html($savedLatitude): ''; ?>" name="circartsnet_listing_latitude">
+                    <input type="hidden" class="circartsnet_listing_longitude" value="<?php echo isset($savedLongitude) ? esc_html($savedLongitude) : ''; ?>" name="circartsnet_listing_longitude">
+                    <?php if (circartsnet_get_option('use_map_from', 'leaflet') == 'google_maps') { ?>
                     <input type="text" class="form-control" id="search-map" placeholder="<?php esc_html_e( 'Type to Search...', 'circular-arts-network' ); ?>">
                     <?php } ?>
                     <div id="map-canvas" style="height: 300px"></div>
@@ -325,26 +325,26 @@ function can_render_listing_section($section, $listing_id = 0){
             
                 
             <?php 
-                  wp_register_script( 'can-listing-location-js', CAN_URL . '/assets/js/listing-location.js' );
+                  wp_register_script( 'can-listing-location-js', CIRCARTSNET_URL . '/assets/js/listing-location.js' );
                   wp_enqueue_script( 'can-listing-location-js' );
                             break;
         
         default:
-            $inputFields = can_get_listing_fields(); ?>
+            $inputFields = circartsnet_get_listing_fields(); ?>
             <div class="card mb-2">
                 <h5 class="card-header"><?php echo esc_attr( $section['title'] ); ?></h5>
                 <div class="card-body">
                     <?php
-                        do_action( 'can_before_section_edit_'.$section['key'] );
+                        do_action( 'circartsnet_before_section_edit_'.$section['key'] );
 
                         foreach ($inputFields as $field) {
                             
                             if($field['tab'] == $section['key']){
-                                can_render_listing_field($field, $listing_id);
+                                circartsnet_render_listing_field($field, $listing_id);
                             }
                         }
 
-                        do_action( 'can_after_section_edit_'.$section['key'] );
+                        do_action( 'circartsnet_after_section_edit_'.$section['key'] );
                     ?>
                 </div>
             </div>
@@ -353,10 +353,10 @@ function can_render_listing_section($section, $listing_id = 0){
     }
 }
 
-function can_render_search_field($field, $label = false, $icon = true){
+function circartsnet_render_search_field($field, $label = false, $icon = true){
     if ($label) {
         $label = $field['title'];
-        $label = apply_filters( 'can_search_field_label', $label, $field );
+        $label = apply_filters( 'circartsnet_search_field_label', $label, $field );
         echo "<label>".esc_attr( $label )."</label>";
     }
 
@@ -385,7 +385,7 @@ function can_render_search_field($field, $label = false, $icon = true){
         case 'price':
             $html = '<div class="can-price-search-wrap">';
                 $html .= '<input type="text" class="can-input-field" name="'.esc_attr( $field['key'] ).'[min]" placeholder="'.__( 'Minimum', 'circular-arts-network' ).'">';
-                $html .= '<span class="can-price-label">'.esc_attr( $field['title'] ).' <span class="p-symbol">('.can_get_currency_symbol().')</span></span>';
+                $html .= '<span class="can-price-label">'.esc_attr( $field['title'] ).' <span class="p-symbol">('.circartsnet_get_currency_symbol().')</span></span>';
                 $html .= '<input type="text" class="can-input-field" name="'.esc_attr( $field['key'] ).'[max]" placeholder="'.__( 'Maximum', 'circular-arts-network' ).'">';
             $html .= '</div>';
             break;
@@ -394,7 +394,7 @@ function can_render_search_field($field, $label = false, $icon = true){
             $html = '<select class="can-select-field" name='.esc_attr( $field['key'] ).'>';
                 $options = (is_array($field['options'])) ? $field['options'] : explode("\n", $field['options']);
                 foreach ($options as $name) {
-                    $translated_label = can_wpml_translate($name, 'circular-arts-network-fields');
+                    $translated_label = circartsnet_wpml_translate($name, 'circular-arts-network-fields');
                     $html .= '<option value="'.$name.'" '.selected( $field_value, $name, false ).'>'. esc_html($translated_label) .'</option>';
                 }
 
@@ -406,21 +406,21 @@ function can_render_search_field($field, $label = false, $icon = true){
             break;
     }
 
-    return apply_filters( 'can_search_field_html', $html, $field );
+    return apply_filters( 'circartsnet_search_field_html', $html, $field );
 }
 
 /**
  * Renders the listing form fields
  */
-function can_render_listing_field($field, $listing_id = 0){
+function circartsnet_render_listing_field($field, $listing_id = 0){
 
-    if (!can_can_user_access($field, $listing_id)) {
+    if (!circartsnet_circartsnet_user_access($field, $listing_id)) {
         return;
     }
     
     $field_type = $field['type'];
     $field_id = $field['key'];
-    $field_name = 'can_data['.$field_id.']';
+    $field_name = 'circartsnet_data['.$field_id.']';
     $field_title = $field['title'];
     $field_help = $field['help'];
     $field_value = $field['default'];
@@ -432,7 +432,7 @@ function can_render_listing_field($field, $listing_id = 0){
     }
 
     if ($listing_id) {
-        $field_value = get_post_meta( $listing_id, 'can_'.$field_id, true );
+        $field_value = get_post_meta( $listing_id, 'circartsnet_'.$field_id, true );
     }
 
     switch ($field_type) {
@@ -442,10 +442,10 @@ function can_render_listing_field($field, $listing_id = 0){
             ?>
 
             <div class="can-checkboxes-wrap">
-                <p class="fw-bold"><?php echo esc_html(can_wpml_translate($field_title, 'circular-arts-network-fields')); ?></p>
+                <p class="fw-bold"><?php echo esc_html(circartsnet_wpml_translate($field_title, 'circular-arts-network-fields')); ?></p>
                 <div class="row">
                     <?php foreach ($field['options'] as $key => $option) {
-                        $translated_label = esc_html(can_wpml_translate($option, 'circular-arts-network-fields'));
+                        $translated_label = esc_html(circartsnet_wpml_translate($option, 'circular-arts-network-fields'));
                         $cb_id = 'can-'.$field_id.'-'.$key;
                         $value = (isset($field_value[$option])) ? $field_value[$option] : ''; ?>
                         <div class="col-sm-6">
@@ -475,7 +475,7 @@ function can_render_listing_field($field, $listing_id = 0){
 
             <div class="row mb-3">
                 <label class="col-sm-4 col-form-label" for="<?php echo esc_attr( $field_id ); ?>">
-                    <?php echo esc_html(can_wpml_translate($field_title, 'circular-arts-network-fields')); ?>
+                    <?php echo esc_html(circartsnet_wpml_translate($field_title, 'circular-arts-network-fields')); ?>
                     <?php echo ($required) ? esc_html('<span title="'.__( 'Required', 'circular-arts-network' ).'" class="glyphicon glyphicon-asterisk"></span>') : '' ; ?>
                 </label>
                 <div class="col-sm-8">
@@ -483,7 +483,7 @@ function can_render_listing_field($field, $listing_id = 0){
                         <?php
                             $options = (is_array($field['options'])) ? $field['options'] : explode("\n", $field['options']);
                             foreach ($options as $name) {
-                                $translated_label = can_wpml_translate($name, 'circular-arts-network-fields');
+                                $translated_label = circartsnet_wpml_translate($name, 'circular-arts-network-fields');
                                 echo '<option value="'.esc_attr($name).'" '.selected( esc_attr($field_value), esc_attr($name), false ).'>'. esc_html($translated_label) .'</option>';
                             }
                         ?>
@@ -500,7 +500,7 @@ function can_render_listing_field($field, $listing_id = 0){
             ?>
             <div class="row mb-3">
                 <label class="col-sm-4 col-form-label" for="<?php echo esc_attr( $field_id ); ?>">
-                    <?php echo esc_html(can_wpml_translate($field_title, 'circular-arts-network-fields')); ?>
+                    <?php echo esc_html(circartsnet_wpml_translate($field_title, 'circular-arts-network-fields')); ?>
                     <?php echo ($required) ? esc_html('<span title="'.__( 'Required', 'circular-arts-network' ).'" class="glyphicon glyphicon-asterisk"></span>') : '' ; ?>
                 </label>
                 <div class="col-sm-8">
@@ -516,15 +516,15 @@ function can_render_listing_field($field, $listing_id = 0){
 
 
         case 'price':
-            $before_value   =   get_post_meta( $listing_id, 'can_'.$field_id.'_before', true );
-            $after_value    =   get_post_meta( $listing_id, 'can_'.$field_id.'_after', true );
+            $before_value   =   get_post_meta( $listing_id, 'circartsnet_'.$field_id.'_before', true );
+            $after_value    =   get_post_meta( $listing_id, 'circartsnet_'.$field_id.'_after', true );
 	    if (!$field_value) {
 		    $field_value = 0;
 	   }
             ?>
             <div class="row mb-3">
                 <label class="col-sm-4 col-form-label" for="<?php echo esc_attr( $field_id ); ?>">
-                    <?php echo esc_html(can_wpml_translate($field_title, 'circular-arts-network-fields')); ?>
+                    <?php echo esc_html(circartsnet_wpml_translate($field_title, 'circular-arts-network-fields')); ?>
                     <?php echo ($required) ? '<span title="'.esc_html_e( 'Required', 'circular-arts-network' ).'" class="glyphicon glyphicon-asterisk"></span>' : '' ; ?>
                 </label>
                 
@@ -546,7 +546,7 @@ function can_render_listing_field($field, $listing_id = 0){
             ?>
             <div class="row mb-3">
                 <label class="col-sm-4 col-form-label" for="<?php echo esc_attr( $field_id ); ?>">
-                    <?php echo esc_html(can_wpml_translate($field_title, 'circular-arts-network-fields')); ?>
+                    <?php echo esc_html(circartsnet_wpml_translate($field_title, 'circular-arts-network-fields')); ?>
                     <?php echo ($required) ? '<span title="'.esc_html_e( 'Required', 'circular-arts-network' ).'" class="glyphicon glyphicon-asterisk"></span>' : '' ; ?>
                 </label>
                 <div class="col-sm-8">
@@ -568,7 +568,7 @@ function can_render_listing_field($field, $listing_id = 0){
         default: ?>
             <div class="row mb-3">
                 <label class="col-sm-4 col-form-label" for="<?php echo esc_attr( $field_id ); ?>">
-                    <?php echo esc_html(can_wpml_translate($field_title, 'circular-arts-network-fields')); ?>
+                    <?php echo esc_html(circartsnet_wpml_translate($field_title, 'circular-arts-network-fields')); ?>
                     <?php echo ($required) ? '<span title="'.esc_html_e( 'Required', 'circular-arts-network' ).'" class="glyphicon glyphicon-asterisk"></span>' : '' ; ?>
                 </label>
                 <div class="col-sm-8">
@@ -581,24 +581,24 @@ function can_render_listing_field($field, $listing_id = 0){
 }
 
 
-function can_get_field_value($listing_id, $field, $value = ''){
+function circartsnet_get_field_value($listing_id, $field, $value = ''){
 
     if (!$value) {
-        $value = esc_html(get_post_meta( $listing_id, 'can_'.$field['key'], true ));
+        $value = esc_html(get_post_meta( $listing_id, 'circartsnet_'.$field['key'], true ));
     }
 
-    $value = can_wpml_translate($value, 'circular-arts-network-fields');
+    $value = circartsnet_wpml_translate($value, 'circular-arts-network-fields');
 
     if (isset($field['type']) && $field['type'] == 'date') {
-        $format = can_get_option('date_format', 'd-m-Y');
+        $format = circartsnet_get_option('date_format', 'd-m-Y');
         $value = gmdate($format, strtotime($value));
     }
 
     if (isset($field['type']) && $field['type'] == 'price') {
-        $value = can_get_listing_price($value);
+        $value = circartsnet_get_listing_price($value);
 
-        $before_value   =   get_post_meta( $listing_id, 'can_'.$field['key'].'_before', true );
-        $after_value    =   get_post_meta( $listing_id, 'can_'.$field['key'].'_after', true );
+        $before_value   =   get_post_meta( $listing_id, 'circartsnet_'.$field['key'].'_before', true );
+        $after_value    =   get_post_meta( $listing_id, 'circartsnet_'.$field['key'].'_after', true );
         if ($before_value) {
             $value = "<span class='can-before-text'>" . esc_html($before_value) . "</span> ".$value;
         }
@@ -607,12 +607,12 @@ function can_get_field_value($listing_id, $field, $value = ''){
         }
     }
 
-    //return apply_filters( 'can_listing_field_value', $value, $field, $listing_id );
+    //return apply_filters( 'circartsnet_listing_field_value', $value, $field, $listing_id );
     // TODO filter here
     return $value;
 }
 
-function can_get_section_title($tabData){
+function circartsnet_get_section_title($tabData){
     $title = esc_html($tabData['title']);
     $tab_key = $tabData['key'];
     $icon = '';
@@ -625,15 +625,15 @@ function can_get_section_title($tabData){
         }
     }
 
-    $icon = apply_filters( 'can_listing_section_title_icon', $icon,  $tabData);
+    $icon = apply_filters( 'circartsnet_listing_section_title_icon', $icon,  $tabData);
 
-    $wrap = apply_filters( 'can_listing_section_title_wrap', 'h2', $tab_key );
+    $wrap = apply_filters( 'circartsnet_listing_section_title_wrap', 'h2', $tab_key );
     return "<$wrap class='title'>$icon ".stripcslashes($title)."</$wrap>";
 }
 
-function can_count_user_listings($user_id, $status = 'all'){
+function circartsnet_count_user_listings($user_id, $status = 'all'){
     $args  = array(
-        'post_type' =>'can_listing',
+        'post_type' =>'circartsnet_listing',
         'author' => $user_id,
     );
 
@@ -652,27 +652,27 @@ function can_count_user_listings($user_id, $status = 'all'){
  * @param array $args (default: array())
  * @return string
  */
-function can_get_listing_price( $price, $args = array() ) {
+function circartsnet_get_listing_price( $price, $args = array() ) {
     $price_digits = $price;
-    extract( apply_filters( 'can_price_args', wp_parse_args( $args, array(
-        'currency'           => can_get_option('currency', 'GBP'),
-        'decimal_separator'  => can_get_price_decimal_separator(),
-        'thousand_separator' => can_get_price_thousand_separator(),
-        'decimals'           => can_get_price_decimals(),
-        'price_format'       => can_get_price_format()
+    extract( apply_filters( 'circartsnet_price_args', wp_parse_args( $args, array(
+        'currency'           => circartsnet_get_option('currency', 'GBP'),
+        'decimal_separator'  => circartsnet_get_price_decimal_separator(),
+        'thousand_separator' => circartsnet_get_price_thousand_separator(),
+        'decimals'           => circartsnet_get_price_decimals(),
+        'price_format'       => circartsnet_get_price_format()
     ) ) ) );
     $negative        = $price < 0;
-    $price           = apply_filters( 'raw_can_price', floatval( $negative ? $price * -1 : $price ) );
-    $price           = apply_filters( 'formatted_can_price', number_format( $price, $decimals, $decimal_separator, $thousand_separator ), $price, $decimals, $decimal_separator, $thousand_separator );
+    $price           = apply_filters( 'raw_circartsnet_price', floatval( $negative ? $price * -1 : $price ) );
+    $price           = apply_filters( 'formatted_circartsnet_price', number_format( $price, $decimals, $decimal_separator, $thousand_separator ), $price, $decimals, $decimal_separator, $thousand_separator );
 
-    if ( apply_filters( 'can_price_trim_zeros', false ) && $decimals > 0 ) {
+    if ( apply_filters( 'circartsnet_price_trim_zeros', false ) && $decimals > 0 ) {
         $price = wc_trim_zeros( $price );
     }
 
-    $formatted_price = ( $negative ? '-' : '' ) . sprintf( esc_html($price_format), '<span class="can-currency-symbol">' . can_get_currency_symbol( $currency ) . '</span>', esc_html($price) );
+    $formatted_price = ( $negative ? '-' : '' ) . sprintf( esc_html($price_format), '<span class="can-currency-symbol">' . circartsnet_get_currency_symbol( $currency ) . '</span>', esc_html($price) );
     $return          = '<span class="can-price-amount">' . $formatted_price . '</span>';
 
-    return apply_filters( 'can_property_price', $return, $price, $args, $price_digits );
+    return apply_filters( 'circartsnet_property_price', $return, $price, $args, $price_digits );
 }
 
 /**
@@ -680,9 +680,9 @@ function can_get_listing_price( $price, $args = array() ) {
  *
  * @return array
  */
-function can_get_all_currencies() {
+function circartsnet_get_all_currencies() {
     return array_unique(
-        apply_filters( 'can_all_currencies',
+        apply_filters( 'circartsnet_all_currencies',
             array(
                 'AED' => __( 'United Arab Emirates dirham', 'circular-arts-network' ),
                 'AFN' => __( 'Afghan afghani', 'circular-arts-network' ),
@@ -855,12 +855,12 @@ function can_get_all_currencies() {
  * @param string $currency (default: '')
  * @return string
  */
-function can_get_currency_symbol( $currency = '' ) {
+function circartsnet_get_currency_symbol( $currency = '' ) {
     if ( ! $currency ) {
-        $currency = can_get_option('currency', 'GBP');
+        $currency = circartsnet_get_option('currency', 'GBP');
     }
 
-    $symbols = apply_filters( 'can_all_currency_symbols', array(
+    $symbols = apply_filters( 'circartsnet_all_currency_symbols', array(
         'AED' => '&#x62f;.&#x625;',
         'AFN' => '&#x60b;',
         'ALL' => 'L',
@@ -1027,7 +1027,7 @@ function can_get_currency_symbol( $currency = '' ) {
 
     $currency_symbol = isset( $symbols[ $currency ] ) ? esc_html($symbols[ $currency ]) : '';
 
-    return apply_filters( 'can_currency_symbol', $currency_symbol, $currency );
+    return apply_filters( 'circartsnet_currency_symbol', $currency_symbol, $currency );
 }
 
 /**
@@ -1035,8 +1035,8 @@ function can_get_currency_symbol( $currency = '' ) {
  *
  * @return string
  */
-function can_get_price_format() {
-    $currency_pos = can_get_option( 'currency_position', 'left' );
+function circartsnet_get_price_format() {
+    $currency_pos = circartsnet_get_option( 'currency_position', 'left' );
     $format = '%1$s%2$s';
 
     switch ( $currency_pos ) {
@@ -1054,7 +1054,7 @@ function can_get_price_format() {
         break;
     }
 
-    return apply_filters( 'can_price_format', $format, $currency_pos );
+    return apply_filters( 'circartsnet_price_format', $format, $currency_pos );
 }
 
 /**
@@ -1062,8 +1062,8 @@ function can_get_price_format() {
  * @since  4.1
  * @return string
  */
-function can_get_price_thousand_separator() {
-    $separator = stripslashes( can_get_option( 'thousand_separator' ) );
+function circartsnet_get_price_thousand_separator() {
+    $separator = stripslashes( circartsnet_get_option( 'thousand_separator' ) );
     return $separator;
 }
 
@@ -1072,8 +1072,8 @@ function can_get_price_thousand_separator() {
  * @since  4.1
  * @return string
  */
-function can_get_price_decimal_separator() {
-    $separator = stripslashes( can_get_option( 'decimal_separator' ) );
+function circartsnet_get_price_decimal_separator() {
+    $separator = stripslashes( circartsnet_get_option( 'decimal_separator' ) );
     return $separator ? $separator : '.';
 }
 
@@ -1082,8 +1082,8 @@ function can_get_price_decimal_separator() {
  * @since  4.1
  * @return int
  */
-function can_get_price_decimals() {
-    return absint( can_get_option( 'decimal_points', 2 ) );
+function circartsnet_get_price_decimals() {
+    return absint( circartsnet_get_option( 'decimal_points', 2 ) );
 }
 
 
@@ -1092,7 +1092,7 @@ function can_get_price_decimals() {
  * @param  [type] $map_id [description]
  * @since 1.0.0
  */
-function can_get_leaflet_provider($map_id){
+function circartsnet_get_leaflet_provider($map_id){
 
     switch ($map_id) {
         case '1':
@@ -1107,14 +1107,14 @@ function can_get_leaflet_provider($map_id){
         'provider' => $provider
     );
 
-    return apply_filters( 'can_leaflet_provider', $resp, $map_id );
+    return apply_filters( 'circartsnet_leaflet_provider', $resp, $map_id );
 }
 
-function can_get_search_query($data){
-    $ppp = can_get_option('listings_per_results_page', 10);
+function circartsnet_get_search_query($data){
+    $ppp = circartsnet_get_option('listings_per_results_page', 10);
 
     $args = array(
-        'post_type' =>  'can_listing',
+        'post_type' =>  'circartsnet_listing',
         'post_status' => 'publish',
         'posts_per_page' => $ppp
     );
@@ -1137,19 +1137,19 @@ function can_get_search_query($data){
         $args['orderby'] = $data['orderby'];
         if ($data['orderby'] == 'price') {
             $args['orderby'] = 'meta_value_num';
-            $args['meta_key'] = 'can_regular_price';           
+            $args['meta_key'] = 'circartsnet_regular_price';           
         }
     }
 
     if (isset($data['orderby_custom']) && $data['orderby_custom'] != '') {
         $args['orderby'] = 'meta_value';
-        $args['meta_key'] = 'can_'.$data['orderby_custom'];
+        $args['meta_key'] = 'circartsnet_'.$data['orderby_custom'];
     }
 
     if (isset($data['tag']) && $data['tag'] != '') {
         $args['tax_query'] = array(
             array(
-                'taxonomy' => 'can_listing_tag',
+                'taxonomy' => 'circartsnet_listing_tag',
                 'field'    => 'term_id',
                 'terms'    => $data['tag'],
             ),
@@ -1160,7 +1160,7 @@ function can_get_search_query($data){
         $p_cats = array_map('trim', explode(',', $cats));
         $args['tax_query'] = array(
             array(
-                'taxonomy' => 'can_listing_category',
+                'taxonomy' => 'circartsnet_listing_category',
                 'field'    => 'name',
                 'terms'    => $p_cats,
             ),
@@ -1174,14 +1174,14 @@ function can_get_search_query($data){
     /**
      * Searching for custom fields
      */
-    $inputFields = can_get_listing_fields();
+    $inputFields = circartsnet_get_listing_fields();
     foreach ($inputFields as $field) {
         if (isset($data[$field['key']]) && $data[$field['key']] != '' && $field['type'] != 'price') {
             if (preg_match('/^\d{1,}\+/', $data[$field['key']])) {
                 $numb = intval($data[$field['key']]);
                 $args['meta_query'][] = array(
                     array(
-                        'key'     => 'can_'.$field['key'],
+                        'key'     => 'circartsnet_'.$field['key'],
                         'value'   => $numb,
                         'type'    => 'numeric',
                         'compare' => '>=',
@@ -1191,7 +1191,7 @@ function can_get_search_query($data){
                 $area_arr = explode('-', $data[$field['key']]);
                 $args['meta_query'][] = array(
                     array(
-                        'key'     => 'can_'.$field['key'],
+                        'key'     => 'circartsnet_'.$field['key'],
                         'value'   => array( $area_arr[0], $area_arr[1] ),
                         'type'    => 'numeric',
                         'compare' => 'BETWEEN',
@@ -1200,7 +1200,7 @@ function can_get_search_query($data){
             } elseif (strpos($data[$field['key']], '!') !== false) {
                 $args['meta_query'][] = array(
                     array(
-                        'key'     => 'can_'.$field['key'],
+                        'key'     => 'circartsnet_'.$field['key'],
                         'value'   => ltrim($data[$field['key']],"!"),
                         'compare' => 'NOT LIKE',
                     ),
@@ -1208,7 +1208,7 @@ function can_get_search_query($data){
             } elseif (strpos($field['key'], '_id') !== false) {
                 $args['meta_query'][] = array(
                     array(
-                        'key'     => 'can_'.$field['key'],
+                        'key'     => 'circartsnet_'.$field['key'],
                         'value'   => stripcslashes($data[$field['key']]),
                         'compare' => '=',
                     ),
@@ -1216,7 +1216,7 @@ function can_get_search_query($data){
             } else {
                 $args['meta_query'][] = array(
                     array(
-                        'key'     => 'can_'.$field['key'],
+                        'key'     => 'circartsnet_'.$field['key'],
                         'value'   => stripcslashes($data[$field['key']]),
                         'compare' => 'LIKE',
                     ),
@@ -1228,11 +1228,11 @@ function can_get_search_query($data){
     if ( isset($data['range']) && !empty($data['range']) ) {
         foreach ($data['range'] as $range_key => $values) {
             if ($values['min'] != '' || $values['max'] != '') {
-                $range_min = ($values['min'] == '') ? '0' : can_range_into_int($values['min']);
-                $range_max = ($values['max'] == '') ? '999999999999' : can_range_into_int($values['max']);
+                $range_min = ($values['min'] == '') ? '0' : circartsnet_range_into_int($values['min']);
+                $range_max = ($values['max'] == '') ? '999999999999' : circartsnet_range_into_int($values['max']);
                 $args['meta_query'][] = array(
                     array(
-                        'key'     => 'can_'.$range_key,
+                        'key'     => 'circartsnet_'.$range_key,
                         'value'   => array( intval($range_min), intval($range_max) ),
                         'type'    => 'numeric',
                         'compare' => 'BETWEEN',
@@ -1251,7 +1251,7 @@ function can_get_search_query($data){
 
         $args['meta_query'][] = array(
             array(
-                'key'     => 'can_regular_price',
+                'key'     => 'circartsnet_regular_price',
                 'value'   => array( intval($price_min), intval($price_max) ),
                 'type'    => 'numeric',
                 'compare' => 'BETWEEN',
@@ -1267,7 +1267,7 @@ function can_get_search_query($data){
         foreach ($data['detail_cbs'] as $cbname => $value) {
             $args['meta_query'][] = array(
                 array(
-                    'key'     => 'can_property_detail_cbs',
+                    'key'     => 'circartsnet_property_detail_cbs',
                     'value'   => $cbname,
                     'compare' => 'LIKE',
                 ),
@@ -1280,7 +1280,7 @@ function can_get_search_query($data){
         do_action( 'wpml_switch_language',  $data['lang'] );
     }
 
-    $args = apply_filters( 'can_search_listings_query_args', $args, $data );
+    $args = apply_filters( 'circartsnet_search_listings_query_args', $args, $data );
 
     return $args;
 }

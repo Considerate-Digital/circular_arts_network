@@ -4,7 +4,7 @@
  * Plugin URI: https://canarts.org.uk
  * Description: A circular arts network for WordPress.
  * Version: 0.2
- * Author: CANARTS
+ * Author: CIRCARTSNETARTS
  * License: GPLv3
  * License URI: http://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain: circular-arts-network
@@ -13,23 +13,23 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define('CAN_PATH', untrailingslashit(plugin_dir_path( __FILE__ )) );
-define('CAN_URL', untrailingslashit(plugin_dir_url( __FILE__ )) );
-define('CAN_VERSION', '1.2' );
+define('CIRCARTSNET_PATH', untrailingslashit(plugin_dir_path( __FILE__ )) );
+define('CIRCARTSNET_URL', untrailingslashit(plugin_dir_url( __FILE__ )) );
+define('CIRCARTSNET_VERSION', '1.2' );
 
-require_once( CAN_PATH.'/inc/helpers.php' );
-require_once( CAN_PATH.'/classes/class-admin-settings.php' );
-require_once( CAN_PATH.'/classes/class-can-init.php' );
-require_once( CAN_PATH.'/classes/class-register-cpt.php' );
-require_once( CAN_PATH.'/classes/class-shortcodes.php' );
-require_once( CAN_PATH.'/classes/class-email.php' );
-require_once( CAN_PATH.'/classes/class-front-templates.php' );
+require_once( CIRCARTSNET_PATH.'/inc/helpers.php' );
+require_once( CIRCARTSNET_PATH.'/classes/class-admin-settings.php' );
+require_once( CIRCARTSNET_PATH.'/classes/class-can-init.php' );
+require_once( CIRCARTSNET_PATH.'/classes/class-register-cpt.php' );
+require_once( CIRCARTSNET_PATH.'/classes/class-shortcodes.php' );
+require_once( CIRCARTSNET_PATH.'/classes/class-email.php' );
+require_once( CIRCARTSNET_PATH.'/classes/class-front-templates.php' );
 
-function can_add_categories() {
+function circartsnet_add_categories() {
   //sleep();
   //print_r("plugin activated");
 	$args = array(
-    'taxonomy' => 'can_listing_category',
+    'taxonomy' => 'circartsnet_listing_category',
     'hide_empty' => false
   );
   $count_categories = get_terms( $args );
@@ -54,7 +54,7 @@ function can_add_categories() {
 
       wp_insert_term(
         $name,
-        'can_listing_category', 
+        'circartsnet_listing_category', 
         array(
           'description' => $name 
         )
@@ -62,11 +62,11 @@ function can_add_categories() {
     }
   }
 }
-add_action( 'admin_init', 'can_add_categories');
+add_action( 'admin_init', 'circartsnet_add_categories');
   
 function hide_admin_bar_for_specific_roles() {
 	    $user = wp_get_current_user();
-	    if (in_array('can_listing_seller', (array) $user->roles)) {
+	    if (in_array('circartsnet_listing_seller', (array) $user->roles)) {
 		show_admin_bar(false);
 	    }
 }

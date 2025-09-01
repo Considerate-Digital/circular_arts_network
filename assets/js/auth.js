@@ -1,10 +1,10 @@
 jQuery(document).ready(function($) {
 	$('.can-login-form').submit(function(event) {
 		event.preventDefault();
-		Swal.fire('', can_auth_vars.wait_text, 'info');
+		Swal.fire('', circartsnet_auth_vars.wait_text, 'info');
 		var loginData = $(this).serialize();
 
-		$.post(can_auth_vars.ajaxurl, loginData, function(resp) {
+		$.post(circartsnet_auth_vars.ajaxurl, loginData, function(resp) {
 			Swal.fire('', resp.message, resp.status);
 
 			if (resp.status == 'success') {
@@ -18,12 +18,12 @@ jQuery(document).ready(function($) {
 		event.preventDefault();
 
 		if ($('input[name="seller_password"]').val() == $('input[name="seller_repassword"]').val()) {
-		    Swal.fire('', can_auth_vars.wait_text, 'info');
+		    Swal.fire('', circartsnet_auth_vars.wait_text, 'info');
 		    var registerData = new FormData(this);
-		    registerData.append("action", 'can_seller_register');
+		    registerData.append("action", 'circartsnet_seller_register');
 
 		    $.ajax({
-		        url: can_auth_vars.ajaxurl,
+		        url: circartsnet_auth_vars.ajaxurl,
 		        data: registerData,
 		        processData: false,
 		        contentType: false,
@@ -40,11 +40,11 @@ jQuery(document).ready(function($) {
 		    });
 
 		} else {
-		    Swal.fire('', can_auth_vars.mismatch_text, "error");
+		    Swal.fire('', circartsnet_auth_vars.mismatch_text, "error");
 		}
 	});
 
-	$("#can_seller_image").change(function(){
+	$("#circartsnet_seller_image").change(function(){
 	    if (this.files && this.files[0]) {
 	        var allowedTypes = ['jpg', 'jpeg', 'png'];
 	        var allowedSize = 5;
@@ -56,7 +56,7 @@ jQuery(document).ready(function($) {
 	                var types = allowedTypes.map(function(type){
 	                    return "<code>" + type + "</code>";
 	                }).join(",");                    
-	                $('.can-status').html(can_auth_vars.file_format_error+' '+types);
+	                $('.can-status').html(circartsnet_auth_vars.file_format_error+' '+types);
 	                $('.can-status').show();
 	                $('.seller-dp-prev img').attr('src', '');
 	                $(this).val('');
@@ -72,7 +72,7 @@ jQuery(document).ready(function($) {
 	                reader.readAsDataURL(this.files[0]);
 	            }
 	        } else{
-	            $('.can-status').html(can_auth_vars.file_size_error+' '+allowedSize+'MB');
+	            $('.can-status').html(circartsnet_auth_vars.file_size_error+' '+allowedSize+'MB');
 	            $('.seller-dp-prev img').attr('src', '');
 	            $(this).val('');
 	        }

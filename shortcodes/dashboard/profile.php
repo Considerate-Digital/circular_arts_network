@@ -8,7 +8,7 @@
 	</div>
 	<div class="edit-profile-wrap can-screen-content">
 		<form action="#" class="can-update-profile">
-			<input type="hidden" name="action" value="can_update_profile">
+			<input type="hidden" name="action" value="circartsnet_update_profile">
 			<input type="hidden" name="seller_id" value="<?php echo esc_attr( $current_user->ID ); ?>">
 			<div class="row">
 				<div class="col">

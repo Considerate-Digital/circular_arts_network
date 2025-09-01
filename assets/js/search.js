@@ -2,14 +2,14 @@ jQuery(document).ready(function($) {
 	$('.can-input-wrap select').niceSelect();
 
 	$('.can-search-form').submit(function(event) {
-		if(can_search_vars.results_url != ''){
+		if(circartsnet_search_vars.results_url != ''){
 			return;
 		}
 		event.preventDefault();
 		var s_wrap = $(this).closest('.can-bs-wrapper');
 		var results_cont = '';
-		if (can_search_vars.results_selector != '') {
-			selectorTest = can_search_vars.results_selector;
+		if (circartsnet_search_vars.results_selector != '') {
+			selectorTest = circartsnet_search_vars.results_selector;
 			if ( selectorTest.indexOf('.') != 0 && selectorTest.indexOf('#') != 0 ){
 				if ( $("." + selectorTest).length )
 				{
@@ -32,7 +32,7 @@ jQuery(document).ready(function($) {
 
 	    var formData = $(this).serializeArray();
 
-	    $.post(can_search_vars.ajaxurl, formData, function(resp) {
+	    $.post(circartsnet_search_vars.ajaxurl, formData, function(resp) {
 			s_wrap.find('.can-loader').hide();
 	    	results_cont.html(resp);
 	    });

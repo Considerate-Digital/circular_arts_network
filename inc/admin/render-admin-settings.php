@@ -2,7 +2,7 @@
    
   if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
-	$saved_settings = get_option( 'can_all_settings' );
+	$saved_settings = get_option( 'circartsnet_all_settings' );
     $default = (isset($field['default'])) ? $field['default'] : '' ;
     $field_value = (isset($saved_settings[$field['name']])) ? $saved_settings[$field['name']] : $default ;
     if (!is_array($field_value)) {
@@ -184,8 +184,8 @@
                     <select name="<?php echo esc_attr( $field['name'] ); ?>" id="<?php echo esc_attr( $field['name'] ); ?>" data-placeholder="<?php esc_attr_e( 'Choose a currency&hellip;', 'circular-arts-network' ); ?>" class="form-control form-control-sm">
                         <option value=""><?php esc_html_e( 'Choose a currency&hellip;', 'circular-arts-network' ); ?></option>
                         <?php
-                        foreach ( can_get_all_currencies() as $code => $name ) {
-                            echo '<option value="' . esc_attr( $code ) . '" ' . selected( $field_value, $code, false ) . '>' . esc_html( $name . ' (' . can_get_currency_symbol( $code ) . ')' ) . '</option>';
+                        foreach ( circartsnet_get_all_currencies() as $code => $name ) {
+                            echo '<option value="' . esc_attr( $code ) . '" ' . selected( $field_value, $code, false ) . '>' . esc_html( $name . ' (' . circartsnet_get_currency_symbol( $code ) . ')' ) . '</option>';
                         }
                         ?>
                     </select>

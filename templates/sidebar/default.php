@@ -2,7 +2,7 @@
   if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 ?>
 <div class="can-section">
-	<?php if(can_get_option('seller_info', 'enable') == 'enable'){ ?>
+	<?php if(circartsnet_get_option('seller_info', 'enable') == 'enable'){ ?>
 	<div class="seller-info">
 		<div class="seller-image">
 			<?php
@@ -16,7 +16,7 @@
 		<h4 class="seller-name">
 			<?php
 				$user_info = get_userdata($author_id);
-				echo esc_html(can_wpml_translate($user_info->display_name, 'Seller', 'display_name_'.$author_id));
+				echo esc_html(circartsnet_wpml_translate($user_info->display_name, 'Seller', 'display_name_'.$author_id));
 			?>
 		</h4>
 		<ul class="seller-contact">
@@ -35,7 +35,7 @@
 	<?php } ?>
 	<form class="form-contact contact-seller-form" method="post" role="form" data-toggle="validator" data-ajaxurl="<?php echo esc_html(admin_url( 'admin-ajax.php' )); ?>">
 	    <input type="hidden" name="seller_id" value="<?php echo esc_attr( $author_id ); ?>">
-	    <input type="hidden" name="action" value="can_contact_seller">
+	    <input type="hidden" name="action" value="circartsnet_contact_seller">
 			<?php if(isset($_GET['listing_id'])){ ?>
 					<input type="hidden" name="listing_id" value="<?php echo intval(absint($_GET['listing_id'])); ?>">
 			<?php } else {
@@ -65,11 +65,11 @@
 	            <textarea name="client_msg" id="client_msg" class="can-text-input text-form" required></textarea>
 	        </div>
 			<?php
-		        if (can_get_option('gdpr_message') != '') {
-		            echo esc_html('<div class="col-sm-12 can-input-wrapper"><label><input type="checkbox" required> '.stripcslashes(can_get_option('gdpr_message')).'</label></div>');
+		        if (circartsnet_get_option('gdpr_message') != '') {
+		            echo esc_html('<div class="col-sm-12 can-input-wrapper"><label><input type="checkbox" required> '.stripcslashes(circartsnet_get_option('gdpr_message')).'</label></div>');
 		        }
-			    if (can_get_option('captcha_on_contact') == 'on') { ?>
-			        <div class="g-recaptcha" style="transform:scale(0.77);-webkit-transform:scale(0.77);transform-origin:0 0;-webkit-transform-origin:0 0;" data-sitekey="<?php echo esc_html( can_get_option('captcha_site_key', '6LcDhUQUAAAAAFAsfyTUPCwDIyXIUqvJiVjim2E9')); ?>"></div>
+			    if (circartsnet_get_option('captcha_on_contact') == 'on') { ?>
+			        <div class="g-recaptcha" style="transform:scale(0.77);-webkit-transform:scale(0.77);transform-origin:0 0;-webkit-transform-origin:0 0;" data-sitekey="<?php echo esc_html( circartsnet_get_option('captcha_site_key', '6LcDhUQUAAAAAFAsfyTUPCwDIyXIUqvJiVjim2E9')); ?>"></div>
 			        <br>
 			    <?php }
 			?>

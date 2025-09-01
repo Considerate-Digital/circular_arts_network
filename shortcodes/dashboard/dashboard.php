@@ -13,34 +13,34 @@
 	<div class="can-screen-content">
 		<div class="row">
 			<div class="col">
-				<a href="<?php echo esc_url( add_query_arg( array('can_page' => 'listings', 'can_status' => 'draft') ) ); ?>" class="d-block text-dark text-decoration-none">
+				<a href="<?php echo esc_url( add_query_arg( array('circartsnet_page' => 'listings', 'circartsnet_status' => 'draft') ) ); ?>" class="d-block text-dark text-decoration-none">
 					<div class="p-3 py-4 mb-2 bg-light text-center rounded">
 						<i class="bi bi-file-earmark-ruled display-5"></i>
 						<p class="m-0">
 							<?php esc_html_e( 'Drafts', 'circular-arts-network' ); ?>
-							(<?php echo esc_html(can_count_user_listings($curren_user->ID, 'draft')); ?>)
+							(<?php echo esc_html(circartsnet_count_user_listings($curren_user->ID, 'draft')); ?>)
 						</p>
 					</div>
 				</a>
 			</div>
 			<div class="col">
-				<a href="<?php echo esc_url( add_query_arg( array('can_page' => 'listings', 'can_status' => 'pending') ) ); ?>" class="d-block text-dark text-decoration-none">
+				<a href="<?php echo esc_url( add_query_arg( array('circartsnet_page' => 'listings', 'circartsnet_status' => 'pending') ) ); ?>" class="d-block text-dark text-decoration-none">
 					<div class="p-3 py-4 mb-2 bg-light text-center rounded">
 						<i class="bi bi-file-earmark-text display-5"></i>
 						<p class="m-0">
 							<?php esc_html_e( 'Pending', 'circular-arts-network' ); ?>
-							(<?php echo esc_html(can_count_user_listings($curren_user->ID, 'pending')); ?>)
+							(<?php echo esc_html(circartsnet_count_user_listings($curren_user->ID, 'pending')); ?>)
 						</p>
 					</div>
 				</a>
 			</div>
 			<div class="col">
-				<a href="<?php echo esc_url( add_query_arg( array('can_page' => 'listings', 'can_status' => 'publish') ) ); ?>" class="d-block text-dark text-decoration-none">
+				<a href="<?php echo esc_url( add_query_arg( array('circartsnet_page' => 'listings', 'circartsnet_status' => 'publish') ) ); ?>" class="d-block text-dark text-decoration-none">
 					<div class="p-3 py-4 mb-2 bg-light text-center rounded">
 						<i class="bi bi-file-richtext display-5"></i>
 						<p class="m-0">
 							<?php esc_html_e( 'Published', 'circular-arts-network' ); ?>
-							(<?php echo esc_html(can_count_user_listings($curren_user->ID, 'publish')); ?>)
+							(<?php echo esc_html(circartsnet_count_user_listings($curren_user->ID, 'publish')); ?>)
 						</p>
 					</div>
 				</a>

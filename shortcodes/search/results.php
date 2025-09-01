@@ -8,13 +8,13 @@ if (isset($_REQUEST['_wpnonce'])) {
 if (!$nonce_success) {
         wp_nonce_ays('log-out');
 }
-if(isset($_GET['action']) && $_GET['action'] == 'can_search_listing'){
+if(isset($_GET['action']) && $_GET['action'] == 'circartsnet_search_listing'){
     
-    $args = can_get_search_query($_REQUEST);
+    $args = circartsnet_get_search_query($_REQUEST);
     $paged = ( get_query_var('paged') ) ? get_query_var('paged') : 1; 
     $args['paged'] = $paged;
     $listings_query = new WP_Query( $args );
-    $links_target = can_get_option('searched_listings_target');
+    $links_target = circartsnet_get_option('searched_listings_target');
 
     echo '<div class="can-bs-wrapper">';
 
@@ -31,7 +31,7 @@ if(isset($_GET['action']) && $_GET['action'] == 'can_search_listing'){
         while ( $listings_query->have_posts() ) {
             $listings_query->the_post();
             echo '<div id="listing-'.esc_html(get_the_id()) .'" class="'.esc_attr( $columns ).'">';
-                do_action('can_listing_box', get_the_id(), '1', 'grid', $links_target);
+                do_action('circartsnet_listing_box', get_the_id(), '1', 'grid', $links_target);
             echo '</div>';
         }
         
@@ -39,10 +39,10 @@ if(isset($_GET['action']) && $_GET['action'] == 'can_search_listing'){
         /* Restore original Post Data */
         wp_reset_postdata();
 
-        do_action( 'can_pagination', $paged, $listings_query->max_num_pages ); 
+        do_action( 'circartsnet_pagination', $paged, $listings_query->max_num_pages ); 
 
     } else {
-        $msg = can_get_option('no_results_message', 'No Results Found.');
+        $msg = circartsnet_get_option('no_results_message', 'No Results Found.');
         echo '<div class="alert alert-info">'.esc_html(stripcslashes($msg)).'</div>';
     }
     echo '</div>';

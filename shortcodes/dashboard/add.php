@@ -1,7 +1,7 @@
 <?php
   if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
-global $can_admin_settings;
-$field_sections = $can_admin_settings->get_fields_sections();
+global $circartsnet_admin_settings;
+$field_sections = $circartsnet_admin_settings->get_fields_sections();
 ?>
 <div class="can-screen-wrapper">
 	<div class="can-screen-header">
@@ -9,10 +9,10 @@ $field_sections = $can_admin_settings->get_fields_sections();
 	</div>
 	<div class="edit-listing-wrap can-screen-content">
 		<form action="#" class="can-listing-form">
-			<input type="hidden" name="action" value="can_create_listing_frontend">
+			<input type="hidden" name="action" value="circartsnet_create_listing_frontend">
 			<?php
 				foreach ($field_sections as $section) {
-					can_render_listing_section($section);
+					circartsnet_render_listing_section($section);
 				}
 			?>
 			<input class="btn btn-success" type="submit" value="<?php esc_html_e( 'Create Listing', 'circular-arts-network' ); ?>">

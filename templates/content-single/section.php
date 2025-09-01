@@ -3,11 +3,11 @@
   if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 ?>
 <div class="can-section section-<?php echo esc_attr( $section['key'] ) ?>">
-	<?php echo can_get_section_title($section); ?>
+	<?php echo circartsnet_get_section_title($section); ?>
 	<div class="wrap-<?php echo esc_attr( $section['key'] ); ?>">
         <div class="row">
     		<?php
-    			$inputFields = can_get_listing_fields();
+    			$inputFields = circartsnet_get_listing_fields();
 
                 foreach ($inputFields as $field) {
                     

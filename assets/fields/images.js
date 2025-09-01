@@ -1,5 +1,5 @@
 jQuery(document).ready(function($) {
-    var can_listing_images;
+    var circartsnet_listing_images;
      
     jQuery('.can-images-field').on('click', '.upload_image_button', function( event ){
      
@@ -8,7 +8,7 @@ jQuery(document).ready(function($) {
         var parentid = jQuery(this).closest('.can-images-field').attr('id');
         var fieldname = jQuery(this).data('fieldname');
         // Create the media frame.
-        can_listing_images = wp.media.frames.can_listing_images = wp.media({
+        circartsnet_listing_images = wp.media.frames.circartsnet_listing_images = wp.media({
           title: jQuery( this ).data( 'title' ),
           button: {
             text: jQuery( this ).data( 'btntext' ),
@@ -20,18 +20,18 @@ jQuery(document).ready(function($) {
         });
      
         // When an image is selected, run a callback.
-        can_listing_images.on( 'select', function() {
+        circartsnet_listing_images.on( 'select', function() {
             // We set multiple to false so only get one image from the uploader
-            var selection = can_listing_images.state().get('selection');
+            var selection = circartsnet_listing_images.state().get('selection');
             selection.map( function( attachment ) {
                 attachment = attachment.toJSON();
-                var thumb_box = can_upload_file_preview(attachment, fieldname);
+                var thumb_box = circartsnet_upload_file_preview(attachment, fieldname);
                 jQuery('#'+parentid).find('.thumbs-prev').append(thumb_box);
             });  
         });
      
         // Finally, open the modal
-        can_listing_images.open();
+        circartsnet_listing_images.open();
     });
 
     jQuery(".thumbs-prev").sortable({
@@ -47,7 +47,7 @@ jQuery(document).ready(function($) {
     });
 });
 
-function can_upload_file_preview(attachment, fieldname){
+function circartsnet_upload_file_preview(attachment, fieldname){
     var html = '<div class="col-sm-3">';
             html += '<div class="can-preview-image">';
                 html += '<input type="hidden" name="'+fieldname+'['+attachment.id+']" value="'+attachment.id+'">';

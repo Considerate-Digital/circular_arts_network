@@ -74,7 +74,7 @@ $fieldsData = array(
                 'name' => 'listings_base_page',
                 'title' => __( 'Listing Base Page', 'circular-arts-network' ),
                 'help' => __( 'If you choose custom, create a page having slug', 'circular-arts-network' ).
-                ' <code>'.get_option( 'can_listing_permalink', 'listing' ).'</code> '.
+                ' <code>'.get_option( 'circartsnet_listing_permalink', 'listing' ).'</code> '.
                 __( 'and it will be used as the listing base page. After changing this, go to Settings -> Permalinks and click save changes button.', 'circular-arts-network' ),
                 'options' => array(
                     'default' => __( 'Default', 'circular-arts-network' ),
@@ -578,7 +578,7 @@ $fieldsData = array(
 
             array(
                 'type' => 'color',
-                'name' => 'can_primary_color',
+                'name' => 'circartsnet_primary_color',
                 'title' => __( 'Primary Color', 'circular-arts-network' ),
                 'default' => '#f85c70',
                 'help' => __( 'Choose main theme color for templates', 'circular-arts-network' ),
@@ -586,7 +586,7 @@ $fieldsData = array(
 
             array(
                 'type' => 'color',
-                'name' => 'can_secondary_color',
+                'name' => 'circartsnet_secondary_color',
                 'title' => __( 'Secondary Color', 'circular-arts-network' ),
                 'default' => '#0d1927',
                 'help' => __( 'Choose secondary color for templates', 'circular-arts-network' ),
@@ -677,5 +677,5 @@ $fieldsData = array(
     ),
 );
 
-$fieldsData = apply_filters( 'can_admin_settings_fields', $fieldsData );
+$fieldsData = apply_filters( 'circartsnet_admin_settings_fields', $fieldsData );
 ?>

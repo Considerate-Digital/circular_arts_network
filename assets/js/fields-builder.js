@@ -138,7 +138,7 @@ jQuery(document).ready(function($) {
 
         });
         var data = {
-            action: 'can_save_custom_fields',
+            action: 'circartsnet_save_custom_fields',
             fields: ListData
         }
         $.post(ajaxurl, data, function(resp) {
@@ -160,7 +160,7 @@ jQuery(document).ready(function($) {
         }).then((result) => {
           if (result.isConfirmed) {
             var data = {
-                action: 'can_reset_custom_fields',
+                action: 'circartsnet_reset_custom_fields',
                 reset: 'yes'
             }
             $.post(ajaxurl, data, function(resp) {

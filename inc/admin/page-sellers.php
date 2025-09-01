@@ -1,9 +1,9 @@
 <?php
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
-	$pending_sellers = get_option( 'can_pending_users' );
+	$pending_sellers = get_option( 'circartsnet_pending_users' );
 	$args = array(
-		'role'         => 'can_listing_seller',
+		'role'         => 'circartsnet_listing_seller',
 	); 
 	$registered_sellers = get_users( $args );
 ?>
@@ -95,7 +95,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 								<td><?php echo esc_attr( $seller_info->user_login ); ?></td>
 								<td><?php echo esc_attr( $seller_info->user_email ); ?></td>
 								<td><?php echo esc_attr( get_user_meta( $seller->ID, 'seller_phone', true ) ); ?></td>
-								<td><?php echo esc_html(count_user_posts( $seller->ID, 'can_listing' )); ?></td>
+								<td><?php echo esc_html(count_user_posts( $seller->ID, 'circartsnet_listing' )); ?></td>
 								<td>
 									<a class="btn btn-sm btn-primary" target="_blank" href="<?php echo esc_html(get_author_posts_url( $seller->ID )); ?>"><?php esc_html_e( 'View Profile', 'circular-arts-network' ); ?></a>
 								</td>

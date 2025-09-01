@@ -2,8 +2,8 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly 
 
-$primaryColor = can_get_option('can_primary_color', '#3AAF4A');
-$secondaryColor = can_get_option('can_secondary_color', '#fffff');
+$primaryColor = circartsnet_get_option('circartsnet_primary_color', '#3AAF4A');
+$secondaryColor = circartsnet_get_option('circartsnet_secondary_color', '#fffff');
 
 if($primaryColor != '' && $secondaryColor != ''){
     echo esc_html("

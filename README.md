@@ -4,29 +4,29 @@ A recycling and reuse tool created specifically for WordPress.
 
 ## Overview
 
-CAN is a recycling and reuse tool that helps the arts combat the climate emergency. It gives you access to the materials you need for your creative projects by providing a place where materials and resources can be exchanged. CAN stands for Circular Arts Network, it’s an online platform that supports  a circular economy within the arts.
+CIRCARTSNET is a recycling and reuse tool that helps the arts combat the climate emergency. It gives you access to the materials you need for your creative projects by providing a place where materials and resources can be exchanged. CIRCARTSNET stands for Circular Arts Network, it’s an online platform that supports  a circular economy within the arts.
 
  
-CAN encourages reuse across all artforms, it works by connecting people and organisations together.  CAN partners with other industries such as construction and manufacturing, helping creative communities access their surplus materials and supporting industry to be more sustainable.
+CIRCARTSNET encourages reuse across all artforms, it works by connecting people and organisations together.  CIRCARTSNET partners with other industries such as construction and manufacturing, helping creative communities access their surplus materials and supporting industry to be more sustainable.
 
  
-It’s basically a Gumtree but for the arts. Finding affordable (or FREE!) materials and resources that are used by artists and makers in an easy and connected way.  CAN also facilitates the sharing of resources such as transport, equipment, time, and other essentials. We believe that by doing so, users will be able to make the most of their time and resources.
+It’s basically a Gumtree but for the arts. Finding affordable (or FREE!) materials and resources that are used by artists and makers in an easy and connected way.  CIRCARTSNET also facilitates the sharing of resources such as transport, equipment, time, and other essentials. We believe that by doing so, users will be able to make the most of their time and resources.
 
  
-The National Theatre of Scotland, National Galleries Scotland, Glasgow School of Art and Edinburgh University are among 700+ users who have already benefited from CAN.
+The National Theatre of Scotland, National Galleries Scotland, Glasgow School of Art and Edinburgh University are among 700+ users who have already benefited from CIRCARTSNET.
 
-CAN is not for profit, and is administrated by Sculpture Placement Group CIC.
+CIRCARTSNET is not for profit, and is administrated by Sculpture Placement Group CIC.
 
 We welcome feedback, which you can give by emailing info@canarts.org.uk
 
 ## Credits
 Original site developed by Sculpture Placement Group (SPG), in collaboration with developer Ralph Mackenzie.
 
-CAN branding, logo and original website layout all designed by Ralph Mackenzie.
+CIRCARTSNET branding, logo and original website layout all designed by Ralph Mackenzie.
 
-Category Icons were commissioned for CAN, and illustrated by Esme Macintyre.
+Category Icons were commissioned for CIRCARTSNET, and illustrated by Esme Macintyre.
 
-This WordPress plugin was adapted for CAN by Considerate Digital. It is based on the open source plugin Ultimate Classified Listings by “webcodingplace”.
+This WordPress plugin was adapted for CIRCARTSNET by Considerate Digital. It is based on the open source plugin Ultimate Classified Listings by “webcodingplace”.
 
 
 ## Installation
@@ -55,7 +55,7 @@ After uploading the ZIP file, click on the "Install Now" button. Once installed,
 
 ### 1. Display Listings
 
-**Shortcode**: `[can_listings]`
+**Shortcode**: `[circartsnet_listings]`
 
 This shortcode displays listings in a structured format with various customisation options.
 
@@ -78,7 +78,7 @@ This shortcode displays listings in a structured format with various customisati
 
 ### 2. Display Categories
 
-**Shortcode**: `[can_categories]`
+**Shortcode**: `[circartsnet_categories]`
 
 This shortcode allows you to display categories.
 
@@ -90,13 +90,13 @@ This shortcode allows you to display categories.
 
 ### 3. Seller Dashboard
 
-**Shortcode**: `[can_dashboard]`
+**Shortcode**: `[circartsnet_dashboard]`
 
 This shortcode provides a dashboard for sellers to manage their listings and profile. It shows a login form when the user is not logged in.
 
 ### 4. Search Form
 
-**Shortcode**: `[can_search_form]`
+**Shortcode**: `[circartsnet_search_form]`
 
 Displays a customisable search form.
 
@@ -111,7 +111,7 @@ Displays a customisable search form.
 
 ### 5. Search Results
 
-**Shortcode**: `[can_search_results]`
+**Shortcode**: `[circartsnet_search_results]`
 
 This shortcode is used to display the search results.
 
@@ -125,7 +125,7 @@ The license also combats digital restrictions by preventing the use of hardware 
 Overall, **GPLv3** fosters ethical, sustainable software development. It ensures that software remains free, adaptable, and accessible, reducing costs for individuals and organisations. This model encourages long-term sustainability, as anyone can continue the development of the software if the original creators stop supporting it, making it a robust choice for both users and developers who value openness and collaboration.
 
 ## Contributing
-We welcome contributions from everyone, whether that's fixing some of the core code or a spelling mistake. If you're interested in making contributions to CAN then please read our "Code of Conduct" before you make any suggestions or send a pull request.
+We welcome contributions from everyone, whether that's fixing some of the core code or a spelling mistake. If you're interested in making contributions to CIRCARTSNET then please read our "Code of Conduct" before you make any suggestions or send a pull request.
 
 ### Reporting bugs
 Before submitting an issue, please take a few seconds to do a quick search to check that your issue has not already been raised or fixed. 

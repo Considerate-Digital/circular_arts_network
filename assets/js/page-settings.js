@@ -32,7 +32,7 @@ jQuery(document).ready(function($) {
     $('.colorpicker').wpColorPicker();
 
     // Media Uploader
-    var can_icon_uploader;
+    var circartsnet_icon_uploader;
      
     jQuery('.can-bs-wrapper').on('click', '.upload_image_button', function( event ){
      
@@ -41,7 +41,7 @@ jQuery(document).ready(function($) {
         var this_widget = jQuery(this).closest('.input-group');
      
         // Create the media frame.
-        can_icon_uploader = wp.media.frames.can_icon_uploader = wp.media({
+        circartsnet_icon_uploader = wp.media.frames.circartsnet_icon_uploader = wp.media({
           title: jQuery( this ).data( 'title' ),
           button: {
             text: jQuery( this ).data( 'btntext' ),
@@ -50,14 +50,14 @@ jQuery(document).ready(function($) {
         });
      
         // When an image is selected, run a callback.
-        can_icon_uploader.on( 'select', function() {
+        circartsnet_icon_uploader.on( 'select', function() {
           // We set multiple to false so only get one image from the uploader
-          attachment = can_icon_uploader.state().get('selection').first().toJSON();
+          attachment = circartsnet_icon_uploader.state().get('selection').first().toJSON();
             jQuery(this_widget).find('.image-url').val(attachment.url);
         });
      
         // Finally, open the modal
-        can_icon_uploader.open();
+        circartsnet_icon_uploader.open();
     });
 
     $('[data-cond-option]').conditionize();

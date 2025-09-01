@@ -1,11 +1,11 @@
 <?php 
 /**
-* CAN_Register_CPT: registers cpt can_listing & taxonomy can_listing_category
+* CIRCARTSNET_Register_CPT: registers cpt circartsnet_listing & taxonomy circartsnet_listing_category
 */
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
-class CAN_Register_CPT
+class CIRCARTSNET_Register_CPT
 {
 	
 	function __construct(){
@@ -19,7 +19,7 @@ class CAN_Register_CPT
 
     function author_override($output){
         global $post, $user_ID;
-        if (isset($post->post_type) && 'can_listing' === $post->post_type) {
+        if (isset($post->post_type) && 'circartsnet_listing' === $post->post_type) {
 
             // return if this isn't the theme author override dropdown
             if (!preg_match('/post_author_override/', $output)) return $output;
@@ -45,42 +45,42 @@ class CAN_Register_CPT
     }
 
     function permalink_settings(){
-        if( isset( $_POST['can_listing_permalink'] ) ){
-            update_option( 'can_listing_permalink', sanitize_title_with_dashes( wp_unslash($_POST['can_listing_permalink']) ) );
+        if( isset( $_POST['circartsnet_listing_permalink'] ) ){
+            update_option( 'circartsnet_listing_permalink', sanitize_title_with_dashes( wp_unslash($_POST['circartsnet_listing_permalink']) ) );
         }
-        if( isset( $_POST['can_category_permalink'] ) ){
-            update_option( 'can_category_permalink', sanitize_title_with_dashes( wp_unslash($_POST['can_category_permalink']) ) );
+        if( isset( $_POST['circartsnet_category_permalink'] ) ){
+            update_option( 'circartsnet_category_permalink', sanitize_title_with_dashes( wp_unslash($_POST['circartsnet_category_permalink']) ) );
         }
-        if( isset( $_POST['can_tag_permalink'] ) ){
-            update_option( 'can_tag_permalink', sanitize_title_with_dashes( wp_unslash($_POST['can_tag_permalink']) ) );
+        if( isset( $_POST['circartsnet_tag_permalink'] ) ){
+            update_option( 'circartsnet_tag_permalink', sanitize_title_with_dashes( wp_unslash($_POST['circartsnet_tag_permalink']) ) );
         }
         
         // Add setting fields to the permalink page
-        add_settings_section( 'can_permalink_settings', 'CAN - Permalinks', array($this, 'render_permalink_settings'), 'permalink' );
+        add_settings_section( 'circartsnet_permalink_settings', 'CIRCARTSNET - Permalinks', array($this, 'render_permalink_settings'), 'permalink' );
     }
 
     function render_permalink_settings(){
-        $listing_base = get_option( 'can_listing_permalink' );
+        $listing_base = get_option( 'circartsnet_listing_permalink' );
         $listing_slug = ($listing_base != '') ? $listing_base : 'listing' ;
 
-        $category_base = get_option( 'can_category_permalink' );
+        $category_base = get_option( 'circartsnet_category_permalink' );
         $category_slug = ($category_base != '') ? $category_base : 'listing_category' ;
 
-        $tag_base = get_option( 'can_tag_permalink' );
+        $tag_base = get_option( 'circartsnet_tag_permalink' );
         $tag_slug = ($tag_base != '') ? $tag_base : 'listing_tag' ;
         ?>
         <table class="form-table">
             <tr>
-                <th><label for="can_listing_permalink"><?php esc_html_e( 'Listing Page Base' , 'circular-arts-network' ); ?></label></th>
-                <td><input type="text" value="<?php echo esc_attr( $listing_slug ); ?>" name="can_listing_permalink" id="can_listing_permalink" class="regular-text" /></td>
+                <th><label for="circartsnet_listing_permalink"><?php esc_html_e( 'Listing Page Base' , 'circular-arts-network' ); ?></label></th>
+                <td><input type="text" value="<?php echo esc_attr( $listing_slug ); ?>" name="circartsnet_listing_permalink" id="circartsnet_listing_permalink" class="regular-text" /></td>
             </tr>
             <tr>
-                <th><label for="can_category_permalink"><?php esc_html_e( 'Listing Category Base' , 'circular-arts-network' ); ?></label></th>
-                <td><input type="text" value="<?php echo esc_attr( $category_slug ); ?>" name="can_category_permalink" id="can_category_permalink" class="regular-text" /></td>
+                <th><label for="circartsnet_category_permalink"><?php esc_html_e( 'Listing Category Base' , 'circular-arts-network' ); ?></label></th>
+                <td><input type="text" value="<?php echo esc_attr( $category_slug ); ?>" name="circartsnet_category_permalink" id="circartsnet_category_permalink" class="regular-text" /></td>
             </tr>
             <tr>
-                <th><label for="can_tag_permalink"><?php esc_html_e( 'Listing Tag Base' , 'circular-arts-network' ); ?></label></th>
-                <td><input type="text" value="<?php echo esc_attr( $tag_slug ); ?>" name="can_tag_permalink" id="can_tag_permalink" class="regular-text" /></td>
+                <th><label for="circartsnet_tag_permalink"><?php esc_html_e( 'Listing Tag Base' , 'circular-arts-network' ); ?></label></th>
+                <td><input type="text" value="<?php echo esc_attr( $tag_slug ); ?>" name="circartsnet_tag_permalink" id="circartsnet_tag_permalink" class="regular-text" /></td>
             </tr>
         </table>
         <?php
@@ -91,7 +91,7 @@ class CAN_Register_CPT
         $post_type        = get_post_type( $post );
         $post_type_object = get_post_type_object( $post_type );
 
-        $messages['can_listing'] = array(
+        $messages['circartsnet_listing'] = array(
             0  => '', // Unused. Messages start at index 1.
             1  => __( 'Listing updated.', 'circular-arts-network' ),
             2  => __( 'Custom field updated.', 'circular-arts-network' ),
@@ -110,7 +110,7 @@ class CAN_Register_CPT
             10 => __( 'Listing draft updated.', 'circular-arts-network' )
         );
 
-        if ( $post_type_object->publicly_queryable && 'can_listing' === $post_type ) {
+        if ( $post_type_object->publicly_queryable && 'circartsnet_listing' === $post_type ) {
             $permalink = get_permalink( $post->ID );
 
             $view_link = sprintf( ' <a href="%s">%s</a>', esc_url( $permalink ), __( 'View Listing', 'circular-arts-network' ) );
@@ -136,7 +136,7 @@ class CAN_Register_CPT
 	function register_cpt(){
 		$menu_name = __( 'Circular Arts Network', 'circular-arts-network' );
 
-	    if (current_user_can('edit_can_listing') && !current_user_can('edit_others_can_listings')) {
+	    if (current_user_can('edit_circartsnet_listing') && !current_user_can('edit_others_circartsnet_listings')) {
 	        $menu_name = __( 'Listings', 'circular-arts-network' );
 	    }
 
@@ -173,19 +173,19 @@ class CAN_Register_CPT
 	        'exclude_from_search' => false,
 	        'has_archive'         => (0) ? true : false,
 	        'query_var'           => true,
-	        'can_export'          => true,
+	        'circartsnet_export'          => true,
 	        'rewrite'             => array(
 	            'slug'          => (0) ? 'customlisting' : 'listing',
 	            'with_front'    => false
 	        ),
-	        'capability_type'     => array('can_listing', 'can_listings'),
+	        'capability_type'     => array('circartsnet_listing', 'circartsnet_listings'),
 	        'map_meta_cap'        => true,
 	        'supports'            => array(
             	'title', 'editor', 'author', 'thumbnail', 'excerpt'
             )
 	    );
 
-	    register_post_type( 'can_listing', $prop_args );
+	    register_post_type( 'circartsnet_listing', $prop_args );
 	}
 
 	function register_category(){
@@ -206,7 +206,7 @@ class CAN_Register_CPT
 	        'menu_name'                => __( 'Categories', 'circular-arts-network' ),
 	    );
 
-	    $category_permalink = get_option( 'can_category_permalink' );
+	    $category_permalink = get_option( 'circartsnet_category_permalink' );
 	    $category_slug = ($category_permalink != '') ? $category_permalink : 'listing_category' ;
 
 	    $cat_args = array(
@@ -225,7 +225,7 @@ class CAN_Register_CPT
 	        ),            
 	        'query_var'         => true,
 	    );
-	    register_taxonomy( 'can_listing_category', array( 'can_listing' ), $cat_args );
+	    register_taxonomy( 'circartsnet_listing_category', array( 'circartsnet_listing' ), $cat_args );
 	}
 
 	function register_tag(){
@@ -246,7 +246,7 @@ class CAN_Register_CPT
 	        'menu_name'                => __( 'Tags', 'circular-arts-network' ),
 	    );
 
-	    $tag_permalink = get_option( 'can_tag_permalink' );
+	    $tag_permalink = get_option( 'circartsnet_tag_permalink' );
 	    $tag_slug = ($tag_permalink != '') ? $tag_permalink : 'listing_tag' ;
 
 	    $tag_args = array(
@@ -265,11 +265,11 @@ class CAN_Register_CPT
 	        'query_var'         => true,
 	    );
 
-	    register_taxonomy( 'can_listing_tag', array( 'can_listing' ), $tag_args );
+	    register_taxonomy( 'circartsnet_listing_tag', array( 'circartsnet_listing' ), $tag_args );
 	}
 
 
 }
 
-new CAN_Register_CPT();
+new CIRCARTSNET_Register_CPT();
 ?>

@@ -1,25 +1,25 @@
-function initialize_can_maps() {
+function initialize_circartsnet_maps() {
 
     var map = new google.maps.Map(document.getElementById('map-canvas'), {
-        center: new google.maps.LatLng(can_map_settings.def_lat, can_map_settings.def_long),
+        center: new google.maps.LatLng(circartsnet_map_settings.def_lat, circartsnet_map_settings.def_long),
         scrollwheel: false,
-        zoom: parseInt(can_map_settings.zoom_level)
+        zoom: parseInt(circartsnet_map_settings.zoom_level)
     });
 
     var marker = new google.maps.Marker({
-        position: new google.maps.LatLng(can_map_settings.def_lat, can_map_settings.def_long),
+        position: new google.maps.LatLng(circartsnet_map_settings.def_lat, circartsnet_map_settings.def_long),
         map: map,
-        icon: can_map_settings.drag_icon,
+        icon: circartsnet_map_settings.drag_icon,
         draggable: true
     });
     
     google.maps.event.addListener(marker, 'drag', function(event) {
-        jQuery('.can_listing_latitude').val(event.latLng.lat());
-        jQuery('.can_listing_longitude').val(event.latLng.lng());
+        jQuery('.circartsnet_listing_latitude').val(event.latLng.lat());
+        jQuery('.circartsnet_listing_longitude').val(event.latLng.lng());
     });
     google.maps.event.addListener(marker, 'dragend', function(event) {
-        jQuery('.can_listing_latitude').val(event.latLng.lat());
-        jQuery('.can_listing_longitude').val(event.latLng.lng());
+        jQuery('.circartsnet_listing_latitude').val(event.latLng.lat());
+        jQuery('.circartsnet_listing_longitude').val(event.latLng.lng());
     });
 
     var searchBox = new google.maps.places.SearchBox(document.getElementById('search-map'));
@@ -38,15 +38,15 @@ function initialize_can_maps() {
                 var marker = new google.maps.Marker({
                     position: place.geometry.location,
                     map: map,
-                    icon: can_map_settings.drag_icon,
+                    icon: circartsnet_map_settings.drag_icon,
                     draggable: true
                 });
                 var location = place.geometry.location;
                 var n_lat = location.lat();
                 var n_lng = location.lng();
 
-                jQuery('.can_listing_latitude').val(n_lat);
-                jQuery('.can_listing_longitude').val(n_lng);
+                jQuery('.circartsnet_listing_latitude').val(n_lat);
+                jQuery('.circartsnet_listing_longitude').val(n_lng);
 
                 marker.bindTo('map', searchBox, 'map');
                 google.maps.event.addListener(marker, 'map_changed', function(event) {
@@ -55,12 +55,12 @@ function initialize_can_maps() {
                     }
                 });
                 google.maps.event.addListener(marker, 'drag', function(event) {
-                    jQuery('.can_listing_latitude').val(event.latLng.lat());
-                    jQuery('.can_listing_longitude').val(event.latLng.lng());
+                    jQuery('.circartsnet_listing_latitude').val(event.latLng.lat());
+                    jQuery('.circartsnet_listing_longitude').val(event.latLng.lng());
                 });
                 google.maps.event.addListener(marker, 'dragend', function(event) {
-                    jQuery('.can_listing_latitude').val(event.latLng.lat());
-                    jQuery('.can_listing_longitude').val(event.latLng.lng());
+                    jQuery('.circartsnet_listing_latitude').val(event.latLng.lat());
+                    jQuery('.circartsnet_listing_longitude').val(event.latLng.lng());
                 });
                 bounds.extend(place.geometry.location);
             }(place));
@@ -68,30 +68,30 @@ function initialize_can_maps() {
         }
         map.fitBounds(bounds);
         searchBox.set('map', map);
-        map.setZoom(Math.min(map.getZoom(), parseInt(can_map_settings.zoom_level)));
+        map.setZoom(Math.min(map.getZoom(), parseInt(circartsnet_map_settings.zoom_level)));
 
     });
 }
-if (can_map_settings.use_map_from == 'google_maps') {
-    google.maps.event.addDomListener(window, 'load', initialize_can_maps);
+if (circartsnet_map_settings.use_map_from == 'google_maps') {
+    google.maps.event.addDomListener(window, 'load', initialize_circartsnet_maps);
 }
 
 jQuery(document).ready(function($) {
-    if (can_map_settings.use_map_from == 'leaflet' && $('#map-canvas').length != 0) {
-            var listing_map = L.map('map-canvas').setView([can_map_settings.def_lat, can_map_settings.def_long], parseInt(can_map_settings.zoom_level));
+    if (circartsnet_map_settings.use_map_from == 'leaflet' && $('#map-canvas').length != 0) {
+            var listing_map = L.map('map-canvas').setView([circartsnet_map_settings.def_lat, circartsnet_map_settings.def_long], parseInt(circartsnet_map_settings.zoom_level));
 
-            L.tileLayer(can_map_settings.leaflet_styles.provider, {
+            L.tileLayer(circartsnet_map_settings.leaflet_styles.provider, {
                  attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
                 maxZoom: 21,
              }).addTo(listing_map);
 
             var propertyIcon = L.icon({
-                iconUrl: can_map_settings.drag_icon,
+                iconUrl: circartsnet_map_settings.drag_icon,
                 iconSize: [72, 60],
                 iconAnchor: [36, 47],
             });
         var marker = L.marker(
-            [can_map_settings.def_lat, can_map_settings.def_long], {
+            [circartsnet_map_settings.def_lat, circartsnet_map_settings.def_long], {
                 icon: propertyIcon, 
                 draggable: true
             }).addTo(listing_map);
@@ -100,8 +100,8 @@ jQuery(document).ready(function($) {
             listing_map.invalidateSize();
         }, 1000);
         marker.on("moveend", (e) => {
-            jQuery('.can_listing_latitude').val(marker.getLatLng().lat);
-            jQuery('.can_listing_longitude').val(marker.getLatLng().lng);
+            jQuery('.circartsnet_listing_latitude').val(marker.getLatLng().lat);
+            jQuery('.circartsnet_listing_longitude').val(marker.getLatLng().lng);
         });
     }    
 });

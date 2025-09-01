@@ -4,7 +4,7 @@ jQuery(document).ready(function($) {
 		$(this).attr('disabled', 'disabled');
 		var data = {
 			userindex: $(this).data('userindex'),
-			action: 'can_deny_seller',
+			action: 'circartsnet_deny_seller',
 		}
 
 		$.post(ajaxurl, data, function(resp) {
@@ -17,7 +17,7 @@ jQuery(document).ready(function($) {
 		$(this).attr('disabled', 'disabled');
 		var data = {
 			userindex: $(this).data('userindex'),
-			action: 'can_approve_seller',
+			action: 'circartsnet_approve_seller',
 		}
 
 		$.post(ajaxurl, data, function(resp) {

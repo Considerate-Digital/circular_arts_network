@@ -2,7 +2,7 @@
 <?php if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly ?>
 
 <div class="wrap wcp-main-wrap can-bs-wrapper">
-    <h2 class="border-bottom mb-3"><?php esc_html_e( 'CAN - Fields Builder', 'circular-arts-network' ); ?></h2>
+    <h2 class="border-bottom mb-3"><?php esc_html_e( 'CIRCARTSNET - Fields Builder', 'circular-arts-network' ); ?></h2>
 
     <div class="row">
         <div class="col-sm-12">
@@ -30,7 +30,7 @@
                                     foreach ($fields_data as $field) {
                                         $this->render_fields_builder_field($field, array('type' => $field_name));
                                     }
-                                    do_action( 'can_after_drag_drop_property_field', array('type' => $field_name) );
+                                    do_action( 'circartsnet_after_drag_drop_property_field', array('type' => $field_name) );
                                 ?>
                             </div>
                         </div>
@@ -61,13 +61,13 @@
                                                 foreach ($fields_data as $field) {
                                                     $this->render_fields_builder_field($field, $data);
                                                 }
-                                                do_action( 'can_after_drag_drop_property_field', $data );
+                                                do_action( 'circartsnet_after_drag_drop_property_field', $data );
                                             ?>
                                         </div>
                                     </div>
                                 <?php }
                             } else {
-                                include CAN_PATH.'/inc/arrays/listing-fields.php';
+                                include CIRCARTSNET_PATH.'/inc/arrays/listing-fields.php';
                                 $fields = $inputFields;
                                 foreach ($fields as $data) {
                                     $field_label = $field_types[$data['type']]; ?>
@@ -80,7 +80,7 @@
                                                 foreach ($fields_data as $field) {
                                                     $this->render_fields_builder_field($field, $data);
                                                 }
-                                                do_action( 'can_after_drag_drop_property_field', $data );
+                                                do_action( 'circartsnet_after_drag_drop_property_field', $data );
                                             ?>
                                         </div>
                                     </div>

@@ -37,15 +37,15 @@
             </div>
             <div class="form-group can-input-wrapper can-upload-picture">
               <label for="sellerImage"><?php esc_html_e( 'Profile Picture', 'circular-arts-network' ); ?></label>
-              <input class="form-control can-text-input" type="file" accept="image/*" id="can_seller_image" name="can_seller_image">
+              <input class="form-control can-text-input" type="file" accept="image/*" id="circartsnet_seller_image" name="circartsnet_seller_image">
               <div class="seller-dp-prev"><img src=""></div>
               <div class="can-status mt-2"></div>
               <div class="clearfix"></div>
             </div>
-            <?php if (can_get_option('captcha_on_registration') == 'on') { ?>
+            <?php if (circartsnet_get_option('captcha_on_registration') == 'on') { ?>
             <!--recaptcha script moved -->
             	<div class="form-group">
-            		<div class="g-recaptcha mb-2" data-sitekey="<?php echo esc_html(can_get_option('captcha_site_key')); ?>"></div>
+            		<div class="g-recaptcha mb-2" data-sitekey="<?php echo esc_html(circartsnet_get_option('captcha_site_key')); ?>"></div>
             	</div>
             <?php } ?>
             <div class="form-group">
@@ -55,7 +55,7 @@
         </form>
         <p class="text-center mb-0 mt-2">
         	<?php esc_html_e( "Already have an account?", 'circular-arts-network' ); ?>
-        	<a class="can-register-link" href="<?php echo esc_url( remove_query_arg( 'can_page' ) ); ?>"><?php esc_html_e( 'Sign In', 'circular-arts-network' ); ?></a>
+        	<a class="can-register-link" href="<?php echo esc_url( remove_query_arg( 'circartsnet_page' ) ); ?>"><?php esc_html_e( 'Sign In', 'circular-arts-network' ); ?></a>
         </p>
 	</div>
 </div>

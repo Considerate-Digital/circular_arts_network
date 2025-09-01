@@ -2,7 +2,7 @@
 <?php if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly ?>
 
 <div class="wrap can-bs-wrapper">
-	<h2 class="border-bottom mb-3"><?php esc_html_e( 'CAN - Field Sections', 'circular-arts-network' ); ?></h2>
+	<h2 class="border-bottom mb-3"><?php esc_html_e( 'CIRCARTSNET - Field Sections', 'circular-arts-network' ); ?></h2>
 
     	<div class="row">
     	<div class="col-sm-3">
@@ -54,7 +54,7 @@
 										<?php esc_html_e( 'Data Name (lowercase without spaces)', 'circular-arts-network' ); ?>
 									</label>
 									<div class="col-sm-8">
-										<input <?php echo (can_is_default_section($tab)) ? 'disabled' : ''; ?> type="text" class="form-control form-control-sm section_key" value="<?php echo esc_attr( $tab['key'] ); ?>">
+										<input <?php echo (circartsnet_is_default_section($tab)) ? 'disabled' : ''; ?> type="text" class="form-control form-control-sm section_key" value="<?php echo esc_attr( $tab['key'] ); ?>">
 									</div>
 								</div>
 								<div class="row mb-3">

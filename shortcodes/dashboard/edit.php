@@ -1,6 +1,6 @@
 <?php
   if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly 
-global $can_admin_settings;
+global $circartsnet_admin_settings;
 $nonce_success = false;
 if (isset($_REQUEST['_wpnonce'])) {
 	$nonce_success = wp_verify_nonce( sanitize_text_field((wp_unslash($_REQUEST['_wpnonce']))), 'edit-listing' ); 
@@ -9,7 +9,7 @@ if (!$nonce_success) {
 		wp_nonce_ays('log-out');
 }
 $listing_id = isset($_GET['listing_id']) ? sanitize_text_field(wp_unslash($_GET['listing_id'], 'listing_id' )) : '';
-$field_sections = $can_admin_settings->get_fields_sections();
+$field_sections = $circartsnet_admin_settings->get_fields_sections();
 ?>
 <div class="can-screen-wrapper">
 	<div class="can-screen-header">
@@ -17,10 +17,10 @@ $field_sections = $can_admin_settings->get_fields_sections();
 	</div>
 	<div class="edit-listing-wrap can-screen-content">
 		<form action="#" class="can-listing-form">
-			<input type="hidden" name="action" value="can_create_listing_frontend">
+			<input type="hidden" name="action" value="circartsnet_create_listing_frontend">
 			<?php
 				foreach ($field_sections as $section) {
-					can_render_listing_section($section, $listing_id);
+					circartsnet_render_listing_section($section, $listing_id);
 				}
 			?>
 			<div class="row">

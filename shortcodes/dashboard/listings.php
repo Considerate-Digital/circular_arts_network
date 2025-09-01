@@ -4,28 +4,28 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 <div class="can-screen-wrapper">
 	<div class="can-screen-header">
 		<?php esc_html_e( 'My Listings', 'circular-arts-network' ) ?>
-		<a href="<?php echo esc_url( add_query_arg( 'can_page', 'add') ); ?>" class="btn btn-sm btn-success float-end text-decoration-none"><i class="bi bi-plus-circle"></i> <?php esc_html_e( 'Add New', 'circular-arts-network' ) ?></a>
+		<a href="<?php echo esc_url( add_query_arg( 'circartsnet_page', 'add') ); ?>" class="btn btn-sm btn-success float-end text-decoration-none"><i class="bi bi-plus-circle"></i> <?php esc_html_e( 'Add New', 'circular-arts-network' ) ?></a>
 	</div>
 	<div class="can-screen-content mb-4">
 		<div class="row mb-4">
 
 			<div class="col">
 				<form action="#" method="GET">
-					<input type="hidden" name="can_page" value="listings">
+					<input type="hidden" name="circartsnet_page" value="listings">
 				    <div class="input-group">
 							<?php 
-								$can_search_query = isset($_GET['can_search_query']) ? sanitize_text_field(wp_unslash($_GET['can_search_query'])) : '';
-					     echo '<input type="text" value="' . esc_attr($can_search_query) . '" name="can_search_query" class="form-control" placeholder="' . esc_html_e( 'Search for...', 'circular-arts-network' ) . '">';
+								$circartsnet_search_query = isset($_GET['circartsnet_search_query']) ? sanitize_text_field(wp_unslash($_GET['circartsnet_search_query'])) : '';
+					     echo '<input type="text" value="' . esc_attr($circartsnet_search_query) . '" name="circartsnet_search_query" class="form-control" placeholder="' . esc_html_e( 'Search for...', 'circular-arts-network' ) . '">';
 							?>
-						<select name="can_status" class="form-select">
+						<select name="circartsnet_status" class="form-select">
 							<option value="any"><?php esc_html_e( 'All Status', 'circular-arts-network' ); ?></option>
 						<?php 
-							$can_status = isset($_GET['can_status']) ? sanitize_text_field(wp_unslash(($_GET['can_status']))) : '';
-							echo esc_html('<option value="publish"'. $can_status == 'publish' ? 'selected' : '' . esc_html_e( 'Only Published', 'circular-arts-network' ) . '</option>');
+							$circartsnet_status = isset($_GET['circartsnet_status']) ? sanitize_text_field(wp_unslash(($_GET['circartsnet_status']))) : '';
+							echo esc_html('<option value="publish"'. $circartsnet_status == 'publish' ? 'selected' : '' . esc_html_e( 'Only Published', 'circular-arts-network' ) . '</option>');
 
-							echo '<option value="pending"' . $can_status == 'pending' ? 'selected' : '' . esc_html_e( 'Only Pending', 'circular-arts-network' ) . '</option>';
+							echo '<option value="pending"' . $circartsnet_status == 'pending' ? 'selected' : '' . esc_html_e( 'Only Pending', 'circular-arts-network' ) . '</option>';
 
-							echo esc_html('<option value="draft"' . $can_status  == 'draft' ? 'selected' : '' . esc_html_e( 'Only Draft', 'circular-arts-network' ) . '</option>');
+							echo esc_html('<option value="draft"' . $circartsnet_status  == 'draft' ? 'selected' : '' . esc_html_e( 'Only Draft', 'circular-arts-network' ) . '</option>');
 
 						wp_nonce_field( 'search-query'); 
 
@@ -60,23 +60,23 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 					__( 'future', 'circular-arts-network' ),
 					__( 'publish', 'circular-arts-network' )
 				);
-				$can_status = isset($_GET['can_status']) ? sanitize_text_field(wp_unslash(($_GET['can_status']))) : '';
-				if ($can_status) {
-					$statuses = array($can_status);
+				$circartsnet_status = isset($_GET['circartsnet_status']) ? sanitize_text_field(wp_unslash(($_GET['circartsnet_status']))) : '';
+				if ($circartsnet_status) {
+					$statuses = array($circartsnet_status);
 				} else {
 					$statuses = array( 'any' );
 				}
 
 				$args = array(
 					'author'	=> $current_user_data->ID,
-					'post_type' => 'can_listing',
+					'post_type' => 'circartsnet_listing',
 					'posts_per_page' => 10,
 					'post_status' => $statuses
 				);
 
-				$can_search_query = isset($_GET['can_search_query']) ? sanitize_text_field(wp_unslash(($_GET['can_search_query']))) : '';
-				if ($can_search_query) {
-					$args['s'] = $can_search_query;
+				$circartsnet_search_query = isset($_GET['circartsnet_search_query']) ? sanitize_text_field(wp_unslash(($_GET['circartsnet_search_query']))) : '';
+				if ($circartsnet_search_query) {
+					$args['s'] = $circartsnet_search_query;
 				}
 		    	if (is_front_page()) {
 		    		$paged = ( get_query_var('page') ) ? get_query_var('page') : 1;
@@ -91,7 +91,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 						$my_listings->the_post(); ?>	
 							<tr>
 								<td class="listing-thumb">
-									<?php do_action( 'can_featured_image', get_the_id(), 'thumbnail' ); ?>
+									<?php do_action( 'circartsnet_featured_image', get_the_id(), 'thumbnail' ); ?>
 								</td>
 								<td>
 									<a class="listing-title" href="<?php the_permalink(); ?>">
@@ -99,12 +99,12 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 									</a>
 								</td>
 								<td>
-									<?php echo can_get_field_value(get_the_id(), array('key' =>'regular_price', 'type' => 'price')); ?>
+									<?php echo circartsnet_get_field_value(get_the_id(), array('key' =>'regular_price', 'type' => 'price')); ?>
 								</td>
 								<td><?php echo esc_html( human_time_diff( get_the_time('U'), current_time('timestamp') ) ) . ' ago'; ?></td>
 								<td><?php echo esc_html(ucfirst(get_post_status(get_the_id()))); ?></td>
 								<td>
-									<a href="<?php echo esc_url( add_query_arg( array('can_page' => 'edit', 'listing_id' => get_the_id()), wp_nonce_url('#', 'edit-listing'))); ?>" class="btn btn-info btn-sm">
+									<a href="<?php echo esc_url( add_query_arg( array('circartsnet_page' => 'edit', 'listing_id' => get_the_id()), wp_nonce_url('#', 'edit-listing'))); ?>" class="btn btn-info btn-sm">
 										<i class="fas fa-pencil-alt"></i>
 										<?php esc_html_e( 'Edit', 'circular-arts-network' ); ?>
 									</a>
@@ -125,6 +125,6 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 			?>
 		  </tbody>
 		</table>
-		<?php do_action( 'can_pagination', $paged, $my_listings->max_num_pages ); ?>
+		<?php do_action( 'circartsnet_pagination', $paged, $my_listings->max_num_pages ); ?>
 	</div>
 </div>

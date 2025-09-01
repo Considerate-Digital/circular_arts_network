@@ -2,7 +2,7 @@ jQuery(document).ready(function($) {
 	
 	jQuery('.can-listing-form').submit(function(event){
 	    event.preventDefault();
-	    Swal.fire('', can_dash_vars.wait_text, 'info');
+	    Swal.fire('', circartsnet_dash_vars.wait_text, 'info');
 	    
 	    if (jQuery("#wp-can-description-wrap").hasClass("tmce-active")){
 	        content = tinyMCE.get('can-description').getContent();
@@ -12,7 +12,7 @@ jQuery(document).ready(function($) {
 
 	    var data = $(this).serialize()+"&content="+encodeURIComponent(content);
 
-	    $.post(can_dash_vars.ajaxurl, data , function(resp) {
+	    $.post(circartsnet_dash_vars.ajaxurl, data , function(resp) {
 	        Swal.fire('', resp.message, resp.status);
 	        setTimeout(function() {
 	        	window.location = jQuery('.can-menu-listings').attr('href');
@@ -37,10 +37,10 @@ jQuery(document).ready(function($) {
 		}).then((result) => {
 		  if (result.isConfirmed) {
 		  	var data = {
-		  		action: 'can_delete_listing',
+		  		action: 'circartsnet_delete_listing',
 		  		listing_id: listing_id,
 		  	}
-		  	$.post(can_dash_vars.ajaxurl + event.currentTarget.search, data, function(resp) {
+		  	$.post(circartsnet_dash_vars.ajaxurl + event.currentTarget.search, data, function(resp) {
 		  		Swal.fire('', resp.message, resp.status);
 		  		window.location.reload();
 		  	}, "json");
@@ -51,11 +51,11 @@ jQuery(document).ready(function($) {
 
 	jQuery('.can-update-profile').submit(function(event){
 	    event.preventDefault();
-	    Swal.fire('', can_dash_vars.wait_text, 'info');
+	    Swal.fire('', circartsnet_dash_vars.wait_text, 'info');
 
 	    var data = $(this).serialize();
 
-	    $.post(can_dash_vars.ajaxurl, data , function(resp) {
+	    $.post(circartsnet_dash_vars.ajaxurl, data , function(resp) {
 	        Swal.fire('', resp.message, resp.status);
 	        setTimeout(function() {
 	        	window.location.reload();
@@ -63,14 +63,14 @@ jQuery(document).ready(function($) {
 	    }, "json");
 	});
 
-	var can_profile_picture;
+	var circartsnet_profile_picture;
 	 
 	jQuery('.can-pic-wrap').on('click', '.can-upload-btn', function( event ){
 	 
 	    event.preventDefault();
 	 
 	    // Create the media frame.
-	    can_profile_picture = wp.media.frames.can_profile_picture = wp.media({
+	    circartsnet_profile_picture = wp.media.frames.circartsnet_profile_picture = wp.media({
 	      title: jQuery( this ).data( 'title' ),
 	      button: {
 	        text: jQuery( this ).data( 'btntext' ),
@@ -82,9 +82,9 @@ jQuery(document).ready(function($) {
 	    });
 	 
 	    // When an image is selected, run a callback.
-	    can_profile_picture.on( 'select', function() {
+	    circartsnet_profile_picture.on( 'select', function() {
 	        // We set multiple to false so only get one image from the uploader
-	        var selection = can_profile_picture.state().get('selection');
+	        var selection = circartsnet_profile_picture.state().get('selection');
 	        selection.map( function( attachment ) {
 	            attachment = attachment.toJSON();
 	            jQuery('.can-pic-wrap').find('.seller_image').val(attachment.id);
@@ -93,6 +93,6 @@ jQuery(document).ready(function($) {
 	    });
 	 
 	    // Finally, open the modal
-	    can_profile_picture.open();
+	    circartsnet_profile_picture.open();
 	});
 });

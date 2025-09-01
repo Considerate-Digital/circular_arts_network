@@ -2,7 +2,7 @@
 
   if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
-	$saved_table_label = can_get_option('listing_compare_columns');
+	$saved_table_label = circartsnet_get_option('listing_compare_columns');
 
 	if (!empty($saved_table_label)) {
 		$array_value = explode("\n", $saved_table_label);
@@ -20,7 +20,7 @@
 			__( 'Condition', 'circular-arts-network' ),
 			__( 'Build Date', 'circular-arts-network' ),
 		);
-		$default_labels = apply_filters( 'can_compare_table_default_labels', $default_labels );
+		$default_labels = apply_filters( 'circartsnet_compare_table_default_labels', $default_labels );
 		$table_columns_labels = $default_labels;
 	}
 

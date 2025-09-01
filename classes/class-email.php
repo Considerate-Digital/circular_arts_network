@@ -5,35 +5,35 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly 
 
-class CAN_Email
+class CIRCARTSNET_Email
 {
     
     function __construct(){
-        add_action( 'can_new_seller_registered', array($this, 'seller_registered' ), 10, 1 );
-        add_action( 'can_new_seller_approved', array($this, 'seller_approved' ), 10, 1 );
-        add_action( 'can_new_seller_rejected', array($this, 'seller_rejected' ), 10, 1 );
-        add_action( 'can_new_listing_submitted', array($this, 'new_listing_submitted' ), 10, 1 );
-        add_action( 'can_new_listing_approved', array($this, 'new_listing_approved' ), 10, 1 );
+        add_action( 'circartsnet_new_seller_registered', array($this, 'seller_registered' ), 10, 1 );
+        add_action( 'circartsnet_new_seller_approved', array($this, 'seller_approved' ), 10, 1 );
+        add_action( 'circartsnet_new_seller_rejected', array($this, 'seller_rejected' ), 10, 1 );
+        add_action( 'circartsnet_new_listing_submitted', array($this, 'new_listing_submitted' ), 10, 1 );
+        add_action( 'circartsnet_new_listing_approved', array($this, 'new_listing_approved' ), 10, 1 );
 
         // Contact Seller
-        add_action( 'wp_ajax_can_contact_seller', array($this, 'contact_seller' ) );
-        add_action( 'wp_ajax_nopriv_can_contact_seller', array($this, 'contact_seller' ) );
+        add_action( 'wp_ajax_circartsnet_contact_seller', array($this, 'contact_seller' ) );
+        add_action( 'wp_ajax_nopriv_circartsnet_contact_seller', array($this, 'contact_seller' ) );
     }
 
     function send_email($to, $subject, $message){       
         $site_title = get_bloginfo();
-        $admin_email = apply_filters( "can_admin_email", get_bloginfo('admin_email') );
+        $admin_email = apply_filters( "circartsnet_admin_email", get_bloginfo('admin_email') );
 
-        $from_title = apply_filters( 'can_email_sender_title', $site_title );
-        $from_email = apply_filters( 'can_email_sender_email', $admin_email );
+        $from_title = apply_filters( 'circartsnet_email_sender_title', $site_title );
+        $from_email = apply_filters( 'circartsnet_email_sender_email', $admin_email );
 
         $headers = array();
         $headers[] = "From: {$from_title} <{$from_email}>";
         $headers[] = "Content-Type: text/html";
         $headers[] = "MIME-Version: 1.0\r\n";
 
-        $headers = apply_filters( 'can_email_headers', $headers );
-        if (can_get_option('email_br', 'enable') == 'enable') {
+        $headers = apply_filters( 'circartsnet_email_headers', $headers );
+        if (circartsnet_get_option('email_br', 'enable') == 'enable') {
     	   $message = nl2br(stripcslashes($message)); 
         }
     	wp_mail( $to, $subject, $message, $headers );
@@ -41,9 +41,9 @@ class CAN_Email
 
     function seller_registered($new_agent){
         // Sending Email to Admin
-        $admin_email = apply_filters( "can_admin_email", get_bloginfo('admin_email') );
+        $admin_email = apply_filters( "circartsnet_admin_email", get_bloginfo('admin_email') );
         $subject = __( 'New Seller Registered', 'circular-arts-network' );
-        $message = (can_get_option('to_admin_on_seller_register') != '') ? can_get_option('to_admin_on_seller_register') : 'New seller is registered...' ;
+        $message = (circartsnet_get_option('to_admin_on_seller_register') != '') ? circartsnet_get_option('to_admin_on_seller_register') : 'New seller is registered...' ;
 
         $message = str_replace("%first_name%", $new_agent['first_name'], $message);
         $message = str_replace("%last_name%", $new_agent['last_name'], $message);
@@ -57,7 +57,7 @@ class CAN_Email
         // Sending Email to Seller
         $subject_agent = __( 'Registration Successful', 'circular-arts-network' );
 
-        $message_for_agent = (can_get_option('to_seller_registered') != '') ? can_get_option('to_seller_registered') : 'Please wait for approval' ;
+        $message_for_agent = (circartsnet_get_option('to_seller_registered') != '') ? circartsnet_get_option('to_seller_registered') : 'Please wait for approval' ;
         
         $message_for_agent = str_replace("%first_name%", $new_agent['first_name'], $message_for_agent);
         $message_for_agent = str_replace("%last_name%", $new_agent['last_name'], $message_for_agent);
@@ -77,7 +77,7 @@ class CAN_Email
         
         $subject = __( 'Approved ', 'circular-arts-network' ). $site_title;
 
-        $message_for_agent = (can_get_option('to_seller_approved') != '') ? can_get_option('to_seller_approved') : 'You are Approved' ;
+        $message_for_agent = (circartsnet_get_option('to_seller_approved') != '') ? circartsnet_get_option('to_seller_approved') : 'You are Approved' ;
         
         $message_for_agent = str_replace("%username%", $new_agent['username'], $message_for_agent);
         $message_for_agent = str_replace("%first_name%", $new_agent['first_name'], $message_for_agent);
@@ -95,7 +95,7 @@ class CAN_Email
 
         $subject = __( 'Rejected ', 'circular-arts-network' ). $site_title;
 
-        $message_for_agent = (can_get_option('to_seller_rejected') != '') ? can_get_option('to_seller_rejected') : 'You are Approved' ;
+        $message_for_agent = (circartsnet_get_option('to_seller_rejected') != '') ? circartsnet_get_option('to_seller_rejected') : 'You are Approved' ;
         
         $message_for_agent = str_replace("%username%", $new_agent['username'], $message_for_agent);
         $message_for_agent = str_replace("%first_name%", $new_agent['first_name'], $message_for_agent);
@@ -111,14 +111,14 @@ class CAN_Email
 
         $current_user_data = wp_get_current_user();
 
-        $approve_url = admin_url( 'edit.php?post_status=pending&post_type=can_property' );
+        $approve_url = admin_url( 'edit.php?post_status=pending&post_type=circartsnet_property' );
 
-        $admin_email = apply_filters( "can_admin_email", get_bloginfo('admin_email') );
+        $admin_email = apply_filters( "circartsnet_admin_email", get_bloginfo('admin_email') );
 
         do_action('wpml_switch_language_for_email', $admin_email);
         
         $subject = __( 'New Listing Submitted ', 'circular-arts-network' ). $site_title;
-        $message = (can_get_option('to_admin_submission') != '') ? can_get_option('to_admin_submission') : 'New Listing is created. Approve here '.$approve_url ;
+        $message = (circartsnet_get_option('to_admin_submission') != '') ? circartsnet_get_option('to_admin_submission') : 'New Listing is created. Approve here '.$approve_url ;
         $message = str_replace("%username%", $current_user_data->user_login, $message);
         $message = str_replace("%seller_email%", $current_user_data->user_email, $message);
         $message = str_replace("%approve_url%", $approve_url, $message);
@@ -130,7 +130,7 @@ class CAN_Email
 
         do_action('wpml_switch_language_for_email', $current_user_data->user_email);
 
-        $message_agent = (can_get_option('to_seller_submission') != '') ? can_get_option('to_seller_submission') : 'New Listing is submitted. Please wait until admin approves.' ;
+        $message_agent = (circartsnet_get_option('to_seller_submission') != '') ? circartsnet_get_option('to_seller_submission') : 'New Listing is submitted. Please wait until admin approves.' ;
         $message_agent = str_replace("%listing_id%", $listing_id, $message_agent);
         $message_agent = str_replace("%listing_url%", get_permalink($listing_id), $message_agent);
         $message_agent = str_replace("%listing_title%", get_the_title($listing_id), $message_agent);        
@@ -149,7 +149,7 @@ class CAN_Email
         $site_title = get_bloginfo();
         $subject_agent = __( 'Listing Approved ', 'circular-arts-network' ). $site_title;
 
-        $message_agent = (can_get_option('to_seller_submission_approved') != '') ? can_get_option('to_seller_submission_approved') : 'Your Listing is approved.' ;
+        $message_agent = (circartsnet_get_option('to_seller_submission_approved') != '') ? circartsnet_get_option('to_seller_submission_approved') : 'Your Listing is approved.' ;
         $message_agent = str_replace("%listing_id%", $listing_id, $message_agent);
         $message_agent = str_replace("%listing_url%", get_permalink($listing_id), $message_agent);
         $message_agent = str_replace("%listing_title%", get_the_title($listing_id), $message_agent);
@@ -169,7 +169,7 @@ class CAN_Email
                     echo wp_json_encode($resp); exit;
                 } else {
                     $captcha = $_REQUEST['g-recaptcha-response'];
-                    $secretKey = can_get_option('captcha_secret_key', '6LcDhUQUAAAAAGKQ7gd1GsGAkEGooVISGEl3s7ZH');
+                    $secretKey = circartsnet_get_option('captcha_secret_key', '6LcDhUQUAAAAAGKQ7gd1GsGAkEGooVISGEl3s7ZH');
                     $ip = $_SERVER['REMOTE_ADDR'];
                     $response = wp_remote_post("https://www.google.com/recaptcha/api/siteverify?secret=".$secretKey."&response=".$captcha."&remoteip=".$ip);
                     $responseKeys = json_decode($response['body'], true);
@@ -198,7 +198,7 @@ class CAN_Email
             // Handle reCAPTCHA validation
             if (!empty($recaptcha_response)) {
                 // reCAPTCHA response exists, validate it
-                $secretKey = can_get_option('captcha_secret_key', '6LcDhUQUAAAAAGKQ7gd1GsGAkEGooVISGEl3s7ZH');
+                $secretKey = circartsnet_get_option('captcha_secret_key', '6LcDhUQUAAAAAGKQ7gd1GsGAkEGooVISGEl3s7ZH');
                 $ip = isset($_SERVER['REMOTE_ADDR']) ? sanitize_text_field(wp_unslash($_SERVER['REMOTE_ADDR'])) : '';
                 
                 // Build the verification URL safely
@@ -241,8 +241,8 @@ class CAN_Email
             }
             if($client_name && $client_email && $client_msg && $seller_id){
                 
-                $subject = can_get_option('email_subject', 'Listing Contact');
-                $message = can_get_option('email_message', $client_msg);
+                $subject = circartsnet_get_option('email_subject', 'Listing Contact');
+                $message = circartsnet_get_option('email_message', $client_msg);
                 
                 $listing_id = isset($_REQUEST['listing_id']) ? sanitize_text_field(
                   wp_unslash($_REQUEST['listing_id'])) : '';
@@ -262,7 +262,7 @@ class CAN_Email
                 $message = str_replace("%client_name%", $client_name, $message);
                 $message = str_replace("%client_phone%", $client_phone, $message);
                 
-                if (can_get_option('email_br', 'enable') == 'enable') {
+                if (circartsnet_get_option('email_br', 'enable') == 'enable') {
                    $message = nl2br(stripcslashes($message));
                 }
 
@@ -276,10 +276,10 @@ class CAN_Email
                 $headers[] = "Content-Type: text/html";
                 $headers[] = "MIME-Version: 1.0\r\n";
 
-                $headers = apply_filters( 'can_email_headers', $headers );
+                $headers = apply_filters( 'circartsnet_email_headers', $headers );
                 
                 // Additional Emails
-                $emails_meta = can_get_option('email_addresses', '');            
+                $emails_meta = circartsnet_get_option('email_addresses', '');            
                 if ($emails_meta != '') {
                     $emails = explode("\n", $emails_meta);
                     if (is_array($emails)) {
@@ -307,5 +307,5 @@ class CAN_Email
 
 }
 
-new CAN_Email;
+new CIRCARTSNET_Email;
 ?>

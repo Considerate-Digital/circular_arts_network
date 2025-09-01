@@ -39,7 +39,7 @@ jQuery(document).ready(function($) {
 			sections_data.push(section);
     	});
     	var data = {
-    		'action': 'can_save_field_sections',
+    		'action': 'circartsnet_save_field_sections',
     		'sections' : sections_data
     	}
     	$.post(ajaxurl, data, function(resp) {
@@ -115,7 +115,7 @@ jQuery(document).ready(function($) {
         }).then((result) => {
           if (result.isConfirmed) {
             var data = {
-                action: 'can_save_field_sections',
+                action: 'circartsnet_save_field_sections',
                 reset: 'yes'
             }
             $.post(ajaxurl, data, function(resp) {
