@@ -1096,100 +1096,11 @@ function can_get_leaflet_provider($map_id){
 
     switch ($map_id) {
         case '1':
-            $provider = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
-            break;
-            
-        case '2':
-            $provider = 'http://{s}.tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png';
-            break;
-
-        case '3':
-            $provider = 'https://{s}.tile.openstreetmap.de/tiles/osmde/{z}/{x}/{y}.png';
-            break;
-
-        case '4':
-            $provider = 'https://tile.osm.ch/switzerland/{z}/{x}/{y}.png';
-            break;
-
-        case '5':
-            $provider = 'https://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png';
-            break;
-
-        case '6':
-            $provider = 'https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png';
-            break;
-
-        case '7':
-            $provider = 'https://tile.openstreetmap.bzh/br/{z}/{x}/{y}.png';
-            break;
-
-        case '8':
-            $provider = 'https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png';
-            break;
-
-        case '9':
-            $provider = 'https://{s}.tile.openstreetmap.se/hydda/full/{z}/{x}/{y}.png';
-            break;
-
-        case '10':
-            $provider = 'https://{s}.tile.openstreetmap.se/hydda/base/{z}/{x}/{y}.png';
-            break;
-
-        case '11':
-            $provider = 'https://stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x}/{y}{r}.png';
-            break;
-
-        case '12':
-            $provider = 'https://stamen-tiles-{s}.a.ssl.fastly.net/toner-background/{z}/{x}/{y}{r}.png';
-            break;
-
-        case '13':
-            $provider = 'https://stamen-tiles-{s}.a.ssl.fastly.net/toner-lite/{z}/{x}/{y}{r}.png';
-            break;
-
-        case '14':
-            $provider = 'https://stamen-tiles-{s}.a.ssl.fastly.net/watercolor/{z}/{x}/{y}.png';
-            break;
-
-        case '15':
-            $provider = 'https://stamen-tiles-{s}.a.ssl.fastly.net/terrain/{z}/{x}/{y}{r}.png';
-            break;
-
-        case '16':
-            $provider = 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}';
-            break;
-
-        case '17':
-            $provider = 'https://server.arcgisonline.com/ArcGIS/rest/services/Specialty/DeLorme_World_Base_Map/MapServer/tile/{z}/{y}/{x}';
-            break;
-
-        case '18':
-            $provider = 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}';
-            break;
-
-        case '19':
-            $provider = 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}';
-            break;
-
-        case '20':
-            $provider = 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Shaded_Relief/MapServer/tile/{z}/{y}/{x}';
-            break;
-
-        case '21':
-            $provider = 'https://server.arcgisonline.com/ArcGIS/rest/services/NatGeo_World_Map/MapServer/tile/{z}/{y}/{x}';
-            break;
-
-        case '22':
-            $provider = 'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}';
-            break;
-
-        case '23':
-            $provider = 'https://stamen-tiles-{s}.a.ssl.fastly.net/terrain-background/{z}/{x}/{y}{r}.png';
-            break;
-        
-        default:
-            $provider = 'https://{s}.tile.openstreetmap.de/tiles/osmde/{z}/{x}/{y}.png';
-            break;
+           $provider = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+           break;
+       default:
+           $provider = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+           break;
     }
 
     $resp = array(

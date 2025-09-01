@@ -147,6 +147,26 @@ Here, in no particular order, are a list of future developments we'd like to und
 - Adapt the search to incoporate advanced search options
 - Add "create alert" functionality
 
+== External services ==
+
+This plugin connects to several external APIs to provide services such as Google Captcha and maps to enhance the user experience and engage users in participating in the circular arts network. Each service is detailed below.
+
+## Google Maps
+Google Maps can be configured as the maps provider in this plugin. It provides map data to show the plugin users where items offered within the plugin are in the world. This service is provided by Google. 
+[Terms](https://cloud.google.com/maps-platform/terms) 
+[Privacy](https://policies.google.com/privacy?hl=en-US)
+
+## Google Captcha
+Google Captcha can be configured to prevent unwanted user registrations and submissions in the plugin. It provides a captcha which must be solved by a human to complete the signup process. This is configured manually and must be provided with keys in the admin settings to work.
+[Terms](https://policies.google.com/terms?hl=en)
+[Privacy](https://policies.google.com/privacy?hl=en-US)
+
+## Open Street Map
+Open Street Map is the default maps provider in this plugin. It provides map data to show the plugin users where items offered within the plugin are in the world. This service is freely provided by the Open Street Map Foundation.
+[Terms](https://osmfoundation.org/wiki/Terms_of_Use)
+[Privacy](https://osmfoundation.org/wiki/Privacy_Policy)
+
+
 == Changelog ==
 
 = 0.2 =
