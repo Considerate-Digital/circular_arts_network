@@ -36,14 +36,12 @@
 	<form class="form-contact contact-seller-form" method="post" role="form" data-toggle="validator" data-ajaxurl="<?php echo esc_html(admin_url( 'admin-ajax.php' )); ?>">
 	    <input type="hidden" name="seller_id" value="<?php echo esc_attr( $author_id ); ?>">
 	    <input type="hidden" name="action" value="circartsnet_contact_seller">
-			<?php if(isset($_GET['listing_id'])){ ?>
-					<input type="hidden" name="listing_id" value="<?php echo intval(absint($_GET['listing_id'])); ?>">
-			<?php } else {
+			<?php
 	        global $post;
 	        if(isset($post->ID)){ ?>
 	            <input type="hidden" name="listing_id" value="<?php echo intval($post->ID); ?>">
 	        <?php }
-	    } ?>
+	     ?>
 	    <div class="row">
 	    	<div class="col-sm-12">
 	    		<h2 class="title-contact-seller">Contact</h2>

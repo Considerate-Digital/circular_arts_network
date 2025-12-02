@@ -8,6 +8,7 @@ if (isset($_REQUEST['_wpnonce'])) {
 if (!$nonce_success) {
         wp_nonce_ays('log-out');
 }
+
 if(isset($_GET['action']) && $_GET['action'] == 'circartsnet_search_listing'){
     
     $args = circartsnet_get_search_query($_REQUEST);

@@ -12,7 +12,8 @@ class CIRCARTSNET_Register_CPT
 		add_action( 'init', array($this, 'register' ) );
 		add_filter( 'post_updated_messages', array($this, 'listing_messages' ) );
         // Permalink settings
-        add_filter( 'load-options-permalink.php', array($this, 'permalink_settings') ); 
+    // Deprecated: This is not used anywhere in the code base
+        //add_filter( 'load-options-permalink.php', array($this, 'permalink_settings') ); 
         // Change author in listings page
         add_filter( 'wp_dropdown_users', array($this, 'author_override') );
 	}
@@ -43,8 +44,15 @@ class CIRCARTSNET_Register_CPT
         return $output;
 
     }
-
+    /* Deprecated
     function permalink_settings(){
+        $nonce_success = false;
+        if (isset($_REQUEST['_wpnonce'])) {
+            $nonce_success = wp_verify_nonce( sanitize_text_field(wp_unslash($_REQUEST['_wpnonce'])), 'search' ); 
+        }
+        if (!$nonce_success) {
+                wp_nonce_ays('log-out');
+        }
         if( isset( $_POST['circartsnet_listing_permalink'] ) ){
             update_option( 'circartsnet_listing_permalink', sanitize_title_with_dashes( wp_unslash($_POST['circartsnet_listing_permalink']) ) );
         }
@@ -58,6 +66,7 @@ class CIRCARTSNET_Register_CPT
         // Add setting fields to the permalink page
         add_settings_section( 'circartsnet_permalink_settings', 'CIRCARTSNET - Permalinks', array($this, 'render_permalink_settings'), 'permalink' );
     }
+     */
 
     function render_permalink_settings(){
         $listing_base = get_option( 'circartsnet_listing_permalink' );

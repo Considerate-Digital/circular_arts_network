@@ -1,6 +1,6 @@
 <?php
 
-  if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 if ( $the_query->have_posts() ) {
 	echo '<div class="can-bs-wrapper">';
