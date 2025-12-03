@@ -66,7 +66,7 @@ class CIRCARTSNET_Shortcodes
 				'file_format_error' => __( 'Allowed formats are:', 'circular-arts-network' ),
 			) );
 
-			if (isset($_GET['circartsnet_page']) && $_GET['circartsnet_page'] == 'register') {
+			if (get_query_var('circartsnet_page') && get_query_var('circartsnet_page') == 'register') {
 				$in_theme = get_stylesheet_directory().'/can/shortcodes/register.php';
 				if (file_exists($in_theme)) {
 					include $in_theme;
@@ -295,8 +295,8 @@ class CIRCARTSNET_Shortcodes
 			$args['meta_key'] = 'circartsnet_'.$attrs['orderby_custom'];
 		}
 
-		if (isset($_GET['sort_by']) && $_GET['sort_by'] != '') {
-			$sort_op = explode("-", sanitize_html(wp_unslash($_GET['sort_by'])));
+		if (get_query_var('sort_by') && get_query_var('sort_by') != '') {
+			$sort_op = explode("-", sanitize_html(wp_unslash(get_query_var('sort_by'))));
 			$args['order'] = strtoupper($sort_op[1]);
 			$args['orderby'] = $sort_op[0];
 			if ($sort_op[0] == 'price') {
@@ -666,8 +666,8 @@ class CIRCARTSNET_Shortcodes
 
 		echo '<div class="list-group">';
 		foreach ($menu_items as $key => $item) {
-			$active = (isset($_GET['circartsnet_page']) && $_GET['circartsnet_page'] == $item['url']) ? 'active' : '' ;
-			$active = (!isset($_GET['circartsnet_page']) && $key == 'dashboard') ? 'active' : $active ;
+			$active = (get_query_var('circartsnet_page') && get_query_var('circartsnet_page') == $item['url']) ? 'active' : '' ;
+			$active = (!get_query_var('circartsnet_page') && $key == 'dashboard') ? 'active' : $active ;
 			$url = explode( '?', esc_url_raw( add_query_arg( array() ) ) );
 			$no_query_args = $url[0];
 			//TODO not setup
@@ -678,8 +678,8 @@ class CIRCARTSNET_Shortcodes
 	}
 
 	function render_dashboard_page(){
-		$circartsnet_page = isset($_GET['circartsnet_page']) ? sanitize_text_field(
-			wp_unslash($_GET['circartsnet_page'])) : "";
+		$circartsnet_page = get_query_var('circartsnet_page') ? sanitize_text_field(
+			wp_unslash(get_query_var('circartsnet_page'))) : "";
 		if ($circartsnet_page && file_exists(CIRCARTSNET_PATH. '/shortcodes/dashboard/'.$circartsnet_page.'.php')) {
 			include CIRCARTSNET_PATH. '/shortcodes/dashboard/'.$circartsnet_page.'.php';
 		} else {
@@ -696,11 +696,10 @@ class CIRCARTSNET_Shortcodes
 				'message'   => __( 'There is some error', 'circular-arts-network' ),
 			);
 
-
 			$current_user_data = wp_get_current_user();
 
-			$listing_id = isset($_REQUEST['listing_id']) ? sanitize_text_field(
-				wp_unslash($_REQUEST['listing_id'])) : "";
+			$listing_id = get_query_var('listing_id') ? sanitize_text_field(
+				wp_unslash(get_query_var('listing_id'))) : "";
 
 			// If needs update
 			if ($listing_id && get_post_field( 'post_author', $listing_id ) == $current_user_data->ID) {

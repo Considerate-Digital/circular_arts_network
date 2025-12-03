@@ -1,7 +1,7 @@
 <?php 
   if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 	$layout = "grid";
-	if (get_query_var('layout') {
+	if (get_query_var('layout')) {
 		$layout = get_query_var('layout');
 	}
 ?>

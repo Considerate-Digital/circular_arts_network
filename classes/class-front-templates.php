@@ -250,10 +250,10 @@ class CIRCARTSNET_Front_Templates
     }
 
     function listing_box($listing_id, $style = '1', $layout='grid', $target=''){
-
-    	if (isset($_GET['layout']) && $_GET['layout'] != '') {
-    		$layout = sanitize_text_field(wp_unslash( $_GET['layout'] ));
-    	}
+      $layout = 'grid';
+      if (get_query_var('layout')) {
+        $layout = get_query_var('layout');
+      }
         
         $in_theme = get_stylesheet_directory().'/can/loop/'.$style.'/'.$layout.'.php';
 
