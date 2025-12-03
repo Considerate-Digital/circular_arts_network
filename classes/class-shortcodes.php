@@ -670,7 +670,7 @@ class CIRCARTSNET_Shortcodes
 			$active = (!isset($_GET['circartsnet_page']) && $key == 'dashboard') ? 'active' : $active ;
 			$url = explode( '?', esc_url_raw( add_query_arg( array() ) ) );
 			$no_query_args = $url[0];
-
+			$nonce_url = wp_nonce_url($url, 'open-page'.$active);
 			echo "<a href='". esc_url( add_query_arg( 'circartsnet_page', $item['url'], $no_query_args) )."' class='list-group-item list-group-item-action" . esc_html($active) . "can-menu-".esc_attr( $key )."'><i class='".esc_attr( $item['icon'] )."'></i> ".esc_attr( $item['title'] )."</a>";
 		}
 		echo '</div>';

@@ -13,7 +13,7 @@
 	</div>
 	<div class="row can-credits">
 		<a href="https://canarts.org.uk" target="_blank">
-			<img src="<?php echo CIRCARTSNET_URL;?>/assets/images/can-logo.webp"  />
+			<img src="<?php echo esc_url(CIRCARTSNET_URL);?>/assets/images/can-logo.webp"  />
 		</a>
 		<p>CAN - Circular Arts Network</p>
 		<p>Original site developed by Sculpture Placement Group (SPG), in collaboration with developer Ralph Mackenzie.</p>

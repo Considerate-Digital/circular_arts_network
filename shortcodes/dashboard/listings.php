@@ -1,5 +1,12 @@
 <?php 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+$nonce_success = false;
+if (isset($_REQUEST['_wpnonce'])) {
+    $nonce_success = wp_verify_nonce( sanitize_text_field(wp_unslash($_REQUEST['_wpnonce'])), 'dashboard-link'); 
+}
+if (!$nonce_success) {
+        wp_nonce_ays('log-out');
+}
 ?>
 <div class="can-screen-wrapper">
 	<div class="can-screen-header">
@@ -99,7 +106,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 									</a>
 								</td>
 								<td>
-									<?php echo circartsnet_get_field_value(get_the_id(), array('key' =>'regular_price', 'type' => 'price')); ?>
+									<?php echo esc_attr(circartsnet_get_field_value(get_the_id(), array('key' =>'regular_price', 'type' => 'price'))); ?>
 								</td>
 								<td><?php echo esc_html( human_time_diff( get_the_time('U'), current_time('timestamp') ) ) . ' ago'; ?></td>
 								<td><?php echo esc_html(ucfirst(get_post_status(get_the_id()))); ?></td>
@@ -108,7 +115,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 										<i class="fas fa-pencil-alt"></i>
 										<?php esc_html_e( 'Edit', 'circular-arts-network' ); ?>
 									</a>
-										<a class="btn btn-danger btn-sm delete-listing" data-pid="<?php echo esc_html(get_the_id()); ?>" href="<?php echo wp_nonce_url('#', 'delete-listing')?>">
+										<a class="btn btn-danger btn-sm delete-listing" data-pid="<?php echo esc_attr(get_the_id()); ?>" href="<?php echo esc_url(wp_nonce_url('#', 'delete-listing'))?>">
 										<i class="fa fa-trash"></i>
 										<?php esc_html_e( 'Delete', 'circular-arts-network' ); ?>
 									</a>

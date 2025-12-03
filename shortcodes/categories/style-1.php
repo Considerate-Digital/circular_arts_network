@@ -25,7 +25,7 @@
                             <div class="can-single-cat text-center">
                                 <div class="can-cat-icon">
                                     <?php if ( in_array($cat->name, $cat_names ) ) { ?>
-                                        <img src="<?php echo CIRCARTSNET_URL . "/assets/images/categories/" . esc_html(str_replace(' ', '', $cat->name ) ) . ".svg" ?>" />
+                                        <img src="<?php echo esc_url(CIRCARTSNET_URL) . "/assets/images/categories/" . esc_html(str_replace(' ', '', $cat->name ) ) . ".svg" ?>" />
                                     <?php } else { 
                                         $this->render_category_image($cat->term_id, $attrs['image_size']); 
                                     } ?>
