@@ -2,7 +2,7 @@
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 $nonce_success = false;
 if (isset($_REQUEST['_wpnonce'])) {
-    $nonce_success = wp_verify_nonce( sanitize_text_field(wp_unslash($_REQUEST['_wpnonce'])), 'dashboard-link'); 
+    $nonce_success = wp_verify_nonce( sanitize_text_field(wp_unslash($_REQUEST['_wpnonce']))); 
 }
 if (!$nonce_success) {
         wp_nonce_ays('log-out');
@@ -106,7 +106,7 @@ if (!$nonce_success) {
 									</a>
 								</td>
 								<td>
-									<?php echo esc_attr(circartsnet_get_field_value(get_the_id(), array('key' =>'regular_price', 'type' => 'price'))); ?>
+									<?php echo wp_kses_post(circartsnet_get_field_value(get_the_id(), array('key' =>'regular_price', 'type' => 'price'))); ?>
 								</td>
 								<td><?php echo esc_html( human_time_diff( get_the_time('U'), current_time('timestamp') ) ) . ' ago'; ?></td>
 								<td><?php echo esc_html(ucfirst(get_post_status(get_the_id()))); ?></td>

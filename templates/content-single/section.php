@@ -3,7 +3,7 @@
   if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 ?>
 <div class="can-section section-<?php echo esc_attr( $section['key'] ) ?>">
-	<?php echo circartsnet_get_section_title($section); ?>
+	<?php echo wp_kses_post(circartsnet_get_section_title($section)); ?>
 	<div class="wrap-<?php echo esc_attr( $section['key'] ); ?>">
         <div class="row">
     		<?php
