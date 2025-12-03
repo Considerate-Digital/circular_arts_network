@@ -9,10 +9,6 @@ if ( $the_query->have_posts() ) {
 		do_action( 'circartsnet_archive_topbar' );
 	}
 
-	if (isset($_GET['layout']) && $_GET['layout'] == 'list') {
-		$columns = 'col-sm-12';
-	}
-
 	echo '<div class="row can-display-listings">';
 
 	while ( $the_query->have_posts() ) {

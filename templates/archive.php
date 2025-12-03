@@ -7,9 +7,12 @@
 **========== Direct Access Restriction =========== 
 */
 if( ! defined('ABSPATH' ) ){ exit; }
-
+$layout = "grid";
+	if (get_query_var('layout') {
+		$layout = get_query_var('layout');
+	}
 get_header();
-$columns = (isset($_GET['layout']) && $_GET['layout'] == 'list') ? 'col-sm-12' : circartsnet_get_option('archive_page_cols', 'col-sm-4') ;
+$columns = ($layout == 'list') ? 'col-sm-12' : circartsnet_get_option('archive_page_cols', 'col-sm-4') ;
 
 ?>
 

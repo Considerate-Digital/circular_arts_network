@@ -1,5 +1,9 @@
 <?php 
   if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+	$layout = "grid";
+	if (get_query_var('layout') {
+		$layout = get_query_var('layout');
+	}
 ?>
 <div class="can-top-bar clearfix">
 	
@@ -26,13 +30,13 @@
 				</select>
 
 		 */?>
-				<input type="hidden" name="layout" value="<?php echo isset($_GET['layout']) ? esc_html(wp_unslash($_GET['layout'])) : 'grid' ;  ?>">
+				<input type="hidden" name="layout" value="<?php echo esc_html(wp_unslash($layout))  ?>">
 	        </div>
 			<div class="can-menu-box <?php echo (is_archive()) ? 'float-start' : 'float-end'; ?>">
-			    <a href="<?php echo esc_url( add_query_arg( 'layout', 'list' ) ); ?>" class="can-list-view <?php echo (isset($_GET['layout']) && $_GET['layout'] == 'list') ? 'active' : '' ; ?>">
+			    <a href="<?php echo esc_url( add_query_arg( 'layout', 'list' ) ); ?>" class="can-list-view <?php echo ($layout == 'list') ? 'active' : '' ; ?>">
 			    	<i class="bi bi-list-task"></i>
 			    </a>
-			    <a href="<?php echo esc_url( add_query_arg( 'layout', 'grid' ) ); ?>" class="can-grid-view <?php echo ((isset($_GET['layout']) && $_GET['layout'] == 'grid') || !isset($_GET['layout'])) ? 'active' : '' ; ?>">
+			    <a href="<?php echo esc_url( add_query_arg( 'layout', 'grid' ) ); ?>" class="can-grid-view <?php echo ($layout == 'grid') ? 'active' : '' ; ?>">
 			    	<i class="bi bi-grid"></i>
 			    </a>
 			</div>
