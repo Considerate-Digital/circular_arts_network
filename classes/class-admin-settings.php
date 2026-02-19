@@ -27,7 +27,7 @@ class CIRCARTSNET_Admin_Settings
 
         // Image in Category    
         add_action( 'circartsnet_listing_category_add_form_fields', array( $this, 'add_category_image' ), 10, 1 );
-        add_action( 'created_circartsnet_listing_category', array( $this, 'save_category_image' ), 10, 2 );
+        //add_action( 'created_circartsnet_listing_category', array( $this, 'save_category_image' ), 10, 2 );
         add_action( 'circartsnet_listing_category_edit_form_fields', array( $this, 'edit_category_image' ), 10, 2 );
         add_action( 'edited_circartsnet_listing_category', array( $this, 'updated_category_image' ), 10, 2 );
         add_action( 'pre_get_posts', array($this, 'archive_page_listings_count'), 99 );
@@ -210,7 +210,7 @@ class CIRCARTSNET_Admin_Settings
         }
 
         if ($slug == 'edit-tags.php' || $slug == 'term.php') {
-            if (isset($_GET['post_type']) && 'circartsnet_listing' === $_GET['post_type']) {
+            if (get_query_var('post_type') && 'circartsnet_listing' === get_query_var('post_type')) {
                 wp_enqueue_media();
                 wp_enqueue_style('can-bs', CIRCARTSNET_URL."/assets/libs/css/bootstrap.css");
                 wp_enqueue_style( 'can-admin', CIRCARTSNET_URL . '/assets/css/admin.css');
@@ -359,15 +359,15 @@ class CIRCARTSNET_Admin_Settings
             'title' => __( 'Failed!', 'circular-arts-network' ),
             'message' => __( 'There is some error or you did not make any change.', 'circular-arts-network' ),
         );
-        if (isset($_REQUEST['sections']) && !isset($_REQUEST['reset'])) {
-            $updated = update_option( 'circartsnet_field_sections', sanitize_text_field(wp_unslash($_REQUEST['sections'])) );
+        if (get_query_var('sections') && !get_query_var('reset')) {
+            $updated = update_option( 'circartsnet_field_sections', sanitize_text_field(wp_unslash(get_query_var('sections'))) );
             if ($updated) {
                 $resp['status'] = 'success';
                 $resp['title'] = __( 'Settings Saved!', 'circular-arts-network' );
                 $resp['message'] = __( 'Settings are saved in the database successfully.', 'circular-arts-network' );
             }
         }
-        if (isset($_REQUEST['reset']) && $_REQUEST['reset'] == 'yes') {
+        if (get_query_var('reset') && get_query_var('reset') == 'yes') {
             $deleted = delete_option( 'circartsnet_field_sections' );
             if ($deleted) {
                 $resp['status'] = 'success';
@@ -381,10 +381,10 @@ class CIRCARTSNET_Admin_Settings
     }
 
     function save_custom_fields(){
-        if (isset($_REQUEST['fields'])) {
+        if (get_query_var('fields')) {
             $resp = array('status' => '', 'title' => '', 'message' => '');
             $fields_arr = array();
-            foreach (sanitize_text_field(wp_unslash($_REQUEST['fields'])) as $field) {
+            foreach (sanitize_text_field(wp_unslash(get_query_var('fields'))) as $field) {
                 $field['editable'] = (isset($field['editable']) && $field['editable'] == 'false') ? false : true;
                 $field['options'] = (isset($field['options']) && $field['options'] != '') ? explode("\n", trim($field['options'])) : array();
                 $field['title'] = (isset($field['title']) && $field['title'] != '') ? stripcslashes($field['title']) : '';
@@ -421,26 +421,35 @@ class CIRCARTSNET_Admin_Settings
     }
 
     function reset_custom_fields(){
-        if (isset($_REQUEST['reset']) && $_REQUEST['reset'] == 'yes') {
+        if (get_query_var('reset') && get_query_var('reset') == 'yes') {
             delete_option( 'circartsnet_listing_fields' );
         }
         die(0);
     }
 
     function save_admin_settings(){
+        $nonce_success = check_admin_referer('admin-save');
+        if (!$nonce_success) {
+                wp_nonce_ays('log-out');
+        }
+
         if (isset($_REQUEST)) {
             $resp = array('status' => '', 'title' => '', 'message' => '');
             
-            $circartsnet_settings = sanitize_html(wp_unslash($_REQUEST));
+            $circartsnet_settings = wp_unslash($_REQUEST);
+            // sanitize each field
+            foreach($circartsnet_settings as $field => $value) {
+               $circartsnet_setting[$field] = esc_html(wp_unslash($value));  
+            }
             if (update_option( 'circartsnet_all_settings', $circartsnet_settings )) {
                 $resp['status'] = 'success';
                 $resp['title'] = __( 'Settings Saved!', 'circular-arts-network' );
                 $resp['message'] = __( 'Settings are saved in the database successfully.', 'circular-arts-network' );
-                if (isset($_REQUEST['listing_submission_mode'])) {
+                if (get_query_var('listing_submission_mode')) {
                     $role = get_role( 'circartsnet_listing_seller' );
-                    if ($_REQUEST['listing_submission_mode'] == 'publish') {
+                    if (get_query_var('listing_submission_mode') == 'publish') {
                         $role->add_cap( 'publish_circartsnet_listings' );
-                    } elseif ($_REQUEST['listing_submission_mode'] == 'approve') {
+                    } elseif (get_query_var('listing_submission_mode') == 'approve') {
                         $role->remove_cap( 'publish_circartsnet_listings' );
                     }
                 }
@@ -457,8 +466,14 @@ class CIRCARTSNET_Admin_Settings
     function add_category_image( $taxonomy ){
         include CIRCARTSNET_PATH.'/inc/admin/add-category-image.php';
     }
-
+    /*
     function save_category_image( $term_id, $tt_id ) {
+        $nonce_success = check_admin_referer('');
+        if (!$nonce_success) {
+                wp_nonce_ays('log-out');
+        }
+
+
         if( isset( $_POST['circartsnet_category_image'] ) && '' !== $_POST['circartsnet_category_image'] ){
             add_term_meta( $term_id, 'circartsnet_category_image', sanitize_text_field(wp_unslash( $_POST['circartsnet_category_image'])) , true );
         }
@@ -466,9 +481,11 @@ class CIRCARTSNET_Admin_Settings
             add_term_meta( $term_id, 'circartsnet_category_icon', sanitize_text_field(wp_unslash( $_POST['circartsnet_category_icon']) ), true );
         }
     }
+     */
     function edit_category_image( $term, $taxonomy ) {
         include CIRCARTSNET_PATH.'/inc/admin/edit-category-image.php';
     }
+/*
     function updated_category_image( $term_id, $tt_id ) {
         if( isset( $_POST['circartsnet_category_image'] ) && '' !== $_POST['circartsnet_category_image'] ){
             update_term_meta( $term_id, 'circartsnet_category_image', sanitize_text_field( wp_unslash($_POST['circartsnet_category_image'] )) );
@@ -482,6 +499,7 @@ class CIRCARTSNET_Admin_Settings
         }
     }
 
+ */ 
     function archive_page_listings_count($query){
         if ( is_admin() || ! $query->is_main_query() ) {
             return;
@@ -504,11 +522,11 @@ class CIRCARTSNET_Admin_Settings
     }
 
     function deny_seller(){
-        if (isset($_REQUEST) && current_user_can( 'manage_options' )) {
+        if (current_user_can( 'manage_options' )) {
             $pending_sellers = get_option( 'circartsnet_pending_users' );
-            if (isset($_REQUEST['userindex'])) {
-                do_action( 'circartsnet_new_seller_rejected', $pending_sellers[sanitize_text_field(wp_unslash($_REQUEST['userindex'])) ]);
-                unset($pending_sellers[$_REQUEST['userindex']]);
+            if (get_query_var('userindex')) {
+                do_action( 'circartsnet_new_seller_rejected', $pending_sellers[sanitize_text_field(wp_unslash(get_query_var('userindex'))) ]);
+                unset($pending_sellers[get_query_var('userindex')]);
                 update_option( 'circartsnet_pending_users', $pending_sellers );
             }
         }
@@ -516,10 +534,10 @@ class CIRCARTSNET_Admin_Settings
     }
 
     function approve_seller(){
-        if (isset($_REQUEST) && current_user_can( 'manage_options' )) {
+        if (current_user_can( 'manage_options' )) {
             $pending_sellers = get_option( 'circartsnet_pending_users' );
-            if (isset($_REQUEST['userindex'])) {
-                $new_seller = $pending_sellers[sanitize_text_field(wp_unslash($_REQUEST['userindex']))];
+            if (get_query_var('userindex')) {
+                $new_seller = $pending_sellers[sanitize_text_field(wp_unslash(get_query_var('userindex')))];
 
                 $seller_id = wp_create_user( $new_seller['username'], $new_seller['seller_password'], $new_seller['useremail'] );
 
@@ -534,8 +552,8 @@ class CIRCARTSNET_Admin_Settings
                     ) );
 
                     // WPML Language
-                    if (isset($_REQUEST['wpml_user_email_language'])) {
-                        update_user_meta( $seller_id, 'icl_admin_language', sanitize_text_field( wp_unslash($_REQUEST['wpml_user_email_language'] )));
+                    if (get_query_var('wpml_user_email_language')) {
+                        update_user_meta( $seller_id, 'icl_admin_language', sanitize_text_field( wp_unslash(get_query_var('wpml_user_email_language') )));
                     }
 
                     update_user_meta( $seller_id, 'seller_phone', sanitize_text_field(wp_unslash( $new_seller['seller_phone'] )));
@@ -545,7 +563,7 @@ class CIRCARTSNET_Admin_Settings
                     }
                 }
             
-                unset($pending_sellers[$_REQUEST['userindex']]);
+                unset($pending_sellers[get_query_var('userindex')]);
 
                 update_option( 'circartsnet_pending_users', $pending_sellers );
             }

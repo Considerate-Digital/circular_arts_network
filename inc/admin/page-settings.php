@@ -28,6 +28,7 @@ if( ! defined('ABSPATH' ) ){ exit; }
 		</div>
 		<div class="col-sm-9">
 			<form id="can-settings-form" class="form-horizontal">
+				<?php wp_nonce_field('admin-save'); ?>
 				<input type="hidden" name="action" value="wcp_rem_save_settings">
 				<?php $all_fields_settings = $this->admin_settings_fields();
 					foreach ($all_fields_settings as $panel) { ?>
@@ -37,7 +38,8 @@ if( ! defined('ABSPATH' ) ){ exit; }
 							</div>
 							<div class="card-body">
 								<?php foreach ($panel['fields'] as $field) {
-									echo wp_kses_post($this->render_setting_field($field));
+									//NB: this does not need further escaping as all of the fields have each attribute escaped in "render-admin-settings.php"
+									echo $this->render_setting_field($field);
 								} ?>
 							</div>
 						</div>

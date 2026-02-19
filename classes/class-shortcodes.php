@@ -678,12 +678,14 @@ class CIRCARTSNET_Shortcodes
 	}
 
 	function render_dashboard_page(){
-		$circartsnet_page = get_query_var('circartsnet_page') ? sanitize_text_field(
-			wp_unslash(get_query_var('circartsnet_page'))) : "";
-		if ($circartsnet_page && file_exists(CIRCARTSNET_PATH. '/shortcodes/dashboard/'.$circartsnet_page.'.php')) {
-			include CIRCARTSNET_PATH. '/shortcodes/dashboard/'.$circartsnet_page.'.php';
-		} else {
-			include CIRCARTSNET_PATH. '/shortcodes/dashboard/dashboard.php';
+		// NB: nonce is not checked here but in the specific "page" include
+		if (isset($_GET['circartsnet_page'])) {
+			$circartsnet_page = sanitize_text_field(wp_unslash($_GET['circartsnet_page']));
+			if ($circartsnet_page && file_exists(CIRCARTSNET_PATH. '/shortcodes/dashboard/'.$circartsnet_page.'.php')) {
+				include CIRCARTSNET_PATH. '/shortcodes/dashboard/'.$circartsnet_page.'.php';
+			} else {
+				include CIRCARTSNET_PATH. '/shortcodes/dashboard/dashboard.php';
+			}
 		}
 	}
 

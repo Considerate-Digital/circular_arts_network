@@ -107,7 +107,7 @@ class CIRCARTSNET_Register_CPT
             3  => __( 'Custom field deleted.', 'circular-arts-network' ),
             4  => __( 'Listing updated.', 'circular-arts-network' ),
             /* translators: %s: date and time of the revision */
-            5  => isset( $_GET['revision'] ) ? sprintf( __( 'Listing restored to revision', 'circular-arts-network' ), wp_post_revision_title( (int) sanitize_text_field(wp_unslash($_GET['revision'])), false ) ) : false,
+            5  => get_query_var('revision') ? sprintf( __( 'Listing restored to revision', 'circular-arts-network' ), wp_post_revision_title( (int) sanitize_text_field(wp_unslash(get_query_var('revision'))), false ) ) : false,
             6  => __( 'Listing published.', 'circular-arts-network' ),
             7  => __( 'Listing saved.', 'circular-arts-network' ),
             8  => __( 'Listing submitted.', 'circular-arts-network' ),

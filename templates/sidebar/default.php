@@ -64,7 +64,7 @@
 	        </div>
 			<?php
 		        if (circartsnet_get_option('gdpr_message') != '') {
-		            echo esc_html('<div class="col-sm-12 can-input-wrapper"><label><input type="checkbox" required> '.stripcslashes(circartsnet_get_option('gdpr_message')).'</label></div>');
+		            echo wp_kses_post('<div class="col-sm-12 can-input-wrapper"><label><input type="checkbox" required> '.stripcslashes(circartsnet_get_option('gdpr_message')).'</label></div>');
 		        }
 			    if (circartsnet_get_option('captcha_on_contact') == 'on') { ?>
 			        <div class="g-recaptcha" style="transform:scale(0.77);-webkit-transform:scale(0.77);transform-origin:0 0;-webkit-transform-origin:0 0;" data-sitekey="<?php echo esc_html( circartsnet_get_option('captcha_site_key', '6LcDhUQUAAAAAFAsfyTUPCwDIyXIUqvJiVjim2E9')); ?>"></div>
