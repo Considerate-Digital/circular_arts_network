@@ -38,7 +38,10 @@
             <div class="form-group can-input-wrapper can-upload-picture">
               <label for="sellerImage"><?php esc_html_e( 'Profile Picture', 'circular-arts-network' ); ?></label>
               <input class="form-control can-text-input" type="file" accept="image/*" id="circartsnet_seller_image" name="circartsnet_seller_image">
-              <div class="seller-dp-prev"><img src=""></div>
+              <div class="seller-dp-prev">
+                  <?php // phpcs:ignore PluginCheck.CodeAnalysis.ImageFunctions.NonEnqueuedImage ?>
+                  <img src="">
+              </div>
               <div class="can-status mt-2"></div>
               <div class="clearfix"></div>
             </div>

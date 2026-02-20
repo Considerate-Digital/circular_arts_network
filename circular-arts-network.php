@@ -1,12 +1,12 @@
 <?php
 /**
- * Plugin Name: Circular Arts Network 
+ * Plugin Name: Circular Arts Network
  * Plugin URI: https://canarts.org.uk
  * Description: A circular arts network for WordPress.
  * Version: 0.2
  * Author: CIRCARTSNETARTS
  * License: GPLv3
- * License URI: http://www.gnu.org/licenses/gpl-2.0.html
+ * License URI: https://www.gnu.org/licenses/gpl-3.0.html
  * Text Domain: circular-arts-network
  * Domain Path: /languages
  */
@@ -15,7 +15,7 @@ defined( 'ABSPATH' ) || exit;
 
 define('CIRCARTSNET_PATH', untrailingslashit(plugin_dir_path( __FILE__ )) );
 define('CIRCARTSNET_URL', untrailingslashit(plugin_dir_url( __FILE__ )) );
-define('CIRCARTSNET_VERSION', '1.2' );
+define('CIRCARTSNET_VERSION', '0.2' );
 
 require_once( CIRCARTSNET_PATH.'/inc/helpers.php' );
 require_once( CIRCARTSNET_PATH.'/classes/class-admin-settings.php' );
@@ -71,4 +71,3 @@ function hide_admin_bar_for_specific_roles() {
 	    }
 }
 add_action('after_setup_theme', 'hide_admin_bar_for_specific_roles');
-

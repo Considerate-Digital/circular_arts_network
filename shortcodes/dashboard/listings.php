@@ -1,12 +1,5 @@
 <?php 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
-$nonce_success = false;
-if (isset($_REQUEST['_wpnonce'])) {
-    $nonce_success = wp_verify_nonce( sanitize_text_field(wp_unslash($_REQUEST['_wpnonce']))); 
-}
-if (!$nonce_success) {
-        wp_nonce_ays('log-out');
-}
 ?>
 <div class="can-screen-wrapper">
 	<div class="can-screen-header">
@@ -60,6 +53,7 @@ if (!$nonce_success) {
 		  <tbody>
 			<?php 
 				$current_user_data = wp_get_current_user();
+				$base_url = esc_url_raw( add_query_arg( array() ) );
 				// Quick hack for translating wp statuses
 				$statuses_translatable = array(
 					__( 'pending', 'circular-arts-network' ),
@@ -111,11 +105,22 @@ if (!$nonce_success) {
 								<td><?php echo esc_html( human_time_diff( get_the_time('U'), current_time('timestamp') ) ) . ' ago'; ?></td>
 								<td><?php echo esc_html(ucfirst(get_post_status(get_the_id()))); ?></td>
 								<td>
-									<a href="<?php echo esc_url( add_query_arg( array('circartsnet_page' => 'edit', 'listing_id' => get_the_id()), wp_nonce_url('#', 'edit-listing'))); ?>" class="btn btn-info btn-sm">
+									<?php
+										$edit_url = add_query_arg(
+											array(
+												'circartsnet_page' => 'edit',
+												'listing_id' => get_the_id(),
+											),
+											$base_url
+										);
+										$edit_url = wp_nonce_url( $edit_url, 'edit-listing' );
+									?>
+									<a href="<?php echo esc_url( $edit_url ); ?>" class="btn btn-info btn-sm">
 										<i class="fas fa-pencil-alt"></i>
 										<?php esc_html_e( 'Edit', 'circular-arts-network' ); ?>
 									</a>
-										<a class="btn btn-danger btn-sm delete-listing" data-pid="<?php echo esc_attr(get_the_id()); ?>" href="<?php echo esc_url(wp_nonce_url('#', 'delete-listing'))?>">
+									<?php $delete_url = wp_nonce_url( $base_url, 'delete-listing' ); ?>
+										<a class="btn btn-danger btn-sm delete-listing" data-pid="<?php echo esc_attr(get_the_id()); ?>" href="<?php echo esc_url( $delete_url ); ?>">
 										<i class="fa fa-trash"></i>
 										<?php esc_html_e( 'Delete', 'circular-arts-network' ); ?>
 									</a>

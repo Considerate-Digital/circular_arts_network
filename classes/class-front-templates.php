@@ -186,9 +186,9 @@ class CIRCARTSNET_Front_Templates
 
     function archive_topbar(){
 
-    	wp_enqueue_style('nice-select', CIRCARTSNET_URL."/assets/libs/css/nice-select.css");
-    	wp_enqueue_script('nice-select', CIRCARTSNET_URL."/assets/libs/js/jquery.nice-select.min.js", array('jquery'));
-    	wp_enqueue_script('trigger-nice-select', CIRCARTSNET_URL."/assets/js/trigger-nice-select.js", array('jquery'));
+    	wp_enqueue_style('nice-select', CIRCARTSNET_URL . "/assets/libs/css/nice-select.css", array(), CIRCARTSNET_VERSION);
+    	wp_enqueue_script('nice-select', CIRCARTSNET_URL . "/assets/libs/js/jquery.nice-select.min.js", array('jquery'), CIRCARTSNET_VERSION, true);
+    	wp_enqueue_script('trigger-nice-select', CIRCARTSNET_URL . "/assets/js/trigger-nice-select.js", array('jquery'), CIRCARTSNET_VERSION, true);
 
         $in_theme = get_stylesheet_directory().'/can/top-bar.php';
 
@@ -273,23 +273,23 @@ class CIRCARTSNET_Front_Templates
 	function front_scripts(){
 		if (is_singular( 'circartsnet_listing' )) {
 			circartsnet_load_basic_styles();
-			wp_enqueue_style('can-single', CIRCARTSNET_URL."/assets/css/single-listing.css");
-            wp_enqueue_script('can-single-listing', CIRCARTSNET_URL."/assets/js/single-listing.js", array('jquery'));
+			wp_enqueue_style('can-single', CIRCARTSNET_URL . "/assets/css/single-listing.css", array(), CIRCARTSNET_VERSION);
+            wp_enqueue_script('can-single-listing', CIRCARTSNET_URL . "/assets/js/single-listing.js", array('jquery'), CIRCARTSNET_VERSION, true);
 		}
 		if (is_archive() && is_tax('circartsnet_listing_category')) {
 			circartsnet_load_basic_styles();
-			wp_enqueue_style('can-archive', CIRCARTSNET_URL."/assets/css/archive.css");
+			wp_enqueue_style('can-archive', CIRCARTSNET_URL . "/assets/css/archive.css", array(), CIRCARTSNET_VERSION);
 		}
 		if (is_archive() && is_tax('circartsnet_listing_tag')) {
 			circartsnet_load_basic_styles();
-			wp_enqueue_style('can-archive', CIRCARTSNET_URL."/assets/css/archive.css");
+			wp_enqueue_style('can-archive', CIRCARTSNET_URL . "/assets/css/archive.css", array(), CIRCARTSNET_VERSION);
 		}
 
         if (circartsnet_get_option('enable_compare', 'enable') == 'enable') {
-            wp_enqueue_style( 'listing-compare', CIRCARTSNET_URL . '/assets/css/compare.css' );
-            wp_enqueue_style( 'iziModal', CIRCARTSNET_URL . '/assets/libs/css/iziModal.min.css' );
-            wp_enqueue_script( 'iziModal', CIRCARTSNET_URL . '/assets/libs/js/iziModal.min.js', array('jquery') );
-            wp_enqueue_script( 'can-compare', CIRCARTSNET_URL . '/assets/js/compare.js', array('jquery') );
+            wp_enqueue_style( 'listing-compare', CIRCARTSNET_URL . '/assets/css/compare.css', array(), CIRCARTSNET_VERSION );
+            wp_enqueue_style( 'iziModal', CIRCARTSNET_URL . '/assets/libs/css/iziModal.min.css', array(), CIRCARTSNET_VERSION );
+            wp_enqueue_script( 'iziModal', CIRCARTSNET_URL . '/assets/libs/js/iziModal.min.js', array('jquery'), CIRCARTSNET_VERSION, true );
+            wp_enqueue_script( 'can-compare', CIRCARTSNET_URL . '/assets/js/compare.js', array('jquery'), CIRCARTSNET_VERSION, true );
             wp_localize_script( 'can-compare', 'circartsnet_compare', array(
                 'ajaxurl' => admin_url( 'admin-ajax.php' )
             ) );
@@ -331,20 +331,20 @@ class CIRCARTSNET_Front_Templates
 
 	            if ($gallery_type == 'slick') {
 
-                wp_register_script( 'can-carousel-js', CIRCARTSNET_URL . '/assets/libs/js/carousel.js');
+                wp_register_script( 'can-carousel-js', CIRCARTSNET_URL . '/assets/libs/js/carousel.js', array(), CIRCARTSNET_VERSION, true );
                 wp_enqueue_script( 'can-carousel-js' );
 
-                wp_register_style( 'can-carousel-css', CIRCARTSNET_URL . '/assets/libs/css/carousel.css'); 
+                wp_register_style( 'can-carousel-css', CIRCARTSNET_URL . '/assets/libs/css/carousel.css', array(), CIRCARTSNET_VERSION ); 
                 wp_enqueue_style( 'can-carousel-css' );
 
 
-	                wp_enqueue_script( 'can-trigger-slick', CIRCARTSNET_URL . '/assets/js/trigger-slick.js', array('jquery'));
+	                wp_enqueue_script( 'can-trigger-slick', CIRCARTSNET_URL . '/assets/js/trigger-slick.js', array('jquery'), CIRCARTSNET_VERSION, true);
 	            }
 
 	            if ($gallery_type == 'grid') {
-	                wp_enqueue_style( 'can-grid-css', CIRCARTSNET_URL . '/assets/libs/css/images-grid.css' );
-	                wp_enqueue_script( 'can-grid-js', CIRCARTSNET_URL . '/assets/libs/js/images-grid.js', array('jquery'));
-	                wp_enqueue_script( 'can-trigger-grid', CIRCARTSNET_URL . '/assets/js/trigger-grid.js', array('jquery'));
+	                wp_enqueue_style( 'can-grid-css', CIRCARTSNET_URL . '/assets/libs/css/images-grid.css', array(), CIRCARTSNET_VERSION );
+	                wp_enqueue_script( 'can-grid-js', CIRCARTSNET_URL . '/assets/libs/js/images-grid.js', array('jquery'), CIRCARTSNET_VERSION, true);
+	                wp_enqueue_script( 'can-trigger-grid', CIRCARTSNET_URL . '/assets/js/trigger-grid.js', array('jquery'), CIRCARTSNET_VERSION, true);
 	                wp_localize_script( 'can-trigger-grid', 'circartsnet_grid_vars', array('grid_view_txt' => circartsnet_get_option('grid_view_txt', 'View all %count% images')) );
 	            }
 
@@ -372,17 +372,17 @@ class CIRCARTSNET_Front_Templates
 
                 if (circartsnet_get_option('use_map_from', 'leaflet') == 'leaflet') {
 
-                  wp_register_script( 'can-leaflet-js', CIRCARTSNET_URL .'/assets/libs/js/leaflet.js' );
+                  wp_register_script( 'can-leaflet-js', CIRCARTSNET_URL .'/assets/libs/js/leaflet.js', array(), CIRCARTSNET_VERSION, true );
                   wp_enqueue_script( 'can-leaflet-js' );
 
-                  wp_register_style( 'can-leaflet-css', CIRCARTSNET_URL . '/assets/libs/css/leaflet.css' );
+                  wp_register_style( 'can-leaflet-css', CIRCARTSNET_URL . '/assets/libs/css/leaflet.css', array(), CIRCARTSNET_VERSION );
                   wp_enqueue_style( 'can-leaflet-css' );
                 } else {
                 	$maps_api_key = circartsnet_get_option('maps_api_key');
                     if (is_ssl()) {
-                        wp_enqueue_script( 'can-single-listing-map', 'https://maps.googleapis.com/maps/api/js?key='.$maps_api_key);
+                        wp_enqueue_script( 'can-single-listing-map', 'https://maps.googleapis.com/maps/api/js?key='.$maps_api_key, array(), CIRCARTSNET_VERSION, true);
                     } else {
-                        wp_enqueue_script( 'can-single-listing-map', 'http://maps.googleapis.com/maps/api/js?key='.$maps_api_key);
+                        wp_enqueue_script( 'can-single-listing-map', 'https://maps.googleapis.com/maps/api/js?key='.$maps_api_key, array(), CIRCARTSNET_VERSION, true);
                     }
                 }
 
@@ -403,7 +403,7 @@ class CIRCARTSNET_Front_Templates
                     'maps_styles' => stripcslashes(circartsnet_get_option('maps_styles')),
                 );
 
-                wp_enqueue_script( 'can-location-js', CIRCARTSNET_URL . '/assets/js/location.js', array('jquery'));
+                wp_enqueue_script( 'can-location-js', CIRCARTSNET_URL . '/assets/js/location.js', array('jquery'), CIRCARTSNET_VERSION, true);
                 wp_localize_script( 'can-location-js', 'circartsnet_location_settings', $localize_vars );
 
 				$template = CIRCARTSNET_PATH . '/templates/content-single/location.php';
@@ -459,7 +459,7 @@ class CIRCARTSNET_Front_Templates
 		global $post;
 		$author_id = $post->post_author;
 		$author_info = get_userdata($author_id);
-		wp_enqueue_script( 'can-contact-seller', CIRCARTSNET_URL . '/assets/js/contact-seller.js', array('jquery'));
+		wp_enqueue_script( 'can-contact-seller', CIRCARTSNET_URL . '/assets/js/contact-seller.js', array('jquery'), CIRCARTSNET_VERSION, true);
     	include CIRCARTSNET_PATH . '/templates/sidebar/default.php';
 		$p_sidebar = circartsnet_get_option('listing_page_sidebar', '');
 		if ( is_active_sidebar( $p_sidebar )  ) {

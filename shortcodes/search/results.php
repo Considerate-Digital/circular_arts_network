@@ -1,15 +1,18 @@
 <?php 
   if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
-$nonce_success = false;
-if (isset($_REQUEST['_wpnonce'])) {
-    $nonce_success = wp_verify_nonce( sanitize_text_field(wp_unslash($_REQUEST['_wpnonce'])), 'search' ); 
-}
-if (!$nonce_success) {
+$do_search = ( isset($_GET['action']) && $_GET['action'] == 'circartsnet_search_listing' );
+if ($do_search) {
+    $nonce_success = false;
+    if (isset($_REQUEST['_wpnonce'])) {
+        $nonce_success = wp_verify_nonce( sanitize_text_field(wp_unslash($_REQUEST['_wpnonce'])), 'search' ); 
+    }
+    if (!$nonce_success) {
         wp_nonce_ays('log-out');
+    }
 }
 
-if(isset($_GET['action']) && $_GET['action'] == 'circartsnet_search_listing'){
+if ($do_search) {
     
     $args = circartsnet_get_search_query($_REQUEST);
     $paged = ( get_query_var('paged') ) ? get_query_var('paged') : 1; 

@@ -13,6 +13,7 @@
 	</div>
 	<div class="row can-credits">
 		<a href="https://canarts.org.uk" target="_blank">
+			<?php // phpcs:ignore PluginCheck.CodeAnalysis.ImageFunctions.NonEnqueuedImage ?>
 			<img src="<?php echo esc_url(CIRCARTSNET_URL);?>/assets/images/can-logo.webp"  />
 		</a>
 		<p>CAN - Circular Arts Network</p>

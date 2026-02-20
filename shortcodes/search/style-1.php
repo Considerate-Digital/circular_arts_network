@@ -37,6 +37,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 		</form>
 	</div>
 	<div class="can-loader text-center">
+		<?php // phpcs:ignore PluginCheck.CodeAnalysis.ImageFunctions.NonEnqueuedImage ?>
 		<img src="<?php echo esc_html(CIRCARTSNET_URL.'/assets/images/ajax-loader.gif'); ?>" alt="<?php esc_html_e( 'Loading...', 'circular-arts-network' ); ?>">
 	</div>
 	<div class="search-results"></div>

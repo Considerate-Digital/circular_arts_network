@@ -33,9 +33,9 @@ function circartsnet_get_option($key, $default = '') {
 }
 
 function circartsnet_load_basic_styles(){
-    wp_enqueue_style('can-bs', CIRCARTSNET_URL."/assets/libs/css/bootstrap.css");
-    wp_enqueue_style('can-icons', CIRCARTSNET_URL."/assets/libs/icons/bootstrap-icons.css");
-    wp_enqueue_style('can-main', CIRCARTSNET_URL."/assets/css/main.css");
+    wp_enqueue_style('can-bs', CIRCARTSNET_URL . "/assets/libs/css/bootstrap.css", array(), CIRCARTSNET_VERSION);
+    wp_enqueue_style('can-icons', CIRCARTSNET_URL . "/assets/libs/icons/bootstrap-icons.css", array(), CIRCARTSNET_VERSION);
+    wp_enqueue_style('can-main', CIRCARTSNET_URL . "/assets/css/main.css", array(), CIRCARTSNET_VERSION);
 
     ob_start();
         include_once CIRCARTSNET_PATH . '/assets/css/styles.php';
@@ -222,8 +222,8 @@ function circartsnet_render_listing_section($section, $listing_id = 0){
             if ($listing_id) {
                 $savedImages = get_post_meta( $listing_id, 'circartsnet_'.$section['key'], true );
             }
-            wp_enqueue_script('can-field-image', CIRCARTSNET_URL."/assets/fields/images.js", array( 'jquery' ));
-            wp_enqueue_style('can-field-image', CIRCARTSNET_URL."/assets/fields/images.css");
+            wp_enqueue_script('can-field-image', CIRCARTSNET_URL . "/assets/fields/images.js", array( 'jquery' ), CIRCARTSNET_VERSION, true);
+            wp_enqueue_style('can-field-image', CIRCARTSNET_URL . "/assets/fields/images.css", array(), CIRCARTSNET_VERSION);
             ?>
             <div class="card mb-2">
                 <h5 class="card-header"><?php echo esc_attr( $section['title'] ); ?></h5>
@@ -247,7 +247,7 @@ function circartsnet_render_listing_section($section, $listing_id = 0){
                                             <div class="can-preview-image">
                                                 <input type="hidden" name="<?php echo esc_attr( $section['key'] ); ?>[<?php echo esc_attr( $image_id ); ?>]" value="<?php echo esc_attr( $image_id ); ?>">
                                                 <div class="can-image-wrap">
-                                                    <img src="<?php echo esc_url( $image_url[0] ); ?>">
+                                                    <?php echo wp_get_attachment_image( $image_id, 'thumbnail' ); ?>
                                                 </div>
                                                 <div class="can-actions-wrap">
                                                     <a href="javascript:void(0)" class="btn remove-image btn-sm">
@@ -275,10 +275,10 @@ function circartsnet_render_listing_section($section, $listing_id = 0){
             }
 
             if (circartsnet_get_option('use_map_from', 'leaflet') == 'leaflet') {
-                  wp_register_script( 'can-leaflet-js', CIRCARTSNET_URL . '/assets/libs/js/leaflet.js' );
+                  wp_register_script( 'can-leaflet-js', CIRCARTSNET_URL . '/assets/libs/js/leaflet.js', array(), CIRCARTSNET_VERSION, true );
                   wp_enqueue_script( 'can-leaflet-js' );
 
-                    wp_register_style( 'can-leaflet-css', CIRCARTSNET_URL . '/assets/libs/css/leaflet.css' );
+                    wp_register_style( 'can-leaflet-css', CIRCARTSNET_URL . '/assets/libs/css/leaflet.css', array(), CIRCARTSNET_VERSION );
                   wp_enqueue_style( 'can-leaflet-css' );
                 /* TODO check if still in use
                 wp_enqueue_style( 'can-leaflet-geo-css', CIRCARTSNET_URL . '/assets/leaflet/Control.Geocoder.css');
@@ -286,13 +286,9 @@ function circartsnet_render_listing_section($section, $listing_id = 0){
                  */
             } else {
                 $maps_api_key = circartsnet_get_option('maps_api_key');
-                if (is_ssl()) {
-                    wp_enqueue_script( 'google-maps', 'https://maps.googleapis.com/maps/api/js?key='.$maps_api_key.'&libraries=places' );
-                } else {
-                    wp_enqueue_script( 'google-maps', 'http://maps.googleapis.com/maps/api/js?key='.$maps_api_key.'&libraries=places' );
-                }
+                wp_enqueue_script( 'google-maps', 'https://maps.googleapis.com/maps/api/js?key='.$maps_api_key.'&libraries=places', array(), CIRCARTSNET_VERSION, true );
             }
-            wp_enqueue_script('can-field-location', CIRCARTSNET_URL."/assets/fields/location.js", array( 'jquery' ));
+            wp_enqueue_script('can-field-location', CIRCARTSNET_URL . "/assets/fields/location.js", array( 'jquery' ), CIRCARTSNET_VERSION, true);
             $localize_vars = array(
                 'use_map_from' => circartsnet_get_option('use_map_from', 'leaflet'),
                 'def_lat' => isset($savedLatitude) ? $savedLatitude : circartsnet_get_option('default_map_lat', '55.8617'),
@@ -303,7 +299,7 @@ function circartsnet_render_listing_section($section, $listing_id = 0){
             );
 
             wp_localize_script( 'can-field-location', 'circartsnet_map_settings', $localize_vars );
-            wp_enqueue_style('can-field-location', CIRCARTSNET_URL."/assets/fields/images.css");
+            wp_enqueue_style('can-field-location', CIRCARTSNET_URL . "/assets/fields/images.css", array(), CIRCARTSNET_VERSION);
             ?>
             <div class="card mb-2">
                 <h5 class="card-header"><?php echo esc_attr( $section['title'] ); ?></h5>
@@ -325,8 +321,6 @@ function circartsnet_render_listing_section($section, $listing_id = 0){
             
                 
             <?php 
-                  wp_register_script( 'can-listing-location-js', CIRCARTSNET_URL . '/assets/js/listing-location.js' );
-                  wp_enqueue_script( 'can-listing-location-js' );
                             break;
         
         default:
@@ -619,6 +613,7 @@ function circartsnet_get_section_title($tabData){
 
     if (isset($tabData['icon']) && $tabData['icon'] != '') {
         if (strpos($tabData['icon'], "http://") !== false || strpos($tabData['icon'], "https://") !== false) {
+            // phpcs:ignore PluginCheck.CodeAnalysis.ImageFunctions.NonEnqueuedImage
             $icon = '<img class="can-sec-icon" src= "'.esc_url( $tabData['icon'] ).'">';
         } else {
             $icon = '<i class="'.esc_attr( $tabData['icon'] ).'"></i>';
@@ -1137,16 +1132,19 @@ function circartsnet_get_search_query($data){
         $args['orderby'] = $data['orderby'];
         if ($data['orderby'] == 'price') {
             $args['orderby'] = 'meta_value_num';
+            // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key
             $args['meta_key'] = 'circartsnet_regular_price';           
         }
     }
 
     if (isset($data['orderby_custom']) && $data['orderby_custom'] != '') {
         $args['orderby'] = 'meta_value';
+        // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key
         $args['meta_key'] = 'circartsnet_'.$data['orderby_custom'];
     }
 
     if (isset($data['tag']) && $data['tag'] != '') {
+        // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query
         $args['tax_query'] = array(
             array(
                 'taxonomy' => 'circartsnet_listing_tag',
@@ -1158,6 +1156,7 @@ function circartsnet_get_search_query($data){
 
     if (isset($cats) && $cats != '') {
         $p_cats = array_map('trim', explode(',', $cats));
+        // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query
         $args['tax_query'] = array(
             array(
                 'taxonomy' => 'circartsnet_listing_category',

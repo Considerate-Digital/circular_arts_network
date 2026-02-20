@@ -36,6 +36,70 @@ class CIRCARTSNET_Admin_Settings
         add_filter( 'wp_kses_allowed_html', array($this, 'custom_wpkses_post_tags'), 10, 2 );
 	}
 
+    function get_settings_field_allowed_html(){
+        return array(
+            'div' => array(
+                'class' => true,
+                'id' => true,
+                'data-cond-option' => true,
+                'data-cond-value' => true,
+                'style' => true,
+            ),
+            'label' => array(
+                'for' => true,
+                'class' => true,
+            ),
+            'input' => array(
+                'type' => true,
+                'name' => true,
+                'id' => true,
+                'value' => true,
+                'class' => true,
+                'checked' => true,
+                'disabled' => true,
+                'placeholder' => true,
+                'data-alpha' => true,
+            ),
+            'textarea' => array(
+                'name' => true,
+                'id' => true,
+                'class' => true,
+                'rows' => true,
+                'cols' => true,
+                'disabled' => true,
+            ),
+            'select' => array(
+                'name' => true,
+                'id' => true,
+                'class' => true,
+                'multiple' => true,
+                'data-placeholder' => true,
+            ),
+            'option' => array(
+                'value' => true,
+                'selected' => true,
+                'disabled' => true,
+            ),
+            'span' => array(
+                'class' => true,
+            ),
+            'b' => array(),
+            'strong' => array(),
+            'code' => array(),
+            'a' => array(
+                'href' => true,
+                'target' => true,
+                'rel' => true,
+            ),
+            'button' => array(
+                'type' => true,
+                'class' => true,
+                'data-title' => true,
+                'data-btntext' => true,
+            ),
+        );
+    }
+
     function menu_pages(){
 
         /**
@@ -181,49 +245,49 @@ class CIRCARTSNET_Admin_Settings
 
         // Basic scripts for all ucl admin pages
     	if(strpos($slug, "can") !== -1){
-            wp_enqueue_style('can-bs', CIRCARTSNET_URL."/assets/libs/css/bootstrap.css");
-            wp_enqueue_style('can-icons', CIRCARTSNET_URL."/assets/libs/icons/bootstrap-icons.css");
-			wp_enqueue_script( 'can-sweetalert', CIRCARTSNET_URL . '/assets/libs/sweetalert/sweetalert2.all.min.js', array( 'jquery' ));
+            wp_enqueue_style('can-bs', CIRCARTSNET_URL . "/assets/libs/css/bootstrap.css", array(), CIRCARTSNET_VERSION);
+            wp_enqueue_style('can-icons', CIRCARTSNET_URL . "/assets/libs/icons/bootstrap-icons.css", array(), CIRCARTSNET_VERSION);
+			wp_enqueue_script( 'can-sweetalert', CIRCARTSNET_URL . '/assets/libs/sweetalert/sweetalert2.all.min.js', array( 'jquery' ), CIRCARTSNET_VERSION, true );
     	}
 
         // Fields Sections
         if($slug == 'circartsnet_listing_page_circartsnet_listing_fields_sections'){
-            wp_enqueue_style( 'can-fields-sections', CIRCARTSNET_URL . '/assets/css/fields-sections.css');
-            wp_enqueue_script('can-fields-sections', CIRCARTSNET_URL."/assets/js/fields-sections.js", array( 'jquery', 'jquery-ui-sortable', 'jquery-effects-highlight' ));
+            wp_enqueue_style( 'can-fields-sections', CIRCARTSNET_URL . '/assets/css/fields-sections.css', array(), CIRCARTSNET_VERSION);
+            wp_enqueue_script('can-fields-sections', CIRCARTSNET_URL . "/assets/js/fields-sections.js", array( 'jquery', 'jquery-ui-sortable', 'jquery-effects-highlight' ), CIRCARTSNET_VERSION, true);
         }
 
         // Fields Buider   
         if ($slug == 'circartsnet_listing_page_circartsnet_listing_fields_builder') {
-            wp_enqueue_style( 'can-iconpicker', CIRCARTSNET_URL . '/assets/libs/iconpicker/jquery.fonticonpicker.min.css');
-            wp_enqueue_style( 'can-iconpicker-grey', CIRCARTSNET_URL . '/assets/libs/iconpicker/jquery.fonticonpicker.grey.min.css');
-            wp_enqueue_script( 'can-iconpicker', CIRCARTSNET_URL . '/assets/libs/iconpicker/jquery.fonticonpicker.min.js', array('jquery'));
-            wp_enqueue_style( 'can-fields-builder', CIRCARTSNET_URL . '/assets/css/fields-builder.css' );
-            wp_enqueue_script( 'can-fields-builder', CIRCARTSNET_URL . '/assets/js/fields-builder.js'  , array( 'jquery', 'jquery-ui-accordion', 'jquery-ui-sortable', 'jquery-ui-draggable' ));
+            wp_enqueue_style( 'can-iconpicker', CIRCARTSNET_URL . '/assets/libs/iconpicker/jquery.fonticonpicker.min.css', array(), CIRCARTSNET_VERSION);
+            wp_enqueue_style( 'can-iconpicker-grey', CIRCARTSNET_URL . '/assets/libs/iconpicker/jquery.fonticonpicker.grey.min.css', array(), CIRCARTSNET_VERSION);
+            wp_enqueue_script( 'can-iconpicker', CIRCARTSNET_URL . '/assets/libs/iconpicker/jquery.fonticonpicker.min.js', array('jquery'), CIRCARTSNET_VERSION, true);
+            wp_enqueue_style( 'can-fields-builder', CIRCARTSNET_URL . '/assets/css/fields-builder.css', array(), CIRCARTSNET_VERSION );
+            wp_enqueue_script( 'can-fields-builder', CIRCARTSNET_URL . '/assets/js/fields-builder.js'  , array( 'jquery', 'jquery-ui-accordion', 'jquery-ui-sortable', 'jquery-ui-draggable' ), CIRCARTSNET_VERSION, true);
         }
 
         // Settings Page   
         if ($slug == 'circartsnet_listing_page_circartsnet_settings') {
             wp_enqueue_style( 'wp-color-picker' );
             wp_enqueue_media();
-            wp_enqueue_script( 'can-conditionize', CIRCARTSNET_URL . '/assets/js/conditionize.js' , array('jquery'));
-            wp_enqueue_script( 'can-save-settings-js', CIRCARTSNET_URL . '/assets/js/page-settings.js' , array('jquery', 'wp-color-picker' ));
+            wp_enqueue_script( 'can-conditionize', CIRCARTSNET_URL . '/assets/js/conditionize.js' , array('jquery'), CIRCARTSNET_VERSION, true);
+            wp_enqueue_script( 'can-save-settings-js', CIRCARTSNET_URL . '/assets/js/page-settings.js' , array('jquery', 'wp-color-picker' ), CIRCARTSNET_VERSION, true);
         }
 
         if ($slug == 'edit-tags.php' || $slug == 'term.php') {
             if (get_query_var('post_type') && 'circartsnet_listing' === get_query_var('post_type')) {
                 wp_enqueue_media();
-                wp_enqueue_style('can-bs', CIRCARTSNET_URL."/assets/libs/css/bootstrap.css");
-                wp_enqueue_style( 'can-admin', CIRCARTSNET_URL . '/assets/css/admin.css');
-                wp_enqueue_style('can-icons', CIRCARTSNET_URL."/assets/libs/icons/bootstrap-icons.css");
-                wp_enqueue_style( 'can-iconpicker', CIRCARTSNET_URL . '/assets/libs/iconpicker/jquery.fonticonpicker.min.css');
-                wp_enqueue_style( 'can-iconpicker-grey', CIRCARTSNET_URL . '/assets/libs/iconpicker/jquery.fonticonpicker.grey.min.css');
-                wp_enqueue_script( 'can-iconpicker', CIRCARTSNET_URL . '/assets/libs/iconpicker/jquery.fonticonpicker.min.js', array('jquery'));
-                wp_enqueue_script( 'can-category-admin', CIRCARTSNET_URL . '/assets/js/category.js', array('jquery'));
+                wp_enqueue_style('can-bs', CIRCARTSNET_URL . "/assets/libs/css/bootstrap.css", array(), CIRCARTSNET_VERSION);
+                wp_enqueue_style( 'can-admin', CIRCARTSNET_URL . '/assets/css/admin.css', array(), CIRCARTSNET_VERSION);
+                wp_enqueue_style('can-icons', CIRCARTSNET_URL . "/assets/libs/icons/bootstrap-icons.css", array(), CIRCARTSNET_VERSION);
+                wp_enqueue_style( 'can-iconpicker', CIRCARTSNET_URL . '/assets/libs/iconpicker/jquery.fonticonpicker.min.css', array(), CIRCARTSNET_VERSION);
+                wp_enqueue_style( 'can-iconpicker-grey', CIRCARTSNET_URL . '/assets/libs/iconpicker/jquery.fonticonpicker.grey.min.css', array(), CIRCARTSNET_VERSION);
+                wp_enqueue_script( 'can-iconpicker', CIRCARTSNET_URL . '/assets/libs/iconpicker/jquery.fonticonpicker.min.js', array('jquery'), CIRCARTSNET_VERSION, true);
+                wp_enqueue_script( 'can-category-admin', CIRCARTSNET_URL . '/assets/js/category.js', array('jquery'), CIRCARTSNET_VERSION, true);
             }
         }
 
         if($slug == 'circartsnet_listing_page_circartsnet_listing_sellers'){
-            wp_enqueue_script( 'can-manage-sellers', CIRCARTSNET_URL . '/assets/js/manage-sellers.js'  , array('jquery'));
+            wp_enqueue_script( 'can-manage-sellers', CIRCARTSNET_URL . '/assets/js/manage-sellers.js'  , array('jquery'), CIRCARTSNET_VERSION, true);
         }
 
     }

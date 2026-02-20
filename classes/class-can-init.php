@@ -22,7 +22,7 @@ class CIRCARTSNET_Init
 	}
 
     function circartsnet_load_plugin_textdomain(){
-        //load_plugin_textdomain( 'circular-arts-network', false, basename( CIRCARTSNET_PATH ) . '/languages/' );
+        load_plugin_textdomain( 'circular-arts-network', false, basename( CIRCARTSNET_PATH ) . '/languages/' );
     }
 
 	function register_role_caps(){

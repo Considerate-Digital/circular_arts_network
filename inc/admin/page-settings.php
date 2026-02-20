@@ -39,7 +39,7 @@ if( ! defined('ABSPATH' ) ){ exit; }
 							<div class="card-body">
 								<?php foreach ($panel['fields'] as $field) {
 									//NB: this does not need further escaping as all of the fields have each attribute escaped in "render-admin-settings.php"
-									echo $this->render_setting_field($field);
+									echo wp_kses( $this->render_setting_field($field), $this->get_settings_field_allowed_html() );
 								} ?>
 							</div>
 						</div>
