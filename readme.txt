@@ -3,7 +3,7 @@ Contributors: circularartsnetwork
 Donate link: https://canarts.org.uk
 Tags: circular, arts, classifieds
 Requires at least: 4.7
-Tested up to: 6.9.1
+Tested up to: 6.9
 Stable tag: 0.2
 Requires PHP: 7.0
 License: GPLv3

@@ -67,4 +67,5 @@ final class EmailTest extends TestCase
         self::assertStringContainsString('TITLE:Listing #77', $email['message']);
         self::assertStringContainsString('https://example.com/?p=77', $email['message']);
     }
+
 }

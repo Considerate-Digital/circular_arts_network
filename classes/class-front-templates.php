@@ -90,15 +90,20 @@ class CIRCARTSNET_Front_Templates
     }
 
     function listings_compare_table(){
-        $nonce_success = false;
-        if (isset($_REQUEST['_wpnonce'])) {
-          $nonce_success = wp_verify_nonce( sanitize_text_field(wp_unslash($_REQUEST['_wpnonce'])), 'compare' ); 
-        }
-        if (!$nonce_success) {
-            wp_nonce_ays('log-out');
+        if ( ! check_ajax_referer( 'compare', '_wpnonce', false ) ) {
+            wp_send_json_error(
+                array(
+                    'status' => 'error',
+                    'message' => __( 'Invalid request.', 'circular-arts-network' ),
+                )
+            );
         }
         if (isset($_REQUEST['listing_ids'])) {
-            $listing_ids = array_map( 'sanitize_text_field', sanitize_text_field((wp_unslash($_REQUEST['listing_ids'])) ));
+            $listing_ids_raw = wp_unslash( $_REQUEST['listing_ids'] );
+            if ( ! is_array( $listing_ids_raw ) ) {
+                $listing_ids_raw = explode( ',', sanitize_text_field( $listing_ids_raw ) );
+            }
+            $listing_ids = array_values( array_filter( array_map( 'absint', $listing_ids_raw ) ) );
 
             $saved_table_label = circartsnet_get_option('listing_compare_columns');
             if (!empty($saved_table_label)) {
@@ -291,7 +296,8 @@ class CIRCARTSNET_Front_Templates
             wp_enqueue_script( 'iziModal', CIRCARTSNET_URL . '/assets/libs/js/iziModal.min.js', array('jquery'), CIRCARTSNET_VERSION, true );
             wp_enqueue_script( 'can-compare', CIRCARTSNET_URL . '/assets/js/compare.js', array('jquery'), CIRCARTSNET_VERSION, true );
             wp_localize_script( 'can-compare', 'circartsnet_compare', array(
-                'ajaxurl' => admin_url( 'admin-ajax.php' )
+                'ajaxurl' => admin_url( 'admin-ajax.php' ),
+                'nonce' => wp_create_nonce( 'compare' ),
             ) );
         }
 	}

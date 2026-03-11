@@ -101,4 +101,23 @@ final class AdminSettingsTest extends TestCase
 
         self::assertEquals(15, $query->sets['posts_per_page']);
     }
+
+    public function testSanitizeAdminSettingsRequestPersistsOnlyKnownSanitizedFields(): void
+    {
+        $sanitized = $this->subject->sanitize_admin_settings_request(array(
+            'currency' => 'GBP',
+            'decimal_points' => '4<script>',
+            'placeholder_image' => 'https://example.com/image.png',
+            'to_seller_registered' => '<strong>Hello</strong>',
+            'enable_compare' => 'enable',
+            'unknown_setting' => 'discard-me',
+        ));
+
+        self::assertSame('GBP', $sanitized['currency']);
+        self::assertSame('4<script>', $sanitized['decimal_points']);
+        self::assertSame('https://example.com/image.png', $sanitized['placeholder_image']);
+        self::assertSame('<strong>Hello</strong>', $sanitized['to_seller_registered']);
+        self::assertSame('enable', $sanitized['enable_compare']);
+        self::assertArrayNotHasKey('unknown_setting', $sanitized);
+    }
 }

@@ -195,8 +195,10 @@ class CIRCARTSNET_Email
             $client_msg = isset($_REQUEST['client_msg']) ? sanitize_textarea_field(wp_unslash($_REQUEST['client_msg'])) : '';
             $seller_id = isset($_REQUEST['seller_id']) ? absint($_REQUEST['seller_id']) : 0;
 
-            // Handle reCAPTCHA validation
-            if (!empty($recaptcha_response)) {
+            $captcha_enabled = ( 'on' === circartsnet_get_option( 'captcha_on_contact', '' ) );
+
+            // Handle reCAPTCHA validation only when enabled.
+            if ( $captcha_enabled && !empty($recaptcha_response)) {
                 // reCAPTCHA response exists, validate it
                 $secretKey = circartsnet_get_option('captcha_secret_key', '6LcDhUQUAAAAAGKQ7gd1GsGAkEGooVISGEl3s7ZH');
                 $ip = isset($_SERVER['REMOTE_ADDR']) ? sanitize_text_field(wp_unslash($_SERVER['REMOTE_ADDR'])) : '';
@@ -230,7 +232,7 @@ class CIRCARTSNET_Email
                     echo wp_json_encode($resp); 
                     exit;
                 }
-            } else {
+            } elseif ( $captcha_enabled ) {
                 // No reCAPTCHA response provided
                 $resp = array(
                     'fail' => 'already', 
@@ -266,7 +268,18 @@ class CIRCARTSNET_Email
                    $message = nl2br(stripcslashes($message));
                 }
 
-                $message = apply_filters( 'seller_contact_email_message', $message, $_REQUEST );
+                $message = apply_filters(
+                    'seller_contact_email_message',
+                    $message,
+                    array(
+                        'client_name' => $client_name,
+                        'client_email' => $client_email,
+                        'client_phone' => $client_phone,
+                        'client_msg' => $client_msg,
+                        'seller_id' => $seller_id,
+                        'listing_id' => $listing_id,
+                    )
+                );
 
                 $seller_info = get_userdata($seller_id);
                 $seller_email = $seller_info->user_email;

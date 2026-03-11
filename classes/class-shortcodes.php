@@ -414,7 +414,7 @@ class CIRCARTSNET_Shortcodes
 	function search_results(){
 		$nonce_success = check_ajax_referer( 'search' ); 
 		if($nonce_success && isset($_REQUEST) && !empty($_REQUEST)){
-			$args = circartsnet_get_search_query($_REQUEST);
+			$args = circartsnet_get_search_query( circartsnet_sanitize_search_request( $_REQUEST ) );
 
 			$the_query = new WP_Query( $args );
 			$target = circartsnet_get_option('searched_listings_target', '_blank');
@@ -718,28 +718,25 @@ class CIRCARTSNET_Shortcodes
 	}
 
 	function create_listing_frontend(){
+		$nonce = isset( $_REQUEST['_wpnonce'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['_wpnonce'] ) ) : '';
+		$has_update_nonce = $nonce ? wp_verify_nonce( $nonce, 'listing-updated' ) : false;
+		$has_add_nonce = $nonce ? wp_verify_nonce( $nonce, 'listing-added' ) : false;
 
-
-		$resp = array(
-			'status'    => 'error',
-			'message'   => __( 'There is some error', 'circular-arts-network' ),
-		);
-
-		$current_user_data = wp_get_current_user();
-
-		$listing_id = '';
-		if (isset($_REQUEST['listing_id'])) {
-			$listing_id = absint( wp_unslash( $_REQUEST['listing_id'] ) );
-		} elseif (get_query_var('listing_id')) {
-			$listing_id = absint( wp_unslash( get_query_var('listing_id') ) );
-		}
-
-		$nonce_action = $listing_id ? 'listing-updated' : 'listing-added';
-		if ( ! check_ajax_referer( $nonce_action, '_wpnonce', false ) ) {
+		if ( ! $has_update_nonce && ! $has_add_nonce ) {
 			wp_send_json_error(
 				array(
 					'status' => 'error',
 					'message' => __( 'Invalid request.', 'circular-arts-network' ),
+				)
+			);
+		}
+
+		$current_user_data = wp_get_current_user();
+		if ( empty( $current_user_data->ID ) ) {
+			wp_send_json_error(
+				array(
+					'status' => 'error',
+					'message' => __( 'You must be logged in.', 'circular-arts-network' ),
 				)
 			);
 		}
@@ -753,20 +750,60 @@ class CIRCARTSNET_Shortcodes
 			);
 		}
 
+		$sanitized_request = $this->sanitize_request_data( $_REQUEST );
+		$listing_id = isset( $sanitized_request['listing_id'] ) ? absint( $sanitized_request['listing_id'] ) : 0;
+		if ( ! $listing_id && get_query_var( 'listing_id' ) ) {
+			$listing_id = absint( get_query_var( 'listing_id' ) );
+		}
+		$resp = array(
+			'status'    => 'error',
+			'message'   => __( 'There is some error', 'circular-arts-network' ),
+		);
+
+		if ( $listing_id && ! $has_update_nonce ) {
+			wp_send_json_error(
+				array(
+					'status' => 'error',
+					'message' => __( 'Invalid update request.', 'circular-arts-network' ),
+				)
+			);
+		}
+
+		if ( ! $listing_id && ! $has_add_nonce ) {
+			wp_send_json_error(
+				array(
+					'status' => 'error',
+					'message' => __( 'Invalid create request.', 'circular-arts-network' ),
+				)
+			);
+		}
+
+		if ( $listing_id && absint( get_post_field( 'post_author', $listing_id ) ) !== absint( $current_user_data->ID ) ) {
+			wp_send_json_error(
+				array(
+					'status' => 'error',
+					'message' => __( 'You are not allowed to update this listing.', 'circular-arts-network' ),
+				)
+			);
+		}
+
 		// If needs update
 		if ($listing_id && get_post_field( 'post_author', $listing_id ) == $current_user_data->ID) {
-			$status = (isset($_REQUEST['listing_admin_status']) && $_REQUEST['listing_admin_status'] != '') ? sanitize_text_field(
-				wp_unslash($_REQUEST['listing_admin_status'])) : get_post_status( $listing_id ) ;
+			$allowed_statuses = array( 'draft', 'publish', 'pending' );
+			$status = isset( $sanitized_request['listing_admin_status'] ) ? $sanitized_request['listing_admin_status'] : get_post_status( $listing_id );
+			if ( ! in_array( $status, $allowed_statuses, true ) ) {
+				$status = get_post_status( $listing_id );
+			}
 			if ($status == 'publish') {
 
 				if($this->listing_circartsnet_be_published($listing_id)){
 
-					$listing_id = $this->insert_listing_in_db($_REQUEST, $current_user_data, $listing_id, 'publish');
+					$listing_id = $this->insert_listing_in_db($sanitized_request, $current_user_data, $listing_id, 'publish');
 				} else {
-					$listing_id = $this->insert_listing_in_db($_REQUEST, $current_user_data, $listing_id, 'pending');
+					$listing_id = $this->insert_listing_in_db($sanitized_request, $current_user_data, $listing_id, 'pending');
 				}
 			} else {
-				$listing_id = $this->insert_listing_in_db($_REQUEST, $current_user_data, $listing_id, $status);
+				$listing_id = $this->insert_listing_in_db($sanitized_request, $current_user_data, $listing_id, $status);
 			}
 
 			$resp = array(
@@ -779,11 +816,11 @@ class CIRCARTSNET_Shortcodes
 			// Create a new    
 		} else {
 			if(circartsnet_get_option('listing_submission_mode') == 'approve'){
-				$listing_id = $this->insert_listing_in_db($_REQUEST, $current_user_data, '', 'pending');
+				$listing_id = $this->insert_listing_in_db($sanitized_request, $current_user_data, '', 'pending');
 				$resp['status'] = 'success';
 				$resp['message'] = __( 'Listing Submitted!', 'circular-arts-network' );
 			} else {
-				$listing_id = $this->insert_listing_in_db($_REQUEST, $current_user_data, $listing_id, 'publish');
+				$listing_id = $this->insert_listing_in_db($sanitized_request, $current_user_data, $listing_id, 'publish');
 				$resp['status'] = 'success';
 				$resp['message'] = __( 'Listing Published!', 'circular-arts-network' );
 			}
@@ -859,24 +896,25 @@ class CIRCARTSNET_Shortcodes
 	}
 
 	function delete_listing(){
-		$nonce_success = false;
-		if (isset($_REQUEST['_wpnonce'])) {
-			$nonce_success = wp_verify_nonce( sanitize_text_field((wp_unslash($_REQUEST['_wpnonce']))), 'delete-listing' ); 
-		} else if ($nonce_success == false) {
-			$nonce_success = check_ajax_referer('delete-listing');
+		if ( ! check_ajax_referer( 'delete-listing', '_wpnonce', false ) ) {
+			wp_send_json_error(
+				array(
+					'status' => 'error',
+					'message' => __( 'Invalid request.', 'circular-arts-network' ),
+				)
+			);
 		}
-		if (!$nonce_success) {
-				wp_nonce_ays('log-out');
-		}
-		$listing_id = isset($_REQUEST['listing_id']) ? sanitize_text_field(
-			wp_unslash($_REQUEST['listing_id'])) : "";
+		$listing_id = isset($_REQUEST['listing_id']) ? absint(
+			wp_unslash($_REQUEST['listing_id'])) : 0;
 		if ($listing_id) {
 			$current_user_data = wp_get_current_user();
 			if (get_post_field( 'post_author', $listing_id) == $current_user_data->ID || current_user_can( 'manage_options' )) {
 				if (circartsnet_get_option('attachment_deletion', 'remain') == 'delete') {
 					$gallery_images = get_post_meta( $listing_id, 'circartsnet_gallery_images', true );
-					foreach ($gallery_images as $key => $id) {
-						wp_delete_attachment( $id, false );
+					if ( is_array( $gallery_images ) ) {
+						foreach ($gallery_images as $key => $id) {
+							wp_delete_attachment( absint( $id ), false );
+						}
 					}
 				}
 				if (circartsnet_get_option('property_deletion', 'delete') == 'trash') {
@@ -899,8 +937,7 @@ class CIRCARTSNET_Shortcodes
 		}
 		die(0);
 	}
-function sanitize_request_data($data) {
-		return $data;
+	function sanitize_request_data($data) {
     if (!is_array($data) || empty($data)) {
         return array();
     }
@@ -918,7 +955,12 @@ function sanitize_request_data($data) {
         
         // Handle arrays recursively
         if (is_array($value)) {
-            $sanitized[$clean_key] = sanitize_request_data($value);
+            if ( 'gallery_images' === $clean_key ) {
+                $gallery_ids = array_map( 'absint', wp_unslash( $value ) );
+                $sanitized[$clean_key] = array_values( array_filter( $gallery_ids ) );
+            } else {
+                $sanitized[$clean_key] = $this->sanitize_request_data($value);
+            }
             continue;
         }
         
@@ -945,6 +987,9 @@ function sanitize_request_data($data) {
             // Long text content - allow some HTML but sanitize
             $sanitized[$clean_key] = wp_kses_post($value);
             
+        } elseif ( false !== strpos( $clean_key, 'latitude' ) || false !== strpos( $clean_key, 'longitude' ) ) {
+            $sanitized[$clean_key] = is_numeric($value) ? (string) $value : '';
+
         } elseif (preg_match('/(id|ID|_id)$/i', $key) || is_numeric($value)) {
             // IDs and numeric values
             $sanitized[$clean_key] = absint($value);
@@ -975,11 +1020,10 @@ function sanitize_request_data($data) {
 		 * TODO 
 		 * Can't error_log here or it breaks the process
 		 */
-		// TODO not working yet
-		//$data = sanitize_request_data($data);
+		$data = $this->sanitize_request_data( $data );
 		$listing_data = array(
-			'post_title'    	=> wp_strip_all_tags( $data['listing_title'] ),
-			'post_content'  	=> $data['content'],
+			'post_title'    	=> isset( $data['listing_title'] ) ? wp_strip_all_tags( $data['listing_title'] ) : '',
+			'post_content'  	=> isset( $data['content'] ) ? wp_kses_post( $data['content'] ) : '',
 			'post_author'   	=> $current_user_data->ID,
 			'post_type'   	=> 'circartsnet_listing',
 			'post_status'   	=> $status,
@@ -1005,21 +1049,24 @@ function sanitize_request_data($data) {
 
 		// Saving Gallery Images
 		if (isset($data['gallery_images']) && $data['gallery_images'] != '') {
-			update_post_meta( $listing_id, 'circartsnet_gallery_images', $data['gallery_images'] );
+			$gallery_images = is_array( $data['gallery_images'] ) ? array_map( 'absint', $data['gallery_images'] ) : array_filter( array_map( 'absint', explode( ',', (string) $data['gallery_images'] ) ) );
+			update_post_meta( $listing_id, 'circartsnet_gallery_images', $gallery_images );
 		} else {
 			update_post_meta( $listing_id, 'circartsnet_gallery_images', '' );
 		}
 
 		// Saving Location
 		if (isset($data['circartsnet_listing_latitude']) && $data['circartsnet_listing_latitude'] != '') {
-			update_post_meta( $listing_id, 'circartsnet_listing_latitude', $data['circartsnet_listing_latitude'] );
+			update_post_meta( $listing_id, 'circartsnet_listing_latitude', sanitize_text_field( $data['circartsnet_listing_latitude'] ) );
 		}
 		if (isset($data['circartsnet_listing_longitude']) && $data['circartsnet_listing_longitude'] != '') {
-			update_post_meta( $listing_id, 'circartsnet_listing_longitude', $data['circartsnet_listing_longitude'] );
+			update_post_meta( $listing_id, 'circartsnet_listing_longitude', sanitize_text_field( $data['circartsnet_listing_longitude'] ) );
 		}
 
 		if (isset($data['circartsnet_listing_category']) && $data['circartsnet_listing_category'] != '') {
-			$category_value = $data['circartsnet_listing_category'];
+			$category_value = is_array( $data['circartsnet_listing_category'] )
+				? array_map( 'sanitize_text_field', $data['circartsnet_listing_category'] )
+				: sanitize_text_field( $data['circartsnet_listing_category'] );
 			wp_set_object_terms($listing_id, $category_value, 'circartsnet_listing_category', true);
 		}
 

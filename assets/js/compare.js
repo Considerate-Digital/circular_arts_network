@@ -101,7 +101,8 @@ jQuery(document).ready(function($) {
 	 		});
 	 		var data = {
 	 			'action' : 'circartsnet_compare_listings',
-	 			'listing_ids' : listing_ids
+	 			'listing_ids' : listing_ids,
+	 			'_wpnonce' : circartsnet_compare.nonce
 	 		}
 	        modal.startLoading();
 	        $.post(circartsnet_compare.ajaxurl, data , function(resp) {

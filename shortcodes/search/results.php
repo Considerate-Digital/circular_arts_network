@@ -14,7 +14,7 @@ if ($do_search) {
 
 if ($do_search) {
     
-    $args = circartsnet_get_search_query($_REQUEST);
+    $args = circartsnet_get_search_query( circartsnet_sanitize_search_request( $_REQUEST ) );
     $paged = ( get_query_var('paged') ) ? get_query_var('paged') : 1; 
     $args['paged'] = $paged;
     $listings_query = new WP_Query( $args );

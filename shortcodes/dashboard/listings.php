@@ -21,11 +21,9 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 							<option value="any"><?php esc_html_e( 'All Status', 'circular-arts-network' ); ?></option>
 						<?php 
 							$circartsnet_status = isset($_GET['circartsnet_status']) ? sanitize_text_field(wp_unslash(($_GET['circartsnet_status']))) : '';
-							echo esc_html('<option value="publish"'. $circartsnet_status == 'publish' ? 'selected' : '' . esc_html_e( 'Only Published', 'circular-arts-network' ) . '</option>');
-
-							echo '<option value="pending"' . $circartsnet_status == 'pending' ? 'selected' : '' . esc_html_e( 'Only Pending', 'circular-arts-network' ) . '</option>';
-
-							echo esc_html('<option value="draft"' . $circartsnet_status  == 'draft' ? 'selected' : '' . esc_html_e( 'Only Draft', 'circular-arts-network' ) . '</option>');
+							echo '<option value="publish" ' . selected( $circartsnet_status, 'publish', false ) . '>' . esc_html__( 'Only Published', 'circular-arts-network' ) . '</option>';
+							echo '<option value="pending" ' . selected( $circartsnet_status, 'pending', false ) . '>' . esc_html__( 'Only Pending', 'circular-arts-network' ) . '</option>';
+							echo '<option value="draft" ' . selected( $circartsnet_status, 'draft', false ) . '>' . esc_html__( 'Only Draft', 'circular-arts-network' ) . '</option>';
 
 						wp_nonce_field( 'search-query'); 
 

@@ -491,7 +491,90 @@ class CIRCARTSNET_Admin_Settings
         die(0);
     }
 
+    function sanitize_admin_setting_value( $field, $request ) {
+        $name = isset( $field['name'] ) ? $field['name'] : '';
+        if ( '' === $name ) {
+            return null;
+        }
+
+        if ( 'checkbox' === $field['type'] ) {
+            return isset( $request[ $name ] ) ? 'on' : '';
+        }
+
+        if ( ! isset( $request[ $name ] ) ) {
+            return null;
+        }
+
+        $value = wp_unslash( $request[ $name ] );
+
+        if ( isset( $field['multiple'] ) && 'true' === $field['multiple'] && is_array( $value ) ) {
+            $sanitized_values = array_map( 'sanitize_text_field', $value );
+            if ( isset( $field['options'] ) && is_array( $field['options'] ) ) {
+                $sanitized_values = array_values(
+                    array_intersect( $sanitized_values, array_keys( $field['options'] ) )
+                );
+            }
+            return $sanitized_values;
+        }
+
+        switch ( $field['type'] ) {
+            case 'textarea':
+                return wp_kses_post( $value );
+
+            case 'image':
+                return esc_url_raw( $value );
+
+            case 'number':
+            case 'pages':
+                return absint( $value );
+
+            case 'select':
+            case 'currency':
+            case 'image_sizes':
+            case 'widget':
+                $sanitized_value = sanitize_text_field( $value );
+                if ( isset( $field['options'] ) && is_array( $field['options'] ) && ! array_key_exists( $sanitized_value, $field['options'] ) ) {
+                    return '';
+                }
+                return $sanitized_value;
+
+            case 'color':
+            case 'text':
+            default:
+                return sanitize_text_field( $value );
+        }
+    }
+
+    function sanitize_admin_settings_request( $request ) {
+        $sanitized = array();
+        $panels = $this->admin_settings_fields();
+
+        foreach ( $panels as $panel ) {
+            if ( empty( $panel['fields'] ) || ! is_array( $panel['fields'] ) ) {
+                continue;
+            }
+            foreach ( $panel['fields'] as $field ) {
+                $value = $this->sanitize_admin_setting_value( $field, $request );
+                if ( null !== $value ) {
+                    $sanitized[ $field['name'] ] = $value;
+                }
+            }
+        }
+
+        return $sanitized;
+    }
+
     function save_admin_settings(){
+        if ( ! current_user_can( 'manage_options' ) ) {
+            wp_send_json(
+                array(
+                    'status' => 'error',
+                    'title' => __( 'Failed!', 'circular-arts-network' ),
+                    'message' => __( 'You are not allowed to update settings.', 'circular-arts-network' ),
+                )
+            );
+        }
+
         $nonce_success = check_admin_referer('admin-save');
         if (!$nonce_success) {
                 wp_nonce_ays('log-out');
@@ -499,21 +582,17 @@ class CIRCARTSNET_Admin_Settings
 
         if (isset($_REQUEST)) {
             $resp = array('status' => '', 'title' => '', 'message' => '');
-            
-            $circartsnet_settings = wp_unslash($_REQUEST);
-            // sanitize each field
-            foreach($circartsnet_settings as $field => $value) {
-               $circartsnet_setting[$field] = esc_html(wp_unslash($value));  
-            }
+
+            $circartsnet_settings = $this->sanitize_admin_settings_request( $_REQUEST );
             if (update_option( 'circartsnet_all_settings', $circartsnet_settings )) {
                 $resp['status'] = 'success';
                 $resp['title'] = __( 'Settings Saved!', 'circular-arts-network' );
                 $resp['message'] = __( 'Settings are saved in the database successfully.', 'circular-arts-network' );
-                if (get_query_var('listing_submission_mode')) {
+                if ( isset( $circartsnet_settings['listing_submission_mode'] ) && '' !== $circartsnet_settings['listing_submission_mode'] ) {
                     $role = get_role( 'circartsnet_listing_seller' );
-                    if (get_query_var('listing_submission_mode') == 'publish') {
+                    if ( 'publish' === $circartsnet_settings['listing_submission_mode'] ) {
                         $role->add_cap( 'publish_circartsnet_listings' );
-                    } elseif (get_query_var('listing_submission_mode') == 'approve') {
+                    } elseif ( 'approve' === $circartsnet_settings['listing_submission_mode'] ) {
                         $role->remove_cap( 'publish_circartsnet_listings' );
                     }
                 }

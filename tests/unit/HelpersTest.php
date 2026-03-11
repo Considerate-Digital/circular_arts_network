@@ -64,6 +64,13 @@ final class HelpersTest extends TestCase
         self::assertStringContainsString('1,234.50', $price);
     }
 
+    public function testListingPriceHandlesEmptyInputWithoutFatal(): void
+    {
+        $price = circartsnet_get_listing_price('');
+
+        self::assertStringContainsString('0.00', $price);
+    }
+
     public function testLeafletProviderReturnsExpectedShape(): void
     {
         $provider = circartsnet_get_leaflet_provider('1');
@@ -71,5 +78,56 @@ final class HelpersTest extends TestCase
         self::assertIsArray($provider);
         self::assertArrayHasKey('provider', $provider);
         self::assertStringContainsString('openstreetmap.org', $provider['provider']);
+    }
+
+    public function testSearchRequestSanitizerNormalizesCoreInputs(): void
+    {
+        $GLOBALS['__can_test_options']['circartsnet_listing_fields'] = array(
+            array('key' => 'condition', 'type' => 'text'),
+        );
+
+        $sanitized = circartsnet_sanitize_search_request(array(
+            'offset' => '6',
+            'listing_id' => '9',
+            'seller_id' => '12',
+            'order' => 'desc',
+            'orderby' => 'price',
+            'orderby_custom' => 'custom-field',
+            'tag' => array('5', '8'),
+            'keywords' => 'metal',
+            'lang' => 'en_GB',
+            'condition' => 'used',
+        ));
+
+        self::assertSame(6, $sanitized['offset']);
+        self::assertSame(9, $sanitized['listing_id']);
+        self::assertSame(12, $sanitized['seller_id']);
+        self::assertSame('DESC', $sanitized['order']);
+        self::assertSame('price', $sanitized['orderby']);
+        self::assertSame('customfield', $sanitized['orderby_custom']);
+        self::assertSame(array(5, 8), $sanitized['tag']);
+        self::assertSame('metal', $sanitized['keywords']);
+        self::assertSame('en_gb', $sanitized['lang']);
+        self::assertSame('used', $sanitized['condition']);
+    }
+
+    public function testRenderSearchFieldReturnsHtmlWithoutNonceSideEffects(): void
+    {
+        $_GET['condition'] = 'used';
+
+        ob_start();
+        $html = circartsnet_render_search_field(array(
+            'key' => 'condition',
+            'title' => 'Condition',
+            'type' => 'select',
+            'icon' => 'bi bi-box',
+            'options' => array('used', 'new'),
+            'default' => '',
+        ));
+        $html = ob_get_clean() . $html;
+
+        self::assertStringContainsString('name=condition', $html);
+        self::assertStringContainsString('selected', $html);
+        unset($_GET['condition']);
     }
 }

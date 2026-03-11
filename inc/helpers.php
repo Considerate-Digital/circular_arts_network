@@ -358,17 +358,6 @@ function circartsnet_render_search_field($field, $label = false, $icon = true){
         echo "<i class='".esc_attr( $field['icon'] )."'></i>";
     }
 
-    if (isset($_GET['search-form']) && wp_verify_nonce(
-        sanitize_text_field( 
-            wp_unslash($_GET['search-form']), 'search-form' )
-        )
-    ) {
-
-    } else {
-        wp_nonce_ays();
-    }
-
-
     $field_value = isset($_GET[$field['key']]) ? 
         sanitize_text_field(
             wp_unslash($_GET[$field['key']])
@@ -649,6 +638,7 @@ function circartsnet_count_user_listings($user_id, $status = 'all'){
  */
 function circartsnet_get_listing_price( $price, $args = array() ) {
     $price_digits = $price;
+    $price = is_numeric( $price ) ? (float) $price : 0.0;
     extract( apply_filters( 'circartsnet_price_args', wp_parse_args( $args, array(
         'currency'           => circartsnet_get_option('currency', 'GBP'),
         'decimal_separator'  => circartsnet_get_price_decimal_separator(),
@@ -1105,7 +1095,125 @@ function circartsnet_get_leaflet_provider($map_id){
     return apply_filters( 'circartsnet_leaflet_provider', $resp, $map_id );
 }
 
+function circartsnet_sanitize_search_request($data) {
+    if ( ! is_array( $data ) ) {
+        return array();
+    }
+
+    $sanitized = array();
+    $allowed_order = array( 'ASC', 'DESC' );
+    $allowed_orderby = array( 'date', 'title', 'price', 'meta_value', 'meta_value_num', 'rand' );
+
+    if ( isset( $data['offset'] ) && $data['offset'] !== '' ) {
+        $sanitized['offset'] = absint( wp_unslash( $data['offset'] ) );
+    }
+
+    if ( isset( $data['listing_id'] ) && $data['listing_id'] !== '' ) {
+        $sanitized['listing_id'] = absint( wp_unslash( $data['listing_id'] ) );
+    }
+
+    if ( isset( $data['seller_id'] ) && $data['seller_id'] !== '' ) {
+        $sanitized['seller_id'] = absint( wp_unslash( $data['seller_id'] ) );
+    }
+
+    if ( isset( $data['order'] ) && $data['order'] !== '' ) {
+        $order = strtoupper( sanitize_text_field( wp_unslash( $data['order'] ) ) );
+        if ( in_array( $order, $allowed_order, true ) ) {
+            $sanitized['order'] = $order;
+        }
+    }
+
+    if ( isset( $data['orderby'] ) && $data['orderby'] !== '' ) {
+        $orderby = sanitize_key( wp_unslash( $data['orderby'] ) );
+        if ( in_array( $orderby, $allowed_orderby, true ) ) {
+            $sanitized['orderby'] = $orderby;
+        }
+    }
+
+    if ( isset( $data['orderby_custom'] ) && $data['orderby_custom'] !== '' ) {
+        $sanitized['orderby_custom'] = sanitize_key( wp_unslash( $data['orderby_custom'] ) );
+    }
+
+    if ( isset( $data['tag'] ) && $data['tag'] !== '' ) {
+        if ( is_array( $data['tag'] ) ) {
+            $tags = array_map( 'absint', wp_unslash( $data['tag'] ) );
+            $tags = array_values( array_filter( $tags ) );
+            if ( ! empty( $tags ) ) {
+                $sanitized['tag'] = $tags;
+            }
+        } else {
+            $tag_id = absint( wp_unslash( $data['tag'] ) );
+            if ( $tag_id ) {
+                $sanitized['tag'] = array( $tag_id );
+            }
+        }
+    }
+
+    if ( isset( $data['keywords'] ) && $data['keywords'] !== '' ) {
+        $sanitized['keywords'] = sanitize_text_field( wp_unslash( $data['keywords'] ) );
+    }
+
+    if ( isset( $data['lang'] ) && $data['lang'] !== '' ) {
+        $sanitized['lang'] = sanitize_key( wp_unslash( $data['lang'] ) );
+    }
+
+    if ( isset( $data['regular_price'] ) && is_array( $data['regular_price'] ) ) {
+        $sanitized['regular_price'] = array(
+            'min' => isset( $data['regular_price']['min'] ) ? sanitize_text_field( wp_unslash( $data['regular_price']['min'] ) ) : '',
+            'max' => isset( $data['regular_price']['max'] ) ? sanitize_text_field( wp_unslash( $data['regular_price']['max'] ) ) : '',
+        );
+    }
+
+    if ( isset( $data['detail_cbs'] ) && is_array( $data['detail_cbs'] ) ) {
+        $detail_cbs = array();
+        foreach ( wp_unslash( $data['detail_cbs'] ) as $cb_name => $value ) {
+            if ( '' === $value ) {
+                continue;
+            }
+            $detail_cbs[ sanitize_key( $cb_name ) ] = sanitize_text_field( $value );
+        }
+        if ( ! empty( $detail_cbs ) ) {
+            $sanitized['detail_cbs'] = $detail_cbs;
+        }
+    }
+
+    if ( isset( $data['range'] ) && is_array( $data['range'] ) ) {
+        $ranges = array();
+        foreach ( wp_unslash( $data['range'] ) as $range_key => $values ) {
+            if ( ! is_array( $values ) ) {
+                continue;
+            }
+            $ranges[ sanitize_key( $range_key ) ] = array(
+                'min' => isset( $values['min'] ) ? sanitize_text_field( $values['min'] ) : '',
+                'max' => isset( $values['max'] ) ? sanitize_text_field( $values['max'] ) : '',
+            );
+        }
+        if ( ! empty( $ranges ) ) {
+            $sanitized['range'] = $ranges;
+        }
+    }
+
+    $input_fields = circartsnet_get_listing_fields();
+    foreach ( $input_fields as $field ) {
+        if ( empty( $field['key'] ) || ! isset( $data[ $field['key'] ] ) ) {
+            continue;
+        }
+        $field_key = $field['key'];
+        $value = wp_unslash( $data[ $field_key ] );
+
+        if ( is_array( $value ) ) {
+            $sanitized[ $field_key ] = array_map( 'sanitize_text_field', $value );
+            continue;
+        }
+
+        $sanitized[ $field_key ] = sanitize_text_field( $value );
+    }
+
+    return $sanitized;
+}
+
 function circartsnet_get_search_query($data){
+    $data = circartsnet_sanitize_search_request( $data );
     $ppp = circartsnet_get_option('listings_per_results_page', 10);
 
     $args = array(

@@ -19,9 +19,9 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 					$inputFields = circartsnet_get_listing_fields();
 					foreach ($inputFields as $field) {
 						if (in_array($field['key'], $searchFields)) {
-							echo esc_html("<div class='{$columns}'>");
+							echo '<div class="' . esc_attr( $columns ) . '">';
 								echo "<div class='can-input-wrap'>";
-									echo esc_html(circartsnet_render_search_field($field));
+									echo wp_kses_post( circartsnet_render_search_field($field) );
 								echo "</div>";
 							echo "</div>";
 							
