@@ -51,6 +51,59 @@ At the top of the page, click on the "Upload Plugin" button. Then, choose the ZI
 
 After uploading the ZIP file, click on the "Install Now" button. Once installed, you will need to activate the plugin by clicking on the "Activate Plugin" link.
 
+## Testing
+
+This repository includes both a fast unit test suite and a WordPress integration suite.
+
+### Requirements
+
+- PHP 7.4+ (or newer)
+- Composer
+- Xdebug or PCOV enabled for coverage
+
+### Install dependencies
+
+```bash
+composer install
+```
+
+### Run unit tests
+
+```bash
+composer test:unit
+```
+
+### Generate unit coverage report
+
+```bash
+composer test:coverage
+```
+
+Coverage outputs are written to:
+
+- `coverage/clover.xml`
+- `coverage/html/index.html`
+
+### Run WordPress integration tests
+
+1. Install WordPress core + test data (requires MySQL + `svn`):
+
+```bash
+chmod +x tools/install-wp-tests.sh
+./tools/install-wp-tests.sh <db_name> <db_user> <db_pass> [db_host] [wp_version]
+```
+
+2. Run the integration suite:
+
+```bash
+export WP_CORE_DIR=/tmp/wordpress/
+export WP_TEST_DB_NAME=<db_name>
+export WP_TEST_DB_USER=<db_user>
+export WP_TEST_DB_PASSWORD=<db_pass>
+export WP_TEST_DB_HOST=<db_host>
+composer test:integration
+```
+
 ## Shortcodes Documentation
 
 ### 1. Display Listings
@@ -135,5 +188,3 @@ You can report bugs by submitting a new issue. The more detail you can provide i
 Here, in no particular order, are a list of future developments we'd like to undertake:
 - Adapt the search to incoporate advanced search options
 - Add "create alert" functionality
-
-

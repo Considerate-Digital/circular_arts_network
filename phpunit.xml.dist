@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit
+  bootstrap="tests/unit/bootstrap.php"
+  colors="true"
+  cacheResult="false"
+>
+  <testsuites>
+    <testsuite name="Circular Arts Network Unit">
+      <directory>tests/unit</directory>
+    </testsuite>
+  </testsuites>
+
+  <coverage>
+    <include>
+      <directory suffix=".php">inc</directory>
+      <directory suffix=".php">classes</directory>
+      <file>circular-arts-network.php</file>
+    </include>
+    <exclude>
+      <directory>tests</directory>
+    </exclude>
+  </coverage>
+</phpunit>
